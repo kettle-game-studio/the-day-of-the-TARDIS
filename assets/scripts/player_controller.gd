@@ -7,6 +7,7 @@ const JUMP_VELOCITY = 4.5
 @export var mouse_sensivity = 0.75
 @export var max_up_rotation_angle = 30
 @export var max_down_rotation_angle = 70
+@export var portal_controller: PortalController
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -25,7 +26,10 @@ func _input(event):
 	elif Input.is_action_just_pressed("Escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif Input.is_action_just_pressed("main_action"):
+		portal_controller.enable_portal(global_position, global_rotation)
 		screwdriver_audiostream.play(2)
+	elif Input.is_action_just_pressed("second_action"):
+		portal_controller.switch_room()
 
 
 func rotate_camera(mouse_shift: Vector2):

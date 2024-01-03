@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo3b2kcxaxu5d"]
+[gd_scene load_steps=18 format=3 uid="uid://bo3b2kcxaxu5d"]
 
 [ext_resource type="Script" path="res://assets/scripts/portals/portal_controller.gd" id="1_8mrug"]
 [ext_resource type="Texture2D" uid="uid://duq5j5i2gbrg6" path="res://icon.svg" id="1_c7r2g"]
+[ext_resource type="PackedScene" uid="uid://dstfolwlsbqnr" path="res://assets/prefabs/player.tscn" id="1_uyfkx"]
 [ext_resource type="Script" path="res://assets/scripts/portals/viewport_size_observer.gd" id="2_6pam6"]
-[ext_resource type="PackedScene" uid="uid://cb5o00gwvk8fy" path="res://assets/preafabs/portal.tscn" id="3_bxdg0"]
+[ext_resource type="PackedScene" uid="uid://cb5o00gwvk8fy" path="res://assets/prefabs/portal.tscn" id="3_bxdg0"]
 
 [sub_resource type="Environment" id="Environment_h5ay2"]
 
@@ -49,11 +50,21 @@ func _process(delta):
 	pass
 "
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_cadx1"]
+size = Vector3(11, 0.18457, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p754p"]
+size = Vector3(11, 0.185, 16)
+
 [node name="PortalTestScene" type="Node3D"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("portal_controller") instance=ExtResource("1_uyfkx")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0413032, 4.76837e-07, 1.57623)
+portal_controller = NodePath("../PortalController")
 
 [node name="PortalController" type="Node3D" parent="." node_paths=PackedStringArray("player_camera", "remote_camera", "remote_viewport", "room1_base", "room2_base", "portal_home", "player", "portal")]
 script = ExtResource("1_8mrug")
-player_camera = NodePath("../Player/Camera3D")
+player_camera = NodePath("../Player/CameraPivot/Camera3D")
 remote_camera = NodePath("../Room2/SubViewport/Camera3D2")
 remote_viewport = NodePath("../Room2/SubViewport")
 room1_base = NodePath("../Room1")
@@ -61,12 +72,6 @@ room2_base = NodePath("../Room2")
 portal_home = NodePath("../PortalHome")
 player = NodePath("../Player")
 portal = NodePath("../Portal")
-
-[node name="Player" type="Node3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -0.0997577, 1.28388, 1.43425)
-near = 0.001
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h5ay2")
@@ -134,3 +139,13 @@ portal_vieport = NodePath("../Room2/SubViewport")
 
 [node name="PortalHome" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03737, -9.75237, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0888, -0.0944066, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0881277, -0.5)
+shape = SubResource("BoxShape3D_cadx1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_p754p")

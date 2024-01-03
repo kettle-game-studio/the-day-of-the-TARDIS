@@ -1,4 +1,5 @@
 extends Node
+class_name PortalController
 
 @export var player_camera: Camera3D
 @export var remote_camera: Camera3D
@@ -35,7 +36,7 @@ func _get_room_shift():
 	var shift = room2_base.global_position - room1_base.global_position
 	if room_state == RoomState.ROOM2:
 		shift = -shift
-	return
+	return shift
 
 func enable_portal(position: Vector3, rotation: Vector3):
 	portal_state = PortalState.ENABLED
@@ -48,9 +49,12 @@ func disable_portal():
 	portal.global_position = portal_home.global_position
 
 func switch_room():
+	player.global_position += _get_room_shift()
+	if portal_state == PortalState.ENABLED:
+		portal.global_position += _get_room_shift()
+
 	if room_state == RoomState.ROOM1:
 		room_state = RoomState.ROOM2
-	if room_state == RoomState.ROOM2:
+	elif room_state == RoomState.ROOM2:
 		room_state = RoomState.ROOM1
-	player.global_position += _get_room_shift()
 	_process(0)
