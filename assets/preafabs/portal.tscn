@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://cb5o00gwvk8fy"]
+
+[ext_resource type="Shader" path="res://assets/vfx/portal.gdshader" id="1_2cuah"]
+[ext_resource type="Script" path="res://assets/scripts/portals/portal.gd" id="1_u7vlk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7rj6q"]
+size = Vector3(0.01, 2, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bur3h"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_2cuah")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqhcd"]
+size = Vector3(0.1, 2, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gaem2"]
+size = Vector3(0.1, 2, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lmtfk"]
+size = Vector3(0.1, 0.1, 1.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q1pwq"]
+size = Vector3(0.1, 0.1, 1.1)
+
+[node name="Portal" type="Node3D" node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_u7vlk")
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_7rj6q")
+surface_material_override/0 = SubResource("ShaderMaterial_bur3h")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
+mesh = SubResource("BoxMesh_dqhcd")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
+mesh = SubResource("BoxMesh_gaem2")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_lmtfk")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_q1pwq")
