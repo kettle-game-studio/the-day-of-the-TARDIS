@@ -23,13 +23,13 @@ func _input(event):
 		rotate_camera(event.relative)
 	elif event is InputEventMouseButton && Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif Input.is_action_just_pressed("Escape"):
+	elif Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif Input.is_action_just_pressed("main_action"):
 		portal_controller.enable_portal(global_position, global_rotation)
 		screwdriver_audiostream.play(2)
 	elif Input.is_action_just_pressed("second_action"):
-		portal_controller.switch_room()
+		portal_controller.switch_room(null)
 
 
 func rotate_camera(mouse_shift: Vector2):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb5o00gwvk8fy"]
+[gd_scene load_steps=11 format=3 uid="uid://cb5o00gwvk8fy"]
 
 [ext_resource type="Shader" path="res://assets/vfx/portal.gdshader" id="1_2cuah"]
 [ext_resource type="Script" path="res://assets/scripts/portals/portal.gd" id="1_u7vlk"]
@@ -23,11 +23,17 @@ size = Vector3(0.1, 0.1, 1.1)
 [sub_resource type="BoxMesh" id="BoxMesh_q1pwq"]
 size = Vector3(0.1, 0.1, 1.1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rg1xu"]
+size = Vector3(0.893, 1.877, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c331o"]
+size = Vector3(0.108276, 2.00739, 0.102661)
+
 [node name="Portal" type="Node3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_u7vlk")
-mesh = NodePath("MeshInstance3D")
+mesh = NodePath("Main")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Main" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
 mesh = SubResource("BoxMesh_7rj6q")
 surface_material_override/0 = SubResource("ShaderMaterial_bur3h")
@@ -47,3 +53,26 @@ mesh = SubResource("BoxMesh_lmtfk")
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("BoxMesh_q1pwq")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00296506, 1.01066, 0)
+shape = SubResource("BoxShape3D_rg1xu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.495633, 0.954548, 0.000553221)
+shape = SubResource("BoxShape3D_c331o")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494201, 0.954548, 0.000553221)
+shape = SubResource("BoxShape3D_c331o")
+
+[connection signal="area_entered" from="Area3D" to="." method="_area_body_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_area_body_entered"]

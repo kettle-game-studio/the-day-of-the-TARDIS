@@ -48,8 +48,13 @@ func disable_portal():
 	portal_state = PortalState.DISABLED
 	portal.global_position = portal_home.global_position
 
-func switch_room():
-	player.global_position += _get_room_shift()
+func switch_room(body: Area3D):
+	var portal_normal = portal.transform.basis.z
+	var portal_to_player = (player.global_position - portal.global_position).normalized()
+	var dot_product = portal_normal.dot(portal_to_player)
+	if dot_product > 0:
+		portal_normal=-1*portal_normal
+	player.global_position += _get_room_shift()+0.2*portal_normal
 	if portal_state == PortalState.ENABLED:
 		portal.global_position += _get_room_shift()
 

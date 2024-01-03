@@ -103,7 +103,7 @@ mesh = SubResource("BoxMesh_fef5h")
 skeleton = NodePath("../../Room1")
 
 [node name="SubViewport" type="SubViewport" parent="Room2"]
-size = Vector2i(3840, 2036)
+size = Vector2i(2232, 2114)
 script = ExtResource("2_6pam6")
 
 [node name="Camera3D2" type="Camera3D" parent="Room2/SubViewport"]
@@ -149,3 +149,5 @@ shape = SubResource("BoxShape3D_cadx1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_p754p")
+
+[connection signal="teleport_activation" from="Portal" to="PortalController" method="switch_room"]
