@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dstfolwlsbqnr"]
+
+[ext_resource type="Script" path="res://assets/scripts/player_controller.gd" id="1_1id37"]
+[ext_resource type="AudioStream" uid="uid://mx5acjkbdr53" path="res://assets/sounds/sonic_01.mp3" id="2_q1xqm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j74et"]
+radius = 0.30457
+
+[sub_resource type="BoxMesh" id="BoxMesh_m85vq"]
+size = Vector3(0.23, 1.8, 0.565)
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_1id37")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00929, 0)
+shape = SubResource("CapsuleShape3D_j74et")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Tennant_v01" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.925409, 0)
+mesh = SubResource("BoxMesh_m85vq")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74283, -0.140923)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0966895)
+
+[node name="Sounds" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53928, 1.03227, -0.351233)
+
+[node name="Screwdriver" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0472581)
+stream = ExtResource("2_q1xqm")
+volume_db = -20.317
+panning_strength = 0.1
