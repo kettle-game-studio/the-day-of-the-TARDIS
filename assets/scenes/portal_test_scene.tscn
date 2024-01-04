@@ -59,7 +59,7 @@ size = Vector3(11, 0.185, 16)
 [node name="PortalTestScene" type="Node3D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("portal_controller") instance=ExtResource("1_uyfkx")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0413032, 4.76837e-07, 1.57623)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0413032, 4.76837e-07, 1.57623)
 portal_controller = NodePath("../PortalController")
 
 [node name="PortalController" type="Node3D" parent="." node_paths=PackedStringArray("player_camera", "remote_camera", "remote_viewport", "room1_base", "room2_base", "portal_home", "player", "portal")]
