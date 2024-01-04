@@ -103,7 +103,7 @@ mesh = SubResource("BoxMesh_fef5h")
 skeleton = NodePath("../../Room1")
 
 [node name="SubViewport" type="SubViewport" parent="Room2"]
-size = Vector2i(2232, 2114)
+size = Vector2i(3840, 2036)
 script = ExtResource("2_6pam6")
 
 [node name="Camera3D2" type="Camera3D" parent="Room2/SubViewport"]
@@ -133,9 +133,9 @@ script = SubResource("GDScript_bjqlj")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.258819, -0.933013, 0.25, 3.8567e-09, 0.258819, 0.965926, -0.965926, -0.25, 0.0669873, 0, 5, 0)
 
-[node name="Portal" parent="." node_paths=PackedStringArray("portal_vieport") instance=ExtResource("3_bxdg0")]
+[node name="Portal" parent="." node_paths=PackedStringArray("portal_viewport") instance=ExtResource("3_bxdg0")]
 transform = Transform3D(-0.618504, 0, -0.785781, 0, 1, 0, 0.785781, 0, -0.618504, -0.212778, 4.26326e-13, -0.0732476)
-portal_vieport = NodePath("../Room2/SubViewport")
+portal_viewport = NodePath("../Room2/SubViewport")
 
 [node name="PortalHome" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03737, -9.75237, 0)
