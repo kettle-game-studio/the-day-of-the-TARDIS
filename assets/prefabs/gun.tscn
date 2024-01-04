@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgookivq886s1"]
+
+[ext_resource type="Script" path="res://assets/prefabs/gun_contoller.gd" id="1_qjv70"]
+[ext_resource type="PackedScene" uid="uid://cckv52vkj5pih" path="res://assets/prefabs/bullet.tscn" id="2_c2moc"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_sux67"]
+inner_radius = 0.025
+outer_radius = 0.224
+
+[node name="Gun" type="Node3D"]
+script = ExtResource("1_qjv70")
+bullet_prefab = ExtResource("2_c2moc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("TorusMesh_sux67")
+
+[node name="BulletPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.179498)

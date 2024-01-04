@@ -14,9 +14,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camera = $CameraPivot/Camera3D
 @onready var screwdriver_audiostream = $Sounds/Screwdriver
+@onready var gun = $Gun
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+func _ready():
+	gun.scene = get_parent()
 
 func _input(event):
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -26,10 +30,10 @@ func _input(event):
 	elif Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif Input.is_action_just_pressed("main_action"):
-		portal_controller.enable_portal(global_position, global_rotation)
+		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
 		screwdriver_audiostream.play(2)
 	elif Input.is_action_just_pressed("second_action"):
-		portal_controller.switch_room(null)
+		gun.fire()
 
 
 func rotate_camera(mouse_shift: Vector2):

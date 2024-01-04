@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dstfolwlsbqnr"]
+[gd_scene load_steps=7 format=3 uid="uid://dstfolwlsbqnr"]
 
 [ext_resource type="Script" path="res://assets/scripts/player_controller.gd" id="1_1id37"]
 [ext_resource type="AudioStream" uid="uid://mx5acjkbdr53" path="res://assets/sounds/sonic_01.mp3" id="2_q1xqm"]
+[ext_resource type="PackedScene" uid="uid://cgookivq886s1" path="res://assets/prefabs/gun.tscn" id="2_u3o6l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j74et"]
 radius = 0.30457
@@ -13,7 +14,6 @@ size = Vector3(0.23, 1.8, 0.565)
 size = Vector3(0.0891626, 1.15051, 0.0779297)
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 collision_layer = 4
 script = ExtResource("1_1id37")
 
@@ -42,6 +42,9 @@ monitoring = false
 [node name="PortalTriggerCollider" type="CollisionShape3D" parent="CameraPivot/PortalTriggerArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005, -0.546, 0)
 shape = SubResource("BoxShape3D_vbxvd")
+
+[node name="Gun" parent="." instance=ExtResource("2_u3o6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.170424, 0.956, -0.558816)
 
 [node name="Sounds" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53928, 1.03227, -0.351233)
