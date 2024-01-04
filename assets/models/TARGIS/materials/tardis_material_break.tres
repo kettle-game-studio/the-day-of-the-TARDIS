@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dixb44m524c57"]
+
+[ext_resource type="Texture2D" uid="uid://d1dsxqm45vnmx" path="res://assets/models/TARGIS/TARDIS_TardisColorBreak.png" id="1_d826s"]
+[ext_resource type="Texture2D" uid="uid://cjngbjturxrb" path="res://assets/models/TARGIS/TARDIS_TardisLightBreak.png" id="2_spmm6"]
+
+[resource]
+cull_mode = 2
+albedo_texture = ExtResource("1_d826s")
+metallic = 0.33
+emission_enabled = true
+emission_texture = ExtResource("2_spmm6")
+texture_filter = 0
