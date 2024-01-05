@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dvtdwm0nnaq05"]
+[gd_scene load_steps=29 format=3 uid="uid://dvtdwm0nnaq05"]
 
 [ext_resource type="ArrayMesh" uid="uid://bk5s8q1d2f5lb" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLight.res" id="1_a0vuk"]
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_qofiy"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="15_fs431"]
 [ext_resource type="ArrayMesh" uid="uid://1topwam7v16w" path="res://assets/models/TARGIS/meshes/TARDIS_WallDoor.res" id="15_ufe55"]
 [ext_resource type="ArrayMesh" uid="uid://60r6sip5q2ee" path="res://assets/models/TARGIS/meshes/TARDIS_WallTardisDoor.res" id="16_75iku"]
+[ext_resource type="Script" path="res://assets/scripts/stub_path_follow.gd" id="16_tvseq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_73ijt"]
 size = Vector3(0.567871, 2.8454, 2.16913)
@@ -48,23 +49,30 @@ size = Vector3(6.50103, 1.73937, 3.084)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wrk1r"]
 size = Vector3(3.51135, 7.71887, 0.932499)
 
+[sub_resource type="Curve3D" id="Curve3D_x2j4s"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.32196, -0.0546913, -5, 0, 0, 0, 0, 0, 0, -1.3, -0.055, -0.156, 0, 0, 0, 0, 0, 0, -1.32196, -0.0546913, 4, 0, 0, 0, 0, 0, 0, -5.32196, -0.0546913, 9, 0, 0, 0, 0, 0, 0, -1.32196, -0.0546913, 4, 0, 0, 0, 0, 0, 0, -2.32196, -0.0546913, -5),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
 [node name="Level-0" type="Node3D"]
 script = ExtResource("1_qofiy")
 
 [node name="Room1" type="Node3D" parent="."]
 script = ExtResource("2_fs2jm")
 
-[node name="Dalek" parent="Room1" instance=ExtResource("15_fs431")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36923, 0, -1.41761)
-
 [node name="Dalek3" parent="Room1" instance=ExtResource("15_fs431")]
 transform = Transform3D(-0.329888, 0, 0.94402, 0, 1, 0, -0.94402, 0, -0.329888, -3.72624, 0, 0.575245)
+dalek_id = 2
 
 [node name="Dalek2" parent="Room1" instance=ExtResource("15_fs431")]
 transform = Transform3D(0.977655, 0.00647112, -0.210114, -0.00641417, 0.999979, 0.000952535, 0.210116, 0.000416466, 0.977677, -0.587453, 0.0785545, -2.82819)
+dalek_id = 3
 
 [node name="Dalek4" parent="Room1" instance=ExtResource("15_fs431")]
 transform = Transform3D(0.119686, 0, -0.992812, 0, 1, 0, 0.992812, 0, 0.119686, -1.03253, 0, 1.68129)
+dalek_id = 4
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Room1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15.0511, 0)
@@ -960,6 +968,23 @@ shape = SubResource("BoxShape3D_wrk1r")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/Colliders/Tardis/Tardis3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_wrk1r")
+
+[node name="Dalek" parent="Room1" instance=ExtResource("15_fs431")]
+transform = Transform3D(0.978454, 0, 0.206429, 0, 1, 0, -0.206429, 0, 0.978457, 8.00004, 2, -5)
+dalek_id = 1
+
+[node name="Path3D" type="Path3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.322, 2.05469, 0)
+curve = SubResource("Curve3D_x2j4s")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Room1/Path3D"]
+transform = Transform3D(0.978454, 0, 0.206429, 0, 1, 0, -0.206429, 0, 0.978457, -2.32196, -0.0546913, -5)
+rotation_mode = 1
+use_model_front = true
+script = ExtResource("16_tvseq")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Room1/Path3D/PathFollow3D"]
+remote_path = NodePath("../../../Dalek")
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
@@ -1863,3 +1888,4 @@ shape = SubResource("BoxShape3D_wrk1r")
 
 [node name="Dalek" parent="Room2" instance=ExtResource("15_fs431")]
 transform = Transform3D(-0.410973, 0, -0.911647, 0, 1, 0, 0.911647, 0, -0.410973, 3.2258, 0, -2.41376)
+dalek_id = 1

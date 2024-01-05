@@ -82,3 +82,7 @@ func switch_room(portal_source: Portal, body: Area3D):
 	elif player_room == Timezone.RoomType.FUTURE:
 		player_room = Timezone.RoomType.PRESENT
 	_process(0)
+
+
+func _on_portal_teleport_attacked(portal):
+	disable_portal()

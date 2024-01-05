@@ -7,6 +7,7 @@ class_name Portal
 
 signal teleport_activation(portal: Portal, body: Area3D)
 signal teleport_exit(portal: Portal, body: Area3D)
+signal teleport_attacked(portal: Portal)
 
 var shift_sign:
 	get:
@@ -27,3 +28,7 @@ func _area_body_entered(body: Area3D):
 
 func _area_body_exited(body: Area3D):
 	teleport_exit.emit(self, body)
+
+
+func _on_area_3d_body_entered(body):
+	teleport_attacked.emit(self)

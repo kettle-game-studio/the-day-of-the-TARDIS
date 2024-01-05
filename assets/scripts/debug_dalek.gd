@@ -43,7 +43,11 @@ func draw_line(from: Vector3, to: Vector3, up: Vector3 = Vector3(0, 0, 1)):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if 'timezone' in dalek:
-		label.text = Timezone.RoomType.keys()[dalek.timezone.roomType] + "\nPlayer: " + Timezone.RoomType.keys()[dalek.timezone.level.player_room]
+		var angle_to_player = dalek.head_angle_to_player(dalek.head_bone)
+		label.text = "Dalek %d\nTimezone: %s\nPlayer: %s\n%f\n%s" % [dalek.dalek_id, \
+		Timezone.RoomType.keys()[dalek.timezone.roomType], Timezone.RoomType.keys()[dalek.timezone.level.player_room],
+		dalek.head_bone.rotation.y/PI*180,
+		angle_to_player]
 	mesh.clear_surfaces()
 	if !draw:
 		return

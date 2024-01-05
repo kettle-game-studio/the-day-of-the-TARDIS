@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://0donue74ycyk"]
+[gd_scene load_steps=14 format=3 uid="uid://0donue74ycyk"]
 
 [ext_resource type="Script" path="res://assets/scripts/dalek.gd" id="1_acjio"]
+[ext_resource type="PackedScene" uid="uid://fldgkxyay001" path="res://assets/prefabs/dalek_corpse.tscn" id="2_ewxuu"]
 [ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/imports/Dalek_Cylinder.res" id="2_yx3a7"]
 [ext_resource type="PackedScene" uid="uid://cgookivq886s1" path="res://assets/prefabs/gun.tscn" id="3_c86vl"]
 [ext_resource type="Script" path="res://assets/scripts/debug_dalek.gd" id="4_554bn"]
@@ -30,7 +31,7 @@ radius = 0.558179
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_w8lq4"]
 
-[sub_resource type="FontFile" id="FontFile_h6o7v"]
+[sub_resource type="FontFile" id="FontFile_2v3av"]
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -57,7 +58,7 @@ cache/0/64/0/kerning_overrides/32/0 = Vector2(0, 0)
 cache/0/64/0/kerning_overrides/64/0 = Vector2(0, 0)
 
 [sub_resource type="Theme" id="Theme_o21re"]
-default_font = SubResource("FontFile_h6o7v")
+default_font = SubResource("FontFile_2v3av")
 default_font_size = 64
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j65lq"]
@@ -70,15 +71,11 @@ viewport_path = NodePath("DebugDrawer/SubViewport")
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_xk6ka")
 
-[node name="Dalek" type="CharacterBody3D" node_paths=PackedStringArray("gun", "head_bone", "eye_bone", "left_arm_bone", "right_arm_bone")]
+[node name="Dalek" type="CharacterBody3D"]
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("1_acjio")
-gun = NodePath("Dalek2/Armature/Skeleton3D/LeftArmBone/Gun")
-head_bone = NodePath("Dalek2/Armature/Skeleton3D/HeadBone")
-eye_bone = NodePath("Dalek2/Armature/Skeleton3D/EyeBone")
-left_arm_bone = NodePath("Dalek2/Armature/Skeleton3D/LeftArmBone")
-right_arm_bone = NodePath("Dalek2/Armature/Skeleton3D/RightArmBone")
+corpse_prefab = ExtResource("2_ewxuu")
 
 [node name="Dalek2" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -145,9 +142,10 @@ override_pose = true
 
 [node name="Gun" parent="Dalek2/Armature/Skeleton3D/LeftArmBone" instance=ExtResource("3_c86vl")]
 transform = Transform3D(1, -3.64028e-12, 0, 0, -4.3711e-08, -1, -2.03427e-11, 1, -4.37114e-08, 3.49283e-05, 0.512736, 7.45058e-08)
+reload_time = 0.2
 
 [node name="RightArmBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D"]
-transform = Transform3D(0.000949979, 1, 4.51226e-07, -0.999999, 0.000949979, -0.000949949, -0.000949949, 4.51226e-07, 1, 0.31196, 0.846881, 0.202818)
+transform = Transform3D(0.295708, 0.955279, 0, -0.955277, 0.295708, -0.00174533, -0.00166727, 0.000516108, 0.999999, 0.31196, 0.846881, 0.202818)
 bone_name = "Arm.R"
 bone_idx = 4
 override_pose = true
@@ -186,6 +184,12 @@ vertical_alignment = 1
 
 [node name="DebugText" type="MeshInstance3D" parent="DebugDrawer"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.92922, 0)
+mesh = SubResource("PlaneMesh_j65lq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")
+
+[node name="DebugText2" type="MeshInstance3D" parent="DebugDrawer"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 1.92922, 0)
 mesh = SubResource("PlaneMesh_j65lq")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")
