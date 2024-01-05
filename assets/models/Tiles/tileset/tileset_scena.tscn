@@ -1,0 +1,496 @@
+[gd_scene load_steps=71 format=3 uid="uid://cuislv6tkn25m"]
+
+[ext_resource type="ArrayMesh" uid="uid://c8e2wlracvylv" path="res://assets/models/Tiles/models/Tiles_AngleCutFloor.res" id="1_0aaiw"]
+[ext_resource type="ArrayMesh" uid="uid://bcfmryyjpol5m" path="res://assets/models/Tiles/models/Tiles_LightWall.res" id="2_s50h8"]
+[ext_resource type="ArrayMesh" uid="uid://dtgg3whkftcie" path="res://assets/models/Tiles/models/Tiles_AngleLightA.res" id="3_8b27u"]
+[ext_resource type="ArrayMesh" uid="uid://llmngxo0ffwq" path="res://assets/models/Tiles/models/Tiles_Border.res" id="4_kbqqh"]
+[ext_resource type="ArrayMesh" uid="uid://0gggbvlm76tr" path="res://assets/models/Tiles/models/Tiles_BorderLightFloor.res" id="5_cqtxd"]
+[ext_resource type="ArrayMesh" uid="uid://b2q4fwskv5wtm" path="res://assets/models/Tiles/models/Tiles_CutFloor.res" id="6_ic3se"]
+[ext_resource type="ArrayMesh" uid="uid://bj2lglf8eaudl" path="res://assets/models/Tiles/models/Tiles_Door.res" id="7_6xa31"]
+[ext_resource type="ArrayMesh" uid="uid://d5tqxc3amfn1" path="res://assets/models/Tiles/models/Tiles_DownSkirting.res" id="8_pr80j"]
+[ext_resource type="ArrayMesh" uid="uid://btbuyypqmaabf" path="res://assets/models/Tiles/models/Tiles_ExternalDownSkirting.res" id="9_gkaek"]
+[ext_resource type="ArrayMesh" uid="uid://b60dw6wnmog3g" path="res://assets/models/Tiles/models/Tiles_ExternalLightDownSkirting.res" id="10_7x60y"]
+[ext_resource type="ArrayMesh" uid="uid://diubcwf35sf5u" path="res://assets/models/Tiles/models/Tiles_ExternalLightFloor.res" id="11_862yv"]
+[ext_resource type="ArrayMesh" uid="uid://s7rgvtry6pa2" path="res://assets/models/Tiles/models/Tiles_ExternalLightUpSkirting.res" id="12_dbmym"]
+[ext_resource type="ArrayMesh" uid="uid://c7y104xp40t01" path="res://assets/models/Tiles/models/Tiles_ExternalUpSkirting.res" id="13_ni38q"]
+[ext_resource type="ArrayMesh" uid="uid://c3di25a42oed" path="res://assets/models/Tiles/models/Tiles_ExternalWall.res" id="14_1palv"]
+[ext_resource type="ArrayMesh" uid="uid://b5gsoqohtmbup" path="res://assets/models/Tiles/models/Tiles_Floor_001.res" id="15_ef3dm"]
+[ext_resource type="ArrayMesh" uid="uid://dupvqg2oj48c7" path="res://assets/models/Tiles/models/Tiles_Floor_002.res" id="16_1shtv"]
+[ext_resource type="ArrayMesh" uid="uid://b1r61t2c5jc52" path="res://assets/models/Tiles/models/Tiles_InternalDownSkirting.res" id="17_a8opd"]
+[ext_resource type="ArrayMesh" uid="uid://85ewc1umi6i2" path="res://assets/models/Tiles/models/Tiles_InternalLightDownSkirting.res" id="18_j77ln"]
+[ext_resource type="ArrayMesh" uid="uid://ppemthuyhkiy" path="res://assets/models/Tiles/models/Tiles_InternalLightFloor.res" id="19_j08gy"]
+[ext_resource type="ArrayMesh" uid="uid://5prbifjyhbaj" path="res://assets/models/Tiles/models/Tiles_InternalLightUpSkirting.res" id="20_ah7vj"]
+[ext_resource type="ArrayMesh" uid="uid://cbyw16med2qr0" path="res://assets/models/Tiles/models/Tiles_InternalUpSkirting.res" id="21_mc5f2"]
+[ext_resource type="ArrayMesh" uid="uid://ck2rpcfy17826" path="res://assets/models/Tiles/models/Tiles_InternalWall.res" id="22_2bcd0"]
+[ext_resource type="ArrayMesh" uid="uid://df3fiy1qvu00k" path="res://assets/models/Tiles/models/Tiles_LightA.res" id="23_e64od"]
+[ext_resource type="ArrayMesh" uid="uid://dux3c7gvqm776" path="res://assets/models/Tiles/models/Tiles_LightDownSkirting.res" id="24_twyqm"]
+[ext_resource type="ArrayMesh" uid="uid://dtbtidwfi46o4" path="res://assets/models/Tiles/models/Tiles_LightExternalWall.res" id="25_24ara"]
+[ext_resource type="ArrayMesh" uid="uid://cc7mpu4orwgpc" path="res://assets/models/Tiles/models/Tiles_LightFloor.res" id="26_lfp1r"]
+[ext_resource type="ArrayMesh" uid="uid://i7k6hs1w3lxi" path="res://assets/models/Tiles/models/Tiles_LightInternalWall.res" id="27_3h3c3"]
+[ext_resource type="ArrayMesh" uid="uid://d2t0igi7qkfwt" path="res://assets/models/Tiles/models/Tiles_LightUpSkirting.res" id="28_j65ye"]
+[ext_resource type="ArrayMesh" uid="uid://krd0vpypbam2" path="res://assets/models/Tiles/models/Tiles_LightWallEnd.res" id="29_dhb50"]
+[ext_resource type="ArrayMesh" uid="uid://rh7tpx4saud8" path="res://assets/models/Tiles/models/Tiles_LightWallStart.res" id="30_a1lo0"]
+[ext_resource type="ArrayMesh" uid="uid://dwy0kcpy3y7rk" path="res://assets/models/Tiles/models/Tiles_LladderCenter.res" id="31_3267a"]
+[ext_resource type="ArrayMesh" uid="uid://be0eryrg4o0wn" path="res://assets/models/Tiles/models/Tiles_LladderLeft.res" id="32_j3a1g"]
+[ext_resource type="ArrayMesh" uid="uid://c57d7i5alqyr3" path="res://assets/models/Tiles/models/Tiles_LladderRight.res" id="33_72h71"]
+[ext_resource type="ArrayMesh" uid="uid://ds87ie4lkdn15" path="res://assets/models/Tiles/models/Tiles_UpSkirting.res" id="34_nd0q3"]
+[ext_resource type="ArrayMesh" uid="uid://duj7vxxr7n4ur" path="res://assets/models/Tiles/models/Tiles_Wall.res" id="35_lpc1v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o1sqr"]
+size = Vector3(0.7, 0.2, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nn57u"]
+size = Vector3(1, 1, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_18kol"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ayhim"]
+size = Vector3(0.7, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fksq1"]
+size = Vector3(0.7, 2.5, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qnqo"]
+size = Vector3(0.7, 0.25, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sllt8"]
+size = Vector3(0.2, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pflce"]
+size = Vector3(0.7, 0.5, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eowqg"]
+size = Vector3(0.7, 0.5, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_njrc5"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mip1x"]
+size = Vector3(0.7, 0.5, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fbedm"]
+size = Vector3(0.7, 0.5, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nu0c5"]
+size = Vector3(0.7, 1, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p0eng"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yam2u"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_husu7"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iw7vn"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_soksh"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0ldy"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4t8hk"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iwjle"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q4ocx"]
+size = Vector3(1, 1, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8x4to"]
+size = Vector3(0.2, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0qeek"]
+size = Vector3(0.7, 1, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rp6pc"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6y8w2"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_20vhk"]
+size = Vector3(0.4, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ffet3"]
+size = Vector3(0.4, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_826wk"]
+size = Vector3(0.4, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v0qt2"]
+size = Vector3(1.414, 0.141, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n2dct"]
+size = Vector3(1.414, 0.141, 0.313)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ngsbm"]
+size = Vector3(1.414, 0.141, 0.313)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbrk8"]
+size = Vector3(0.4, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ok4qi"]
+size = Vector3(0.4, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ux34x"]
+size = Vector3(0.4, 1, 1)
+
+[node name="TilesetScena" type="Node3D"]
+
+[node name="TilesAngleCutFloor" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("1_0aaiw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TilesAngleCutFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesAngleCutFloor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.15)
+shape = SubResource("BoxShape3D_o1sqr")
+
+[node name="TilesAngleLightA" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("3_8b27u")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="TilesAngleLightA"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesAngleLightA/StaticBody3D4"]
+shape = SubResource("BoxShape3D_nn57u")
+
+[node name="TilesBorder" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("4_kbqqh")
+
+[node name="TilesBorderLightFloor" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("5_cqtxd")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="TilesBorderLightFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesBorderLightFloor/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_18kol")
+
+[node name="TilesCutFloor" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("6_ic3se")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="TilesCutFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesCutFloor/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, 0)
+shape = SubResource("BoxShape3D_ayhim")
+
+[node name="TilesDoor" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("7_6xa31")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="TilesDoor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesDoor/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 1.25, -0.375)
+shape = SubResource("BoxShape3D_fksq1")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TilesDoor/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 1.25, 1.37485)
+shape = SubResource("BoxShape3D_fksq1")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="TilesDoor/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 2.375, 0.5)
+shape = SubResource("BoxShape3D_3qnqo")
+
+[node name="TilesDownSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("8_pr80j")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="TilesDownSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesDownSkirting/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.25, 0)
+shape = SubResource("BoxShape3D_sllt8")
+
+[node name="TilesExternalDownSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("9_gkaek")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="TilesExternalDownSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesExternalDownSkirting/StaticBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.25, -0.15)
+shape = SubResource("BoxShape3D_pflce")
+
+[node name="TilesExternalLightDownSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("10_7x60y")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="TilesExternalLightDownSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesExternalLightDownSkirting/StaticBody3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.25, -0.15)
+shape = SubResource("BoxShape3D_eowqg")
+
+[node name="TilesExternalLightFloor" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("11_862yv")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="TilesExternalLightFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesExternalLightFloor/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_njrc5")
+
+[node name="TilesExternalLightUpSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("12_dbmym")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="TilesExternalLightUpSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesExternalLightUpSkirting/StaticBody3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.250032, -0.15)
+shape = SubResource("BoxShape3D_mip1x")
+
+[node name="TilesExternalUpSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("13_ni38q")
+
+[node name="StaticBody3D9" type="StaticBody3D" parent="TilesExternalUpSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesExternalUpSkirting/StaticBody3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.250032, -0.15)
+shape = SubResource("BoxShape3D_fbedm")
+
+[node name="TilesExternalWall" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("14_1palv")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="TilesExternalWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesExternalWall/StaticBody3D10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -0.15)
+shape = SubResource("BoxShape3D_nu0c5")
+
+[node name="TilesFloor001" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("15_ef3dm")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="TilesFloor001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesFloor001/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_p0eng")
+
+[node name="TilesFloor002" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("16_1shtv")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="TilesFloor002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesFloor002/StaticBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_yam2u")
+
+[node name="TilesInternalDownSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("17_a8opd")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="TilesInternalDownSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesInternalDownSkirting/StaticBody3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0.25)
+shape = SubResource("BoxShape3D_husu7")
+
+[node name="TilesInternalLightDownSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("18_j77ln")
+
+[node name="StaticBody3D9" type="StaticBody3D" parent="TilesInternalLightDownSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesInternalLightDownSkirting/StaticBody3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0.25)
+shape = SubResource("BoxShape3D_iw7vn")
+
+[node name="TilesInternalLightFloor" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("19_j08gy")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="TilesInternalLightFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesInternalLightFloor/StaticBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_soksh")
+
+[node name="TilesInternalLightUpSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("20_ah7vj")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="TilesInternalLightUpSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesInternalLightUpSkirting/StaticBody3D10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.25, 0.25)
+shape = SubResource("BoxShape3D_j0ldy")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="TilesInternalLightUpSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesInternalLightUpSkirting/StaticBody3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.25, 0.25)
+shape = SubResource("BoxShape3D_j0ldy")
+
+[node name="TilesInternalUpSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("21_mc5f2")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="TilesInternalUpSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesInternalUpSkirting/StaticBody3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.25, 0.25)
+shape = SubResource("BoxShape3D_4t8hk")
+
+[node name="TilesInternalWall" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("22_2bcd0")
+
+[node name="StaticBody3D12" type="StaticBody3D" parent="TilesInternalWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesInternalWall/StaticBody3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251, 0, 0.253)
+shape = SubResource("BoxShape3D_iwjle")
+
+[node name="TilesLightA" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("23_e64od")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="TilesLightA"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLightA/StaticBody3D5"]
+shape = SubResource("BoxShape3D_q4ocx")
+
+[node name="TilesLightDownSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("24_twyqm")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="TilesLightDownSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLightDownSkirting/StaticBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.25, 0)
+shape = SubResource("BoxShape3D_8x4to")
+
+[node name="TilesLightExternalWall" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("25_24ara")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="TilesLightExternalWall"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLightExternalWall/StaticBody3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -0.15)
+shape = SubResource("BoxShape3D_0qeek")
+
+[node name="TilesLightFloor" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("26_lfp1r")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="TilesLightFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLightFloor/StaticBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_rp6pc")
+
+[node name="TilesLightInternalWall" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("27_3h3c3")
+
+[node name="StaticBody3D13" type="StaticBody3D" parent="TilesLightInternalWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLightInternalWall/StaticBody3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251, 0, 0.253)
+shape = SubResource("BoxShape3D_6y8w2")
+
+[node name="TilesLightWallEnd" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("29_dhb50")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="TilesLightWallEnd"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLightWallEnd/StaticBody3D4"]
+shape = SubResource("BoxShape3D_20vhk")
+
+[node name="TilesLightWall" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("2_s50h8")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="TilesLightWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLightWall/StaticBody3D3"]
+shape = SubResource("BoxShape3D_ffet3")
+
+[node name="TilesLightWallStart" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("30_a1lo0")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="TilesLightWallStart"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLightWallStart/StaticBody3D5"]
+shape = SubResource("BoxShape3D_826wk")
+
+[node name="TilesLladderCenter" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("31_3267a")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="TilesLladderCenter"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLladderCenter/StaticBody3D6"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.05, 0.45, 0)
+shape = SubResource("BoxShape3D_v0qt2")
+
+[node name="TilesLladderLeft" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("32_j3a1g")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="TilesLladderLeft"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLladderLeft/StaticBody3D7"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.05, 0.45, 0.157)
+shape = SubResource("BoxShape3D_n2dct")
+
+[node name="TilesLladderRight" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("33_72h71")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="TilesLladderRight"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLladderRight/StaticBody3D8"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.05, 0.45, -0.157)
+shape = SubResource("BoxShape3D_ngsbm")
+
+[node name="TilesLightUpSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("28_j65ye")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="TilesLightUpSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLightUpSkirting/StaticBody3D10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_jbrk8")
+
+[node name="TilesUpSkirting" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("34_nd0q3")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="TilesUpSkirting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesUpSkirting/StaticBody3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_ok4qi")
+
+[node name="TilesWall" type="MeshInstance3D" parent="."]
+mesh = ExtResource("35_lpc1v")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="TilesWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TilesWall/StaticBody3D4"]
+shape = SubResource("BoxShape3D_ux34x")
