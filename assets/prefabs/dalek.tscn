@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://0donue74ycyk"]
+[gd_scene load_steps=13 format=3 uid="uid://0donue74ycyk"]
 
 [ext_resource type="Script" path="res://assets/scripts/dalek.gd" id="1_acjio"]
 [ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/imports/Dalek_Cylinder.res" id="2_yx3a7"]
@@ -29,6 +29,46 @@ height = 1.52545
 radius = 0.558179
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_w8lq4"]
+
+[sub_resource type="FontFile" id="FontFile_h6o7v"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/64/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/64/0 = Vector2(0, 0)
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/64/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/64/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/64/0/kerning_overrides/64/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="Theme_o21re"]
+default_font = SubResource("FontFile_h6o7v")
+default_font_size = 64
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j65lq"]
+size = Vector2(1, 0.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xk6ka"]
+viewport_path = NodePath("DebugDrawer/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxpqc"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_xk6ka")
 
 [node name="Dalek" type="CharacterBody3D" node_paths=PackedStringArray("gun", "head_bone", "eye_bone", "left_arm_bone", "right_arm_bone")]
 collision_layer = 8
@@ -93,7 +133,7 @@ bone_idx = 1
 override_pose = true
 
 [node name="EyeBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D"]
-transform = Transform3D(0.00191366, 0.999998, 0.000961879, -0.999996, 0.0019155, -0.00190954, -0.00191138, -0.000958222, 0.999998, 0.19556, 1.42124, 0.000151277)
+transform = Transform3D(0.00191366, 0.999998, 0.000961878, -0.999996, 0.0019155, -0.00190954, -0.00191138, -0.000958221, 0.999998, 0.19556, 1.42124, 0.000151277)
 bone_name = "Eye"
 bone_idx = 2
 
@@ -116,9 +156,36 @@ override_pose = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0108414, 0.761636, 0.223885)
 shape = SubResource("CylinderShape3D_dga62")
 
-[node name="DebugDrawer" type="MeshInstance3D" parent="." node_paths=PackedStringArray("dalek")]
-top_level = true
-visible = false
+[node name="DebugDrawer" type="MeshInstance3D" parent="." node_paths=PackedStringArray("dalek", "label")]
 mesh = SubResource("ImmediateMesh_w8lq4")
 script = ExtResource("4_554bn")
 dalek = NodePath("..")
+label = NodePath("SubViewport/Panel/Label")
+
+[node name="SubViewport" type="SubViewport" parent="DebugDrawer"]
+size = Vector2i(1024, 512)
+
+[node name="Panel" type="Panel" parent="DebugDrawer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DebugDrawer/SubViewport/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o21re")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebugText" type="MeshInstance3D" parent="DebugDrawer"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.92922, 0)
+mesh = SubResource("PlaneMesh_j65lq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")

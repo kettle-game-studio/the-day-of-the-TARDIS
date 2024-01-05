@@ -24,7 +24,7 @@ size = Vector3(0.1, 0.1, 1.1)
 size = Vector3(0.1, 0.1, 1.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rg1xu"]
-size = Vector3(0.893, 1.877, 0.03)
+size = Vector3(0.893, 1.877, 0.096488)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c331o"]
 size = Vector3(0.108276, 2.00739, 0.102661)
@@ -65,7 +65,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00296506, 1.01066, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00296506, 1.01066, 0.00145569)
 shape = SubResource("BoxShape3D_rg1xu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -80,4 +80,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494201, 0.954548, 0.0005532
 shape = SubResource("BoxShape3D_c331o")
 
 [connection signal="area_entered" from="Area3D" to="." method="_area_body_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_area_body_exited"]
 [connection signal="body_entered" from="Area3D" to="." method="_area_body_entered"]

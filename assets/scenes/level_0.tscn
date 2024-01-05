@@ -54,6 +54,18 @@ script = ExtResource("1_qofiy")
 [node name="Room1" type="Node3D" parent="."]
 script = ExtResource("2_fs2jm")
 
+[node name="Dalek" parent="Room1" instance=ExtResource("15_fs431")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36923, 0, -1.41761)
+
+[node name="Dalek3" parent="Room1" instance=ExtResource("15_fs431")]
+transform = Transform3D(-0.329888, 0, 0.94402, 0, 1, 0, -0.94402, 0, -0.329888, -3.72624, 0, 0.575245)
+
+[node name="Dalek2" parent="Room1" instance=ExtResource("15_fs431")]
+transform = Transform3D(0.977655, 0.00647112, -0.210114, -0.00641417, 0.999979, 0.000952535, 0.210116, 0.000416466, 0.977677, -0.587453, 0.0785545, -2.82819)
+
+[node name="Dalek4" parent="Room1" instance=ExtResource("15_fs431")]
+transform = Transform3D(0.119686, 0, -0.992812, 0, 1, 0, 0.992812, 0, 0.119686, -1.03253, 0, 1.68129)
+
 [node name="SpotLight3D" type="SpotLight3D" parent="Room1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15.0511, 0)
 spot_range = 22.0
@@ -948,9 +960,6 @@ shape = SubResource("BoxShape3D_wrk1r")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/Colliders/Tardis/Tardis3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_wrk1r")
-
-[node name="Dalek" parent="Room1" instance=ExtResource("15_fs431")]
-transform = Transform3D(0.549358, 0, 0.835587, 0, 1, 0, -0.835587, 0, 0.549358, 0, 0, -3.71876)
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
