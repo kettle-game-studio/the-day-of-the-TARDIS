@@ -59,9 +59,10 @@ size = Vector3(11, 0.18457, 16)
 [sub_resource type="BoxMesh" id="BoxMesh_p754p"]
 size = Vector3(11, 0.185, 16)
 
-[node name="PortalTestScene" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="PortalTestScene" type="Node3D" node_paths=PackedStringArray("player", "portal_controller")]
 script = ExtResource("1_bvxem")
 player = NodePath("Player")
+portal_controller = NodePath("PortalController")
 
 [node name="Player" parent="." node_paths=PackedStringArray("portal_controller") instance=ExtResource("1_uyfkx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0413032, 4.76837e-07, 5.96796)
@@ -176,7 +177,7 @@ mesh = SubResource("BoxMesh_fef5h")
 skeleton = NodePath("../../Room1")
 
 [node name="SubViewport" type="SubViewport" parent="Room2"]
-size = Vector2i(3840, 2036)
+size = Vector2i(3840, 2126)
 script = ExtResource("2_6pam6")
 
 [node name="Camera3D2" type="Camera3D" parent="Room2/SubViewport"]

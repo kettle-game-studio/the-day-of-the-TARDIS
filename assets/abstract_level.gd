@@ -2,7 +2,7 @@ extends Node3D
 class_name AbstractLevel
 
 @export var player: PlayerController
-var portal_controller: PortalController
+@export var portal_controller: PortalController
 var present: Timezone
 var future: Timezone
 
@@ -14,7 +14,8 @@ func _ready():
 	present.level = self
 	future = timezones.filter(func(z): return z.roomType == Timezone.RoomType.FUTURE)[0]
 	future.level = self
-	portal_controller = find_children("*", "PortalController")[0] as PortalController
+	# TODO: move?
+	#portal_controller = find_children("*", "PortalController")[0] as PortalController
 	portal_controller.present_base = present
 	portal_controller.future_base = future
 

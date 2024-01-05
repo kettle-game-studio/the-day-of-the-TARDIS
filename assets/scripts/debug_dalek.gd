@@ -2,7 +2,7 @@
 extends MeshInstance3D
 
 @export var dalek: Dalek
-
+@export var draw: bool
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -22,6 +22,8 @@ func draw_line(from: Vector3, to: Vector3):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if !draw:
+		return
 	mesh.clear_surfaces()
 	
 	draw_line(
