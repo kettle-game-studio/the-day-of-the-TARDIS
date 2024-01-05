@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://j7d2oe4hkvd7"]
+
+[ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_agu34"]
+[ext_resource type="PackedScene" uid="uid://bmwgja8ryt4kx" path="res://assets/scenes/level_1_gray/room.tscn" id="2_baem4"]
+[ext_resource type="Script" path="res://assets/scripts/stub_path_follow.gd" id="3_ko4mr"]
+[ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="3_wbher"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5bxb"]
+albedo_color = Color(1, 0.00392157, 0.0901961, 1)
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_agu34")
+
+[node name="Room1" parent="." instance=ExtResource("2_baem4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Room1/Path3D" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+use_model_front = true
+script = ExtResource("3_ko4mr")
+
+[node name="Dalek" parent="Room1/Path3D/PathFollow3D" instance=ExtResource("3_wbher")]
+dalek_id = 1
+
+[node name="Room2" parent="." instance=ExtResource("2_baem4")]
+transform = Transform3D(4.47035e-08, 0, 1, 0, 1, 0, -1, 0, 4.47035e-08, 64, 0, 0)
+roomType = 1
+
+[node name="MeshInstance3D" parent="Room2" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_k5bxb")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Room2/Path3D" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.525, 0, 0)
+progress = 7.525
+use_model_front = true
+script = ExtResource("3_ko4mr")
+
+[node name="Dalek" parent="Room2/Path3D/PathFollow3D" instance=ExtResource("3_wbher")]
+dalek_id = 1
+
+[editable path="Room1"]
+[editable path="Room2"]

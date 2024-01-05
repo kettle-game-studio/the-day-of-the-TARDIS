@@ -3,12 +3,13 @@ class_name Gun
 
 @export var bullet_prefab: PackedScene
 @export var scene: Node3D
-@export var reload_time = 1
+@export var reload_time = 1.
 
 @onready var bullet_pivot = $BulletPivot
 @onready var timer = $Timer
 @onready var shoot_audio_stream = $AudioStreamPlayer3D
 var can_fire = true
+var ignore_bodies: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,7 +24,8 @@ func fire():
 	shoot_audio_stream.play()
 	can_fire = false
 	timer.start(reload_time)
-	var bullet = bullet_prefab.instantiate()
+	var bullet = bullet_prefab.instantiate() as BulletContoller
+	bullet.ignore_bodies = ignore_bodies
 	scene.add_child(bullet)
 	bullet.global_position = bullet_pivot.global_position
 	bullet.global_rotation = bullet_pivot.global_rotation

@@ -4,7 +4,9 @@ class_name Timezone
 enum RoomType{ PRESENT, FUTURE }
 
 @export var roomType: RoomType
+
 var daleks: Array[Dalek] = []
+var alive_daleks_map: Dictionary = {}
 # Initialized by parent
 var level: AbstractLevel
 
@@ -15,7 +17,10 @@ func _ready():
 		var dalek = node as Dalek
 		daleks.push_back(dalek)
 		dalek.timezone = self
-		
+		assert(!alive_daleks_map.has(dalek.dalek_id), "Dublicated dalek with id %d in %s" % [dalek.dalek_id, RoomType.keys()[roomType]])
+		alive_daleks_map[dalek.dalek_id] = dalek
+		dalek.died.connect(_on_dalek_died)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -26,3 +31,7 @@ func _get_configuration_warnings():
 	if !(get_parent_node_3d() is AbstractLevel):
 		warnings.push_back("Timezone should be child of Level class")
 	return warnings
+
+func _on_dalek_died(dalek: Dalek):
+	
+	alive_daleks_map.erase(dalek.dalek_id)

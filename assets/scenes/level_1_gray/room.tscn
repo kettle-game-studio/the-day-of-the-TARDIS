@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://bmwgja8ryt4kx"]
+
+[ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="1_c8xqg"]
+[ext_resource type="Material" uid="uid://balyyhflsgvn0" path="res://assets/vfx/standard_material_3d.tres" id="2_r5y70"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gbjls"]
+size = Vector3(10, 0.5, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ko2rn"]
+size = Vector3(4.8, 3.6, 1.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6i3lc"]
+size = Vector3(3.8, 2.4, 3.8)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_snyvl"]
+size = Vector2(10, 15.525)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1ie12"]
+size = Vector3(3.835, 2.397, 3.745)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1rt0x"]
+material = ExtResource("2_r5y70")
+size = Vector3(4.9, 3.019, 1.375)
+
+[sub_resource type="Curve3D" id="Curve3D_6s7d2"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7.525, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="Room" type="Node3D"]
+script = ExtResource("1_c8xqg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_gbjls")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.4, -3.2)
+shape = SubResource("BoxShape3D_ko2rn")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1, 1.1, 3.1)
+shape = SubResource("BoxShape3D_6i3lc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_snyvl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1, 1.1, 3.1)
+mesh = SubResource("BoxMesh_1ie12")
+surface_material_override/0 = ExtResource("2_r5y70")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.6, -3.2)
+mesh = SubResource("BoxMesh_1rt0x")
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 0, 0)
+curve = SubResource("Curve3D_6s7d2")
