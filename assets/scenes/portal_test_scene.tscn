@@ -1,10 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://bo3b2kcxaxu5d"]
+[gd_scene load_steps=22 format=3 uid="uid://bo3b2kcxaxu5d"]
 
 [ext_resource type="Script" path="res://assets/scripts/portals/portal_controller.gd" id="1_8mrug"]
+[ext_resource type="Script" path="res://assets/scenes/abstract_level.gd" id="1_bvxem"]
 [ext_resource type="Texture2D" uid="uid://duq5j5i2gbrg6" path="res://icon.svg" id="1_c7r2g"]
 [ext_resource type="PackedScene" uid="uid://dstfolwlsbqnr" path="res://assets/prefabs/player.tscn" id="1_uyfkx"]
 [ext_resource type="Script" path="res://assets/scripts/portals/viewport_size_observer.gd" id="2_6pam6"]
 [ext_resource type="PackedScene" uid="uid://cb5o00gwvk8fy" path="res://assets/prefabs/portal.tscn" id="3_bxdg0"]
+[ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="4_y61li"]
+[ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="6_r0hsp"]
 
 [sub_resource type="Environment" id="Environment_h5ay2"]
 
@@ -17,24 +20,24 @@ size = Vector2(2, 5)
 [sub_resource type="BoxMesh" id="BoxMesh_fef5h"]
 size = Vector3(2, 2, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_c62sb"]
+size = Vector3(1, 5.4624, 16.9119)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3dljp"]
+size = Vector3(0.96, 5.52, 16.95)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffmcs"]
+transparency = 1
+albedo_color = Color(0.462745, 0.490196, 0.286275, 0.72549)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5lib"]
+albedo_color = Color(0.462745, 0.490196, 0.286275, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_khtbi"]
 size = Vector2(5, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6k3n"]
 albedo_texture = ExtResource("1_c7r2g")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_yokgd"]
-top_radius = 0.36
-height = 1.09
-
-[sub_resource type="SphereMesh" id="SphereMesh_h04cf"]
-radius = 0.355
-height = 0.735
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_lxnao"]
-top_radius = 0.05
-bottom_radius = 0.05
-height = 0.58
 
 [sub_resource type="GDScript" id="GDScript_bjqlj"]
 script/source = "extends Node
@@ -56,27 +59,32 @@ size = Vector3(11, 0.18457, 16)
 [sub_resource type="BoxMesh" id="BoxMesh_p754p"]
 size = Vector3(11, 0.185, 16)
 
-[node name="PortalTestScene" type="Node3D"]
+[node name="PortalTestScene" type="Node3D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_bvxem")
+player = NodePath("Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("portal_controller") instance=ExtResource("1_uyfkx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0413032, 4.76837e-07, 1.57623)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0413032, 4.76837e-07, 5.96796)
 portal_controller = NodePath("../PortalController")
 
-[node name="PortalController" type="Node3D" parent="." node_paths=PackedStringArray("player_camera", "remote_camera", "remote_viewport", "room1_base", "room2_base", "portal_home", "player", "portal")]
+[node name="PortalController" type="Node3D" parent="." node_paths=PackedStringArray("player_camera", "remote_camera", "remote_viewport", "portal_home", "player", "portal", "portal_shadow")]
 script = ExtResource("1_8mrug")
 player_camera = NodePath("../Player/CameraPivot/Camera3D")
 remote_camera = NodePath("../Room2/SubViewport/Camera3D2")
 remote_viewport = NodePath("../Room2/SubViewport")
-room1_base = NodePath("../Room1")
-room2_base = NodePath("../Room2")
 portal_home = NodePath("../PortalHome")
 player = NodePath("../Player")
 portal = NodePath("../Portal")
+portal_shadow = NodePath("../Portal2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h5ay2")
 
 [node name="Room1" type="Node3D" parent="."]
+script = ExtResource("4_y61li")
+
+[node name="Dalek" parent="Room1" instance=ExtResource("6_r0hsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.572161, -0.0902494, 3.33774)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room1"]
 material_override = SubResource("StandardMaterial3D_bgiy7")
@@ -87,8 +95,73 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3)
 mesh = SubResource("BoxMesh_fef5h")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51192, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.746, 0)
+shape = SubResource("BoxShape3D_c62sb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.74852, 0)
+mesh = SubResource("BoxMesh_3dljp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ffmcs")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Room1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.51192, 0, -8.10983)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.746, 0)
+shape = SubResource("BoxShape3D_c62sb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.74852, 0)
+mesh = SubResource("BoxMesh_3dljp")
+surface_material_override/0 = SubResource("StandardMaterial3D_u5lib")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="Room1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.51192, 0, 8.29716)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.746, 0)
+shape = SubResource("BoxShape3D_c62sb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.74852, 0)
+mesh = SubResource("BoxMesh_3dljp")
+surface_material_override/0 = SubResource("StandardMaterial3D_u5lib")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92603, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.746, 0)
+shape = SubResource("BoxShape3D_c62sb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.74852, 0)
+mesh = SubResource("BoxMesh_3dljp")
+surface_material_override/0 = SubResource("StandardMaterial3D_u5lib")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.10846, -0.0208576, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.746, 0)
+shape = SubResource("BoxShape3D_c62sb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.74852, 0)
+mesh = SubResource("BoxMesh_3dljp")
+surface_material_override/0 = SubResource("StandardMaterial3D_u5lib")
+
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+script = ExtResource("4_y61li")
+roomType = 1
+
+[node name="Dalek" parent="Room2" instance=ExtResource("6_r0hsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.11803)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Room2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -103,29 +176,13 @@ mesh = SubResource("BoxMesh_fef5h")
 skeleton = NodePath("../../Room1")
 
 [node name="SubViewport" type="SubViewport" parent="Room2"]
-size = Vector2i(2371, 2114)
+size = Vector2i(3840, 2126)
 script = ExtResource("2_6pam6")
 
 [node name="Camera3D2" type="Camera3D" parent="Room2/SubViewport"]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -5.09976, 1.28388, 1.43425)
+cull_mask = 524287
 near = 1.0
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Room2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0752048, 0.554886, -1.09416)
-mesh = SubResource("CylinderMesh_yokgd")
-skeleton = NodePath("../../Room1")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room2/MeshInstance3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.595971, 0)
-mesh = SubResource("SphereMesh_h04cf")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Room2/MeshInstance3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4245, 0.595971, 2.31063)
-mesh = SubResource("SphereMesh_h04cf")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room2/MeshInstance3D4"]
-transform = Transform3D(0.910337, -0.413867, 0, -1.80907e-08, -3.97921e-08, -1, 0.413867, 0.910337, -4.37114e-08, -0.131609, 0.745322, 0.421447)
-mesh = SubResource("CylinderMesh_lxnao")
 
 [node name="CameraController" type="Node3D" parent="."]
 script = SubResource("GDScript_bjqlj")
@@ -136,6 +193,10 @@ transform = Transform3D(0.258819, -0.933013, 0.25, 3.8567e-09, 0.258819, 0.96592
 [node name="Portal" parent="." node_paths=PackedStringArray("portal_viewport") instance=ExtResource("3_bxdg0")]
 transform = Transform3D(-0.618504, 0, -0.785781, 0, 1, 0, 0.785781, 0, -0.618504, -0.212778, 4.26326e-13, -0.0732476)
 portal_viewport = NodePath("../Room2/SubViewport")
+
+[node name="Portal2" parent="." node_paths=PackedStringArray("mesh") instance=ExtResource("3_bxdg0")]
+transform = Transform3D(-0.618504, 0, -0.785781, 0, 1, 0, 0.785781, 0, -0.618504, -0.212778, 4.26326e-13, -0.0732476)
+mesh = NodePath("../Portal/Main")
 
 [node name="PortalHome" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03737, -9.75237, 0)
@@ -151,3 +212,4 @@ shape = SubResource("BoxShape3D_cadx1")
 mesh = SubResource("BoxMesh_p754p")
 
 [connection signal="teleport_activation" from="Portal" to="PortalController" method="switch_room"]
+[connection signal="teleport_activation" from="Portal2" to="PortalController" method="switch_room"]

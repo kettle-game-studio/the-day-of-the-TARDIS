@@ -1,5 +1,6 @@
 @tool
 extends Node
+class_name Portal
 
 @export var portal_viewport: SubViewport
 @export var mesh: MeshInstance3D

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cfqevsq1e5tnx"]
+
+[ext_resource type="Texture2D" uid="uid://dc1wvhi1f3f2i" path="res://assets/models/Dalek_DalekColor.png" id="1_jqpwu"]
+
+[resource]
+resource_name = "TestMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("1_jqpwu")
+roughness = 0.5
+texture_filter = 2

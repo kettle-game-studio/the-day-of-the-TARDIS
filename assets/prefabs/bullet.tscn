@@ -4,8 +4,8 @@
 [ext_resource type="Shader" path="res://assets/vfx/bullet.gdshader" id="1_jv4vr"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_25uwa"]
-top_radius = 0.05
-bottom_radius = 0.05
+top_radius = 0.025
+bottom_radius = 0.025
 height = 0.45
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hlu8q"]
