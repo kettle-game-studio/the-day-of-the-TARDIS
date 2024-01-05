@@ -7,7 +7,7 @@ signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
 @export var SPEED = 1.0
 @export var dalek_id: int = 0
 @export var corpse_prefab: PackedScene
-@export var view_angle = 100
+@export var view_angle = 120
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -29,23 +29,30 @@ func _ready():
 
 func _process(delta):
 	var bone = head_bone	
-	var requred_angle = head_angle_to_player(bone)
-	if requred_angle == null || abs(requred_angle) / PI * 180 > view_angle:
-		bone.rotation.y = 0
-		return
-	bone.rotation.y = requred_angle
+	var head_rotation = head_angle_to_player(bone)
+	var head_speed = 0.1
+	var gun_speed = 0.045
+	var rotation_speed = 0.05
 	var gun_bone = left_arm_bone
+	if head_rotation == null || abs(head_rotation) > deg_to_rad(view_angle):
+		bone.rotation.y = move_toward(bone.rotation.y, 0, head_speed)
+		gun_bone.rotation.y = move_toward(gun_bone.rotation.y, 0, gun_speed)
+		return
+	var body_rotation = head_angle_to_player(self, "z")
+	if body_rotation != null:
+		rotation.y = move_toward(rotation.y, body_rotation, rotation_speed)
+	bone.rotation.y = move_toward(bone.rotation.y, head_rotation, head_speed)
 	var gun_rotation = head_angle_to_player(gun_bone, "y")
 	if gun_rotation == null:
 		return
 	var clumped = clamp(gun_rotation, -PI/4, PI/4)
-	gun_bone.rotation.y = clumped
+	gun_bone.rotation.y = move_toward(gun_bone.rotation.y, clumped, gun_speed)
 	if clumped == gun_rotation:
 		gun.fire()
 
 func head_angle_to_player(look_bone: Node3D, forward = "x"):
 	var bone = look_bone
-	var look_dir = where_player(bone)
+	var look_dir = where_player(bone, head_bone.global_position.y)
 	if look_dir == null:
 		return null
 	var angle_to_player = atan2(look_dir.x, look_dir.z)
@@ -58,12 +65,13 @@ func head_angle_to_player(look_bone: Node3D, forward = "x"):
 		requred_angle -= 2*PI
 	return requred_angle
 
-func where_player(look_bone: Node3D):
+func where_player(look_bone: Node3D, y_raycast: float):
 	var enemy = timezone.level.player;
 	var enemy_position = enemy.global_position;
 	var bone = look_bone;
 	var our_position = bone.global_position
-	enemy_position.y = our_position.y
+	enemy_position.y = y_raycast
+	our_position.y = y_raycast
 	var look_dir = (enemy_position - our_position)
 	
 	if timezone.level.player_room == timezone.roomType:

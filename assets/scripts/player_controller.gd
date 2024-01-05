@@ -39,7 +39,7 @@ func _input(event):
 func rotate_camera(mouse_shift: Vector2):
 	var shift = mouse_shift * mouse_sensivity/1000
 	rotate_y(-shift.x)
-	camera.rotation.x = clamp(camera.rotation.x - shift.y, -max_down_rotation_angle/180.0*PI, max_up_rotation_angle/180.0*PI)
+	camera.rotation.x = clamp(camera.rotation.x - shift.y, -deg_to_rad(max_down_rotation_angle), deg_to_rad(max_up_rotation_angle))
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -55,6 +55,7 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var dash = Input.is_action_just_pressed("dash")
+	var run = Input.is_action_pressed("dash")
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -63,7 +64,11 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	if dash:
 		if velocity.length() < SPEED:
-			velocity = transform.basis * Vector3(1, 0, 0)
-		velocity*=15.
+			velocity = transform.basis * Vector3(SPEED, 0, 0)
+		velocity.x*=2.5
+		velocity.z*=2.5
+	elif run:
+		velocity.x*=1.5
+		velocity.z*=1.5
 
 	move_and_slide()

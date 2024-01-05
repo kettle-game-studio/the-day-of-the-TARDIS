@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -20, 0)
 
 [node name="SubViewport" type="SubViewport" parent="PortalController"]
-size = Vector2i(2737, 2126)
+size = Vector2i(3840, 2126)
 script = ExtResource("3_jahyl")
 
 [node name="Camera3D" type="Camera3D" parent="PortalController/SubViewport"]
@@ -63,10 +63,10 @@ portal_controller = NodePath("../../PortalController")
 disabled = true
 
 [node name="Dalek" parent="Levels/Level-0/Room1" index="6"]
-transform = Transform3D(0.978454, 0, 0.20643, 0, 1, 0, -0.20643, 0, 0.978457, 8, 2, -5)
+transform = Transform3D(0.978454, 0, 0.206429, 0, 1, 0, -0.206429, 0, 0.978457, 8.00004, 2, -5)
 
 [node name="PathFollow3D" parent="Levels/Level-0/Room1/Path3D" index="0"]
-transform = Transform3D(0.978454, 0, 0.20643, 0, 1, 0, -0.20643, 0, 0.978457, -2.32196, -0.0546913, -5)
+transform = Transform3D(0.978454, 0, 0.206429, 0, 1, 0, -0.206429, 0, 0.978457, -2.32196, -0.0546913, -5)
 
 [node name="CollisionShape3D3" parent="Levels/Level-0/Room2/Colliders/Walls/Wall10/StaticBody3D" index="1"]
 disabled = true

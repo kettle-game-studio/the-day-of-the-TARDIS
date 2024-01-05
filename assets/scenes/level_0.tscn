@@ -970,7 +970,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, 
 shape = SubResource("BoxShape3D_wrk1r")
 
 [node name="Dalek" parent="Room1" instance=ExtResource("15_fs431")]
-transform = Transform3D(0.978454, 0, 0.20643, 0, 1, 0, -0.20643, 0, 0.978457, 8, 2, -5)
+transform = Transform3D(0.978454, 0, 0.206429, 0, 1, 0, -0.206429, 0, 0.978457, 8.00004, 2, -5)
 dalek_id = 1
 
 [node name="Path3D" type="Path3D" parent="Room1"]
@@ -978,7 +978,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.322, 2.05469, 0)
 curve = SubResource("Curve3D_x2j4s")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Room1/Path3D"]
-transform = Transform3D(0.978454, 0, 0.20643, 0, 1, 0, -0.20643, 0, 0.978457, -2.32196, -0.0546913, -5)
+transform = Transform3D(0.978454, 0, 0.206429, 0, 1, 0, -0.206429, 0, 0.978457, -2.32196, -0.0546913, -5)
 rotation_mode = 1
 use_model_front = true
 script = ExtResource("16_tvseq")

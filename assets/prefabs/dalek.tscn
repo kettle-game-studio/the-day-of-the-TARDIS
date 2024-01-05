@@ -187,3 +187,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.9
 mesh = SubResource("PlaneMesh_j65lq")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")
+
+[node name="DebugText2" type="MeshInstance3D" parent="DebugDrawer"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 1.92922, 0)
+mesh = SubResource("PlaneMesh_j65lq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")
