@@ -6,6 +6,7 @@ class_name Portal
 @export var mesh: MeshInstance3D
 
 signal teleport_activation(portal: Portal, body: Area3D)
+signal teleport_exit(portal: Portal, body: Area3D)
 
 var shift_sign:
 	get:
@@ -23,3 +24,6 @@ func _ready():
 
 func _area_body_entered(body: Area3D):
 	teleport_activation.emit(self, body)
+
+func _area_body_exited(body: Area3D):
+	teleport_exit.emit(self, body)

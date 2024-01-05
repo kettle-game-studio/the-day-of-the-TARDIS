@@ -22,39 +22,42 @@ func _ready():
 	gun.scene = get_parent_node_3d()
 
 func _process(delta):
+	var bone = head_bone
+	var look_dir = where_player(bone)
+	if look_dir == null:
+		print_debug(name, " does not see player")
+		bone.rotation.y = 0
+		return
+	gun.fire()
+	var actual_dir = bone.global_basis.x;
+	bone.rotation.y += atan2(look_dir.x, look_dir.z) - atan2(actual_dir.x, actual_dir.z)
 	
+func where_player(look_bone: Node3D):
 	var enemy = timezone.level.player;
 	var enemy_position = enemy.global_position;
-	var bone = head_bone;
-	var eye_dir = bone.global_basis.x;
+	var bone = look_bone;
 	var our_position = bone.global_position
 	enemy_position.y = our_position.y
 	var look_dir = (enemy_position - our_position)
 	
-	if timezone.level.portal_controller.player_room == timezone.roomType:		
+	if timezone.level.player_room == timezone.roomType:
 		var cast_result = raycast_enemy(enemy_position-look_dir, enemy_position, true)
 		if !cast_result || !(cast_result.collider is PlayerController):
-			bone.rotation.y = 0
-			return
-		gun.fire()
-		bone.rotation.y = atan2(look_dir.x, look_dir.z)
-		return
+			return null
+		return look_dir
 		
 	var time_shift = timezone.level.portal_controller._get_room_shift()
 	look_dir += time_shift
 	var cast_out_time = raycast_enemy(our_position, our_position+look_dir, true)
 	if !cast_out_time || !(cast_out_time.collider is Area3D):
-		bone.rotation.y = 0
-		return
+		return null
 	var collision_shifted = cast_out_time.position-time_shift
 	var cast_player_time = raycast_enemy(
 		collision_shifted-0.4*look_dir.normalized(),
 		collision_shifted+look_dir, false)
 	if !cast_player_time || !(cast_player_time.collider is PlayerController):
-		bone.rotation.y = 0
-		return
-	gun.fire()
-	bone.rotation.y = atan2(look_dir.x, look_dir.z)
+		return null
+	return look_dir
 
 func raycast_enemy(from: Vector3, to: Vector3, collide_with_areas: bool):#, enemy_timezone: Timezone.RoomType):
 	var space_state = get_world_3d().direct_space_state

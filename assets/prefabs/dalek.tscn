@@ -160,7 +160,6 @@ shape = SubResource("CylinderShape3D_dga62")
 mesh = SubResource("ImmediateMesh_w8lq4")
 script = ExtResource("4_554bn")
 dalek = NodePath("..")
-draw = true
 label = NodePath("SubViewport/Panel/Label")
 
 [node name="SubViewport" type="SubViewport" parent="DebugDrawer"]

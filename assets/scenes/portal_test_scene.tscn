@@ -179,7 +179,7 @@ mesh = SubResource("BoxMesh_fef5h")
 skeleton = NodePath("../../Room1")
 
 [node name="SubViewport" type="SubViewport" parent="Room2"]
-size = Vector2i(2702, 2126)
+size = Vector2i(2597, 2114)
 script = ExtResource("2_6pam6")
 
 [node name="Camera3D2" type="Camera3D" parent="Room2/SubViewport"]

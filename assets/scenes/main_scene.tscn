@@ -13,11 +13,13 @@
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aiut3")
 
-[node name="PortalController" type="Node3D" parent="." node_paths=PackedStringArray("player_camera", "remote_camera", "remote_viewport", "portal_home", "player", "portal", "portal_shadow")]
+[node name="PortalController" type="Node3D" parent="." node_paths=PackedStringArray("player_camera", "remote_camera", "remote_viewport", "present_base", "future_base", "portal_home", "player", "portal", "portal_shadow")]
 script = ExtResource("1_l8aym")
 player_camera = NodePath("../Player/CameraPivot/Camera3D")
 remote_camera = NodePath("SubViewport/Camera3D")
 remote_viewport = NodePath("SubViewport")
+present_base = NodePath("Room1Root")
+future_base = NodePath("Room2Root")
 portal_home = NodePath("PortalHome")
 player = NodePath("../Player")
 portal = NodePath("Portal")
@@ -40,7 +42,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -20, 0)
 
 [node name="SubViewport" type="SubViewport" parent="PortalController"]
-size = Vector2i(3840, 2126)
+size = Vector2i(2597, 2114)
 script = ExtResource("3_jahyl")
 
 [node name="Camera3D" type="Camera3D" parent="PortalController/SubViewport"]
@@ -57,6 +59,8 @@ player = NodePath("../../Player")
 portal_controller = NodePath("../../PortalController")
 
 [connection signal="teleport_activation" from="PortalController/Portal" to="PortalController" method="switch_room"]
+[connection signal="teleport_exit" from="PortalController/Portal" to="PortalController" method="end_teleportation"]
 [connection signal="teleport_activation" from="PortalController/Portal2" to="PortalController" method="switch_room"]
+[connection signal="teleport_exit" from="PortalController/Portal2" to="PortalController" method="end_teleportation"]
 
 [editable path="Player"]

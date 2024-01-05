@@ -1,10 +1,12 @@
 shader_type spatial;
+render_mode unshaded, cull_disabled;
 
-void vertex() {
-	POINT_SIZE = 32.0;
-}
+//void vertex() {
+	//POINT_SIZE = 32.0;
+//}
 
 void fragment() {
+	
 	ALBEDO = vec3(1.0, sin(TIME), cos(TIME));
 	ALPHA = 1.;
 }
