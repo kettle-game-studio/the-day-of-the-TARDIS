@@ -3,6 +3,7 @@ extends MeshInstance3D
 
 @export var dalek: Dalek
 @export var draw: bool
+@export var label: Label
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -24,6 +25,8 @@ func draw_line(from: Vector3, to: Vector3):
 func _process(delta):
 	if !draw:
 		return
+	if 'timezone' in dalek:
+		label.text = Timezone.RoomType.keys()[dalek.timezone.roomType] + "\nPlayer: " + Timezone.RoomType.keys()[dalek.timezone.level.player_room]
 	mesh.clear_surfaces()
 	
 	draw_line(

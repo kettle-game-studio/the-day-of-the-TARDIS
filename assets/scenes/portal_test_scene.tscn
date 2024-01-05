@@ -68,11 +68,13 @@ portal_controller = NodePath("PortalController")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0413032, 4.76837e-07, 5.96796)
 portal_controller = NodePath("../PortalController")
 
-[node name="PortalController" type="Node3D" parent="." node_paths=PackedStringArray("player_camera", "remote_camera", "remote_viewport", "portal_home", "player", "portal", "portal_shadow")]
+[node name="PortalController" type="Node3D" parent="." node_paths=PackedStringArray("player_camera", "remote_camera", "remote_viewport", "present_base", "future_base", "portal_home", "player", "portal", "portal_shadow")]
 script = ExtResource("1_8mrug")
 player_camera = NodePath("../Player/CameraPivot/Camera3D")
 remote_camera = NodePath("../Room2/SubViewport/Camera3D2")
 remote_viewport = NodePath("../Room2/SubViewport")
+present_base = NodePath("../Room1")
+future_base = NodePath("../Room2")
 portal_home = NodePath("../PortalHome")
 player = NodePath("../Player")
 portal = NodePath("../Portal")
@@ -177,7 +179,7 @@ mesh = SubResource("BoxMesh_fef5h")
 skeleton = NodePath("../../Room1")
 
 [node name="SubViewport" type="SubViewport" parent="Room2"]
-size = Vector2i(3840, 2126)
+size = Vector2i(2702, 2126)
 script = ExtResource("2_6pam6")
 
 [node name="Camera3D2" type="Camera3D" parent="Room2/SubViewport"]

@@ -48,16 +48,16 @@ func disable_portal():
 	portal.global_position = portal_home.global_position
 	portal_shadow.global_position = portal_home.global_position
 
-func switch_room(body: Area3D):
-	var portal_normal = portal.transform.basis.z
-	var portal_to_body = (body.global_position - portal.global_position).normalized()
+func switch_room(portal_source: Portal, body: Area3D):
+	var portal_normal = portal_source.transform.basis.z
+	var portal_to_body = (body.global_position - portal_source.global_position).normalized()
 	var dot_product = portal_normal.dot(portal_to_body)
 	if dot_product > 0:
 		portal_normal=-1*portal_normal
 	if body is BulletContoller:
 		var body_forward = body.get_move_direction()
 		var angle_cos = portal_normal.dot(body_forward)
-		body.global_position += _get_room_shift()+body_forward*0.2
+		body.global_position += portal_source.shift_sign*_get_room_shift()+body_forward*0.2
 		return
 	player.global_position += _get_room_shift()+0.2*portal_normal
 	if portal_state == PortalState.ENABLED:

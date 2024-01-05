@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgookivq886s1"]
 
-[ext_resource type="Script" path="res://assets/prefabs/gun_contoller.gd" id="1_qjv70"]
+[ext_resource type="Script" path="res://assets/scripts/gun_contoller.gd" id="1_bttnb"]
 [ext_resource type="PackedScene" uid="uid://cckv52vkj5pih" path="res://assets/prefabs/bullet.tscn" id="2_c2moc"]
 [ext_resource type="AudioStream" uid="uid://658uauql82bp" path="res://assets/sounds/shoot_00.mp3" id="3_2kdj0"]
 
 [node name="Gun" type="Node3D"]
-script = ExtResource("1_qjv70")
+script = ExtResource("1_bttnb")
 bullet_prefab = ExtResource("2_c2moc")
 
 [node name="BulletPivot" type="Node3D" parent="."]

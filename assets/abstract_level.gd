@@ -6,6 +6,10 @@ class_name AbstractLevel
 var present: Timezone
 var future: Timezone
 
+var player_room:
+	get:
+		return portal_controller.player_room
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var timezones = find_children("*", "Timezone")
@@ -14,10 +18,6 @@ func _ready():
 	present.level = self
 	future = timezones.filter(func(z): return z.roomType == Timezone.RoomType.FUTURE)[0]
 	future.level = self
-	# TODO: move?
-	#portal_controller = find_children("*", "PortalController")[0] as PortalController
-	portal_controller.present_base = present
-	portal_controller.future_base = future
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

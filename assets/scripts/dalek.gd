@@ -4,39 +4,64 @@ class_name Dalek
 
 @export var SPEED = 1.0
 @export var gun: Gun
-# Initialized outiside by parent
-var timezone: Timezone
-@onready var skeleton = $Dalek2/Armature/Skeleton3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var move_direction = Vector2(0,0)
+# Initialized outiside by parent
+var timezone: Timezone = null
 
 @export_category("Bones")
 @export var head_bone: BoneAttachment3D
 @export var eye_bone: BoneAttachment3D
 @export var left_arm_bone: BoneAttachment3D
 @export var right_arm_bone: BoneAttachment3D
+@onready var skeleton = $Dalek2/Armature/Skeleton3D
 
 func _ready():
 	gun.scene = get_parent_node_3d()
 
 func _process(delta):
+	
 	var enemy = timezone.level.player;
+	var enemy_position = enemy.global_position;
 	var bone = head_bone;
 	var eye_dir = bone.global_basis.x;
-	var target_dir = (enemy.global_position - bone.global_position)
+	var our_position = bone.global_position
+	enemy_position.y = our_position.y
+	var look_dir = (enemy_position - our_position)
 	
-	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(eye_bone.global_position, enemy.global_position)
-	query.exclude = [self]
-	var cast_result = space_state.intersect_ray(query)
-	if !cast_result || !(cast_result.collider is PlayerController):
+	if timezone.level.portal_controller.player_room == timezone.roomType:		
+		var cast_result = raycast_enemy(enemy_position-look_dir, enemy_position, true)
+		if !cast_result || !(cast_result.collider is PlayerController):
+			bone.rotation.y = 0
+			return
+		gun.fire()
+		bone.rotation.y = atan2(look_dir.x, look_dir.z)
+		return
+		
+	var time_shift = timezone.level.portal_controller._get_room_shift()
+	look_dir += time_shift
+	var cast_out_time = raycast_enemy(our_position, our_position+look_dir, true)
+	if !cast_out_time || !(cast_out_time.collider is Area3D):
+		bone.rotation.y = 0
+		return
+	var collision_shifted = cast_out_time.position-time_shift
+	var cast_player_time = raycast_enemy(
+		collision_shifted-0.4*look_dir.normalized(),
+		collision_shifted+look_dir, false)
+	if !cast_player_time || !(cast_player_time.collider is PlayerController):
 		bone.rotation.y = 0
 		return
 	gun.fire()
-	bone.rotation.y = atan2(target_dir.x, target_dir.z)
-	#left_arm_bone.rotation *= Quaternion.from_euler(Vector3(delta, delta, delta))
+	bone.rotation.y = atan2(look_dir.x, look_dir.z)
+
+func raycast_enemy(from: Vector3, to: Vector3, collide_with_areas: bool):#, enemy_timezone: Timezone.RoomType):
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.exclude = [self]
+	query.collide_with_areas = collide_with_areas
+	return space_state.intersect_ray(query)
 
 func _physics_process(delta):
 	# Add the gravity.
