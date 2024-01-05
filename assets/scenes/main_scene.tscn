@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://civq3dmxwdrwq"]
+
+[ext_resource type="Script" path="res://assets/scripts/portals/portal_controller.gd" id="1_l8aym"]
+[ext_resource type="PackedScene" uid="uid://cb5o00gwvk8fy" path="res://assets/prefabs/portal.tscn" id="2_e4f54"]
+[ext_resource type="Script" path="res://assets/scripts/portals/viewport_size_observer.gd" id="3_jahyl"]
+[ext_resource type="PackedScene" uid="uid://dstfolwlsbqnr" path="res://assets/prefabs/player.tscn" id="4_nnpej"]
+[ext_resource type="PackedScene" uid="uid://dvtdwm0nnaq05" path="res://assets/scenes/level_0.tscn" id="5_yg82n"]
+
+[sub_resource type="Environment" id="Environment_aiut3"]
+
+[node name="MainScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_aiut3")
+
+[node name="PortalController" type="Node3D" parent="." node_paths=PackedStringArray("player_camera", "remote_camera", "remote_viewport", "room1_base", "room2_base", "portal_home", "player", "portal")]
+script = ExtResource("1_l8aym")
+player_camera = NodePath("../Player/CameraPivot/Camera3D")
+remote_camera = NodePath("SubViewport/Camera3D")
+remote_viewport = NodePath("SubViewport")
+room1_base = NodePath("Room1Root")
+room2_base = NodePath("Room2Root")
+portal_home = NodePath("PortalHome")
+player = NodePath("../Player")
+portal = NodePath("Portal")
+
+[node name="Portal" parent="PortalController" node_paths=PackedStringArray("portal_viewport") instance=ExtResource("2_e4f54")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -17, 0)
+portal_viewport = NodePath("../SubViewport")
+
+[node name="Room1Root" type="Node3D" parent="PortalController"]
+
+[node name="Room2Root" type="Node3D" parent="PortalController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
+
+[node name="PortalHome" type="Node3D" parent="PortalController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -20, 0)
+
+[node name="SubViewport" type="SubViewport" parent="PortalController"]
+size = Vector2i(3840, 2036)
+script = ExtResource("3_jahyl")
+
+[node name="Camera3D" type="Camera3D" parent="PortalController/SubViewport"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("portal_controller") instance=ExtResource("4_nnpej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
+portal_controller = NodePath("../PortalController")
+
+[node name="Levels" type="Node3D" parent="."]
+
+[node name="Level-0" parent="Levels" instance=ExtResource("5_yg82n")]
+
+[connection signal="teleport_activation" from="PortalController/Portal" to="PortalController" method="switch_room"]
+
+[editable path="Player"]
