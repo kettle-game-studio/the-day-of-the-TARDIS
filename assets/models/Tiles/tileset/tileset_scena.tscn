@@ -144,7 +144,6 @@ size = Vector3(0.4, 1, 1)
 [node name="TilesetScena" type="Node3D"]
 
 [node name="TilesAngleCutFloor" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("1_0aaiw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TilesAngleCutFloor"]
@@ -154,7 +153,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.15)
 shape = SubResource("BoxShape3D_o1sqr")
 
 [node name="TilesAngleLightA" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("3_8b27u")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="TilesAngleLightA"]
@@ -163,11 +161,9 @@ mesh = ExtResource("3_8b27u")
 shape = SubResource("BoxShape3D_nn57u")
 
 [node name="TilesBorder" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("4_kbqqh")
 
 [node name="TilesBorderLightFloor" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("5_cqtxd")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="TilesBorderLightFloor"]
@@ -177,7 +173,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_18kol")
 
 [node name="TilesCutFloor" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("6_ic3se")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="TilesCutFloor"]
@@ -187,7 +182,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, 0)
 shape = SubResource("BoxShape3D_ayhim")
 
 [node name="TilesDoor" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("7_6xa31")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="TilesDoor"]
@@ -205,7 +199,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 2.375, 0.5)
 shape = SubResource("BoxShape3D_3qnqo")
 
 [node name="TilesDownSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("8_pr80j")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="TilesDownSkirting"]
@@ -215,7 +208,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.25, 0)
 shape = SubResource("BoxShape3D_sllt8")
 
 [node name="TilesExternalDownSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("9_gkaek")
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="TilesExternalDownSkirting"]
@@ -225,7 +217,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.25, -0.15)
 shape = SubResource("BoxShape3D_pflce")
 
 [node name="TilesExternalLightDownSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("10_7x60y")
 
 [node name="StaticBody3D8" type="StaticBody3D" parent="TilesExternalLightDownSkirting"]
@@ -235,7 +226,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.25, -0.15)
 shape = SubResource("BoxShape3D_eowqg")
 
 [node name="TilesExternalLightFloor" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("11_862yv")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="TilesExternalLightFloor"]
@@ -245,7 +235,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_njrc5")
 
 [node name="TilesExternalLightUpSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("12_dbmym")
 
 [node name="StaticBody3D8" type="StaticBody3D" parent="TilesExternalLightUpSkirting"]
@@ -255,7 +244,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.250032, -0.15)
 shape = SubResource("BoxShape3D_mip1x")
 
 [node name="TilesExternalUpSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("13_ni38q")
 
 [node name="StaticBody3D9" type="StaticBody3D" parent="TilesExternalUpSkirting"]
@@ -265,7 +253,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.250032, -0.15)
 shape = SubResource("BoxShape3D_fbedm")
 
 [node name="TilesExternalWall" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("14_1palv")
 
 [node name="StaticBody3D10" type="StaticBody3D" parent="TilesExternalWall"]
@@ -275,7 +262,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -0.15)
 shape = SubResource("BoxShape3D_nu0c5")
 
 [node name="TilesFloor001" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("15_ef3dm")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="TilesFloor001"]
@@ -285,7 +271,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_p0eng")
 
 [node name="TilesFloor002" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("16_1shtv")
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="TilesFloor002"]
@@ -295,7 +280,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_yam2u")
 
 [node name="TilesInternalDownSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("17_a8opd")
 
 [node name="StaticBody3D8" type="StaticBody3D" parent="TilesInternalDownSkirting"]
@@ -305,7 +289,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0.25)
 shape = SubResource("BoxShape3D_husu7")
 
 [node name="TilesInternalLightDownSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("18_j77ln")
 
 [node name="StaticBody3D9" type="StaticBody3D" parent="TilesInternalLightDownSkirting"]
@@ -315,7 +298,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0.25)
 shape = SubResource("BoxShape3D_iw7vn")
 
 [node name="TilesInternalLightFloor" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("19_j08gy")
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="TilesInternalLightFloor"]
@@ -325,7 +307,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_soksh")
 
 [node name="TilesInternalLightUpSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("20_ah7vj")
 
 [node name="StaticBody3D10" type="StaticBody3D" parent="TilesInternalLightUpSkirting"]
@@ -341,7 +322,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.25, 0.25)
 shape = SubResource("BoxShape3D_j0ldy")
 
 [node name="TilesInternalUpSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("21_mc5f2")
 
 [node name="StaticBody3D11" type="StaticBody3D" parent="TilesInternalUpSkirting"]
@@ -351,7 +331,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.25, 0.25)
 shape = SubResource("BoxShape3D_4t8hk")
 
 [node name="TilesInternalWall" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("22_2bcd0")
 
 [node name="StaticBody3D12" type="StaticBody3D" parent="TilesInternalWall"]
@@ -361,7 +340,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251, 0, 0.253)
 shape = SubResource("BoxShape3D_iwjle")
 
 [node name="TilesLightA" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("23_e64od")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="TilesLightA"]
@@ -370,7 +348,6 @@ mesh = ExtResource("23_e64od")
 shape = SubResource("BoxShape3D_q4ocx")
 
 [node name="TilesLightDownSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("24_twyqm")
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="TilesLightDownSkirting"]
@@ -380,7 +357,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.25, 0)
 shape = SubResource("BoxShape3D_8x4to")
 
 [node name="TilesLightExternalWall" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("25_24ara")
 
 [node name="StaticBody3D11" type="StaticBody3D" parent="TilesLightExternalWall"]
@@ -391,7 +367,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -0.15)
 shape = SubResource("BoxShape3D_0qeek")
 
 [node name="TilesLightFloor" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("26_lfp1r")
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="TilesLightFloor"]
@@ -401,7 +376,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_rp6pc")
 
 [node name="TilesLightInternalWall" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("27_3h3c3")
 
 [node name="StaticBody3D13" type="StaticBody3D" parent="TilesLightInternalWall"]
@@ -411,7 +385,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251, 0, 0.253)
 shape = SubResource("BoxShape3D_6y8w2")
 
 [node name="TilesLightWallEnd" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("29_dhb50")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="TilesLightWallEnd"]
@@ -420,7 +393,6 @@ mesh = ExtResource("29_dhb50")
 shape = SubResource("BoxShape3D_20vhk")
 
 [node name="TilesLightWall" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("2_s50h8")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="TilesLightWall"]
@@ -429,7 +401,6 @@ mesh = ExtResource("2_s50h8")
 shape = SubResource("BoxShape3D_ffet3")
 
 [node name="TilesLightWallStart" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("30_a1lo0")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="TilesLightWallStart"]
@@ -438,7 +409,6 @@ mesh = ExtResource("30_a1lo0")
 shape = SubResource("BoxShape3D_826wk")
 
 [node name="TilesLladderCenter" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("31_3267a")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="TilesLladderCenter"]
@@ -448,7 +418,6 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 shape = SubResource("BoxShape3D_v0qt2")
 
 [node name="TilesLladderLeft" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("32_j3a1g")
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="TilesLladderLeft"]
@@ -458,7 +427,6 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 shape = SubResource("BoxShape3D_n2dct")
 
 [node name="TilesLladderRight" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("33_72h71")
 
 [node name="StaticBody3D8" type="StaticBody3D" parent="TilesLladderRight"]
@@ -468,7 +436,6 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 shape = SubResource("BoxShape3D_ngsbm")
 
 [node name="TilesLightUpSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("28_j65ye")
 
 [node name="StaticBody3D10" type="StaticBody3D" parent="TilesLightUpSkirting"]
@@ -478,7 +445,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("BoxShape3D_jbrk8")
 
 [node name="TilesUpSkirting" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("34_nd0q3")
 
 [node name="StaticBody3D11" type="StaticBody3D" parent="TilesUpSkirting"]
@@ -488,6 +454,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("BoxShape3D_ok4qi")
 
 [node name="TilesWall" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("35_lpc1v")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="TilesWall"]
