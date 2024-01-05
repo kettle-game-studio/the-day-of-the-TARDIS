@@ -19,9 +19,13 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 use_model_front = true
 script = ExtResource("3_ko4mr")
 
-[node name="Dalek" parent="Room1" instance=ExtResource("3_wbher")]
+[node name="Dalek" parent="Room1" node_paths=PackedStringArray("target_destination") instance=ExtResource("3_wbher")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.6, 0, -1.31134e-07)
 dalek_id = 1
+target_destination = NodePath("../Node3D")
+
+[node name="Node3D" type="Node3D" parent="Room1"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 3.70711, 0, -6.94975)
 
 [node name="Room2" parent="." instance=ExtResource("2_baem4")]
 transform = Transform3D(4.47035e-08, 0, 1, 0, 1, 0, -1, 0, 4.47035e-08, 64, 0, 0)
