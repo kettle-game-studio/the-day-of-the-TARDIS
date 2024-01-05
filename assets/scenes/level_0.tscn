@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dvtdwm0nnaq05"]
+[gd_scene load_steps=31 format=3 uid="uid://dvtdwm0nnaq05"]
 
 [ext_resource type="ArrayMesh" uid="uid://bk5s8q1d2f5lb" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLight.res" id="1_a0vuk"]
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_qofiy"]
@@ -17,6 +17,7 @@
 [ext_resource type="ArrayMesh" uid="uid://1topwam7v16w" path="res://assets/models/TARGIS/meshes/TARDIS_WallDoor.res" id="15_ufe55"]
 [ext_resource type="ArrayMesh" uid="uid://60r6sip5q2ee" path="res://assets/models/TARGIS/meshes/TARDIS_WallTardisDoor.res" id="16_75iku"]
 [ext_resource type="Script" path="res://assets/scripts/stub_path_follow.gd" id="16_tvseq"]
+[ext_resource type="Material" uid="uid://balyyhflsgvn0" path="res://assets/vfx/standard_material_3d.tres" id="17_ovm2e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_73ijt"]
 size = Vector3(0.567871, 2.8454, 2.16913)
@@ -55,6 +56,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
+
+[sub_resource type="SphereMesh" id="SphereMesh_enqja"]
+material = ExtResource("17_ovm2e")
+radius = 0.25
+height = 0.25
 
 [node name="Level-0" type="Node3D"]
 script = ExtResource("1_qofiy")
@@ -969,9 +975,10 @@ shape = SubResource("BoxShape3D_wrk1r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_wrk1r")
 
-[node name="Dalek" parent="Room1" instance=ExtResource("15_fs431")]
+[node name="Dalek" parent="Room1" node_paths=PackedStringArray("target_destination") instance=ExtResource("15_fs431")]
 transform = Transform3D(0.978454, 0, 0.206429, 0, 1, 0, -0.206429, 0, 0.978457, 8.00004, 2, -5)
 dalek_id = 1
+target_destination = NodePath("../Path3D/PathFollow3D")
 
 [node name="Path3D" type="Path3D" parent="Room1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.322, 2.05469, 0)
@@ -983,8 +990,9 @@ rotation_mode = 1
 use_model_front = true
 script = ExtResource("16_tvseq")
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Room1/Path3D/PathFollow3D"]
-remote_path = NodePath("../../../Dalek")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/Path3D/PathFollow3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -4.47035e-08, 0, 1, 0, 2.3, 0)
+mesh = SubResource("SphereMesh_enqja")
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)

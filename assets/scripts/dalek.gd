@@ -7,7 +7,15 @@ signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
 @export var SPEED = 1.0
 @export var dalek_id: int = 0
 @export var corpse_prefab: PackedScene
+@export var target_destination: Node3D
+@export_category("Move and perception")
 @export var view_angle = 120
+@export var head_speed = 200
+@export var gun_speed = 90
+@export var rotation_speed = 90
+
+enum State {PATROL, ATTAK}
+var state = State.PATROL
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -29,24 +37,24 @@ func _ready():
 
 func _process(delta):
 	var bone = head_bone	
-	var head_rotation = head_angle_to_player(bone)
-	var head_speed = 0.1
-	var gun_speed = 0.045
-	var rotation_speed = 0.05
+	var head_rotation = head_angle_to_player(bone, "x")
+	
 	var gun_bone = left_arm_bone
 	if head_rotation == null || abs(head_rotation) > deg_to_rad(view_angle):
-		bone.rotation.y = move_toward(bone.rotation.y, 0, head_speed)
-		gun_bone.rotation.y = move_toward(gun_bone.rotation.y, 0, gun_speed)
+		state = State.PATROL
+		bone.rotation.y = move_toward(bone.rotation.y, 0, deg_to_rad(head_speed)*delta)
+		gun_bone.rotation.y = move_toward(gun_bone.rotation.y, 0, deg_to_rad(gun_speed)*delta)
 		return
+	state = State.ATTAK
 	var body_rotation = head_angle_to_player(self, "z")
 	if body_rotation != null:
-		rotation.y = move_toward(rotation.y, body_rotation, rotation_speed)
-	bone.rotation.y = move_toward(bone.rotation.y, head_rotation, head_speed)
+		rotation.y = move_toward(rotation.y, body_rotation, deg_to_rad(rotation_speed)*delta)
+	bone.rotation.y = move_toward(bone.rotation.y, head_rotation, deg_to_rad(head_speed)*delta)
 	var gun_rotation = head_angle_to_player(gun_bone, "y")
 	if gun_rotation == null:
 		return
 	var clumped = clamp(gun_rotation, -PI/4, PI/4)
-	gun_bone.rotation.y = move_toward(gun_bone.rotation.y, clumped, gun_speed)
+	gun_bone.rotation.y = move_toward(gun_bone.rotation.y, clumped, deg_to_rad(gun_speed)*delta)
 	if clumped == gun_rotation:
 		gun.fire()
 
@@ -105,13 +113,21 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	var direction = (transform.basis * Vector3(move_direction.x, 0, move_direction.y)).normalized()
+	if state == State.ATTAK || target_destination == null:
+		return
+	var target_quaternion = Quaternion(target_destination.global_basis.orthonormalized())
+	var our_quatenion = Quaternion(global_basis.orthonormalized())
+	var angle_distance = abs(target_quaternion.angle_to(our_quatenion))
+	global_basis = our_quatenion.slerp(target_quaternion, deg_to_rad(rotation_speed)*delta/angle_distance)
+	var to_target = target_destination.global_position - global_position
+	var direction = Vector3(to_target.x, 0, to_target.z).normalized()
+	var move_speed = min(4., to_target.length() / max(1, angle_distance*10.))
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * move_speed
+		velocity.z = direction.z * move_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, move_speed)
+		velocity.z = move_toward(velocity.z, 0, move_speed)
 	move_and_slide()
 
 func _on_bullet(bullet):

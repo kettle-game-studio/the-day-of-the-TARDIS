@@ -33,7 +33,7 @@ func _input(event):
 		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
 		screwdriver_audiostream.play(2)
 	elif Input.is_action_just_pressed("second_action"):
-		gun.fire()
+		portal_controller.disable_portal()
 
 
 func rotate_camera(mouse_shift: Vector2):
