@@ -2,21 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc1wvhi1f3f2i"
-path="res://.godot/imported/Dalek_DalekColor.png-581f2aaac61da5434a92bfa5d980b915.ctex"
+uid="uid://j2y4bihfisi0"
+path.s3tc="res://.godot/imported/Dalek_DalekLight.png-477a03cd86f032cfa474809f0f8bdf68.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/Dalek_DalekColor.png"
-dest_files=["res://.godot/imported/Dalek_DalekColor.png-581f2aaac61da5434a92bfa5d980b915.ctex"]
+source_file="res://assets/models/Dalek/Dalek_DalekLight.png"
+dest_files=["res://.godot/imported/Dalek_DalekLight.png-477a03cd86f032cfa474809f0f8bdf68.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

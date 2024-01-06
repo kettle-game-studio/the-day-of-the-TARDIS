@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/dalek.gd" id="1_acjio"]
 [ext_resource type="PackedScene" uid="uid://fldgkxyay001" path="res://assets/prefabs/dalek_corpse.tscn" id="2_ewxuu"]
-[ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/imports/Dalek_Cylinder.res" id="2_yx3a7"]
+[ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/Dalek/imports/Dalek_Cylinder.res" id="2_yx3a7"]
 [ext_resource type="PackedScene" uid="uid://cgookivq886s1" path="res://assets/prefabs/gun.tscn" id="3_c86vl"]
 [ext_resource type="Script" path="res://assets/scripts/debug_dalek.gd" id="4_554bn"]
 
@@ -32,6 +32,9 @@ radius = 0.558179
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_w8lq4"]
 
 [sub_resource type="FontFile" id="FontFile_2v3av"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -72,6 +75,7 @@ resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_xk6ka")
 
 [node name="Dalek" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.139451)
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("1_acjio")
@@ -178,7 +182,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_o21re")
-text = "Test"
+text = "Dalek 0
+Timezone: Undefiend
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -193,3 +199,5 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 mesh = SubResource("PlaneMesh_j65lq")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")
+
+[node name="DesapiarTimer" type="Timer" parent="."]

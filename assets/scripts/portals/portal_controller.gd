@@ -35,6 +35,10 @@ func _get_room_shift():
 		shift = -shift
 	return shift
 
+func _get_to_future_shift():
+	var shift = future_base.global_position - present_base.global_position
+	return shift
+
 func enable_portal(position: Vector3, rotation: Vector3):
 	portal_state = PortalState.ENABLED
 	portal.global_rotation.y = rotation.y
