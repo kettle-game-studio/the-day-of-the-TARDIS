@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dvtdwm0nnaq05"]
+[gd_scene load_steps=37 format=3 uid="uid://dvtdwm0nnaq05"]
 
 [ext_resource type="ArrayMesh" uid="uid://bk5s8q1d2f5lb" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLight.res" id="1_a0vuk"]
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_qofiy"]
@@ -16,6 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="15_fs431"]
 [ext_resource type="ArrayMesh" uid="uid://1topwam7v16w" path="res://assets/models/TARGIS/meshes/TARDIS_WallDoor.res" id="15_ufe55"]
 [ext_resource type="ArrayMesh" uid="uid://60r6sip5q2ee" path="res://assets/models/TARGIS/meshes/TARDIS_WallTardisDoor.res" id="16_75iku"]
+[ext_resource type="PackedScene" uid="uid://bt7d67y28ov3v" path="res://assets/prefabs/door.tscn" id="16_edwhl"]
+[ext_resource type="Material" uid="uid://pd86y7fuomnq" path="res://assets/models/Tiles/materials/tileset_material_break_door.tres" id="17_em2uk"]
+[ext_resource type="ArrayMesh" uid="uid://bj7m7symivymj" path="res://assets/models/Tiles/models/Tiles_DoorLeaf.res" id="18_uy6hp"]
+[ext_resource type="PackedScene" uid="uid://ctwwhu2g2r34n" path="res://assets/prefabs/VFX/smoke.tscn" id="19_2aj1d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_73ijt"]
 size = Vector3(0.567871, 2.8454, 2.16913)
@@ -55,9 +59,82 @@ _data = {
 }
 point_count = 7
 
+[sub_resource type="Animation" id="Animation_fr4cs"]
+resource_name = "broken_door"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TilesDoorLeaf2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.99964, 3.22357),
+"transitions": PackedFloat32Array(1, 1, 9.84917),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.90735e-06, -0.118972), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TilesDoorLeaf:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.001, 2.81304, 3.05096, 3.2189),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.00191331, -0.00158597, 0.00721448), Vector3(-0.0351362, -0.0264635, 0.120383), Vector3(-0.0315236, -0.0237583, 0.108077), Vector3(-0.029, -0.022, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6jddo"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TilesDoorLeaf2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TilesDoorLeaf:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.00191331, -0.00158597, 0.00721448)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_41rbl"]
+_data = {
+"RESET": SubResource("Animation_6jddo"),
+"broken_door": SubResource("Animation_fr4cs")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3bld"]
+animation = &"broken_door"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_af2yk"]
+graph_offset = Vector2(14.6667, 59.3333)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_y3bld")
+nodes/Animation/position = Vector2(93.3333, 120)
+nodes/output/position = Vector2(373.333, 160)
+node_connections = [&"output", 0, &"Animation"]
+
 [node name="Level-0" type="Node3D" node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_qofiy")
-start_point = NodePath("Room1/PlayerSpawn")
+start_point = NodePath("Room2/PlayerSpawn")
 
 [node name="Room1" type="Node3D" parent="."]
 script = ExtResource("2_fs2jm")
@@ -972,11 +1049,11 @@ start_patrol_from = 0.5
 transform = Transform3D(-0.422618, 0, 0.906308, 0, 1, 0, -0.906308, 0, -0.422618, -4.29644, 2.05469, -9.56433)
 curve = SubResource("Curve3D_x2j4s")
 
-[node name="PlayerSpawn" type="Node3D" parent="Room1"]
-transform = Transform3D(0.365153, 0, -0.930947, 0, 1, 0, 0.930947, 0, 0.365153, -7.39443, -9.53674e-07, 2.68778)
+[node name="Door" parent="Room1" instance=ExtResource("16_edwhl")]
+transform = Transform3D(1.21, 0, 0, 0, 1.21, 0, 0, 0, 1.897, 11.2617, 2.11078, 0)
 
 [node name="Room2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 script = ExtResource("2_fs2jm")
 roomType = 1
 
@@ -1874,3 +1951,36 @@ shape = SubResource("BoxShape3D_wrk1r")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Room2/Colliders/Tardis/Tardis3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_wrk1r")
+
+[node name="PlayerSpawn" type="Node3D" parent="Room2"]
+transform = Transform3D(0.365153, 0, -0.930947, 0, 1, 0, 0.930947, 0, 0.365153, -8.29311, 0, 3.07334)
+
+[node name="BrokenDoor" type="Node3D" parent="Room2"]
+transform = Transform3D(-1.06364, -0.0364731, -0.0955146, -0.0346984, 1.23079, 0.176586, 0.0411254, 0.0951281, -2.32133, 11.3153, 2.05478, -0.0871486)
+
+[node name="TilesDoorLeaf" type="MeshInstance3D" parent="Room2/BrokenDoor"]
+transform = Transform3D(-0.990533, -0.0432325, 0.289032, -0.0190402, 0.993153, 0.216434, -0.0619271, 0.0586845, -0.984572, -0.00191331, -0.00158597, 0.00721448)
+material_override = ExtResource("17_em2uk")
+mesh = ExtResource("18_uy6hp")
+skeleton = NodePath("../../..")
+
+[node name="TilesDoorLeaf2" type="MeshInstance3D" parent="Room2/BrokenDoor"]
+transform = Transform3D(1, -9.31323e-10, 2.23517e-08, -4.65661e-09, 1, 0, 3.72529e-09, 1.11759e-08, 1, 0, 0, 0)
+material_override = ExtResource("17_em2uk")
+mesh = ExtResource("18_uy6hp")
+skeleton = NodePath("../../..")
+
+[node name="Smoke" parent="Room2/BrokenDoor" instance=ExtResource("19_2aj1d")]
+transform = Transform3D(-0.937768, -0.0305922, 0.113852, -0.0239133, 0.806957, 0.195841, -0.0175937, 0.032527, -1.34263, 0.292453, 0.195687, 0.00333866)
+
+[node name="AnimationTree" type="AnimationTree" parent="Room2/BrokenDoor"]
+libraries = {
+"": SubResource("AnimationLibrary_41rbl")
+}
+tree_root = SubResource("AnimationNodeBlendTree_af2yk")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Room2/BrokenDoor"]
+libraries = {
+"": SubResource("AnimationLibrary_41rbl")
+}

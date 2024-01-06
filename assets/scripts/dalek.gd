@@ -111,6 +111,7 @@ func where_player(look_bone: Node3D, y_raycast: float):
 		
 	var time_shift = timezone.level.portal_controller._get_room_shift()
 	look_dir += time_shift
+	look_dir.y = 0
 	var cast_out_time = raycast_enemy(our_position, our_position+look_dir, true)
 	if !cast_out_time || !(cast_out_time.collider is Area3D):
 		return null
