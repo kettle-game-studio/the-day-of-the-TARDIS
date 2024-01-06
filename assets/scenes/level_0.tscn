@@ -55,23 +55,12 @@ _data = {
 }
 point_count = 7
 
-[node name="Level-0" type="Node3D"]
+[node name="Level-0" type="Node3D" node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_qofiy")
+start_point = NodePath("Room1/PlayerSpawn")
 
 [node name="Room1" type="Node3D" parent="."]
 script = ExtResource("2_fs2jm")
-
-[node name="Dalek3" parent="Room1" instance=ExtResource("15_fs431")]
-transform = Transform3D(-0.329888, 0, 0.94402, 0, 1, 0, -0.94402, 0, -0.329888, -3.72624, 0, 0.575245)
-dalek_id = 2
-
-[node name="Dalek2" parent="Room1" instance=ExtResource("15_fs431")]
-transform = Transform3D(0.977655, 0.00647112, -0.210114, -0.00641417, 0.999979, 0.000952535, 0.210116, 0.000416466, 0.977677, -0.587453, 0.0785545, -2.82819)
-dalek_id = 3
-
-[node name="Dalek4" parent="Room1" instance=ExtResource("15_fs431")]
-transform = Transform3D(0.119686, 0, -0.992812, 0, 1, 0, 0.992812, 0, 0.119686, -1.03253, 0, 1.68129)
-dalek_id = 4
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Room1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15.0511, 0)
@@ -799,6 +788,7 @@ shape = SubResource("BoxShape3D_vbg2k")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/Colliders/Walls/Wall10/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_p0qiu")
+disabled = true
 
 [node name="Wall11" type="Node3D" parent="Room1/Colliders/Walls"]
 transform = Transform3D(-0.939692, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939692, 0, 0, 0)
@@ -973,9 +963,17 @@ transform = Transform3D(0.978454, 0, 0.206429, 0, 1, 0, -0.206429, 0, 0.978457, 
 dalek_id = 1
 patrol_path = NodePath("../Dalek1Patrol")
 
+[node name="Dalek2" parent="Room1" node_paths=PackedStringArray("patrol_path") instance=ExtResource("15_fs431")]
+dalek_id = 2
+patrol_path = NodePath("../Dalek1Patrol")
+start_patrol_from = 0.5
+
 [node name="Dalek1Patrol" type="Path3D" parent="Room1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.322, 2.05469, 0)
+transform = Transform3D(-0.422618, 0, 0.906308, 0, 1, 0, -0.906308, 0, -0.422618, -4.29644, 2.05469, -9.56433)
 curve = SubResource("Curve3D_x2j4s")
+
+[node name="PlayerSpawn" type="Node3D" parent="Room1"]
+transform = Transform3D(0.365153, 0, -0.930947, 0, 1, 0, 0.930947, 0, 0.365153, -7.39443, -9.53674e-07, 2.68778)
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
@@ -1876,7 +1874,3 @@ shape = SubResource("BoxShape3D_wrk1r")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Room2/Colliders/Tardis/Tardis3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_wrk1r")
-
-[node name="Dalek" parent="Room2" instance=ExtResource("15_fs431")]
-transform = Transform3D(-0.410973, 0, -0.911647, 0, 1, 0, 0.911647, 0, -0.410973, 3.2258, 0, -2.41376)
-dalek_id = 1

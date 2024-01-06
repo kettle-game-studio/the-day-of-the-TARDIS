@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7aewf8mbf18q"]
+[gd_scene load_steps=11 format=3 uid="uid://b7aewf8mbf18q"]
 
 [ext_resource type="ArrayMesh" uid="uid://crbgcwoatbuxr" path="res://assets/models/VFX/models/Explosion_Torus.res" id="1_2kcbo"]
+[ext_resource type="Script" path="res://assets/scripts/explosion.gd" id="1_wrafc"]
 [ext_resource type="Shader" path="res://assets/vfx/explosion.gdshader" id="2_n07m6"]
 [ext_resource type="Texture2D" uid="uid://d4fn0c01lli50" path="res://assets/models/VFX/Explosion_ExplosionLight.png" id="3_1rpgn"]
 
@@ -22,6 +23,45 @@ shader = ExtResource("2_n07m6")
 shader_parameter/speed = 1.0
 shader_parameter/alpha = 0.0
 shader_parameter/light_texture = SubResource("CompressedTexture2D_dy1sv")
+
+[sub_resource type="Animation" id="Animation_i0le7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.045, 0.045, 0.045)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion/ExplosionTorus:surface_material_override/0:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion/ExplosionTorus2:surface_material_override/0:shader_parameter/alpha")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_r36fl"]
 resource_name = "exposion"
@@ -63,45 +103,6 @@ tracks/2/keys = {
 "values": [1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_i0le7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Explosion:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.045, 0.045, 0.045)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Explosion/ExplosionTorus:surface_material_override/0:shader_parameter/alpha")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Explosion/ExplosionTorus2:surface_material_override/0:shader_parameter/alpha")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1h07r"]
 _data = {
 "RESET": SubResource("Animation_i0le7"),
@@ -109,6 +110,7 @@ _data = {
 }
 
 [node name="Explosion" type="Node3D"]
+script = ExtResource("1_wrafc")
 
 [node name="Explosion" type="Node3D" parent="."]
 transform = Transform3D(0.045, 0, 0, 0, 0.045, 0, 0, 0, 0.045, 0, 0, 0)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/dalek.gd" id="1_acjio"]
 [ext_resource type="PackedScene" uid="uid://fldgkxyay001" path="res://assets/prefabs/dalek_corpse.tscn" id="2_ewxuu"]
-[ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/imports/Dalek_Cylinder.res" id="2_yx3a7"]
+[ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/Dalek/imports/Dalek_Cylinder.res" id="2_yx3a7"]
 [ext_resource type="PackedScene" uid="uid://cgookivq886s1" path="res://assets/prefabs/gun.tscn" id="3_c86vl"]
 [ext_resource type="Script" path="res://assets/scripts/debug_dalek.gd" id="4_554bn"]
 
@@ -199,3 +199,5 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 mesh = SubResource("PlaneMesh_j65lq")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")
+
+[node name="DesapiarTimer" type="Timer" parent="."]

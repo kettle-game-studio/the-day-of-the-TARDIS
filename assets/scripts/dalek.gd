@@ -11,17 +11,16 @@ signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
 @export_category("Move and perception")
 @export var move_speed = 1.0
 @export var max_move_speed = 5.0
-@export var view_angle = 120
+@export var view_angle = 100
 @export var head_speed = 200
 @export var gun_speed = 90
 @export var rotation_speed = 90
 
-enum State {PATROL, ATTAK}
+enum State {PATROL, ATTAK, DIED}
 var state = State.PATROL
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var move_direction = Vector2(0,0)
 # Initialized outiside by parent
 var timezone: Timezone = null
 
@@ -39,12 +38,17 @@ func _ready():
 	assert(dalek_id != 0, "DALEK WITH DEFAULT ID")
 	gun.scene = get_parent_node_3d()
 	gun.ignore_bodies[self] = true
+	restart()
+
+func restart():
+	state = State.PATROL
 	if patrol_path:
 		last_offset = start_patrol_from*patrol_path.curve.get_baked_length()
 		global_transform = patrol_path.global_transform * patrol_path.curve.sample_baked_with_rotation(last_offset)
 
 func _process(delta):
-	#return
+	if state == State.DIED:
+		return
 	var bone = head_bone	
 	var head_rotation = head_angle_to_player(bone, "x")
 	
@@ -126,13 +130,15 @@ func raycast_enemy(from: Vector3, to: Vector3, collide_with_areas: bool):#, enem
 
 func _physics_process(delta):
 	# Add the gravity.
+	if state == State.DIED:
+		return
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
 	if state == State.ATTAK || patrol_path == null:
 		return
 	var target_offset = move_speed*timezone.level.clock+(start_patrol_from*patrol_path.curve.get_baked_length())
-	var move_speed = min(max_move_speed, max(0, target_offset-last_offset))
+	var speed = min(max_move_speed, max(0, target_offset-last_offset))
 	#print_debug(dalek_id, " ", last_offset, " ", patrol_path.curve.get_baked_length())
 	var closest_target_position = patrol_path.global_transform* patrol_path.curve.sample_baked(
 			fmod(last_offset+move_speed, patrol_path.curve.get_baked_length())
@@ -141,10 +147,8 @@ func _physics_process(delta):
 	var direction = Vector3(to_closest_target.x, 0, to_closest_target.z).normalized()
 	var angle = look_dir_angle(self, direction)
 	rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)
-	print_debug(dalek_id, " ", angle)
 	#move_speed*=max(1., 1./(abs(2*angle)*abs(2*angle)))
-	var speed = move_speed
-	if abs(rotation.y - angle) > PI/10:
+	if abs(rotation.y - angle) > PI/4:
 		speed = 0.1
 	if direction:
 		velocity.x = direction.x * speed
@@ -156,15 +160,20 @@ func _physics_process(delta):
 	last_offset += speed*delta
 
 func _on_bullet(bullet):
+	if state == State.DIED:
+		return
 	killed.emit(self, bullet)
 	die(bullet)
-	pass
 
-func die(reason = null):
+func die(reason = null, where: Transform3D = global_transform):
+	if state == State.DIED:
+		return
+	state = State.DIED
 	var corpse = corpse_prefab.instantiate() as DalekCorpse
-	get_parent().add_child(corpse)
 	corpse.dalek_id = dalek_id
-	corpse.global_transform = global_transform	
+	corpse.killed = reason != null
+	get_parent().add_child(corpse)
+	corpse.global_transform = where
 	died.emit(self, corpse, reason)
-	get_parent().call_deferred("remove_child", self)
+	global_position = timezone.level.dalek_home.global_position
 	
