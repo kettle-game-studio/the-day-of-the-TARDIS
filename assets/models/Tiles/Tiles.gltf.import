@@ -31,16 +31,6 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "meshes": {
-"Tiles_AngleCutFloor": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
-"save_to_file/enabled": true,
-"save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_AngleCutFloor.res"
-},
 "Tiles_AngleLightA": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
@@ -110,6 +100,16 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
 "save_to_file/path": "res://assets/models/Tiles/models/Tiles_DownSkirting.res"
+},
+"Tiles_ExternalCutFloor": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://assets/models/Tiles/models/Tiles_ExternalCutFloor.res"
 },
 "Tiles_ExternalDownSkirting": {
 "generate/lightmap_uv": 0,
@@ -191,6 +191,46 @@ _subresources={
 "save_to_file/make_streamable": "",
 "save_to_file/path": "res://assets/models/Tiles/models/Tiles_Floor_002.res"
 },
+"Tiles_Glass": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://assets/models/Tiles/models/Tiles_Glass.res"
+},
+"Tiles_GlassEnd": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://assets/models/Tiles/models/Tiles_GlassEnd.res"
+},
+"Tiles_GlassWall": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://assets/models/Tiles/models/Tiles_GlassWall.res"
+},
+"Tiles_InternalCutFloor": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://assets/models/Tiles/models/Tiles_InternalCutFloor.res"
+},
 "Tiles_InternalDownSkirting": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
@@ -261,6 +301,16 @@ _subresources={
 "save_to_file/make_streamable": "",
 "save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightA.res"
 },
+"Tiles_LightAUpSkirting": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightAUpSkirting.res"
+},
 "Tiles_LightDownSkirting": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
@@ -270,6 +320,16 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
 "save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightDownSkirting.res"
+},
+"Tiles_LightDownSkirting_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightDownSkirting_001.res"
 },
 "Tiles_LightExternalWall": {
 "generate/lightmap_uv": 0,
