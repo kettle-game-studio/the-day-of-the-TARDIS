@@ -5,6 +5,7 @@ class_name AbstractLevel
 @export var portal_controller: PortalController
 var present: Timezone
 var future: Timezone
+var clock = 0.0
 
 var player_room:
 	get:
@@ -26,7 +27,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	clock+=delta
 
 func _on_dalek_killed(dalek: Dalek, bullet: BulletContoller):
 	if dalek.timezone == present && future.alive_daleks_map.has(dalek.dalek_id):
