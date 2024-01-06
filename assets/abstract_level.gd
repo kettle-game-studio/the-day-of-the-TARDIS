@@ -38,7 +38,7 @@ func _ready():
 	for dalek in present.daleks:
 		dalek.killed.connect(_on_dalek_killed)
 	for dalek in future.daleks:
-		dalek.killed.connect(_on_dalek_killed)		
+		dalek.killed.connect(_on_dalek_killed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

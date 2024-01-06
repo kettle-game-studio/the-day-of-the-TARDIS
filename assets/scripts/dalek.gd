@@ -42,6 +42,7 @@ func _ready():
 
 func restart():
 	state = State.PATROL
+	gun.restart()
 	if patrol_path:
 		last_offset = start_patrol_from*patrol_path.curve.get_baked_length()
 		global_transform = patrol_path.global_transform * patrol_path.curve.sample_baked_with_rotation(last_offset)
