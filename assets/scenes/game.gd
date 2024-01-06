@@ -18,6 +18,7 @@ func _ready():
 		level.portal_controller = portal_controller
 		level.level_finished.connect(_on_level_finished)
 	debug.text = "%d level" % current_level
+	levels[0].restart()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
