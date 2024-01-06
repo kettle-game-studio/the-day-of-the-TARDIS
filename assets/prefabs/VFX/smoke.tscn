@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctwwhu2g2r34n"]
+
+[ext_resource type="Texture2D" uid="uid://bo15cfuumlcfe" path="res://assets/models/Smoke/Smoke.png" id="1_w3f8o"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_57yo7"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+angle_min = -11.0
+angle_max = 360.0
+gravity = Vector3(0, 1, 0)
+scale_min = 0.5
+scale_max = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h40m"]
+transparency = 1
+albedo_texture = ExtResource("1_w3f8o")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_26d7x"]
+material = SubResource("StandardMaterial3D_1h40m")
+
+[node name="Smoke" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 16
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_57yo7")
+draw_pass_1 = SubResource("QuadMesh_26d7x")

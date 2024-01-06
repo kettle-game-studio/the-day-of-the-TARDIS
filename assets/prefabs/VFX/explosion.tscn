@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7aewf8mbf18q"]
+
+[ext_resource type="ArrayMesh" uid="uid://crbgcwoatbuxr" path="res://assets/models/VFX/models/Explosion_Torus.res" id="1_2kcbo"]
+[ext_resource type="Shader" path="res://assets/vfx/explosion.gdshader" id="2_n07m6"]
+[ext_resource type="Texture2D" uid="uid://d4fn0c01lli50" path="res://assets/models/VFX/Explosion_ExplosionLight.png" id="3_1rpgn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hml16"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_n07m6")
+shader_parameter/speed = 1.0
+shader_parameter/alpha = 1.0
+shader_parameter/light_texture = ExtResource("3_1rpgn")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dy1sv"]
+load_path = "res://.godot/imported/Explosion_ExplosionLight.png-62c97002099bbc73a4be80d3bd8ef7ee.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4h71"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_n07m6")
+shader_parameter/speed = 1.0
+shader_parameter/alpha = 0.0
+shader_parameter/light_texture = SubResource("CompressedTexture2D_dy1sv")
+
+[sub_resource type="Animation" id="Animation_r36fl"]
+resource_name = "exposion"
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.812254, 1),
+"update": 0,
+"values": [Vector3(0.045, 0.045, 0.045), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion/ExplosionTorus:surface_material_override/0:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3.86375, 8.87655),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion/ExplosionTorus2:surface_material_override/0:shader_parameter/alpha")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3.24901, 9.84915),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_i0le7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.045, 0.045, 0.045)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion/ExplosionTorus:surface_material_override/0:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion/ExplosionTorus2:surface_material_override/0:shader_parameter/alpha")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1h07r"]
+_data = {
+"RESET": SubResource("Animation_i0le7"),
+"exposion": SubResource("Animation_r36fl")
+}
+
+[node name="Explosion" type="Node3D"]
+
+[node name="Explosion" type="Node3D" parent="."]
+transform = Transform3D(0.045, 0, 0, 0, 0.045, 0, 0, 0, 0.045, 0, 0, 0)
+
+[node name="ExplosionTorus" type="MeshInstance3D" parent="Explosion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.414266, 0)
+mesh = ExtResource("1_2kcbo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_hml16")
+
+[node name="ExplosionTorus2" type="MeshInstance3D" parent="Explosion"]
+transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 0.122254, 0)
+mesh = ExtResource("1_2kcbo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_n4h71")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1h07r")
+}
