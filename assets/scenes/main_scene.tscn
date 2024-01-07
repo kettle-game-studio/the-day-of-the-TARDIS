@@ -18,6 +18,7 @@
 [ext_resource type="Material" uid="uid://dgstr4d8q6epf" path="res://assets/models/TARGIS/materials/tardis_material.tres" id="15_2iws7"]
 
 [sub_resource type="Environment" id="Environment_aiut3"]
+fog_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_86w27"]
 size = Vector3(1.46345, 6.669, 2.06974)
@@ -94,7 +95,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97, -20, 0)
 
 [node name="SubViewport" type="SubViewport" parent="PortalController"]
-size = Vector2i(3840, 2126)
+size = Vector2i(3840, 2036)
 script = ExtResource("3_jahyl")
 
 [node name="Camera3D" type="Camera3D" parent="PortalController/SubViewport"]
@@ -105,14 +106,14 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 
 [node name="OutsideTasdisPortal" parent="PortalController/TARDIS" node_paths=PackedStringArray("portal_viewport") instance=ExtResource("13_55t3w")]
-transform = Transform3D(0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, 0.34202, -30.4, 0, -1.65504)
+transform = Transform3D(0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, 0.34202, -30.4, 0, -31.7352)
 portal_viewport = NodePath("../../SubViewport")
 
 [node name="OutSwitchTardis" parent="PortalController/TARDIS/OutsideTasdisPortal" node_paths=PackedStringArray("portal_controller") instance=ExtResource("13_qcoae")]
 portal_controller = NodePath("../../..")
 
 [node name="TardisWallTardisDoor002" type="MeshInstance3D" parent="PortalController/TARDIS/OutsideTasdisPortal"]
-transform = Transform3D(-0.00834295, 0, 0.999965, 0, 1, 0, -0.999965, 0, -0.00834295, -0.0491676, 0, -0.637041)
+transform = Transform3D(-0.00834295, 0, 0.999965, 0, 1, 0, -0.999965, 0, -0.00834295, -0.0491686, 0, -0.637039)
 mesh = ExtResource("14_ifckx")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("15_2iws7")

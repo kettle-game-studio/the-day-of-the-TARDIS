@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://chbguptln8yxg"]
+
+[ext_resource type="Script" path="res://assets/scripts/portals/switch_tardis.gd" id="1_8wts6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j60ye"]
+size = Vector3(1.5, 3, 1)
+
+[node name="SwitchTardis" type="Node3D" node_paths=PackedStringArray("area")]
+script = ExtResource("1_8wts6")
+area = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.305)
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.805)
+shape = SubResource("BoxShape3D_j60ye")
