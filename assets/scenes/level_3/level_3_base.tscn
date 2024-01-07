@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlowkq41usqmv"]
+[gd_scene load_steps=6 format=3 uid="uid://dlowkq41usqmv"]
 
 [ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="1_u415n"]
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="2_0i0ib"]
@@ -6,7 +6,14 @@
 
 [sub_resource type="Curve3D" id="Curve3D_7kop1"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1, 0, -4, 0, 0, 0, 0, 0, 0, -1, 0, 6, 0, 0, 0, 0, 0, 0, 10, 0, 6, 0, 0, 0, 0, 0, 0, 10, 0, -4, 0, 0, 0, 0, 0, 0, -1, 0, -4),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.45, 0, -4.335, 0, 0, 0, 0, 0, 0, -1.255, 0, 6.475, 0, 0, 0, 0, 0, 0, 10.54, 0, 6.46, 0, 0, 0, 0, 0, 0, 10.515, 0, -4.22, 0, 0, 0, 0, 0, 0, -1.45, 0, -4.335),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve3D" id="Curve3D_ohd5a"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.425, 0, -3.355, 0, 0, 0, 0, 0, 0, -0.385, 0, 5.495, 0, 0, 0, 0, 0, 0, 9.565, 0, 5.46, 0, 0, 0, 0, 0, 0, 9.465, 0, -3.16, 0, 0, 0, 0, 0, 0, -0.425, 0, -3.355),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -14,7 +21,6 @@ point_count = 5
 [node name="Level3Base" type="Node3D"]
 
 [node name="CeilMap" type="GridMap" parent="."]
-visible = false
 mesh_library = ExtResource("1_u415n")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
@@ -44,6 +50,9 @@ metadata/_editor_floor_ = Vector3(0, 3, 0)
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_7kop1")
 
+[node name="Path3D2" type="Path3D" parent="."]
+curve = SubResource("Curve3D_ohd5a")
+
 [node name="Daleks" type="Node3D" parent="."]
 
 [node name="Dalek" parent="Daleks" node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_0i0ib")]
@@ -53,7 +62,7 @@ start_patrol_from = 0.1
 
 [node name="Dalek2" parent="Daleks" node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_0i0ib")]
 dalek_id = 7
-patrol_path = NodePath("../../Path3D")
+patrol_path = NodePath("../../Path3D2")
 
 [node name="Door" parent="." instance=ExtResource("3_vmjvw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 8)
