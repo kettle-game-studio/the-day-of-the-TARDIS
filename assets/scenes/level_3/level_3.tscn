@@ -1,18 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://t0k1kwbyucaj"]
+[gd_scene load_steps=6 format=3 uid="uid://t0k1kwbyucaj"]
 
+[ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_3sml8"]
 [ext_resource type="PackedScene" uid="uid://dlowkq41usqmv" path="res://assets/scenes/level_3/level_3_base.tscn" id="1_xr5b3"]
 [ext_resource type="MeshLibrary" uid="uid://ddta8vtrlxsia" path="res://assets/models/Tiles/tileset/mesh_library_break.tres" id="2_lsyuc"]
+[ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="2_qugft"]
+[ext_resource type="Material" uid="uid://dypjbjdkq2fbx" path="res://assets/models/Tiles/materials/tileset_material_break.tres" id="5_gjh70"]
 
-[node name="Level3" type="Node3D"]
+[node name="Level3" type="Node3D" node_paths=PackedStringArray("start_point")]
+script = ExtResource("1_3sml8")
+start_point = NodePath("Room1/Level3Base/PlayerStart")
 
 [node name="Room1" type="Node3D" parent="."]
 
 [node name="Level3Base" parent="Room1" instance=ExtResource("1_xr5b3")]
+script = ExtResource("2_qugft")
+
+[node name="PlayerStart" type="Node3D" parent="Room1/Level3Base"]
+transform = Transform3D(-0.979233, 0, -0.202736, 0, 1, 0, 0.202736, 0, -0.979233, -5.27584, 0.160501, -5.03193)
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 
 [node name="Level3Base" parent="Room2" instance=ExtResource("1_xr5b3")]
+script = ExtResource("2_qugft")
+roomType = 1
 
 [node name="CeilMap" parent="Room2/Level3Base" index="0"]
 mesh_library = ExtResource("2_lsyuc")
@@ -23,4 +34,29 @@ mesh_library = ExtResource("2_lsyuc")
 [node name="FloorMap" parent="Room2/Level3Base" index="2"]
 mesh_library = ExtResource("2_lsyuc")
 
+[node name="Dalek" parent="Room2/Level3Base/Daleks" index="0"]
+start_patrol_from = 0.6
+
+[node name="Dalek2" parent="Room2/Level3Base/Daleks" index="1"]
+start_patrol_from = 0.5
+
+[node name="LeftBody" parent="Room2/Level3Base/Door" index="0"]
+transform = Transform3D(0.999999, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 0.999999, 0, 0, 0)
+
+[node name="Right" parent="Room2/Level3Base/Door" index="2"]
+material_override = ExtResource("5_gjh70")
+surface_material_override/0 = ExtResource("5_gjh70")
+
+[node name="Left" parent="Room2/Level3Base/Door" index="3"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
+material_override = ExtResource("5_gjh70")
+surface_material_override/0 = ExtResource("5_gjh70")
+
+[connection signal="level_finished" from="." to="Room1/Level3Base/Door" method="open" unbinds=1]
+[connection signal="level_finished" from="." to="Room2/Level3Base/Door" method="open" unbinds=1]
+[connection signal="level_restart" from="." to="Room1/Level3Base/Door" method="reset" unbinds=1]
+[connection signal="level_restart" from="." to="Room2/Level3Base/Door" method="reset" unbinds=1]
+
+[editable path="Room1/Level3Base"]
 [editable path="Room2/Level3Base"]
+[editable path="Room2/Level3Base/Door"]
