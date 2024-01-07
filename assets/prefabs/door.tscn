@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bt7d67y28ov3v"]
+[gd_scene load_steps=9 format=3 uid="uid://bt7d67y28ov3v"]
 
 [ext_resource type="Script" path="res://assets/scripts/door.gd" id="1_soedl"]
 [ext_resource type="Material" uid="uid://ct6ap1j726qs0" path="res://assets/models/Tiles/materials/tileset_material_door.tres" id="2_ugiw6"]
@@ -95,25 +95,6 @@ _data = {
 "open_door": SubResource("Animation_7h732")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qj7hh"]
-animation = &"close_door"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qx2uj"]
-animation = &"open_door"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ehbcp"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ej3lm"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nxvgh"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ck8jf"]
-states/close_door/node = SubResource("AnimationNodeAnimation_qj7hh")
-states/close_door/position = Vector2(570.667, 98.8148)
-states/open_door/node = SubResource("AnimationNodeAnimation_qx2uj")
-states/open_door/position = Vector2(373.333, 100.222)
-transitions = ["Start", "open_door", SubResource("AnimationNodeStateMachineTransition_ehbcp"), "open_door", "close_door", SubResource("AnimationNodeStateMachineTransition_ej3lm"), "close_door", "open_door", SubResource("AnimationNodeStateMachineTransition_nxvgh")]
-
 [node name="Door" type="Node3D"]
 transform = Transform3D(1.21, 0, 0, 0, 1.21, 0, 0, 0, 1.897, 0, 0, 0)
 script = ExtResource("1_soedl")
@@ -149,10 +130,3 @@ disabled = true
 libraries = {
 "": SubResource("AnimationLibrary_joqpj")
 }
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_joqpj")
-}
-tree_root = SubResource("AnimationNodeStateMachine_ck8jf")
-anim_player = NodePath("../AnimationPlayer")

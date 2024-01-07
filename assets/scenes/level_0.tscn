@@ -59,6 +59,34 @@ _data = {
 }
 point_count = 7
 
+[sub_resource type="Animation" id="Animation_6jddo"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TilesDoorLeaf2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TilesDoorLeaf:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.00191331, -0.00158597, 0.00721448)]
+}
+
 [sub_resource type="Animation" id="Animation_fr4cs"]
 resource_name = "broken_door"
 length = 5.0
@@ -86,34 +114,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.00191331, -0.00158597, 0.00721448), Vector3(-0.0351362, -0.0264635, 0.120383), Vector3(-0.0315236, -0.0237583, 0.108077), Vector3(-0.029, -0.022, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6jddo"]
-length = 0.001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TilesDoorLeaf2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TilesDoorLeaf:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.00191331, -0.00158597, 0.00721448)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_41rbl"]
@@ -1050,7 +1050,7 @@ transform = Transform3D(-0.422618, 0, 0.906308, 0, 1, 0, -0.906308, 0, -0.422618
 curve = SubResource("Curve3D_x2j4s")
 
 [node name="Door" parent="Room1" instance=ExtResource("16_edwhl")]
-transform = Transform3D(1.21, 0, 0, 0, 1.21, 0, 0, 0, 1.897, 11.2617, 2.11078, 0)
+transform = Transform3D(1.21, 0, 0, 0, 1.21, 0, 0, 0, 1.897, 11.3605, 2.11078, 0)
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)

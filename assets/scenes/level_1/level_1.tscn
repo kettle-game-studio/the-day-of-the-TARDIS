@@ -13,7 +13,7 @@ start_point = NodePath("Room1/Level1Base/StartPoint")
 [node name="Level1Base" parent="Room1" instance=ExtResource("1_bkxfg")]
 
 [node name="StartPoint" type="Node3D" parent="Room1/Level1Base"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.08137, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.187356, 0, 2.30303e-07)
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
@@ -27,8 +27,11 @@ mesh_library = ExtResource("2_6tcr3")
 [node name="FloorMap" parent="Room2/Level1Base2" index="1"]
 mesh_library = ExtResource("2_6tcr3")
 
-[node name="Dalek" parent="Room2/Level1Base2" index="3"]
-start_patrol_from = 0.5
+[node name="Dalek" parent="Room2/Level1Base2" index="4"]
+dalek_id = 2
+
+[node name="Dalek2" parent="Room2/Level1Base2" index="5"]
+dalek_id = 1
 
 [editable path="Room1/Level1Base"]
 [editable path="Room2/Level1Base2"]

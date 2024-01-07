@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name PlayerController
 
+signal killed(reason)
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -72,3 +74,6 @@ func _physics_process(delta):
 		velocity.z*=1.5
 
 	move_and_slide()
+
+func _on_bullet(bullet: BulletContoller):
+	killed.emit(bullet)

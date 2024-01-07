@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://3uoup28ycmsf"]
+
+[ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_5jv4p"]
+[ext_resource type="PackedScene" uid="uid://bfpaatgjohhbe" path="res://assets/scenes/level_2/level_2_base.tscn" id="2_vcd3w"]
+[ext_resource type="MeshLibrary" uid="uid://ddta8vtrlxsia" path="res://assets/models/Tiles/tileset/mesh_library_break.tres" id="3_l7ggd"]
+
+[node name="Level2" type="Node3D" node_paths=PackedStringArray("start_point")]
+script = ExtResource("1_5jv4p")
+start_point = NodePath("Room1/Level2Base2/StartPoint")
+
+[node name="Room1" type="Node3D" parent="."]
+
+[node name="Level2Base2" parent="Room1" instance=ExtResource("2_vcd3w")]
+
+[node name="StartPoint" type="Node3D" parent="Room1/Level2Base2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Room2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
+
+[node name="Level2Base" parent="Room2" instance=ExtResource("2_vcd3w")]
+roomType = 1
+
+[node name="WallMap" parent="Room2/Level2Base" index="0"]
+mesh_library = ExtResource("3_l7ggd")
+
+[node name="FloorMap" parent="Room2/Level2Base" index="1"]
+mesh_library = ExtResource("3_l7ggd")
+
+[node name="Dalek" parent="Room2/Level2Base" index="3"]
+start_patrol_from = 0.5
+
+[editable path="Room1/Level2Base2"]
+[editable path="Room2/Level2Base"]
