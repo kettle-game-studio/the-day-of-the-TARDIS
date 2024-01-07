@@ -4,6 +4,7 @@ class_name DalekCorpse
 
 var dalek_id = 0
 var killed = false
+var disappearance_time = 1.
 @export var color: Color
 
 @onready var mesh_body = $Armature/Skeleton3D/DalekBreak
@@ -26,5 +27,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if lifetime < 1.:
-		lifetime+=delta/1.
+		lifetime+=delta/disappearance_time
 		material.set_shader_parameter("disappearance", min(1.0, lifetime))

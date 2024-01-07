@@ -1,0 +1,125 @@
+[gd_scene load_steps=8 format=3 uid="uid://pnnlhlv4kfye"]
+
+[ext_resource type="Script" path="res://assets/scripts/sdriver.gd" id="1_xfgxn"]
+[ext_resource type="Animation" uid="uid://bhdguq52wjbvx" path="res://assets/models/SDriver/animation/ArmatureAction.res" id="2_msyqj"]
+[ext_resource type="ArrayMesh" uid="uid://yng1xhjbo52" path="res://assets/models/SDriver/mesh/SDriver_Cylinder.res" id="3_vqt31"]
+[ext_resource type="AudioStream" uid="uid://mx5acjkbdr53" path="res://assets/sounds/sonic_01.mp3" id="4_us11e"]
+
+[sub_resource type="Animation" id="Animation_2ylkn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/SDriver:mesh:surface_0/material:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_meyto"]
+_data = {
+"ArmatureAction": ExtResource("2_msyqj"),
+"RESET": SubResource("Animation_2ylkn")
+}
+
+[sub_resource type="Skin" id="Skin_iskee"]
+resource_name = "Skin"
+bind_count = 7
+bind/0/name = &"Base"
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, -3.89414e-07, 6.12946e-16, -6.12946e-16, 1.19345e-22, 1, -3.89414e-07, -1, -1.19345e-22, 0, 0, 0)
+bind/1/name = &"Head"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, -3.89414e-07, 0, 0, 0, 1, -3.89414e-07, -1, 0, 2.22045e-16, -0.724517, -8.64674e-23)
+bind/2/name = &"Hand.004"
+bind/2/bone = -1
+bind/2/pose = Transform3D(1, -8.68293e-07, 3.18007e-07, -5.0606e-09, 0.338761, 0.940873, -9.24681e-07, -0.940873, 0.338761, -2.30401e-07, -0.681678, -0.245438)
+bind/3/name = &"Hand.001"
+bind/3/bone = -1
+bind/3/pose = Transform3D(0.873353, -0.371988, -0.314451, 0.338761, -7.45058e-08, 0.940873, -0.349993, -0.928238, 0.126015, 0.227825, -0.681678, -0.0912998)
+bind/4/name = &"Hand.002"
+bind/4/bone = -1
+bind/4/pose = Transform3D(0.72325, -0.649753, -0.233944, -5.96046e-08, -0.338761, 0.940872, -0.690586, -0.680486, -0.245009, 0.169496, -0.681678, 0.177513)
+bind/5/name = &"Hand.003"
+bind/5/bone = -1
+bind/5/pose = Transform3D(0.389955, -0.910067, 0.140403, -0.338761, -2.98023e-08, 0.940873, -0.856257, -0.414461, -0.308295, -0.101724, -0.681678, 0.223365)
+bind/6/name = &"neutral_bone"
+bind/6/bone = -1
+bind/6/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+
+[node name="Sdriver" type="Node3D"]
+script = ExtResource("1_xfgxn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_meyto")
+}
+
+[node name="Armature" type="Node3D" parent="."]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+bones/0/name = "Base"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, -3.89414e-07, -3.89414e-07, 0, -1, 0, 1, 0, 0, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(0.707107, -1.37679e-07, -1.37679e-07, 0.707107)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "Head"
+bones/1/parent = -1
+bones/1/rest = Transform3D(1, 0, -3.89414e-07, -3.89414e-07, 0, -1, 0, 1, 0, -2.22045e-16, 0, 0.724517)
+bones/1/enabled = true
+bones/1/position = Vector3(-2.22045e-16, 0, 0.724517)
+bones/1/rotation = Quaternion(0.707107, -1.37679e-07, -1.37679e-07, 0.707107)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "Hand.004"
+bones/2/parent = 1
+bones/2/rest = Transform3D(1, -1.36979e-07, -5.58292e-07, 3.18007e-07, 0.940873, 0.338761, 4.78878e-07, -0.338761, 0.940872, 0, 0, 0)
+bones/2/enabled = true
+bones/2/position = Vector3(0, 0, 0)
+bones/2/rotation = Quaternion(-0.171941, -2.63212e-07, 1.15466e-07, 0.985107)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/name = "Hand.001"
+bones/3/parent = 1
+bones/3/rest = Transform3D(0.873353, 0.338761, -0.349993, -0.314451, 0.940872, 0.126015, 0.371987, -4.47035e-08, 0.928238, 9.73452e-08, -5.96046e-08, 9.73452e-08)
+bones/3/enabled = true
+bones/3/position = Vector3(9.73452e-08, -5.96046e-08, 9.73452e-08)
+bones/3/rotation = Quaternion(-0.0325696, -0.186602, -0.168828, 0.967272)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/name = "Hand.002"
+bones/4/parent = 1
+bones/4/rest = Transform3D(0.723251, 8.9407e-08, -0.690586, -0.233944, 0.940873, -0.245009, 0.649753, 0.338761, 0.680487, 6.18264e-14, -1.19209e-07, 1.9469e-07)
+bones/4/enabled = true
+bones/4/position = Vector3(6.18264e-14, -1.19209e-07, 1.9469e-07)
+bones/4/rotation = Quaternion(0.159602, -0.366448, -0.06396, 0.914414)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/name = "Hand.003"
+bones/5/parent = 1
+bones/5/rest = Transform3D(0.389955, -0.338761, -0.856257, 0.140403, 0.940872, -0.308295, 0.910067, 1.3411e-07, 0.414461, -9.73452e-08, -1.78814e-07, 9.73452e-08)
+bones/5/enabled = true
+bones/5/position = Vector3(-9.73452e-08, -1.78814e-07, 9.73452e-08)
+bones/5/rotation = Quaternion(0.0930342, -0.533024, 0.144597, 0.828446)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/name = "neutral_bone"
+bones/6/parent = -1
+bones/6/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+bones/6/enabled = true
+bones/6/position = Vector3(0, 0, 0)
+bones/6/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+bones/6/scale = Vector3(1, 1, 1)
+
+[node name="SDriver" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+mesh = ExtResource("3_vqt31")
+skin = SubResource("Skin_iskee")
+
+[node name="Screwdriver" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.803388)
+stream = ExtResource("4_us11e")
+volume_db = -21.634
+max_db = 1.642
+panning_strength = 0.1
+bus = &"Sdriver"

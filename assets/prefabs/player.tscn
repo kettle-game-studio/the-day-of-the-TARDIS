@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dstfolwlsbqnr"]
+[gd_scene load_steps=6 format=3 uid="uid://dstfolwlsbqnr"]
 
 [ext_resource type="Script" path="res://assets/scripts/player_controller.gd" id="1_1id37"]
-[ext_resource type="AudioStream" uid="uid://mx5acjkbdr53" path="res://assets/sounds/sonic_01.mp3" id="2_q1xqm"]
-[ext_resource type="PackedScene" uid="uid://cgookivq886s1" path="res://assets/prefabs/gun.tscn" id="2_u3o6l"]
+[ext_resource type="PackedScene" uid="uid://pnnlhlv4kfye" path="res://assets/prefabs/sdriver.tscn" id="2_qn5h2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j74et"]
 radius = 0.30457
@@ -22,6 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00929, 0)
 shape = SubResource("CapsuleShape3D_j74et")
 
 [node name="Pivot" type="Node3D" parent="."]
+visible = false
 
 [node name="Tennant_v01" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.57, 0)
@@ -43,14 +43,11 @@ monitoring = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0233157, -0.546, 0.0014038)
 shape = SubResource("BoxShape3D_vbxvd")
 
-[node name="Gun" parent="." instance=ExtResource("2_u3o6l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.170424, 0.956, -0.558816)
+[node name="SdriverPivot" type="Node3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.423895, 0)
+
+[node name="Sdriver" parent="CameraPivot/SdriverPivot" instance=ExtResource("2_qn5h2")]
+transform = Transform3D(0.10843, -0.0742596, -0.0612658, -0.0190173, -0.106981, 0.0960129, -0.0943733, -0.0637624, -0.0897387, 0.162953, 0.216125, -0.292543)
 
 [node name="Sounds" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53928, 1.03227, -0.351233)
-
-[node name="Screwdriver" type="AudioStreamPlayer3D" parent="Sounds"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0472581)
-stream = ExtResource("2_q1xqm")
-volume_db = -20.317
-panning_strength = 0.1
+transform = Transform3D(0.840538, -0.320328, 0.436904, 0, 0.806465, 0.591281, -0.541752, -0.496995, 0.677865, 0.339113, 1.03227, -0.581528)

@@ -16,7 +16,8 @@ signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
 @export var head_speed = 200
 @export var gun_speed = 90
 @export var rotation_speed = 90
-@export var fire_angle_trigger = 11
+@export var fire_angle_trigger = 3
+@export var disappearance_time = PI
 enum State {PATROL, ATTAK, DIED}
 var state = State.PATROL
 
@@ -62,7 +63,7 @@ func restart():
 func _process(delta):
 	if state == State.DIED:
 		if disappearance > 0.0:
-			disappearance-=delta/1.
+			disappearance-=delta/disappearance_time
 			material.set_shader_parameter("disappearance", max(0.0, disappearance))
 			if disappearance <= 0.0:
 				global_position = timezone.level.dalek_home.global_position		
@@ -199,6 +200,7 @@ func die(reason = null, where: Transform3D = global_transform):
 	corpse.dalek_id = dalek_id
 	corpse.killed = reason != null
 	corpse.color = color
+	corpse.disappearance_time = disappearance_time
 	get_parent().add_child(corpse)
 	corpse.global_transform = where
 	died.emit(self, corpse, reason)

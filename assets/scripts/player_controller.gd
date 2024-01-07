@@ -14,15 +14,15 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var camera = $CameraPivot/Camera3D
-@onready var screwdriver_audiostream = $Sounds/Screwdriver
+@onready var camera = $CameraPivot
 @onready var gun = $Gun
+@onready var screwdriver = $CameraPivot/SdriverPivot/Sdriver
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _ready():
-	gun.scene = get_parent()
+	pass
 
 func _input(event):
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -33,9 +33,10 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif Input.is_action_just_pressed("main_action"):
 		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
-		screwdriver_audiostream.play(2)
+		screwdriver.open()
 	elif Input.is_action_just_pressed("second_action"):
 		portal_controller.disable_portal()
+		screwdriver.close()
 
 
 func rotate_camera(mouse_shift: Vector2):
@@ -72,7 +73,8 @@ func _physics_process(delta):
 	elif run:
 		velocity.x*=1.5
 		velocity.z*=1.5
-
+	screwdriver.shake_speed = velocity.length()
+		
 	move_and_slide()
 
 func _on_bullet(bullet: BulletContoller):
