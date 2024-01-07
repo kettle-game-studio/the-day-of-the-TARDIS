@@ -18,6 +18,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camera = $CameraPivot
 @onready var screwdriver = $CameraPivot/SdriverPivot/Sdriver
+@onready var portal_area = $PortalArea
 
 var state = State.INTRO
 
@@ -34,6 +35,9 @@ func _init():
 func _ready():
 	pass
 
+func can_set_portal():
+	return !portal_area.has_overlapping_bodies()
+
 func _input(event):
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_camera(event.relative)
@@ -42,11 +46,13 @@ func _input(event):
 	elif Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif Input.is_action_just_pressed("main_action"):
-		if !has_screwdriver:
+		print(portal_area.has_overlapping_bodies())
+		if !has_screwdriver || !can_set_portal():
 			return
 		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
 		screwdriver.open()
 	elif Input.is_action_just_pressed("second_action"):
+	#elif Input.is_action_just_released("main_action"):
 		if !has_screwdriver:
 			return
 		portal_controller.disable_portal()
@@ -68,6 +74,12 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
+	if (portal_controller.portal_state != portal_controller.PortalState.ENABLED):
+		if (!can_set_portal()):
+			screwdriver.warning()
+		else:
+			screwdriver.normal()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
