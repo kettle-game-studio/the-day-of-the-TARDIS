@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://puw0ngumyrnc"]
+[gd_scene load_steps=8 format=3 uid="uid://puw0ngumyrnc"]
 
 [ext_resource type="Script" path="res://assets/ui/ui.gd" id="1_kyxx5"]
 [ext_resource type="Theme" uid="uid://dnu80dsddpmqi" path="res://dialogs_theme.tres" id="1_p36qt"]
 [ext_resource type="Texture2D" uid="uid://ytmypi3r7tiw" path="res://assets/ui/doctor_avatar.png" id="2_wdvk0"]
 [ext_resource type="Texture2D" uid="uid://b7f404tljg55d" path="res://assets/ui/tardis_avatar.png" id="3_u1in6"]
 [ext_resource type="Texture2D" uid="uid://c4oiuncfofgbg" path="res://assets/ui/dialog_panel.png" id="3_vy6ci"]
+[ext_resource type="Texture2D" uid="uid://mry5mmdm6g7h" path="res://assets/ui/cursor.png" id="6_g2ft0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e176"]
 draw_center = false
@@ -97,3 +98,14 @@ text = "Нажмите E, чтобы продолжить, или Q, чтобы 
 [node name="DisplayTimer" type="Timer" parent="."]
 
 [node name="ContinueTimer" type="Timer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("6_g2ft0")

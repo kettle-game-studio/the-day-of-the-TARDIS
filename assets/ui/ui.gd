@@ -51,7 +51,7 @@ func _async_dialog(dialog, autoskip = false):
 	for line in dialog:
 		display_speech_line(line)
 		if autoskip:
-			continue_timer.start(5)
+			continue_timer.start(15)
 		await _continue_dialog
 		continue_timer.stop()
 		if _skip_dialog_flag:

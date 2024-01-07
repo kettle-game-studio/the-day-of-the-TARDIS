@@ -1,10 +1,15 @@
 extends Node3D
+class_name Game
 
 var levels: Array[AbstractLevel] = []
 var dialogs: Array[DialogZone] = []
 var current_level = 0
 var died_count = 0
 var debug: Label
+var start_time: float
+var end_time = INF
+
+signal end_game()
 
 @onready var dalek_cemetery = $DalekCemetery
 @onready var player = $Player
@@ -23,6 +28,7 @@ func _ready():
 		level.portal_controller = portal_controller
 		level.level_finished.connect(_on_level_finished)
 		level.level_failed.connect(_on_level_failed)
+		level.game = self
 	debug.text = "%d level" % current_level
 	levels[0].restart()
 	var dialogs_nodes = find_children("*", "DialogZone")
@@ -30,6 +36,7 @@ func _ready():
 		var zone = node as DialogZone
 		dialogs.push_back(zone)
 		zone.player_entered.connect(_on_dialog)
+	start_time = Time.get_ticks_msec()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,11 +53,16 @@ func _input(event):
 			if Input.is_key_label_pressed(KEY_0+i):
 				restart_level(i)
 				break	
-	elif Input.is_action_just_pressed("debug_mode"):
-		debug_mode = true
-		debug.show()
+	if Input.is_action_just_pressed("debug_mode"):
+		debug_mode = !debug_mode
+		if debug_mode:
+			debug.show()
+		else:
+			debug.hide()
 
 func restart_level(i: int):
+	if i == 0 || (!debug_mode && i == levels.size()-1):
+		return
 	levels[i].restart()
 	current_level = i
 	player.state = PlayerController.State.PLAY
@@ -63,6 +75,9 @@ func _on_level_finished(level: AbstractLevel):
 			debug.text = "%d level\n%d died" % [current_level,	died_count]
 		else:
 			debug.text = "WIN\n%d died" % died_count
+			end_time = Time.get_ticks_msec()
+			end_game.emit()
+			
 
 func _on_level_failed(_level):
 	ui.play_dialog([

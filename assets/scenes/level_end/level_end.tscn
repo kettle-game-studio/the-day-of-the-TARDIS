@@ -1,11 +1,14 @@
-[gd_scene load_steps=37 format=3 uid="uid://cf00p0vuht12r"]
+[gd_scene load_steps=40 format=3 uid="uid://cf00p0vuht12r"]
 
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_6twfn"]
 [ext_resource type="PackedScene" uid="uid://ds4a7odp8uceg" path="res://assets/scenes/level_end/level_end_base.tscn" id="1_ckw72"]
 [ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="2_3ofxk"]
 [ext_resource type="Material" uid="uid://c62848jt8ianq" path="res://assets/models/TARGIS/materials/tardis_material_alpha.tres" id="2_ytwww"]
+[ext_resource type="Script" path="res://assets/scenes/level_end/statistics.gd" id="3_n16ll"]
 [ext_resource type="ArrayMesh" uid="uid://dq768tr3gr13a" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShell.res" id="3_s8rly"]
 [ext_resource type="Material" uid="uid://dgstr4d8q6epf" path="res://assets/models/TARGIS/materials/tardis_material.tres" id="4_jsxiu"]
+[ext_resource type="FontFile" uid="uid://cihk708arfv2w" path="res://assets/ui/smalle.ttf" id="4_lyrfb"]
+[ext_resource type="FontFile" uid="uid://byx00ddgr7150" path="res://assets/ui/ljk_Inky Thin Pixels.otf" id="4_qvd6o"]
 [ext_resource type="ArrayMesh" uid="uid://dtwr6kn0heyln" path="res://assets/models/TARGIS/meshes/TARDIS_Computer.res" id="5_a4mbg"]
 [ext_resource type="ArrayMesh" uid="uid://cd6fie17a0ns6" path="res://assets/models/TARGIS/meshes/TARDIS_Ladder.res" id="6_fivip"]
 [ext_resource type="ArrayMesh" uid="uid://bhvqpkrfipi04" path="res://assets/models/TARGIS/meshes/TARDIS_Wall.res" id="7_46j0h"]
@@ -229,6 +232,32 @@ start_point = NodePath("Room1/SpawnPoint")
 [node name="Room1" type="Node3D" parent="."]
 script = ExtResource("2_3ofxk")
 
+[node name="Statistics" type="Node3D" parent="Room1" node_paths=PackedStringArray("level")]
+script = ExtResource("3_n16ll")
+level = NodePath("../..")
+
+[node name="Deaths" type="Label3D" parent="Room1/Statistics"]
+transform = Transform3D(-0.819152, -0.196175, 0.538986, 0, 0.939693, 0.34202, -0.573576, 0.280166, -0.769751, -3.56963, -0.620118, 17.4169)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "Смертей:
+
+ 13"
+font = ExtResource("4_qvd6o")
+font_size = 80
+outline_size = 0
+
+[node name="Time" type="Label3D" parent="Room1/Statistics"]
+transform = Transform3D(1.19249e-08, 0.34202, -0.939693, 0, 0.939693, 0.34202, 1, -4.07855e-09, 1.12057e-08, -4.71325, -0.620118, 18)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "Вермя:
+
+ 4,5млрд лет"
+font = ExtResource("4_qvd6o")
+font_size = 80
+outline_size = 0
+
 [node name="Clara" type="Node3D" parent="Room1"]
 transform = Transform3D(-0.943043, 0, 0.332671, 0, 1, 0, -0.332671, 0, -0.943043, 5.94537, -0.0458804, 18.1906)
 
@@ -297,7 +326,7 @@ bone_idx = 2
 override_pose = true
 
 [node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D"]
-transform = Transform3D(0.425217, 0.814437, 0.394821, -0.886454, 0.462818, 1.49012e-08, -0.18273, -0.34999, 0.918758, 0.31196, 0.846881, -0.200266)
+transform = Transform3D(0.685627, 0.578203, -0.442264, -0.644679, 0.764454, 0, 0.33809, 0.285118, 0.896885, 0.31196, 0.846881, -0.200266)
 bone_name = "Arm.L"
 bone_idx = 3
 
@@ -306,6 +335,11 @@ transform = Transform3D(0.310019, 0.950731, -8.85354e-08, -0.95073, 0.310019, -5
 bone_name = "Arm.R"
 bone_idx = 4
 override_pose = true
+
+[node name="Label3D" type="Label3D" parent="Room1/Clara/Armature"]
+transform = Transform3D(0.121869, 0, 0.992545, 0, 1, 0, -0.992545, 0, 0.121869, 0, 1.895, 0)
+text = "Клара"
+font = ExtResource("4_lyrfb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Room1/Clara"]
 libraries = {
@@ -1265,5 +1299,7 @@ level = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room2/TeleportInPresent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.112436, 2.2229, -0.569739)
 shape = SubResource("BoxShape3D_pvhv1")
+
+[connection signal="player_entered" from="Room1/DialogZone" to="." method="finish_level" flags=6 unbinds=1]
 
 [editable path="Room1/DialogZone"]

@@ -14,6 +14,7 @@ var present: Timezone
 var future: Timezone
 var clock = 0.0
 var finished = false
+var game: Game
 
 var start_timezone: Timezone
 
