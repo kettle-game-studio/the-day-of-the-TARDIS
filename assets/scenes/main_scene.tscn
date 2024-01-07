@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://civq3dmxwdrwq"]
+[gd_scene load_steps=14 format=3 uid="uid://civq3dmxwdrwq"]
 
 [ext_resource type="Script" path="res://assets/scenes/game.gd" id="1_gfpfg"]
 [ext_resource type="Script" path="res://assets/scripts/portals/portal_controller.gd" id="1_l8aym"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://3uoup28ycmsf" path="res://assets/scenes/level_2/level_2.tscn" id="5_yo5bf"]
 [ext_resource type="PackedScene" uid="uid://uyj7dr0gf0xl" path="res://assets/scenes/level_4/level_4.tscn" id="6_na6xf"]
 [ext_resource type="PackedScene" uid="uid://t0k1kwbyucaj" path="res://assets/scenes/level_3/level_3.tscn" id="6_npcsh"]
+[ext_resource type="PackedScene" uid="uid://cf00p0vuht12r" path="res://assets/scenes/level_end/level_end.tscn" id="8_urrg2"]
 [ext_resource type="PackedScene" uid="uid://puw0ngumyrnc" path="res://assets/ui/ui.tscn" id="9_72y2c"]
 
 [sub_resource type="Environment" id="Environment_aiut3"]
@@ -23,6 +24,9 @@ environment = SubResource("Environment_aiut3")
 [node name="Player" parent="." node_paths=PackedStringArray("portal_controller") instance=ExtResource("4_nnpej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
 portal_controller = NodePath("../PortalController")
+
+[node name="Camera3D" parent="Player/CameraPivot" index="0"]
+current = true
 
 [node name="Levels" type="Node3D" parent="."]
 
@@ -42,6 +46,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7, 2,
 
 [node name="Level3" parent="Levels" instance=ExtResource("6_npcsh")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 2, 25)
+
+[node name="LevelEnd" parent="Levels" instance=ExtResource("8_urrg2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 2, 18)
 
 [node name="DalekCemetery" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, -27.5618, 0)
@@ -80,6 +87,7 @@ script = ExtResource("3_jahyl")
 
 [node name="Camera3D" type="Camera3D" parent="PortalController/SubViewport"]
 cull_mask = 524287
+current = true
 
 [node name="UI" parent="." instance=ExtResource("9_72y2c")]
 
