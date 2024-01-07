@@ -9,6 +9,8 @@ signal teleport_activation(portal: Portal, body: Area3D)
 signal teleport_exit(portal: Portal, body: Area3D)
 signal teleport_attacked(portal: Portal)
 
+var material: ShaderMaterial
+
 var shift_sign:
 	get:
 		if portal_viewport == null:
@@ -18,7 +20,7 @@ var shift_sign:
 func _ready():
 	if mesh == null || portal_viewport == null:
 		return
-	var material = mesh.get_surface_override_material(0) as ShaderMaterial
+	material = mesh.get_surface_override_material(0) as ShaderMaterial
 	material = material.duplicate()
 	material.set_shader_parameter("portal_camera", portal_viewport.get_texture())
 	mesh.set_surface_override_material(0, material)
@@ -32,3 +34,6 @@ func _area_body_exited(body: Area3D):
 
 func _on_area_3d_body_entered(body):
 	teleport_attacked.emit(self)
+
+func set_opacity(value: float):
+	material.set_shader_parameter("close", value)
