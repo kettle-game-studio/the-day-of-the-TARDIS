@@ -1,63 +1,63 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb5o00gwvk8fy"]
+[gd_scene load_steps=15 format=3 uid="uid://cb5o00gwvk8fy"]
 
-[ext_resource type="Shader" path="res://assets/vfx/portal.gdshader" id="1_2cuah"]
 [ext_resource type="Script" path="res://assets/scripts/portals/portal.gd" id="1_u7vlk"]
+[ext_resource type="Shader" path="res://assets/vfx/portal/portal.gdshader" id="2_8wnsr"]
+[ext_resource type="Texture2D" uid="uid://bbv8bhdejqcij" path="res://assets/models/Portal/portal.png" id="3_ylafr"]
+[ext_resource type="Texture2D" uid="uid://6k603y3ndixm" path="res://assets/vfx/debug/test_screen.png" id="4_2mvay"]
+[ext_resource type="ArrayMesh" uid="uid://dpgps3r3nghke" path="res://assets/models/Portal/mesh/PortalBorder_Cylinder_001.res" id="6_65cpg"]
+[ext_resource type="Shader" path="res://assets/vfx/portal/portal_border.gdshader" id="6_665s6"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_7rj6q"]
-size = Vector3(0.01, 2, 1)
+[sub_resource type="QuadMesh" id="QuadMesh_lxn44"]
+size = Vector2(1, 2)
+subdivide_width = 100
+subdivide_depth = 100
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bur3h"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("1_2cuah")
+shader = ExtResource("2_8wnsr")
+shader_parameter/speed = 5.0
+shader_parameter/size = 20.0
+shader_parameter/close = 0.9
+shader_parameter/color = Vector3(0.2, 0.4, 0.5)
+shader_parameter/portal_camera = ExtResource("4_2mvay")
+shader_parameter/noise_texture = ExtResource("3_ylafr")
 
-[sub_resource type="BoxMesh" id="BoxMesh_dqhcd"]
-size = Vector3(0.1, 2, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_gaem2"]
-size = Vector3(0.1, 2, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_lmtfk"]
-size = Vector3(0.1, 0.1, 1.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_q1pwq"]
-size = Vector3(0.1, 0.1, 1.1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ildiv"]
+render_priority = 0
+shader = ExtResource("6_665s6")
+shader_parameter/mult = 1.0
+shader_parameter/speed = 5.0
+shader_parameter/noise_texture = ExtResource("3_ylafr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rg1xu"]
 size = Vector3(0.893, 1.877, 0.096488)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_apt48"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_c331o"]
 size = Vector3(0.108276, 2.00739, 0.102661)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wg2e3"]
+size = Vector3(0.108276, 2.00739, 0.102661)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6cfx5"]
+size = Vector3(1, 0.1, 0.1)
 
 [node name="Portal" type="Node3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_u7vlk")
 mesh = NodePath("Main")
 
 [node name="Main" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 1, 0)
 layers = 524288
-mesh = SubResource("BoxMesh_7rj6q")
+mesh = SubResource("QuadMesh_lxn44")
 surface_material_override/0 = SubResource("ShaderMaterial_bur3h")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.5, 1, -2.18557e-08)
-layers = 524288
-mesh = SubResource("BoxMesh_dqhcd")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 1, 2.18557e-08)
-layers = 524288
-mesh = SubResource("BoxMesh_gaem2")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2, 0)
-layers = 524288
-mesh = SubResource("BoxMesh_lmtfk")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-layers = 524288
-mesh = SubResource("BoxMesh_q1pwq")
+[node name="PortalBorderCylinder001" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+mesh = ExtResource("6_65cpg")
+surface_material_override/0 = SubResource("ShaderMaterial_ildiv")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 2
@@ -70,14 +70,19 @@ shape = SubResource("BoxShape3D_rg1xu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_apt48")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.495633, 0.954548, 0.000553221)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.495633, 1.95455, 0.000553221)
 shape = SubResource("BoxShape3D_c331o")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494201, 0.954548, 0.000553221)
-shape = SubResource("BoxShape3D_c331o")
+shape = SubResource("BoxShape3D_wg2e3")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.04537, 0)
+shape = SubResource("BoxShape3D_6cfx5")
 
 [connection signal="area_entered" from="Area3D" to="." method="_area_body_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_area_body_exited"]
