@@ -150,7 +150,7 @@ bone_idx = 1
 override_pose = true
 
 [node name="EyeBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D"]
-transform = Transform3D(0.00191366, 0.999998, 0.000961878, -0.999996, 0.0019155, -0.00190954, -0.00191138, -0.000958221, 0.999998, 0.19556, 1.42124, 0.000151277)
+transform = Transform3D(0.00191366, 0.999998, 0.000961879, -0.999996, 0.0019155, -0.00190954, -0.00191138, -0.000958222, 0.999998, 0.19556, 1.42124, 0.000151277)
 bone_name = "Eye"
 bone_idx = 2
 
@@ -175,6 +175,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0108414, 0.761636, 0.223885
 shape = SubResource("CylinderShape3D_dga62")
 
 [node name="DebugDrawer" type="MeshInstance3D" parent="." node_paths=PackedStringArray("dalek", "label")]
+process_mode = 4
+visible = false
 mesh = SubResource("ImmediateMesh_w8lq4")
 script = ExtResource("4_554bn")
 dalek = NodePath("..")

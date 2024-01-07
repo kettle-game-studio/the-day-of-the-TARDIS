@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://uyj7dr0gf0xl"]
+[gd_scene load_steps=14 format=3 uid="uid://uyj7dr0gf0xl"]
 
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_p2rp1"]
 [ext_resource type="PackedScene" uid="uid://cqkj4vqvemc5b" path="res://assets/scenes/level_4/level_4_base.tscn" id="1_wwoqh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="2_oln81"]
 [ext_resource type="PackedScene" uid="uid://dejmhvk2elx12" path="res://assets/prefabs/Tubes/tube_tube_001.tscn" id="5_bmg68"]
 [ext_resource type="PackedScene" uid="uid://cs5q4q3nndsll" path="res://assets/prefabs/Tubes/tube_tube_002.tscn" id="6_56fxc"]
+[ext_resource type="Material" uid="uid://dypjbjdkq2fbx" path="res://assets/models/Tiles/materials/tileset_material_break.tres" id="6_um7vt"]
 [ext_resource type="PackedScene" uid="uid://dswsjiaa1vqkr" path="res://assets/prefabs/Tubes/tube_tube_003.tscn" id="7_vjs5k"]
 [ext_resource type="PackedScene" uid="uid://f0mefqvtdl25" path="res://assets/prefabs/Tubes/tube_tube_005.tscn" id="9_vgxvx"]
 [ext_resource type="PackedScene" uid="uid://de8bkj7yiwjyn" path="res://assets/prefabs/Tubes/tube_tube_006.tscn" id="10_mmqtm"]
@@ -116,6 +117,12 @@ mesh_library = ExtResource("2_1k13r")
 
 [node name="SpotLight3D" parent="Room2/Level4Base" index="5"]
 light_color = Color(1, 0.470588, 0.513726, 1)
+
+[node name="Right" parent="Room2/Level4Base/Door" index="2"]
+material_override = ExtResource("6_um7vt")
+
+[node name="Left" parent="Room2/Level4Base/Door" index="3"]
+material_override = ExtResource("6_um7vt")
 
 [node name="Stuff" type="Node3D" parent="Room2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 0)
@@ -298,5 +305,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.14681, 16.8956, -0.296534)
 [node name="Smoke6" parent="Room2/Stuff" instance=ExtResource("12_usru6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00231, 19.2238, 6.89555)
 
+[connection signal="level_finished" from="." to="Room1/Level4Base/Door" method="open" unbinds=1]
+[connection signal="level_finished" from="." to="Room2/Level4Base/Door" method="open" unbinds=1]
+[connection signal="level_restart" from="." to="Room1/Level4Base/Door" method="reset" unbinds=1]
+[connection signal="level_restart" from="." to="Room2/Level4Base/Door" method="reset" unbinds=1]
+
 [editable path="Room1/Level4Base"]
 [editable path="Room2/Level4Base"]
+[editable path="Room2/Level4Base/Door"]

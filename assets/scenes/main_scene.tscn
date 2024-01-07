@@ -94,7 +94,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97, -20, 0)
 
 [node name="SubViewport" type="SubViewport" parent="PortalController"]
-size = Vector2i(3840, 2036)
+size = Vector2i(3840, 2126)
 script = ExtResource("3_jahyl")
 
 [node name="Camera3D" type="Camera3D" parent="PortalController/SubViewport"]
