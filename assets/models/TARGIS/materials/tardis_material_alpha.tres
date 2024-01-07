@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://c62848jt8ianq"]
+
+[ext_resource type="Texture2D" uid="uid://r6ahhxiwmhbb" path="res://assets/models/TARGIS/TardisColor_ALPHA.png" id="1_aajmg"]
+[ext_resource type="Texture2D" uid="uid://ba1rorjlfvtsj" path="res://assets/models/TARGIS/TARDIS_TardisLight.png" id="2_1souo"]
+
+[resource]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.392157)
+albedo_texture = ExtResource("1_aajmg")
+emission_enabled = true
+emission_energy_multiplier = 1.93
+emission_texture = ExtResource("2_1souo")
+texture_filter = 0

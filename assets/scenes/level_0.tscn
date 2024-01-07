@@ -1,24 +1,26 @@
-[gd_scene load_steps=36 format=3 uid="uid://dvtdwm0nnaq05"]
+[gd_scene load_steps=38 format=3 uid="uid://dvtdwm0nnaq05"]
 
-[ext_resource type="ArrayMesh" uid="uid://bk5s8q1d2f5lb" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLight.res" id="1_a0vuk"]
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_qofiy"]
 [ext_resource type="ArrayMesh" uid="uid://dq768tr3gr13a" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShell.res" id="2_76q80"]
 [ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="2_fs2jm"]
 [ext_resource type="ArrayMesh" uid="uid://dtwr6kn0heyln" path="res://assets/models/TARGIS/meshes/TARDIS_Computer.res" id="4_v1dbv"]
+[ext_resource type="Material" uid="uid://c62848jt8ianq" path="res://assets/models/TARGIS/materials/tardis_material_alpha.tres" id="5_yaibl"]
 [ext_resource type="ArrayMesh" uid="uid://cd6fie17a0ns6" path="res://assets/models/TARGIS/meshes/TARDIS_Ladder.res" id="6_q7024"]
 [ext_resource type="ArrayMesh" uid="uid://c33hnr5jb4koi" path="res://assets/models/TARGIS/meshes/TARDIS_Lamp.res" id="7_302qy"]
-[ext_resource type="ArrayMesh" uid="uid://4e8ir8ttw332" path="res://assets/models/TARGIS/meshes/TARDIS_RoomCenter.res" id="9_8616g"]
 [ext_resource type="Material" uid="uid://dgstr4d8q6epf" path="res://assets/models/TARGIS/materials/tardis_material.tres" id="10_2q6f0"]
 [ext_resource type="Material" uid="uid://dixb44m524c57" path="res://assets/models/TARGIS/materials/tardis_material_break.tres" id="11_8mhpa"]
 [ext_resource type="ArrayMesh" uid="uid://bo60wx0o6vj4f" path="res://assets/models/TARGIS/meshes/TARDIS_AngleBorder.res" id="11_g87vi"]
 [ext_resource type="ArrayMesh" uid="uid://bsx1vmmsoeyy8" path="res://assets/models/TARGIS/meshes/TARDIS_Border.res" id="12_0vdhe"]
+[ext_resource type="PackedScene" uid="uid://b55fxeo3bwp6c" path="res://assets/models/TARGIS/prefabs/tardis_room_center.tscn" id="12_wm00o"]
 [ext_resource type="ArrayMesh" uid="uid://bhvqpkrfipi04" path="res://assets/models/TARGIS/meshes/TARDIS_Wall.res" id="14_rfk1b"]
 [ext_resource type="ArrayMesh" uid="uid://1topwam7v16w" path="res://assets/models/TARGIS/meshes/TARDIS_WallDoor.res" id="15_ufe55"]
 [ext_resource type="ArrayMesh" uid="uid://60r6sip5q2ee" path="res://assets/models/TARGIS/meshes/TARDIS_WallTardisDoor.res" id="16_75iku"]
 [ext_resource type="PackedScene" uid="uid://bt7d67y28ov3v" path="res://assets/prefabs/door.tscn" id="16_edwhl"]
 [ext_resource type="Material" uid="uid://pd86y7fuomnq" path="res://assets/models/Tiles/materials/tileset_material_break_door.tres" id="17_em2uk"]
+[ext_resource type="Material" uid="uid://h3yi6w8fjm3r" path="res://assets/models/TARGIS/materials/tardis_material_alpha_break.tres" id="18_ilvx2"]
 [ext_resource type="ArrayMesh" uid="uid://bj7m7symivymj" path="res://assets/models/Tiles/models/Tiles_DoorLeaf.res" id="18_uy6hp"]
 [ext_resource type="PackedScene" uid="uid://ctwwhu2g2r34n" path="res://assets/prefabs/VFX/smoke.tscn" id="19_2aj1d"]
+[ext_resource type="ArrayMesh" uid="uid://inejmrf3aq7e" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShellBreak.res" id="19_fjdaw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_73ijt"]
 size = Vector3(0.567871, 2.8454, 2.16913)
@@ -121,7 +123,7 @@ _data = {
 animation = &"broken_door"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_af2yk"]
-graph_offset = Vector2(14.6667, 59.3333)
+graph_offset = Vector2(-148.898, 72.5256)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_y3bld")
 nodes/Animation/position = Vector2(93.3333, 120)
 nodes/output/position = Vector2(373.333, 160)
@@ -141,13 +143,9 @@ spot_angle = 52.7237
 
 [node name="Meshes" type="Node3D" parent="Room1"]
 
-[node name="TardisCenterLight" type="MeshInstance3D" parent="Room1/Meshes"]
-mesh = ExtResource("1_a0vuk")
-skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("10_2q6f0")
-
 [node name="TardisCenterLightShell" type="MeshInstance3D" parent="Room1/Meshes"]
-visible = false
+material_override = ExtResource("5_yaibl")
+material_overlay = ExtResource("5_yaibl")
 mesh = ExtResource("2_76q80")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -178,11 +176,6 @@ surface_material_override/0 = ExtResource("10_2q6f0")
 [node name="TardisLadder3" type="MeshInstance3D" parent="Room1/Meshes"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("6_q7024")
-skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("10_2q6f0")
-
-[node name="TardisRoomCenter" type="MeshInstance3D" parent="Room1/Meshes"]
-mesh = ExtResource("9_8616g")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
@@ -499,6 +492,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("7_302qy")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
+
+[node name="TardisRoomCenter" parent="Room1/Meshes" instance=ExtResource("12_wm00o")]
 
 [node name="Colliders" type="Node3D" parent="Room1"]
 
@@ -1053,14 +1048,10 @@ spot_angle = 52.7237
 
 [node name="Meshes" type="Node3D" parent="Room2"]
 
-[node name="TardisCenterLight" type="MeshInstance3D" parent="Room2/Meshes"]
-mesh = ExtResource("1_a0vuk")
-skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("11_8mhpa")
-
 [node name="TardisCenterLightShell" type="MeshInstance3D" parent="Room2/Meshes"]
-visible = false
-mesh = ExtResource("2_76q80")
+material_override = ExtResource("18_ilvx2")
+material_overlay = ExtResource("5_yaibl")
+mesh = ExtResource("19_fjdaw")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
@@ -1090,11 +1081,6 @@ surface_material_override/0 = ExtResource("11_8mhpa")
 [node name="TardisLadder3" type="MeshInstance3D" parent="Room2/Meshes"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("6_q7024")
-skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("11_8mhpa")
-
-[node name="TardisRoomCenter" type="MeshInstance3D" parent="Room2/Meshes"]
-mesh = ExtResource("9_8616g")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
@@ -1411,6 +1397,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("7_302qy")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
+
+[node name="TardisRoomCenter" parent="Room2/Meshes" instance=ExtResource("12_wm00o")]
+
+[node name="Skeleton3D" parent="Room2/Meshes/TardisRoomCenter/Armature" index="0"]
+bones/1/position = Vector3(3.41032e-16, 1.5057, -0.215897)
+bones/2/position = Vector3(0.186972, 1.5254, -0.107948)
+bones/3/position = Vector3(0.186972, 1.4985, 0.107948)
+bones/4/position = Vector3(-4.47035e-08, 1.53617, 0.215897)
+bones/5/position = Vector3(-0.186972, 1.52672, 0.107948)
+bones/6/position = Vector3(-0.186972, 1.51872, -0.107948)
+bones/7/rotation = Quaternion(0, 0.156324, 0, 0.987706)
+bones/8/rotation = Quaternion(0, -0.116673, 0, 0.99317)
+bones/9/rotation = Quaternion(0, 0.0276503, 0, 0.999618)
+
+[node name="CenterLight" parent="Room2/Meshes/TardisRoomCenter/Armature/Skeleton3D" index="0"]
+material_override = ExtResource("11_8mhpa")
+
+[node name="RoomCenter" parent="Room2/Meshes/TardisRoomCenter/Armature/Skeleton3D" index="1"]
+material_override = ExtResource("11_8mhpa")
+
+[node name="Smoke" parent="Room2/Meshes/TardisRoomCenter" instance=ExtResource("19_2aj1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Colliders" type="Node3D" parent="Room2"]
 
@@ -1977,3 +1985,5 @@ libraries = {
 [connection signal="level_finished" from="." to="Room1/Door" method="open" unbinds=1]
 [connection signal="level_restart" from="." to="Room1/Door" method="reset" unbinds=1]
 [connection signal="body_entered" from="Room1/Door/Area3D" to="." method="finish_level" unbinds=1]
+
+[editable path="Room2/Meshes/TardisRoomCenter"]
