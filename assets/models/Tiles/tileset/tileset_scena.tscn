@@ -130,13 +130,13 @@ size = Vector3(0.4, 1, 1)
 size = Vector3(0.4, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v0qt2"]
-size = Vector3(1.414, 0.141, 1)
+size = Vector3(1.45065, 0.141, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n2dct"]
-size = Vector3(1.414, 0.141, 0.313)
+size = Vector3(1.4497, 0.141, 0.313)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ngsbm"]
-size = Vector3(1.414, 0.141, 0.313)
+size = Vector3(1.44969, 0.141, 0.313)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jbrk8"]
 size = Vector3(0.4, 0.5, 1)
@@ -465,7 +465,7 @@ surface_material_override/0 = ExtResource("2_g7oha")
 [node name="StaticBody3D6" type="StaticBody3D" parent="TilesLladderCenter"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLladderCenter/StaticBody3D6"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.05, 0.45, 0)
+transform = Transform3D(0.705872, -0.70834, 0, 0.70834, 0.705872, 0, 0, 0, 1, 0.0370414, 0.437041, 0)
 shape = SubResource("BoxShape3D_v0qt2")
 
 [node name="TilesLladderLeft" type="MeshInstance3D" parent="."]
@@ -475,7 +475,7 @@ surface_material_override/0 = ExtResource("2_g7oha")
 [node name="StaticBody3D7" type="StaticBody3D" parent="TilesLladderLeft"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLladderLeft/StaticBody3D7"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.05, 0.45, 0.157)
+transform = Transform3D(0.705872, -0.70834, 0, 0.70834, 0.705872, 0, 0, 0, 1, 0.0373854, 0.437371, 0.157)
 shape = SubResource("BoxShape3D_n2dct")
 
 [node name="TilesLladderRight" type="MeshInstance3D" parent="."]
@@ -485,7 +485,7 @@ surface_material_override/0 = ExtResource("2_g7oha")
 [node name="StaticBody3D8" type="StaticBody3D" parent="TilesLladderRight"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TilesLladderRight/StaticBody3D8"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.05, 0.45, -0.157)
+transform = Transform3D(0.705872, -0.70834, 0, 0.70834, 0.705872, 0, 0, 0, 1, 0.0373598, 0.437403, -0.157)
 shape = SubResource("BoxShape3D_ngsbm")
 
 [node name="TilesLightUpSkirting" type="MeshInstance3D" parent="."]
