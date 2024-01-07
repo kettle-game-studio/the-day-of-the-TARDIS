@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqkj4vqvemc5b"]
+[gd_scene load_steps=5 format=3 uid="uid://cqkj4vqvemc5b"]
 
 [ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="1_6aeoh"]
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="2_5ibdg"]
+[ext_resource type="PackedScene" uid="uid://b17qdb7kq2ujy" path="res://assets/prefabs/door_small.tscn" id="3_k81k5"]
 
 [sub_resource type="Curve3D" id="Curve3D_4rrnx"]
 
@@ -92,3 +93,6 @@ spot_range = 21.6559
 spot_attenuation = 1.56917
 spot_angle = 52.6836
 spot_angle_attenuation = 0.732042
+
+[node name="Door" parent="." instance=ExtResource("3_k81k5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 6)

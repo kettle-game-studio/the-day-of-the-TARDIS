@@ -17,6 +17,7 @@ doctorTexture = ExtResource("2_wdvk0")
 tardisTexture = ExtResource("3_u1in6")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 24.0
 offset_top = 24.0
 offset_right = 1053.0

@@ -36,15 +36,19 @@ func _ready():
 func _process(delta):
 	pass
 	
+var debug_mode = false
 func _input(event):
 	if Input.is_action_just_pressed("restart_level"):
 		restart_level(current_level)
 		debug.text = "%d level\n%d died" % [current_level,	died_count]
-	else:
+	elif debug_mode:
 		for i in range(0, min(10, levels.size())):
 			if Input.is_key_label_pressed(KEY_0+i):
 				restart_level(i)
-				break
+				break	
+	elif Input.is_action_just_pressed("debug_mode"):
+		debug_mode = true
+		debug.show()
 
 func restart_level(i: int):
 	levels[i].restart()

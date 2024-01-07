@@ -57,8 +57,12 @@ func restart():
 	disappearance = 1.0
 	material.set_shader_parameter("disappearance", 1.0)
 	if patrol_path:
-		last_offset = start_patrol_from*patrol_path.curve.get_baked_length()
-		global_transform = patrol_path.global_transform * patrol_path.curve.sample_baked_with_rotation(last_offset)
+		if patrol_path.curve.point_count > 1:
+			last_offset = start_patrol_from*patrol_path.curve.get_baked_length()
+			global_transform = patrol_path.global_transform * patrol_path.curve.sample_baked_with_rotation(last_offset)
+		else:
+			last_offset = 0
+			global_transform = patrol_path.global_transform
 
 func _process(delta):
 	if state == State.DIED:
@@ -157,11 +161,14 @@ func _physics_process(delta):
 
 	if state == State.ATTAK || patrol_path == null:
 		return
-		
-	var target_offset = move_speed*timezone.level.clock+(start_patrol_from*patrol_path.curve.get_baked_length())
+	var target_offset = last_offset+move_speed
+	if patrol_path.curve.point_count > 1:
+		target_offset = move_speed*timezone.level.clock+(start_patrol_from*patrol_path.curve.get_baked_length())
 	var speed = min(max_move_speed, max(0, target_offset-last_offset))
 	#print_debug(dalek_id, " ", last_offset, " ", patrol_path.curve.get_baked_length())
-	var closest_target_position = patrol_path.global_transform* patrol_path.curve.sample_baked(
+	var closest_target_position = patrol_path.global_position
+	if patrol_path.curve.point_count > 1:
+		closest_target_position = patrol_path.global_transform* patrol_path.curve.sample_baked(
 			fmod(last_offset+move_speed, patrol_path.curve.get_baked_length())
 		)
 	var to_closest_target = closest_target_position - global_position
@@ -170,6 +177,7 @@ func _physics_process(delta):
 		direction = patrol_path.global_basis.z.normalized()
 		var angle = look_dir_angle(self, direction)
 		rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)
+		move_and_slide()
 		return
 	var angle = look_dir_angle(self, direction)
 	rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)

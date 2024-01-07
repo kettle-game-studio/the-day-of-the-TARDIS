@@ -60,7 +60,7 @@ func _async_dialog(dialog, autoskip = false):
 	hide_speech()
 
 # : Array[Dictionary]
-func play_dialog(dialog, autoskip = false):
+func play_dialog(dialog, autoskip = true):
 	_async_dialog(dialog, autoskip)
 
 func _process(delta):
