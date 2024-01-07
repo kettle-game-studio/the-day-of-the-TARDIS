@@ -75,7 +75,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	if (portal_controller.portal_state != portal_controller.PortalState.ENABLED):
+	if (portal_controller.portal_state == portal_controller.PortalState.DISABLED):
 		if (!can_set_portal()):
 			screwdriver.warning()
 		else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dvtdwm0nnaq05"]
+[gd_scene load_steps=42 format=3 uid="uid://dvtdwm0nnaq05"]
 
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_qofiy"]
 [ext_resource type="ArrayMesh" uid="uid://dq768tr3gr13a" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShell.res" id="2_76q80"]
@@ -20,8 +20,10 @@
 [ext_resource type="Material" uid="uid://h3yi6w8fjm3r" path="res://assets/models/TARGIS/materials/tardis_material_alpha_break.tres" id="18_ilvx2"]
 [ext_resource type="ArrayMesh" uid="uid://bj7m7symivymj" path="res://assets/models/Tiles/models/Tiles_DoorLeaf.res" id="18_uy6hp"]
 [ext_resource type="PackedScene" uid="uid://ctwwhu2g2r34n" path="res://assets/prefabs/VFX/smoke.tscn" id="19_2aj1d"]
+[ext_resource type="ArrayMesh" uid="uid://drl4gf2xv3v0i" path="res://assets/models/TARGIS/meshes/TARDIS_WallTardisDoor_001.res" id="19_61lrh"]
 [ext_resource type="ArrayMesh" uid="uid://inejmrf3aq7e" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShellBreak.res" id="19_fjdaw"]
 [ext_resource type="PackedScene" uid="uid://l5gf6g3by6ub" path="res://assets/prefabs/dialog_zone.tscn" id="20_xji0p"]
+[ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="23_hcqtw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_73ijt"]
 size = Vector3(0.567871, 2.8454, 2.16913)
@@ -37,7 +39,7 @@ height = 7.07596
 radius = 1.12141
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4jc2c"]
-size = Vector3(2.365, 5.58344, 1.945)
+size = Vector3(2.365, 5.58344, 0.657157)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vbg2k"]
 size = Vector3(3.278, 2.479, 3.809)
@@ -1386,7 +1388,7 @@ surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWallTardisDoor" type="MeshInstance3D" parent="Room2/Meshes/Walls"]
 transform = Transform3D(0.939693, 0, 0.34373, 0, 1, 0, -0.34202, 0, 0.944391, 0, 0, 0)
-mesh = ExtResource("16_75iku")
+mesh = ExtResource("19_61lrh")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
@@ -1405,15 +1407,15 @@ surface_material_override/0 = ExtResource("11_8mhpa")
 [node name="TardisRoomCenter" parent="Room2/Meshes" instance=ExtResource("12_wm00o")]
 
 [node name="Skeleton3D" parent="Room2/Meshes/TardisRoomCenter/Armature" index="0"]
-bones/1/position = Vector3(3.41032e-16, 1.53107, -0.215897)
-bones/2/position = Vector3(0.186972, 1.51801, -0.107948)
-bones/3/position = Vector3(0.186972, 1.49654, 0.107948)
-bones/4/position = Vector3(-4.47035e-08, 1.48716, 0.215897)
-bones/5/position = Vector3(-0.186972, 1.39213, 0.107948)
-bones/6/position = Vector3(-0.186972, 1.56748, -0.107948)
-bones/7/rotation = Quaternion(0, -0.992379, 0, 0.12322)
-bones/8/rotation = Quaternion(0, 0.999555, 0, 0.0298357)
-bones/9/rotation = Quaternion(0, 0.996479, 0, 0.0838387)
+bones/1/position = Vector3(3.41032e-16, 1.51523, -0.215897)
+bones/2/position = Vector3(0.186972, 1.506, -0.107948)
+bones/3/position = Vector3(0.186972, 1.4871, 0.107948)
+bones/4/position = Vector3(-4.47035e-08, 1.48335, 0.215897)
+bones/5/position = Vector3(-0.186972, 1.39243, 0.107948)
+bones/6/position = Vector3(-0.186972, 1.58136, -0.107948)
+bones/7/rotation = Quaternion(0, -0.990692, 0, 0.136125)
+bones/8/rotation = Quaternion(0, 0.99813, 0, 0.0611349)
+bones/9/rotation = Quaternion(0, 0.99781, 0, 0.0661481)
 
 [node name="CenterLight" parent="Room2/Meshes/TardisRoomCenter/Armature/Skeleton3D" index="0"]
 material_override = ExtResource("11_8mhpa")
@@ -1619,7 +1621,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656322, 0)
 shape = SubResource("CylinderShape3D_aswlo")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Room2/Colliders/BaseCollider"]
-transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -9.83747, 2.27328, 3.58284)
+transform = Transform3D(0.982981, 0, 0.183711, 0, 1, 0, -0.183711, 0, 0.982981, -9.06094, 2.27328, 4.64516)
+shape = SubResource("BoxShape3D_4jc2c")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Room2/Colliders/BaseCollider"]
+transform = Transform3D(0.868848, 0, 0.495079, 0, 1, 0, -0.495079, 0, 0.868848, -10.0948, 2.27328, 2.3392)
 shape = SubResource("BoxShape3D_4jc2c")
 
 [node name="Walls" type="Node3D" parent="Room2/Colliders"]
@@ -1954,7 +1960,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, 
 shape = SubResource("BoxShape3D_wrk1r")
 
 [node name="PlayerSpawn" type="Node3D" parent="Room2"]
-transform = Transform3D(0.365153, 0, -0.930947, 0, 1, 0, 0.930947, 0, 0.365153, -8.29311, 0, 3.07334)
+transform = Transform3D(0.365153, 0, -0.930947, 0, 1, 0, 0.930947, 0, 0.365153, -38.2931, 0.428886, 3.07334)
 
 [node name="BrokenDoor" type="Node3D" parent="Room2"]
 transform = Transform3D(-1.06364, -0.0364731, -0.0955146, -0.0346984, 1.23079, 0.176586, 0.0411254, 0.0951281, -2.32133, 11.3153, 2.05478, -0.0871486)
@@ -2045,6 +2051,21 @@ speech = Array[Dictionary]([{
 
 [node name="CollisionShape3D" parent="Room2/Dialog2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89107, 2.85645, -0.29364)
+
+[node name="RoomTardisOutside" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 16, 0)
+
+[node name="FloorMap" type="GridMap" parent="RoomTardisOutside"]
+mesh_library = ExtResource("23_hcqtw")
+cell_size = Vector3(1, 1, 1)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65523, 65528, 14, 65523, 65529, 14, 65523, 65530, 14, 65523, 65531, 14, 65523, 65532, 14, 65523, 65533, 14, 65523, 65534, 14, 65523, 65535, 14, 65523, 0, 14, 65523, 1, 14, 65523, 2, 14, 65523, 3, 14, 65523, 4, 14, 65524, 65528, 14, 65524, 65529, 14, 65524, 65530, 14, 65524, 65531, 14, 65524, 65532, 14, 65524, 65533, 14, 65524, 65534, 14, 65524, 65535, 14, 65524, 0, 14, 65524, 1, 14, 65524, 2, 14, 65524, 3, 14, 65524, 4, 14, 65525, 65528, 14, 65525, 65529, 14, 65525, 65530, 14, 65525, 65531, 14, 65525, 65532, 14, 65525, 65533, 14, 65525, 65534, 14, 65525, 65535, 14, 65525, 0, 14, 65525, 1, 14, 65525, 2, 14, 65525, 3, 14, 65525, 4, 14, 65526, 65528, 14, 65526, 65529, 14, 65526, 65530, 14, 65526, 65531, 14, 65526, 65532, 14, 65526, 65533, 14, 65526, 65534, 14, 65526, 65535, 14, 65526, 0, 14, 65526, 1, 14, 65526, 2, 14, 65526, 3, 14, 65526, 4, 14, 65527, 65528, 14, 65527, 65529, 14, 65527, 65530, 14, 65527, 65531, 14, 65527, 65532, 14, 65527, 65533, 14, 65527, 65534, 14, 65527, 65535, 14, 65527, 0, 14, 65527, 1, 14, 65527, 2, 14, 65527, 3, 14, 65527, 4, 14, 65528, 65528, 14, 65528, 65529, 14, 65528, 65530, 14, 65528, 65531, 14, 65528, 65532, 14, 65528, 65533, 14, 65528, 65534, 14, 65528, 65535, 14, 65528, 0, 14, 65528, 1, 14, 65528, 2, 14, 65528, 3, 14, 65528, 4, 14, 65529, 65528, 14, 65529, 65529, 14, 65529, 65530, 14, 65529, 65531, 14, 65529, 65532, 14, 65529, 65533, 14, 65529, 65534, 14, 65529, 65535, 14, 65529, 0, 14, 65529, 1, 14, 65529, 2, 14, 65529, 3, 14, 65529, 4, 14, 65530, 65528, 14, 65530, 65529, 14, 65530, 65530, 14, 65530, 65531, 14, 65530, 65532, 14, 65530, 65533, 14, 65530, 65534, 14, 65530, 65535, 14, 65530, 0, 14, 65530, 1, 14, 65530, 2, 14, 65530, 3, 14, 65530, 4, 14, 65531, 65528, 14, 65531, 65529, 14, 65531, 65530, 14, 65531, 65531, 14, 65531, 65532, 14, 65531, 65533, 14, 65531, 65534, 14, 65531, 65535, 14, 65531, 0, 14, 65531, 1, 14, 65531, 2, 14, 65531, 3, 14, 65531, 4, 14, 65532, 65528, 14, 65532, 65529, 14, 65532, 65530, 14, 65532, 65531, 14, 65532, 65532, 14, 65532, 65533, 14, 65532, 65534, 14, 65532, 65535, 14, 65532, 0, 14, 65532, 1, 14, 65532, 2, 14, 65532, 3, 14, 65532, 4, 14, 65533, 65528, 14, 65533, 65529, 14, 65533, 65530, 14, 65533, 65531, 14, 65533, 65532, 14, 65533, 65533, 14, 65533, 65534, 14, 65533, 65535, 14, 65533, 0, 14, 65533, 1, 14, 65533, 2, 14, 65533, 3, 14, 65533, 4, 14, 65534, 65528, 14, 65534, 65529, 14, 65534, 65530, 14, 65534, 65531, 14, 65534, 65532, 14, 65534, 65533, 14, 65534, 65534, 14, 65534, 65535, 14, 65534, 0, 14, 65534, 1, 14, 65534, 2, 14, 65534, 3, 14, 65534, 4, 14, 65535, 65528, 14, 65535, 65529, 14, 65535, 65530, 14, 65535, 65531, 14, 65535, 65532, 14, 65535, 65533, 14, 65535, 65534, 14, 65535, 65535, 14, 65535, 0, 14, 65535, 1, 14, 65535, 2, 14, 65535, 3, 14, 65535, 4, 14, 0, 65528, 14, 0, 65529, 14, 0, 65530, 14, 0, 65531, 14, 0, 65532, 14, 0, 65533, 14, 0, 65534, 14, 0, 65535, 14, 0, 0, 14, 0, 1, 14, 0, 2, 14, 0, 3, 14, 0, 4, 14, 1, 65528, 14, 1, 65529, 14, 1, 65530, 14, 1, 65531, 14, 1, 65532, 14, 1, 65533, 14, 1, 65534, 14, 1, 65535, 14, 1, 0, 14, 1, 1, 14, 1, 2, 14, 1, 3, 14, 1, 4, 14, 2, 65528, 14, 2, 65529, 14, 2, 65530, 14, 2, 65531, 14, 2, 65532, 14, 2, 65533, 14, 2, 65534, 14, 2, 65535, 14, 2, 0, 14, 2, 1, 14, 2, 2, 14, 2, 3, 14, 2, 4, 14, 3, 65528, 14, 3, 65529, 14, 3, 65530, 14, 3, 65531, 14, 3, 65532, 14, 3, 65533, 14, 3, 65534, 14, 3, 65535, 14, 3, 0, 14, 3, 1, 14, 3, 2, 14, 3, 3, 14, 3, 4, 14, 4, 65528, 14, 4, 65529, 14, 4, 65530, 14, 4, 65531, 14, 4, 65532, 14, 4, 65533, 14, 4, 65534, 14, 4, 65535, 14, 4, 0, 14, 4, 1, 14, 4, 2, 14, 4, 3, 14, 4, 4, 14, 5, 65528, 14, 5, 65529, 14, 5, 65530, 14, 5, 65531, 14, 5, 65532, 14, 5, 65533, 14, 5, 65534, 14, 5, 65535, 14, 5, 0, 14, 5, 1, 14, 5, 2, 14, 5, 3, 14, 5, 4, 14, 6, 65528, 14, 6, 65529, 14, 6, 65530, 14, 6, 65531, 14, 6, 65532, 14, 6, 65533, 14, 6, 65534, 14, 6, 65535, 14, 6, 0, 14, 6, 1, 14, 6, 2, 14, 6, 3, 14, 6, 4, 14, 7, 65528, 14, 7, 65529, 14, 7, 65530, 14, 7, 65531, 14, 7, 65532, 14, 7, 65533, 14, 7, 65534, 14, 7, 65535, 14, 7, 0, 14, 7, 1, 14, 7, 2, 14, 7, 3, 14, 7, 4, 14, 8, 65528, 14, 8, 65529, 14, 8, 65530, 14, 8, 65531, 14, 8, 65532, 14, 8, 65533, 14, 8, 65534, 14, 8, 65535, 14, 8, 0, 14, 8, 1, 14, 8, 2, 14, 8, 3, 14, 8, 4, 14, 9, 65528, 14, 9, 65529, 14, 9, 65530, 14, 9, 65531, 14, 9, 65532, 14, 9, 65533, 14, 9, 65534, 14, 9, 65535, 14, 9, 0, 14, 9, 1, 14, 9, 2, 14, 9, 3, 14, 9, 4, 14, 65523, 5, 14, 65523, 6, 14, 65523, 7, 14, 65523, 8, 14, 65524, 5, 14, 65524, 6, 14, 65524, 7, 14, 65524, 8, 14, 65525, 5, 14, 65525, 6, 14, 65525, 7, 14, 65525, 8, 14, 65526, 5, 14, 65526, 6, 14, 65526, 7, 14, 65526, 8, 14, 65527, 5, 14, 65527, 6, 14, 65527, 7, 14, 65527, 8, 14, 65528, 5, 14, 65528, 6, 14, 65528, 7, 14, 65528, 8, 14, 65529, 5, 14, 65529, 6, 14, 65529, 7, 14, 65529, 8, 14, 65530, 5, 14, 65530, 6, 14, 65530, 7, 14, 65530, 8, 14, 65531, 5, 14, 65531, 6, 14, 65531, 7, 14, 65531, 8, 14, 65532, 5, 14, 65532, 6, 14, 65532, 7, 14, 65532, 8, 14, 65533, 5, 14, 65533, 6, 14, 65533, 7, 14, 65533, 8, 14, 65534, 5, 14, 65534, 6, 14, 65534, 7, 14, 65534, 8, 14, 65535, 5, 14, 65535, 6, 14, 65535, 7, 14, 65535, 8, 14, 0, 5, 14, 0, 6, 14, 0, 7, 14, 0, 8, 14, 1, 5, 14, 1, 6, 14, 1, 7, 14, 1, 8, 14, 2, 5, 14, 2, 6, 14, 2, 7, 14, 2, 8, 14, 3, 5, 14, 3, 6, 14, 3, 7, 14, 3, 8, 14, 4, 5, 14, 4, 6, 14, 4, 7, 14, 4, 8, 14, 5, 5, 14, 5, 6, 14, 5, 7, 14, 5, 8, 14, 6, 5, 14, 6, 6, 14, 6, 7, 14, 6, 8, 14, 7, 5, 14, 7, 6, 14, 7, 7, 14, 7, 8, 14, 8, 5, 14, 8, 6, 14, 8, 7, 14, 8, 8, 14, 9, 5, 14, 9, 6, 14, 9, 7, 14, 9, 8, 14)
+}
+metadata/_edit_group_ = true
+
+[node name="SpawnPoint" type="Node3D" parent="RoomTardisOutside"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [connection signal="level_finished" from="." to="Room1/Door" method="open" unbinds=1]
 [connection signal="level_restart" from="." to="Room1/Door" method="reset" unbinds=1]
