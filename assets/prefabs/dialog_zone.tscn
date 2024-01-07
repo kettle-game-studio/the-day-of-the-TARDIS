@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://assets/prefabs/dialog_zone.gd" id="1_cv4py"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_okd8i"]
-size = Vector3(3.43135, 1.32617, 3.3074)
+size = Vector3(2.77984, 4.87988, 3.3074)
 
 [node name="DialogZone" type="Area3D"]
 collision_layer = 0
