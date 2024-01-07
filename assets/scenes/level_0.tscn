@@ -21,6 +21,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bj7m7symivymj" path="res://assets/models/Tiles/models/Tiles_DoorLeaf.res" id="18_uy6hp"]
 [ext_resource type="PackedScene" uid="uid://ctwwhu2g2r34n" path="res://assets/prefabs/VFX/smoke.tscn" id="19_2aj1d"]
 [ext_resource type="ArrayMesh" uid="uid://inejmrf3aq7e" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShellBreak.res" id="19_fjdaw"]
+[ext_resource type="PackedScene" uid="uid://l5gf6g3by6ub" path="res://assets/prefabs/dialog_zone.tscn" id="20_xji0p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_73ijt"]
 size = Vector3(0.567871, 2.8454, 2.16913)
@@ -128,6 +129,9 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_y3bld")
 nodes/Animation/position = Vector2(93.3333, 120)
 nodes/output/position = Vector2(373.333, 160)
 node_connections = [&"output", 0, &"Animation"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nmjmr"]
+size = Vector3(1.65613, 1, 2.55518)
 
 [node name="Level-0" type="Node3D" node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_qofiy")
@@ -1982,8 +1986,17 @@ libraries = {
 "": SubResource("AnimationLibrary_41rbl")
 }
 
+[node name="DialogZone" parent="Room2" instance=ExtResource("20_xji0p")]
+transform = Transform3D(0.826403, 0, 0.563079, 0, 1, 0, -0.563079, 0, 0.826403, -4.94946, 0, 0.830194)
+
+[node name="CollisionShape3D" parent="Room2/DialogZone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0332642, 0.511166, 0.67823)
+shape = SubResource("BoxShape3D_nmjmr")
+
 [connection signal="level_finished" from="." to="Room1/Door" method="open" unbinds=1]
 [connection signal="level_restart" from="." to="Room1/Door" method="reset" unbinds=1]
 [connection signal="body_entered" from="Room1/Door/Area3D" to="." method="finish_level" unbinds=1]
 
 [editable path="Room2/Meshes/TardisRoomCenter"]
+
+[editable path="Room2/DialogZone"]

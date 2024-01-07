@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dnu80dsddpmqi"]
+
+[ext_resource type="Texture2D" uid="uid://c4oiuncfofgbg" path="res://assets/ui/dialog_panel.png" id="1_r7mfu"]
+[ext_resource type="FontFile" uid="uid://c1fkikfkqmk1h" path="res://assets/ui/NEOPIXEL-Regular.otf" id="2_syc0o"]
+[ext_resource type="FontFile" uid="uid://dc7blpyntv6xq" path="res://assets/ui/hometown_memesbruh03.ttf" id="3_s5vf7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oyqip"]
+texture = ExtResource("1_r7mfu")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[resource]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_oyqip")
+RichTextLabel/fonts/italics_font = ExtResource("2_syc0o")
+RichTextLabel/fonts/normal_font = ExtResource("3_s5vf7")

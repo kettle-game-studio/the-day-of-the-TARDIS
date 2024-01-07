@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://puw0ngumyrnc"]
+
+[ext_resource type="Script" path="res://assets/ui/ui.gd" id="1_kyxx5"]
+[ext_resource type="Theme" uid="uid://dnu80dsddpmqi" path="res://dialogs_theme.tres" id="1_p36qt"]
+[ext_resource type="Texture2D" uid="uid://c4oiuncfofgbg" path="res://assets/ui/dialog_panel.png" id="3_vy6ci"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_kyxx5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 1053.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 32
+text = "TESETgtgtgtgtrtgdtg tgt tht tht tht tht thtr thtrh"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -528.0
+offset_top = -248.0
+offset_right = 533.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_p36qt")
+
+[node name="UI" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_p36qt")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/UI"]
+layout_mode = 2
+theme = ExtResource("1_p36qt")
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/UI/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_vy6ci")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/UI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="DialogText" type="RichTextLabel" parent="PanelContainer/UI/GridContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_p36qt")
+bbcode_enabled = true
+text = "ВХОРП ВХОРП ТВОЮ МАТЬ
+ВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП [i]ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ[/i] МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬ ВХОРП ВХОРП ТВОЮ МАТЬ"
+fit_content = true

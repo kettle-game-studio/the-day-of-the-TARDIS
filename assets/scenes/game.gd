@@ -1,13 +1,15 @@
 extends Node3D
 
 var levels: Array[AbstractLevel] = []
+var dialogs: Array[DialogZone] = []
 var current_level = 0
 var died_count = 0
-@onready var debug = $Label
+@export var debug: Label
 
 @onready var dalek_cemetery = $DalekCemetery
 @onready var player = $Player
 @onready var portal_controller = $PortalController
+@onready var ui = $UI
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player.killed.connect(_on_player_is_killed)
@@ -21,6 +23,12 @@ func _ready():
 		level.level_finished.connect(_on_level_finished)
 	debug.text = "%d level" % current_level
 	levels[0].restart()
+	var dialogs_nodes = find_children("*", "DialogZone")
+	for node in dialogs_nodes:
+		var zone = node as DialogZone
+		dialogs.push_back(zone)
+		zone.player_entered.connect(_on_dialog)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -50,3 +58,6 @@ func _on_player_is_killed(_killer):
 	died_count+=1
 	debug.text = "%d level\n%d died" % [current_level,	died_count]
 	levels[current_level].restart()
+	
+func _on_dialog(zone: DialogZone):
+	ui.display_speech_line(zone.speech[0])
