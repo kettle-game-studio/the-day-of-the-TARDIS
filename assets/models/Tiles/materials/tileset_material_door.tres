@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ct6ap1j726qs0"]
+
+[ext_resource type="Texture2D" uid="uid://bcpgin217gs74" path="res://assets/models/Tiles/Tiles_TilesColor.png" id="1_6nj5m"]
+[ext_resource type="Texture2D" uid="uid://dtayuem8dly4t" path="res://assets/models/Tiles/Tiles_TilesLight.png" id="2_2g7f3"]
+
+[resource]
+cull_mode = 2
+albedo_color = Color(0.866667, 1, 1, 1)
+albedo_texture = ExtResource("1_6nj5m")
+emission_enabled = true
+emission_texture = ExtResource("2_2g7f3")
+texture_filter = 0

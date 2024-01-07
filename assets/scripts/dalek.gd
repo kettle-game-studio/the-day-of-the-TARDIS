@@ -15,6 +15,7 @@ signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
 @export var head_speed = 200
 @export var gun_speed = 90
 @export var rotation_speed = 90
+@export var fire_angle_trigger = 11
 
 enum State {PATROL, ATTAK, DIED}
 var state = State.PATROL
@@ -67,9 +68,9 @@ func _process(delta):
 	var gun_rotation = head_angle_to_player(gun_bone, "y")
 	if gun_rotation == null:
 		return
-	var clumped = clamp(gun_rotation, -PI/4, PI/4)
-	rotate_with_speed(gun_bone, clumped, deg_to_rad(gun_speed)*delta)
-	if clumped == gun_rotation:
+	#var clumped = clamp(gun_rotation, -PI/4, PI/4)
+	#rotate_with_speed(gun_bone, clumped, deg_to_rad(gun_speed)*delta)
+	if abs(gun_rotation) < deg_to_rad(fire_angle_trigger):
 		gun.fire()
 
 func rotate_with_speed(node: Node3D, angle: float, speed: float):
@@ -111,6 +112,7 @@ func where_player(look_bone: Node3D, y_raycast: float):
 		
 	var time_shift = timezone.level.portal_controller._get_room_shift()
 	look_dir += time_shift
+	look_dir.y = 0
 	var cast_out_time = raycast_enemy(our_position, our_position+look_dir, true)
 	if !cast_out_time || !(cast_out_time.collider is Area3D):
 		return null
@@ -138,6 +140,7 @@ func _physics_process(delta):
 
 	if state == State.ATTAK || patrol_path == null:
 		return
+		
 	var target_offset = move_speed*timezone.level.clock+(start_patrol_from*patrol_path.curve.get_baked_length())
 	var speed = min(max_move_speed, max(0, target_offset-last_offset))
 	#print_debug(dalek_id, " ", last_offset, " ", patrol_path.curve.get_baked_length())
@@ -146,6 +149,11 @@ func _physics_process(delta):
 		)
 	var to_closest_target = closest_target_position - global_position
 	var direction = Vector3(to_closest_target.x, 0, to_closest_target.z).normalized()
+	if patrol_path.curve.point_count == 1 && to_closest_target.length() < 0.4:
+		direction = patrol_path.global_basis.z.normalized()
+		var angle = look_dir_angle(self, direction)
+		rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)
+		return
 	var angle = look_dir_angle(self, direction)
 	rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)
 	#move_speed*=max(1., 1./(abs(2*angle)*abs(2*angle)))
