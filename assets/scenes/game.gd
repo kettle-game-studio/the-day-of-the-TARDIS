@@ -3,7 +3,7 @@ extends Node3D
 var levels: Array[AbstractLevel] = []
 var current_level = 0
 var died_count = 0
-@onready var debug = $Label
+@export var debug: Label
 
 @onready var dalek_cemetery = $DalekCemetery
 @onready var player = $Player

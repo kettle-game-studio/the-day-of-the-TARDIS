@@ -15,7 +15,6 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camera = $CameraPivot
-@onready var gun = $Gun
 @onready var screwdriver = $CameraPivot/SdriverPivot/Sdriver
 
 func _init():
