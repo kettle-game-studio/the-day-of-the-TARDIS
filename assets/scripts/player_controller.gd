@@ -35,6 +35,9 @@ func _init():
 func _ready():
 	pass
 
+func can_set_portal():
+	return !portal_area.has_overlapping_bodies()
+
 func _input(event):
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_camera(event.relative)
@@ -44,7 +47,7 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif Input.is_action_just_pressed("main_action"):
 		print(portal_area.has_overlapping_bodies())
-		if !has_screwdriver || portal_area.has_overlapping_bodies():
+		if !has_screwdriver || !can_set_portal():
 			return
 		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
 		screwdriver.open()
@@ -70,6 +73,12 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
+	if (portal_controller.portal_state != portal_controller.PortalState.ENABLED):
+		if (!can_set_portal()):
+			screwdriver.warning()
+		else:
+			screwdriver.normal()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

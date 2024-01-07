@@ -21,6 +21,18 @@ func close():
 	animator.play("ArmatureAction", -1, -1/open_time, true)
 	opened = false
 
+func warning():
+	var a = animator.current_animation_length
+	var b = animator.current_animation_position
+	var c = animator.movie_quit_on_finish
+	var d = animator.current_animation
+	if animator.current_animation != "ArmatureAction":
+		animator.play("Warning", -1, 1)
+
+func normal():
+	if animator.current_animation != "ArmatureAction":
+		animator.play("RESET", -1, 1)
+
 # Called when the node enters the scene tree for the first time.
 var initial_rotation
 func _ready():
