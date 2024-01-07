@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://assets/prefabs/dialog_zone.gd" id="1_cv4py"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_s8arx"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_okd8i"]
+size = Vector3(3.54395, 1.32617, 4.10461)
 
 [node name="DialogZone" type="Area3D"]
 collision_layer = 0
@@ -12,6 +13,6 @@ script = ExtResource("1_cv4py")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511165, 0)
-shape = SubResource("BoxShape3D_s8arx")
+shape = SubResource("BoxShape3D_okd8i")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
