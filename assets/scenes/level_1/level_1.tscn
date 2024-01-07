@@ -48,18 +48,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03388, -0.0275669, -0.07974
 [node name="Smoke5" parent="Room2/Level1Base2/Stuff/TubeTube006" instance=ExtResource("5_qra48")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.06305, 0.071434, -3.17646)
 
-[node name="Smoke6" parent="Room2/Level1Base2/Stuff/TubeTube006" instance=ExtResource("5_qra48")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -4.41679, 0.071434, -10.3729)
-
-[node name="Smoke7" parent="Room2/Level1Base2/Stuff/TubeTube006" instance=ExtResource("5_qra48")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -4.41679, 0.071434, -10.3729)
-
-[node name="Smoke8" parent="Room2/Level1Base2/Stuff/TubeTube006" instance=ExtResource("5_qra48")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -4.41679, 0.071434, -10.3729)
-
-[node name="Smoke9" parent="Room2/Level1Base2/Stuff/TubeTube006" instance=ExtResource("5_qra48")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -2.04329, 0.071434, -11.8578)
-
 [node name="Smoke3" parent="Room2/Level1Base2/Stuff/TubeTube006" instance=ExtResource("5_qra48")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25106, 1.82262, -2.75844)
 

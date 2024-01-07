@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://civq3dmxwdrwq"]
+[gd_scene load_steps=12 format=3 uid="uid://civq3dmxwdrwq"]
 
 [ext_resource type="Script" path="res://assets/scenes/game.gd" id="1_gfpfg"]
 [ext_resource type="Script" path="res://assets/scripts/portals/portal_controller.gd" id="1_l8aym"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dvtdwm0nnaq05" path="res://assets/scenes/level_0.tscn" id="5_yg82n"]
 [ext_resource type="PackedScene" uid="uid://3uoup28ycmsf" path="res://assets/scenes/level_2/level_2.tscn" id="5_yo5bf"]
 [ext_resource type="PackedScene" uid="uid://t0k1kwbyucaj" path="res://assets/scenes/level_3/level_3.tscn" id="6_npcsh"]
+[ext_resource type="PackedScene" uid="uid://uyj7dr0gf0xl" path="res://assets/scenes/level_4/level_4.tscn" id="7_nbunq"]
 
 [sub_resource type="Environment" id="Environment_aiut3"]
 
@@ -35,8 +36,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2, 0)
 [node name="Level2" parent="Levels" instance=ExtResource("5_yo5bf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17, 2, 20)
 
+[node name="Level4" parent="Levels" instance=ExtResource("7_nbunq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7, 2, 26)
+
 [node name="Level3" parent="Levels" instance=ExtResource("6_npcsh")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 2, 25)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 2, 25)
 
 [node name="DalekCemetery" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -27.5618, 0)

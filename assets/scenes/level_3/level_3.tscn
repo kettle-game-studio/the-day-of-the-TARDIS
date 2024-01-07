@@ -52,6 +52,9 @@ transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
 material_override = ExtResource("5_gjh70")
 surface_material_override/0 = ExtResource("5_gjh70")
 
+[node name="SpotLight3D" parent="Room2/Level3Base" index="7"]
+light_color = Color(1, 0.470588, 0.513726, 1)
+
 [connection signal="level_finished" from="." to="Room1/Level3Base/Door" method="open" unbinds=1]
 [connection signal="level_finished" from="." to="Room2/Level3Base/Door" method="open" unbinds=1]
 [connection signal="level_restart" from="." to="Room1/Level3Base/Door" method="reset" unbinds=1]

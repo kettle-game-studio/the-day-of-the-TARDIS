@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://3uoup28ycmsf"]
+[gd_scene load_steps=10 format=3 uid="uid://3uoup28ycmsf"]
 
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_5jv4p"]
 [ext_resource type="PackedScene" uid="uid://bfpaatgjohhbe" path="res://assets/scenes/level_2/level_2_base.tscn" id="2_vcd3w"]
 [ext_resource type="MeshLibrary" uid="uid://ddta8vtrlxsia" path="res://assets/models/Tiles/tileset/mesh_library_break.tres" id="3_l7ggd"]
+[ext_resource type="PackedScene" uid="uid://cs5q4q3nndsll" path="res://assets/prefabs/Tubes/tube_tube_002.tscn" id="3_s1mh1"]
 [ext_resource type="Material" uid="uid://dypjbjdkq2fbx" path="res://assets/models/Tiles/materials/tileset_material_break.tres" id="4_yxi7i"]
+[ext_resource type="PackedScene" uid="uid://dswsjiaa1vqkr" path="res://assets/prefabs/Tubes/tube_tube_003.tscn" id="7_saoek"]
+[ext_resource type="PackedScene" uid="uid://f0mefqvtdl25" path="res://assets/prefabs/Tubes/tube_tube_005.tscn" id="9_sgfo3"]
+[ext_resource type="PackedScene" uid="uid://l4yshp183cib" path="res://assets/prefabs/Tubes/tube_tube_007.tscn" id="11_raw6m"]
+[ext_resource type="PackedScene" uid="uid://ctwwhu2g2r34n" path="res://assets/prefabs/VFX/smoke.tscn" id="14_38il8"]
 
 [node name="Level2" type="Node3D" node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_5jv4p")
@@ -15,6 +20,44 @@ start_point = NodePath("Room1/Level2Base2/StartPoint")
 
 [node name="StartPoint" type="Node3D" parent="Room1/Level2Base2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Stuff" type="Node3D" parent="Room1"]
+
+[node name="TubeTube002" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, 12)
+
+[node name="TubeTube010" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 12)
+
+[node name="TubeTube011" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 12)
+
+[node name="TubeTube012" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 12)
+
+[node name="TubeTube013" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 12)
+
+[node name="TubeTube014" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 12)
+
+[node name="TubeTube015" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, 10)
+
+[node name="TubeTube016" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 10)
+
+[node name="TubeTube017" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 10)
+
+[node name="TubeTube018" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 10)
+
+[node name="TubeTube019" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 10)
+
+[node name="TubeTube020" parent="Room1/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 10)
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
@@ -39,6 +82,56 @@ material_override = ExtResource("4_yxi7i")
 
 [node name="Left" parent="Room2/Level2Base/Door" index="3"]
 material_override = ExtResource("4_yxi7i")
+
+[node name="Stuff" type="Node3D" parent="Room2"]
+
+[node name="TubeTube002" parent="Room2/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, 12)
+
+[node name="TubeTube014" parent="Room2/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 12)
+
+[node name="TubeTube015" parent="Room2/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, 10)
+
+[node name="TubeTube016" parent="Room2/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 10)
+
+[node name="TubeTube017" parent="Room2/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 10)
+
+[node name="TubeTube018" parent="Room2/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 10)
+
+[node name="TubeTube019" parent="Room2/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 10)
+
+[node name="TubeTube020" parent="Room2/Stuff" instance=ExtResource("3_s1mh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 10)
+
+[node name="TubeTube003" parent="Room2/Stuff" instance=ExtResource("7_saoek")]
+transform = Transform3D(0.954418, 0.298474, -1.30467e-08, 0, -4.37114e-08, -1, -0.298474, 0.954418, -4.17189e-08, -0.945102, 0.407948, 12.5138)
+
+[node name="TubeTube005" parent="Room2/Stuff" instance=ExtResource("9_sgfo3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 12)
+
+[node name="TubeTube007" parent="Room2/Stuff" instance=ExtResource("11_raw6m")]
+transform = Transform3D(-0.954418, 0.298474, -7.03911e-08, -8.74228e-08, -4.37114e-08, 1, 0.298474, 0.954418, 6.78124e-08, 0.963733, 0.407948, 11.9168)
+
+[node name="TubeTube021" parent="Room2/Stuff" instance=ExtResource("11_raw6m")]
+transform = Transform3D(-1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, -3, 3, 12)
+
+[node name="Smoke" parent="Room2/Stuff" instance=ExtResource("14_38il8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8869, 0.405441, 12.4723)
+
+[node name="Smoke2" parent="Room2/Stuff" instance=ExtResource("14_38il8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52748, 0.405441, 11.7862)
+
+[node name="Smoke3" parent="Room2/Stuff" instance=ExtResource("14_38il8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93823, 2.26654, 11.7862)
+
+[node name="Smoke4" parent="Room2/Stuff" instance=ExtResource("14_38il8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13447, 2.96323, 11.9688)
 
 [connection signal="level_finished" from="." to="Room1/Level2Base2/Door" method="open" unbinds=1]
 [connection signal="level_finished" from="." to="Room2/Level2Base/Door" method="open" unbinds=1]

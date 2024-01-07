@@ -166,7 +166,7 @@ func _physics_process(delta):
 		)
 	var to_closest_target = closest_target_position - global_position
 	var direction = Vector3(to_closest_target.x, 0, to_closest_target.z).normalized()
-	if patrol_path.curve.point_count == 1 && to_closest_target.length() < 0.4:
+	if patrol_path.curve.point_count <= 1 && to_closest_target.length() < 0.4:
 		direction = patrol_path.global_basis.z.normalized()
 		var angle = look_dir_angle(self, direction)
 		rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)
