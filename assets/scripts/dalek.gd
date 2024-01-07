@@ -3,6 +3,7 @@ class_name Dalek
 
 signal killed(dalek: Dalek, by: BulletContoller)
 signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
+@export var colors: Array[Color] = []
 
 @export var dalek_id: int = 0
 @export var corpse_prefab: PackedScene
@@ -16,7 +17,6 @@ signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
 @export var gun_speed = 90
 @export var rotation_speed = 90
 @export var fire_angle_trigger = 11
-
 enum State {PATROL, ATTAK, DIED}
 var state = State.PATROL
 
@@ -31,25 +31,41 @@ var timezone: Timezone = null
 @onready var left_arm_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/LeftArmBone
 @onready var right_arm_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/RightArmBone
 @onready var skeleton = $Dalek2/Armature/Skeleton3D
-
+@onready var mesh = $Dalek2/Armature/Skeleton3D/Dalek
 # distanse, meters
 var last_offset = 0.0
+var disappearance = 1.0
+var color:
+	get:
+		return colors[dalek_id]
 
+var material: ShaderMaterial
 func _ready():
 	assert(dalek_id != 0, "DALEK WITH DEFAULT ID")
 	gun.scene = get_parent_node_3d()
 	gun.ignore_bodies[self] = true
+	material = mesh.get_surface_override_material(0) as ShaderMaterial
+	material = material.duplicate()
+	material.set_shader_parameter("color", color)
+	mesh.set_surface_override_material(0, material)
 	restart()
 
 func restart():
 	state = State.PATROL
 	gun.restart()
+	disappearance = 1.0
+	material.set_shader_parameter("disappearance", 1.0)
 	if patrol_path:
 		last_offset = start_patrol_from*patrol_path.curve.get_baked_length()
 		global_transform = patrol_path.global_transform * patrol_path.curve.sample_baked_with_rotation(last_offset)
 
 func _process(delta):
 	if state == State.DIED:
+		if disappearance > 0.0:
+			disappearance-=delta/1.
+			material.set_shader_parameter("disappearance", max(0.0, disappearance))
+			if disappearance <= 0.0:
+				global_position = timezone.level.dalek_home.global_position		
 		return
 	var bone = head_bone	
 	var head_rotation = head_angle_to_player(bone, "x")
@@ -181,8 +197,10 @@ func die(reason = null, where: Transform3D = global_transform):
 	var corpse = corpse_prefab.instantiate() as DalekCorpse
 	corpse.dalek_id = dalek_id
 	corpse.killed = reason != null
+	corpse.color = color
 	get_parent().add_child(corpse)
 	corpse.global_transform = where
 	died.emit(self, corpse, reason)
-	global_position = timezone.level.dalek_home.global_position
-	
+	if reason != null:
+		disappearance = 0.0
+		global_position = timezone.level.dalek_home.global_position

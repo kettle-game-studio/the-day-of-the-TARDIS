@@ -36,10 +36,10 @@ size = Vector3(0.893, 1.877, 0.096488)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_apt48"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c331o"]
-size = Vector3(0.108276, 2.00739, 0.102661)
+size = Vector3(0.108276, 2.4, 0.102661)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wg2e3"]
-size = Vector3(0.108276, 2.00739, 0.102661)
+size = Vector3(0.108276, 2.4, 0.102661)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6cfx5"]
 size = Vector3(1, 0.1, 0.1)
@@ -49,13 +49,13 @@ script = ExtResource("1_u7vlk")
 mesh = NodePath("Main")
 
 [node name="Main" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1.175, 0, 1.06581e-14, 0, 1, 0, 1.2, 0)
 layers = 524288
 mesh = SubResource("QuadMesh_lxn44")
 surface_material_override/0 = SubResource("ShaderMaterial_bur3h")
 
 [node name="PortalBorderCylinder001" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1.175, 0, 1.50996e-07, 0, -1, 0, 1.2, 0)
 mesh = ExtResource("6_65cpg")
 surface_material_override/0 = SubResource("ShaderMaterial_ildiv")
 
@@ -73,15 +73,15 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_apt48")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.495633, 1.95455, 0.000553221)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.19631, 0)
 shape = SubResource("BoxShape3D_c331o")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494201, 0.954548, 0.000553221)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494201, 1.15085, 0.000553221)
 shape = SubResource("BoxShape3D_wg2e3")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.04537, 0)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.62092, 0)
 shape = SubResource("BoxShape3D_6cfx5")
 
 [connection signal="area_entered" from="Area3D" to="." method="_area_body_entered"]
