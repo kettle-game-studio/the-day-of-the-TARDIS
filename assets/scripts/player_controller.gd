@@ -18,6 +18,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camera = $CameraPivot
 @onready var screwdriver = $CameraPivot/SdriverPivot/Sdriver
+@onready var portal_area = $PortalArea
 
 var state = State.INTRO
 
@@ -42,7 +43,8 @@ func _input(event):
 	elif Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif Input.is_action_just_pressed("main_action"):
-		if !has_screwdriver:
+		print(portal_area.has_overlapping_bodies())
+		if !has_screwdriver || portal_area.has_overlapping_bodies():
 			return
 		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
 		screwdriver.open()
