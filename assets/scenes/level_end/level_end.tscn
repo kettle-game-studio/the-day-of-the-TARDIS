@@ -47,8 +47,9 @@ size = Vector3(6.50103, 1.73937, 3.084)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8522f"]
 size = Vector3(3.51135, 7.71887, 0.932499)
 
-[node name="LevelEnd" type="Node3D"]
+[node name="LevelEnd" type="Node3D" node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_6twfn")
+start_point = NodePath("Room1/SpawnPoint")
 
 [node name="Room1" type="Node3D" parent="."]
 script = ExtResource("2_3ofxk")
@@ -946,6 +947,9 @@ shape = SubResource("BoxShape3D_8522f")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_8522f")
+
+[node name="SpawnPoint" type="Node3D" parent="Room1"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 6, 0.2, 2)
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
