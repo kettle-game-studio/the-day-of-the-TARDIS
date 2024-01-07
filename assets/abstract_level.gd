@@ -2,6 +2,7 @@ extends Node3D
 class_name AbstractLevel
 
 signal level_finished(level: AbstractLevel)
+signal level_restart(level: AbstractLevel)
 
 @export var player: PlayerController
 @export var portal_controller: PortalController
@@ -11,6 +12,7 @@ signal level_finished(level: AbstractLevel)
 var present: Timezone
 var future: Timezone
 var clock = 0.0
+var finished = false
 
 var start_timezone: Timezone
 
@@ -50,12 +52,20 @@ func _on_dalek_killed(dalek: Dalek, bullet: BulletContoller):
 		future_dalek.die(null, dalek.global_transform.translated(portal_controller._get_to_future_shift()))
 
 func _on_present_daleks_died(timezone: Timezone):
+	finish_level()
+
+func finish_level():
+	if finished:
+		return
+	finished = true
 	level_finished.emit(self)
 
 func restart():
+	finished = false
 	present.restart()
 	future.restart()
 	clock = 0.0
 	portal_controller.disable_portal()
 	portal_controller.player_room = start_timezone.roomType
 	player.global_transform = start_point.global_transform
+	level_restart.emit(self)

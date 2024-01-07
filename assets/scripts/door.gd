@@ -4,8 +4,16 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animation_player.play("open_door")	
+	pass
 
+func open():
+	animation_player.play("open_door")	
+	
+func close():
+	animation_player.play("close_door")	
+
+func reset():
+	animation_player.play("RESET")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

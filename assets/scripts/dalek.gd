@@ -55,23 +55,23 @@ func _process(delta):
 	var head_rotation = head_angle_to_player(bone, "x")
 	
 	var gun_bone = left_arm_bone
+
 	if head_rotation == null || abs(head_rotation) > deg_to_rad(view_angle):
 		state = State.PATROL
 		rotate_with_speed(bone, 0, deg_to_rad(head_speed)*delta)
 		rotate_with_speed(gun_bone, 0, deg_to_rad(gun_speed)*delta)
 		return
 	state = State.ATTAK
+	var gun_rotation = head_angle_to_player(gun_bone, "y")
+	if gun_rotation != null && abs(gun_rotation) < deg_to_rad(fire_angle_trigger):
+		gun.fire()
+		return
+	#var clumped = clamp(gun_rotation, -PI/4, PI/4)
+	#rotate_with_speed(gun_bone, clumped, deg_to_rad(gun_speed)*delta)
 	var body_rotation = head_angle_to_player(self, "z")
 	if body_rotation != null:
 		rotate_with_speed(self, body_rotation, deg_to_rad(rotation_speed)*delta)
 	rotate_with_speed(bone, head_rotation, deg_to_rad(head_speed)*delta)
-	var gun_rotation = head_angle_to_player(gun_bone, "y")
-	if gun_rotation == null:
-		return
-	#var clumped = clamp(gun_rotation, -PI/4, PI/4)
-	#rotate_with_speed(gun_bone, clumped, deg_to_rad(gun_speed)*delta)
-	if abs(gun_rotation) < deg_to_rad(fire_angle_trigger):
-		gun.fire()
 
 func rotate_with_speed(node: Node3D, angle: float, speed: float):
 	node.rotation.y = rotate_toward(node.rotation.y, angle, speed)

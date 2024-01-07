@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfpaatgjohhbe"]
+[gd_scene load_steps=6 format=3 uid="uid://bfpaatgjohhbe"]
 
 [ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="1_0sfbc"]
 [ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="2_jumf8"]
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="3_60dtr"]
+[ext_resource type="PackedScene" uid="uid://b17qdb7kq2ujy" path="res://assets/prefabs/door_small.tscn" id="4_m4pvs"]
 
 [sub_resource type="Curve3D" id="Curve3D_i7n7v"]
 _data = {
@@ -40,3 +41,6 @@ curve = SubResource("Curve3D_i7n7v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.359862, 0, 8.15782)
 dalek_id = 1
 patrol_path = NodePath("../DalekPatrol")
+
+[node name="Door" parent="." instance=ExtResource("4_m4pvs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 14)

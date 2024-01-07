@@ -53,4 +53,6 @@ func restart():
 	active_bullets.clear()
 	can_fire = true
 	timer.stop()
+	scream_audio_stream.stop()
+	shoot_audio_stream.stop()
 	delay_timer.stop()
