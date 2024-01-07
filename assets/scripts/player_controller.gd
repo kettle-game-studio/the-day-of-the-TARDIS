@@ -52,6 +52,7 @@ func _input(event):
 		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
 		screwdriver.open()
 	elif Input.is_action_just_pressed("second_action"):
+	#elif Input.is_action_just_released("main_action"):
 		if !has_screwdriver:
 			return
 		portal_controller.disable_portal()

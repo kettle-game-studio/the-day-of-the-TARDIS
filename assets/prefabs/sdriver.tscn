@@ -193,7 +193,7 @@ bind/6/name = &"neutral_bone"
 bind/6/bone = -1
 bind/6/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kk0kc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mg80"]
 render_priority = 0
 shader = ExtResource("4_6avco")
 shader_parameter/color = Vector3(0.215, 1, 0)
@@ -245,14 +245,14 @@ bones/4/parent = 1
 bones/4/rest = Transform3D(0.723251, 8.9407e-08, -0.690586, -0.233944, 0.940873, -0.245009, 0.649753, 0.338761, 0.680487, 6.18264e-14, -1.19209e-07, 1.9469e-07)
 bones/4/enabled = true
 bones/4/position = Vector3(6.18264e-14, -1.19209e-07, 1.9469e-07)
-bones/4/rotation = Quaternion(0.159602, -0.366447, -0.0639602, 0.914414)
+bones/4/rotation = Quaternion(0.159602, -0.366448, -0.06396, 0.914414)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Hand.003"
 bones/5/parent = 1
 bones/5/rest = Transform3D(0.389955, -0.338761, -0.856257, 0.140403, 0.940872, -0.308295, 0.910067, 1.3411e-07, 0.414461, -9.73452e-08, -1.78814e-07, 9.73452e-08)
 bones/5/enabled = true
 bones/5/position = Vector3(-9.73452e-08, -1.78814e-07, 9.73452e-08)
-bones/5/rotation = Quaternion(0.0930344, -0.533024, 0.144597, 0.828446)
+bones/5/rotation = Quaternion(0.0930342, -0.533024, 0.144597, 0.828446)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "neutral_bone"
 bones/6/parent = -1
@@ -265,7 +265,7 @@ bones/6/scale = Vector3(1, 1, 1)
 [node name="SDriver" type="MeshInstance3D" parent="Armature/Skeleton3D"]
 mesh = ExtResource("3_vqt31")
 skin = SubResource("Skin_iskee")
-surface_material_override/0 = SubResource("ShaderMaterial_kk0kc")
+surface_material_override/0 = SubResource("ShaderMaterial_2mg80")
 
 [node name="Screwdriver" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.803388)

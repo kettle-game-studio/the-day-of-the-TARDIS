@@ -58,6 +58,7 @@ transform = Transform3D(0.840538, -0.320328, 0.436904, 0, 0.806465, 0.591281, -0
 [node name="PortalArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91495e-09, 1.743, 0.0126822)
 collision_layer = 0
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PortalArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
