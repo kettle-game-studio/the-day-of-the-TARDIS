@@ -1,11 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://puw0ngumyrnc"]
+[gd_scene load_steps=7 format=3 uid="uid://puw0ngumyrnc"]
 
 [ext_resource type="Script" path="res://assets/ui/ui.gd" id="1_kyxx5"]
 [ext_resource type="Theme" uid="uid://dnu80dsddpmqi" path="res://dialogs_theme.tres" id="1_p36qt"]
+[ext_resource type="Texture2D" uid="uid://ytmypi3r7tiw" path="res://assets/ui/doctor_avatar.png" id="2_wdvk0"]
+[ext_resource type="Texture2D" uid="uid://b7f404tljg55d" path="res://assets/ui/tardis_avatar.png" id="3_u1in6"]
 [ext_resource type="Texture2D" uid="uid://c4oiuncfofgbg" path="res://assets/ui/dialog_panel.png" id="3_vy6ci"]
 
-[node name="UI" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e176"]
+draw_center = false
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("ui_dialog", "ui_avatar")]
 script = ExtResource("1_kyxx5")
+ui_dialog = NodePath("DialogPanel/UI/GridContainer/VBoxContainer/MarginContainer/DialogText")
+ui_avatar = NodePath("DialogPanel/UI/GridContainer/Avatar")
+doctorTexture = ExtResource("2_wdvk0")
+tardisTexture = ExtResource("3_u1in6")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 24.0
@@ -15,7 +24,7 @@ offset_bottom = 69.0
 theme_override_font_sizes/font_size = 32
 text = "TESETgtgtgtgtrtgdtg tgt tht tht tht tht thtr thtrh"
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="DialogPanel" type="PanelContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -31,29 +40,57 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_p36qt")
 
-[node name="UI" type="MarginContainer" parent="PanelContainer"]
+[node name="UI" type="MarginContainer" parent="DialogPanel"]
 layout_mode = 2
+auto_translate = false
+localize_numeral_system = false
 theme = ExtResource("1_p36qt")
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/UI"]
+[node name="GridContainer" type="GridContainer" parent="DialogPanel/UI"]
 layout_mode = 2
 theme = ExtResource("1_p36qt")
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/UI/GridContainer"]
+[node name="Avatar" type="TextureRect" parent="DialogPanel/UI/GridContainer"]
 layout_mode = 2
 texture = ExtResource("3_vy6ci")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/UI/GridContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogPanel/UI/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
+size_flags_vertical = 3
 
-[node name="DialogText" type="RichTextLabel" parent="PanelContainer/UI/GridContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="DialogPanel/UI/GridContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="DialogText" type="RichTextLabel" parent="DialogPanel/UI/GridContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("1_p36qt")
 bbcode_enabled = true
 text = "ВХОРП ВХОРП ТВОЮ МАТЬ
-ВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП [i]ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ[/i] МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬ ВХОРП ВХОРП ТВОЮ МАТЬ"
+ВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП [i]ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ[/i] ЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП "
 fit_content = true
+
+[node name="PanelContainer" type="PanelContainer" parent="DialogPanel/UI/GridContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8e176")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogPanel/UI/GridContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="DialogPanel/UI/GridContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "Нажмите E, чтобы продолжить, или Q, чтобы пропустить"
+
+[node name="DisplayTimer" type="Timer" parent="."]

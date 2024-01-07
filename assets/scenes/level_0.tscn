@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dvtdwm0nnaq05"]
+[gd_scene load_steps=40 format=3 uid="uid://dvtdwm0nnaq05"]
 
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_qofiy"]
 [ext_resource type="ArrayMesh" uid="uid://dq768tr3gr13a" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShell.res" id="2_76q80"]
@@ -1405,16 +1405,15 @@ surface_material_override/0 = ExtResource("11_8mhpa")
 [node name="TardisRoomCenter" parent="Room2/Meshes" instance=ExtResource("12_wm00o")]
 
 [node name="Skeleton3D" parent="Room2/Meshes/TardisRoomCenter/Armature" index="0"]
-bones/1/position = Vector3(3.41032e-16, 1.5074, -0.215897)
-bones/2/position = Vector3(0.186972, 1.50739, -0.107948)
-bones/3/position = Vector3(0.186972, 1.45712, 0.107948)
-bones/4/position = Vector3(-4.47035e-08, 1.52091, 0.215897)
-bones/5/position = Vector3(-0.186972, 1.50274, 0.107948)
-bones/6/position = Vector3(-0.186972, 1.53297, -0.107948)
-bones/7/rotation = Quaternion(0, 0.948624, 0, 0.316406)
-bones/8/rotation = Quaternion(0, -0.949975, 0, 0.312327)
-bones/9/rotation = Quaternion(0, 0.877564, 0, 0.47946)
-
+bones/1/position = Vector3(3.41032e-16, 1.5057, -0.215897)
+bones/2/position = Vector3(0.186972, 1.5254, -0.107948)
+bones/3/position = Vector3(0.186972, 1.4985, 0.107948)
+bones/4/position = Vector3(-4.47035e-08, 1.53617, 0.215897)
+bones/5/position = Vector3(-0.186972, 1.52672, 0.107948)
+bones/6/position = Vector3(-0.186972, 1.51872, -0.107948)
+bones/7/rotation = Quaternion(0, 0.156324, 0, 0.987706)
+bones/8/rotation = Quaternion(0, -0.116673, 0, 0.99317)
+bones/9/rotation = Quaternion(0, 0.0276503, 0, 0.999618)
 [node name="CenterLight" parent="Room2/Meshes/TardisRoomCenter/Armature/Skeleton3D" index="0"]
 material_override = ExtResource("11_8mhpa")
 
@@ -1986,17 +1985,39 @@ libraries = {
 "": SubResource("AnimationLibrary_41rbl")
 }
 
-[node name="DialogZone" parent="Room2" instance=ExtResource("20_xji0p")]
-transform = Transform3D(0.826403, 0, 0.563079, 0, 1, 0, -0.563079, 0, 0.826403, -4.94946, 0, 0.830194)
+[node name="Dialog1" parent="Room2" instance=ExtResource("20_xji0p")]
+transform = Transform3D(0.943766, 0, 0.330613, 0, 1, 0, -0.330613, 0, 0.943766, -4.94946, 0, 0.830194)
+player_state_in_dialog = 3
+player_state_after = 2
+speech = Array[Dictionary]([{
+"text": "WHORP",
+"who": "TARDIS"
+}, {
+"text": "Ой, я забыл закрыть деврь",
+"who": "Doctor"
+}, {
+"text": "Ну ты и вхорп конечно",
+"who": "TARDIS"
+}])
 
-[node name="CollisionShape3D" parent="Room2/DialogZone" index="0"]
+[node name="CollisionShape3D" parent="Room2/Dialog1" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0332642, 0.511166, 0.67823)
 shape = SubResource("BoxShape3D_nmjmr")
+
+[node name="Dialog2" parent="Room2" instance=ExtResource("20_xji0p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9241, -0.300804, 0.609299)
+speech = Array[Dictionary]([{
+"text": "ЛКМ ОТВЁРТКОЙ ПОЖЖУЖИ ДУРЕНЬ",
+"who": "TARDIS"
+}])
+
+[node name="CollisionShape3D" parent="Room2/Dialog2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89107, 2.85645, -0.29364)
 
 [connection signal="level_finished" from="." to="Room1/Door" method="open" unbinds=1]
 [connection signal="level_restart" from="." to="Room1/Door" method="reset" unbinds=1]
 [connection signal="body_entered" from="Room1/Door/Area3D" to="." method="finish_level" unbinds=1]
 
 [editable path="Room2/Meshes/TardisRoomCenter"]
-
-[editable path="Room2/DialogZone"]
+[editable path="Room2/Dialog1"]
+[editable path="Room2/Dialog2"]

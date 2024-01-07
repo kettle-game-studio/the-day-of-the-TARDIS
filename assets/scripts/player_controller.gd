@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name PlayerController
 
+enum State {PLAY, DIALOG, INTRO, FULL_BLOCK_DIALOG}
+
 signal killed(reason)
 
 const SPEED = 5.0
@@ -17,6 +19,15 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $CameraPivot
 @onready var screwdriver = $CameraPivot/SdriverPivot/Sdriver
 
+var state = State.INTRO
+
+var can_move:
+	get:
+		return state == State.PLAY || state == State.INTRO
+var has_screwdriver:
+	get:
+		return state != State.INTRO && state != State.FULL_BLOCK_DIALOG
+
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -31,9 +42,13 @@ func _input(event):
 	elif Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif Input.is_action_just_pressed("main_action"):
+		if !has_screwdriver:
+			return
 		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
 		screwdriver.open()
 	elif Input.is_action_just_pressed("second_action"):
+		if !has_screwdriver:
+			return
 		portal_controller.disable_portal()
 		screwdriver.close()
 
@@ -44,6 +59,8 @@ func rotate_camera(mouse_shift: Vector2):
 	camera.rotation.x = clamp(camera.rotation.x - shift.y, -deg_to_rad(max_down_rotation_angle), deg_to_rad(max_up_rotation_angle))
 
 func _physics_process(delta):
+	if !can_move:
+		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta

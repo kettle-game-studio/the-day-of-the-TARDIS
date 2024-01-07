@@ -13,9 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://uyj7dr0gf0xl" path="res://assets/scenes/level_4/level_4.tscn" id="7_nbunq"]
 [sub_resource type="Environment" id="Environment_aiut3"]
 
-[node name="MainScene" type="Node3D" node_paths=PackedStringArray("debug")]
+[node name="MainScene" type="Node3D"]
 script = ExtResource("1_gfpfg")
-debug = NodePath("UI/Label")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aiut3")

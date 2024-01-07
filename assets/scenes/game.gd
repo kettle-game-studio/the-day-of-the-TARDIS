@@ -4,7 +4,7 @@ var levels: Array[AbstractLevel] = []
 var dialogs: Array[DialogZone] = []
 var current_level = 0
 var died_count = 0
-@export var debug: Label
+var debug: Label
 
 @onready var dalek_cemetery = $DalekCemetery
 @onready var player = $Player
@@ -12,6 +12,7 @@ var died_count = 0
 @onready var ui = $UI
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	debug = ui.debug
 	player.killed.connect(_on_player_is_killed)
 	var lvls_nodes = find_children("*", "AbstractLevel")
 	for node in lvls_nodes:
@@ -28,7 +29,7 @@ func _ready():
 		var zone = node as DialogZone
 		dialogs.push_back(zone)
 		zone.player_entered.connect(_on_dialog)
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -58,6 +59,14 @@ func _on_player_is_killed(_killer):
 	died_count+=1
 	debug.text = "%d level\n%d died" % [current_level,	died_count]
 	levels[current_level].restart()
-	
+
+var shoted_zones = {}
 func _on_dialog(zone: DialogZone):
-	ui.display_speech_line(zone.speech[0])
+	if zone.one_shot && shoted_zones.has(zone):
+		return
+	shoted_zones[zone] = true
+	player.state = zone.player_state_in_dialog
+	ui.play_dialog(zone.speech)
+	await ui.dialog_finished
+	player.state = zone.player_state_after
+	
