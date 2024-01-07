@@ -194,6 +194,7 @@ func die(reason = null, where: Transform3D = global_transform):
 	if state == State.DIED:
 		return
 	state = State.DIED
+	gun.cancel()
 	var corpse = corpse_prefab.instantiate() as DalekCorpse
 	corpse.dalek_id = dalek_id
 	corpse.killed = reason != null

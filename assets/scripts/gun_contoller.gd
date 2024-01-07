@@ -56,3 +56,7 @@ func restart():
 	scream_audio_stream.stop()
 	shoot_audio_stream.stop()
 	delay_timer.stop()
+
+func cancel():
+	scream_audio_stream.stop()
+	shoot_audio_stream.stop()
