@@ -26,7 +26,12 @@ func _process(delta):
 
 	remote_camera.global_position = player_camera.global_position + _get_room_shift()
 	remote_camera.global_rotation = player_camera.global_rotation
-	remote_camera.near = player.position.distance_to(portal.position)
+	#player.position.dot(portal.position);
+	var forward = player_camera.global_basis.z
+	var D = forward.dot(portal.global_position)
+	var near_distance = (forward.dot(player_camera.global_position) - D) / forward.length()
+	remote_camera.near = max(0.001, abs(near_distance) - 0.5)
+	portal.set_opacity(1.0 - 0.1 * player.global_position.distance_to(portal.global_position))
 
 # translate from corrent room to remote room
 func _get_room_shift():
