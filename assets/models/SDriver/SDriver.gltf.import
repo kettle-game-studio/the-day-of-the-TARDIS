@@ -34,7 +34,7 @@ _subresources={
 "ArmatureAction": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://assets/models/SDriver/Animations/ArmatureAction.res",
+"save_to_file/path": "res://assets/models/SDriver/animation/ArmatureAction.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -1840,7 +1840,7 @@ _subresources={
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/SDriver/models/SDriver_Cylinder.res"
+"save_to_file/path": "res://assets/models/SDriver/mesh/SDriver_Cylinder.res"
 }
 }
 }
