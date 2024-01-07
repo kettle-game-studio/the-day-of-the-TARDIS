@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://f0mefqvtdl25"]
+
+[ext_resource type="ArrayMesh" uid="uid://fp5yjqwl4q17" path="res://assets/models/Tube/models/Tube_Tube_005.res" id="1_d4f4y"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xsi3o"]
+height = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rynd3"]
+height = 1.38105
+
+[node name="TubeTube005" type="MeshInstance3D"]
+mesh = ExtResource("1_d4f4y")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("CylinderShape3D_xsi3o")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D5"]
+transform = Transform3D(-0.497443, -0.867497, 0, 0.867497, -0.497443, 0, 0, 0, 1, -0.399029, -0.292707, 0)
+shape = SubResource("CylinderShape3D_rynd3")

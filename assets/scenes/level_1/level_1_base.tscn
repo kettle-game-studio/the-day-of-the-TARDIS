@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3i4xcriyyhxo"]
+[gd_scene load_steps=7 format=3 uid="uid://b3i4xcriyyhxo"]
 
 [ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="1_q4htx"]
 [ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="1_vnfp1"]
+[ext_resource type="PackedScene" uid="uid://cs5q4q3nndsll" path="res://assets/prefabs/Tubes/tube_tube_002.tscn" id="2_00wxp"]
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="3_f4slt"]
 [ext_resource type="PackedScene" uid="uid://b17qdb7kq2ujy" path="res://assets/prefabs/door_small.tscn" id="4_t5jhj"]
 
@@ -14,6 +15,23 @@ point_count = 1
 
 [node name="Level1Base" type="Node3D"]
 script = ExtResource("1_q4htx")
+
+[node name="Stuff" type="Node3D" parent="."]
+
+[node name="TubeTube010" parent="Stuff" instance=ExtResource("2_00wxp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, -1)
+
+[node name="TubeTube011" parent="Stuff" instance=ExtResource("2_00wxp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, 1)
+
+[node name="TubeTube012" parent="Stuff" instance=ExtResource("2_00wxp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, 3)
+
+[node name="TubeTube013" parent="Stuff" instance=ExtResource("2_00wxp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, 5)
+
+[node name="TubeTube017" parent="Stuff" instance=ExtResource("2_00wxp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, 13)
 
 [node name="WallMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_vnfp1")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b17qdb7kq2ujy"]
 
 [ext_resource type="Script" path="res://assets/scripts/door.gd" id="1_7xn68"]
-[ext_resource type="Material" uid="uid://ct6ap1j726qs0" path="res://assets/models/Tiles/materials/tileset_material_door.tres" id="2_2lsfe"]
+[ext_resource type="Material" uid="uid://bku6j6oditrrh" path="res://assets/models/Tiles/materials/tileset_material.tres" id="2_a4s0f"]
 [ext_resource type="ArrayMesh" uid="uid://bj7m7symivymj" path="res://assets/models/Tiles/models/Tiles_DoorLeaf.res" id="3_no5ga"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_17w7k"]
@@ -114,7 +114,7 @@ shape = SubResource("BoxShape3D_17w7k")
 
 [node name="Right" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
-material_override = ExtResource("2_2lsfe")
+material_override = ExtResource("2_a4s0f")
 mesh = ExtResource("3_no5ga")
 skeleton = NodePath("../../..")
 
@@ -125,7 +125,7 @@ update_scale = false
 
 [node name="Left" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, -3.74561e-15, 0, 1, 0, 3.74561e-15, 0, 1, 0, 0, 0)
-material_override = ExtResource("2_2lsfe")
+material_override = ExtResource("2_a4s0f")
 mesh = ExtResource("3_no5ga")
 skeleton = NodePath("../../..")
 
