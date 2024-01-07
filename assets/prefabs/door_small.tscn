@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt7d67y28ov3v"]
+[gd_scene load_steps=9 format=3 uid="uid://b17qdb7kq2ujy"]
 
-[ext_resource type="Script" path="res://assets/scripts/door.gd" id="1_soedl"]
-[ext_resource type="Material" uid="uid://ct6ap1j726qs0" path="res://assets/models/Tiles/materials/tileset_material_door.tres" id="2_ugiw6"]
-[ext_resource type="ArrayMesh" uid="uid://bj7m7symivymj" path="res://assets/models/Tiles/models/Tiles_DoorLeaf.res" id="3_xsxna"]
+[ext_resource type="Script" path="res://assets/scripts/door.gd" id="1_7xn68"]
+[ext_resource type="Material" uid="uid://ct6ap1j726qs0" path="res://assets/models/Tiles/materials/tileset_material_door.tres" id="2_2lsfe"]
+[ext_resource type="ArrayMesh" uid="uid://bj7m7symivymj" path="res://assets/models/Tiles/models/Tiles_DoorLeaf.res" id="3_no5ga"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_17w7k"]
-size = Vector3(0.417969, 2.89514, 1.5918)
+size = Vector3(0.417969, 2.23273, 0.816896)
 
 [sub_resource type="Animation" id="Animation_16irv"]
 length = 0.001
@@ -46,7 +46,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 1.5), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 1), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -58,7 +58,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1.07177, 1),
 "update": 0,
-"values": [Vector3(0, 0, -1.5), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, -1), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_7h732"]
@@ -73,7 +73,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.5)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -85,7 +85,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.5)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_joqpj"]
@@ -96,40 +96,42 @@ _data = {
 }
 
 [node name="Door" type="Node3D"]
-script = ExtResource("1_soedl")
+script = ExtResource("1_7xn68")
 
 [node name="LeftBody" type="AnimatableBody3D" parent="."]
-transform = Transform3D(1, 0, -3.74561e-15, 0, 1, 0, 3.74561e-15, 0, 1, 0, 0, 0)
+transform = Transform3D(0.999999, 0, -3.74561e-15, 0, 1, 0, 3.74561e-15, 0, 0.999999, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBody"]
-transform = Transform3D(-1, 0, 1.37059e-07, 0, 1, 0, -5.57626e-08, 0, -1, 2.18019e-07, 1.456, -0.796694)
+transform = Transform3D(-1, 0, 1.37059e-07, 0, 1, 0, -5.57626e-08, 0, -1, 1.65284e-07, 1.13331, -0.411931)
 shape = SubResource("BoxShape3D_17w7k")
 
 [node name="RightBody" type="AnimatableBody3D" parent="."]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45583, -0.793574)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12462, -0.406122)
 shape = SubResource("BoxShape3D_17w7k")
 
 [node name="Right" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -3.01992e-07, 0, 1.3, 0, 1.50996e-07, 0, -2, 0, 0, 0)
-material_override = ExtResource("2_ugiw6")
-mesh = ExtResource("3_xsxna")
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+material_override = ExtResource("2_2lsfe")
+mesh = ExtResource("3_no5ga")
 skeleton = NodePath("../../..")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Right"]
 remote_path = NodePath("../../RightBody")
+update_rotation = false
 update_scale = false
 
 [node name="Left" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, -7.49122e-15, 0, 1.3, 0, 3.74561e-15, 0, 2, 0, 0, 0)
-material_override = ExtResource("2_ugiw6")
-mesh = ExtResource("3_xsxna")
+transform = Transform3D(1, 0, -3.74561e-15, 0, 1, 0, 3.74561e-15, 0, 1, 0, 0, 0)
+material_override = ExtResource("2_2lsfe")
+mesh = ExtResource("3_no5ga")
 skeleton = NodePath("../../..")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Left"]
 remote_path = NodePath("../../LeftBody")
+update_rotation = false
 update_scale = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

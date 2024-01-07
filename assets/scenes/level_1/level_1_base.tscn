@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3i4xcriyyhxo"]
+[gd_scene load_steps=6 format=3 uid="uid://b3i4xcriyyhxo"]
 
 [ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="1_q4htx"]
 [ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="1_vnfp1"]
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="3_f4slt"]
+[ext_resource type="PackedScene" uid="uid://b17qdb7kq2ujy" path="res://assets/prefabs/door_small.tscn" id="4_t5jhj"]
 
 [sub_resource type="Curve3D" id="Curve3D_i7n7v"]
 _data = {
@@ -33,11 +34,11 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="DalekPatrol" type="Path3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.6, 0.0318419, 6.491)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0.032, 6.491)
 curve = SubResource("Curve3D_i7n7v")
 
 [node name="DalekPatrol2" type="Path3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4.29117, 0.0318419, 6.491)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4, 0.032, 6.491)
 curve = SubResource("Curve3D_i7n7v")
 
 [node name="Dalek" parent="." node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_f4slt")]
@@ -48,3 +49,6 @@ patrol_path = NodePath("../DalekPatrol")
 [node name="Dalek2" parent="." node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_f4slt")]
 dalek_id = 2
 patrol_path = NodePath("../DalekPatrol2")
+
+[node name="Door" parent="." instance=ExtResource("4_t5jhj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0157521, -9.68575e-08, 14.0011)

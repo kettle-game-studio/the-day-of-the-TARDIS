@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dvtdwm0nnaq05"]
+[gd_scene load_steps=36 format=3 uid="uid://dvtdwm0nnaq05"]
 
 [ext_resource type="ArrayMesh" uid="uid://bk5s8q1d2f5lb" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLight.res" id="1_a0vuk"]
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_qofiy"]
@@ -13,7 +13,6 @@
 [ext_resource type="ArrayMesh" uid="uid://bo60wx0o6vj4f" path="res://assets/models/TARGIS/meshes/TARDIS_AngleBorder.res" id="11_g87vi"]
 [ext_resource type="ArrayMesh" uid="uid://bsx1vmmsoeyy8" path="res://assets/models/TARGIS/meshes/TARDIS_Border.res" id="12_0vdhe"]
 [ext_resource type="ArrayMesh" uid="uid://bhvqpkrfipi04" path="res://assets/models/TARGIS/meshes/TARDIS_Wall.res" id="14_rfk1b"]
-[ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="15_fs431"]
 [ext_resource type="ArrayMesh" uid="uid://1topwam7v16w" path="res://assets/models/TARGIS/meshes/TARDIS_WallDoor.res" id="15_ufe55"]
 [ext_resource type="ArrayMesh" uid="uid://60r6sip5q2ee" path="res://assets/models/TARGIS/meshes/TARDIS_WallTardisDoor.res" id="16_75iku"]
 [ext_resource type="PackedScene" uid="uid://bt7d67y28ov3v" path="res://assets/prefabs/door.tscn" id="16_edwhl"]
@@ -52,12 +51,8 @@ size = Vector3(6.50103, 1.73937, 3.084)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wrk1r"]
 size = Vector3(3.51135, 7.71887, 0.932499)
 
-[sub_resource type="Curve3D" id="Curve3D_x2j4s"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, -0.96, 0, 0, -2.32196, -0.0546913, -5, 0, 0, 0, 0, 0, 0, -0.322, -0.0546899, 0, 0, 0, 0, 0, 0, 0, -1.32196, -0.0546913, 4, -1.62, 0, 0, 1.23, 0, 0, -5.32196, -0.0546913, 9, 0, 0, 0, 0, 0, 0, -1.32196, -0.0546913, 4, 0, 0, 0, 0.13, 0, 0, -0.322, -0.0546899, 0, 1.435, 0, 0, 0, 0, 0, -2.32196, -0.0546913, -5),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 7
+[sub_resource type="BoxShape3D" id="BoxShape3D_20bi8"]
+size = Vector3(3.22705, 1.67432, 2.70905)
 
 [sub_resource type="Animation" id="Animation_6jddo"]
 length = 0.001
@@ -1035,22 +1030,16 @@ shape = SubResource("BoxShape3D_wrk1r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_wrk1r")
 
-[node name="Dalek" parent="Room1" node_paths=PackedStringArray("patrol_path") instance=ExtResource("15_fs431")]
-transform = Transform3D(0.978454, 0, 0.206429, 0, 1, 0, -0.206429, 0, 0.978457, 3.72706, 2, -1.03248)
-dalek_id = 1
-patrol_path = NodePath("../Dalek1Patrol")
-
-[node name="Dalek2" parent="Room1" node_paths=PackedStringArray("patrol_path") instance=ExtResource("15_fs431")]
-dalek_id = 2
-patrol_path = NodePath("../Dalek1Patrol")
-start_patrol_from = 0.5
-
-[node name="Dalek1Patrol" type="Path3D" parent="Room1"]
-transform = Transform3D(-0.422618, 0, 0.906308, 0, 1, 0, -0.906308, 0, -0.422618, -4.29644, 2.05469, -9.56433)
-curve = SubResource("Curve3D_x2j4s")
-
 [node name="Door" parent="Room1" instance=ExtResource("16_edwhl")]
-transform = Transform3D(1.21, 0, 0, 0, 1.21, 0, 0, 0, 1.897, 11.3605, 2.11078, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3605, 2.11078, 0)
+
+[node name="Area3D" type="Area3D" parent="Room1/Door"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Door/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11353, 0.337158, 0.0186462)
+shape = SubResource("BoxShape3D_20bi8")
 
 [node name="Room2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
@@ -1984,3 +1973,7 @@ anim_player = NodePath("../AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_41rbl")
 }
+
+[connection signal="level_finished" from="." to="Room1/Door" method="open" unbinds=1]
+[connection signal="level_restart" from="." to="Room1/Door" method="reset" unbinds=1]
+[connection signal="body_entered" from="Room1/Door/Area3D" to="." method="finish_level" unbinds=1]

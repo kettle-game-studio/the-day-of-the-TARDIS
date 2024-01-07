@@ -1,7 +1,7 @@
 extends Node3D
 
 var levels: Array[AbstractLevel] = []
-var current_level = 1
+var current_level = 0
 var died_count = 0
 @onready var debug = $Label
 
@@ -29,6 +29,14 @@ func _process(delta):
 func _input(event):
 	if Input.is_action_just_pressed("restart_level"):
 		levels[current_level].restart()
+		debug.text = "%d level\n%d died" % [current_level,	died_count]
+	else:
+		for i in range(0, min(10, levels.size())):
+			if Input.is_key_label_pressed(KEY_0+i):
+				levels[i].restart()
+				current_level = i
+				debug.text = "%d level\n%d died" % [current_level,	died_count]
+				break
 
 func _on_level_finished(level: AbstractLevel):
 	if level == levels[current_level]:
