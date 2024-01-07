@@ -1405,15 +1405,15 @@ surface_material_override/0 = ExtResource("11_8mhpa")
 [node name="TardisRoomCenter" parent="Room2/Meshes" instance=ExtResource("12_wm00o")]
 
 [node name="Skeleton3D" parent="Room2/Meshes/TardisRoomCenter/Armature" index="0"]
-bones/1/position = Vector3(3.41032e-16, 1.61295, -0.215897)
-bones/2/position = Vector3(0.186972, 1.61299, -0.107948)
-bones/3/position = Vector3(0.186972, 1.53485, 0.107948)
-bones/4/position = Vector3(-4.47035e-08, 1.5622, 0.215897)
-bones/5/position = Vector3(-0.186972, 1.52576, 0.107948)
-bones/6/position = Vector3(-0.186972, 1.49178, -0.107948)
-bones/7/rotation = Quaternion(0, 0.00822831, 0, 0.999966)
-bones/8/rotation = Quaternion(0, 0.166788, 0, 0.985993)
-bones/9/rotation = Quaternion(0, -0.192313, 0, 0.981334)
+bones/1/position = Vector3(3.41032e-16, 1.53107, -0.215897)
+bones/2/position = Vector3(0.186972, 1.51801, -0.107948)
+bones/3/position = Vector3(0.186972, 1.49654, 0.107948)
+bones/4/position = Vector3(-4.47035e-08, 1.48716, 0.215897)
+bones/5/position = Vector3(-0.186972, 1.39213, 0.107948)
+bones/6/position = Vector3(-0.186972, 1.56748, -0.107948)
+bones/7/rotation = Quaternion(0, -0.992379, 0, 0.12322)
+bones/8/rotation = Quaternion(0, 0.999555, 0, 0.0298357)
+bones/9/rotation = Quaternion(0, 0.996479, 0, 0.0838387)
 
 [node name="CenterLight" parent="Room2/Meshes/TardisRoomCenter/Armature/Skeleton3D" index="0"]
 material_override = ExtResource("11_8mhpa")
