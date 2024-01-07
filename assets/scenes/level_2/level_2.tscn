@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://3uoup28ycmsf"]
+[gd_scene load_steps=11 format=3 uid="uid://3uoup28ycmsf"]
 
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_5jv4p"]
+[ext_resource type="PackedScene" uid="uid://l5gf6g3by6ub" path="res://assets/prefabs/dialog_zone.tscn" id="2_b6qc1"]
 [ext_resource type="PackedScene" uid="uid://bfpaatgjohhbe" path="res://assets/scenes/level_2/level_2_base.tscn" id="2_vcd3w"]
 [ext_resource type="MeshLibrary" uid="uid://ddta8vtrlxsia" path="res://assets/models/Tiles/tileset/mesh_library_break.tres" id="3_l7ggd"]
 [ext_resource type="PackedScene" uid="uid://cs5q4q3nndsll" path="res://assets/prefabs/Tubes/tube_tube_002.tscn" id="3_s1mh1"]
@@ -15,6 +16,23 @@ script = ExtResource("1_5jv4p")
 start_point = NodePath("Room1/Level2Base2/StartPoint")
 
 [node name="Room1" type="Node3D" parent="."]
+
+[node name="DialogZone" parent="Room1" instance=ExtResource("2_b6qc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14495, 0, 4.17934)
+player_state_in_dialog = 0
+speech = Array[Dictionary]([{
+"text": "Для устранения неугодных нет ничего лучше старого доброго временного парадокса уничтожения прошлого будущим...",
+"who": "Doctor"
+}, {
+"text": "вхорп???",
+"who": "TARDIS"
+}, {
+"text": "Ничего не знаю, это не нарушает невер би круел, если технически это самоубийство. Ты будто сериал не смотрела.",
+"who": "Doctor"
+}])
+
+[node name="CollisionShape3D" parent="Room1/DialogZone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.322956, 0.511165, 0)
 
 [node name="Level2Base2" parent="Room1" instance=ExtResource("2_vcd3w")]
 
@@ -138,6 +156,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13447, 2.96323, 11.9688)
 [connection signal="level_restart" from="." to="Room1/Level2Base2/Door" method="reset" unbinds=1]
 [connection signal="level_restart" from="." to="Room2/Level2Base/Door" method="reset" unbinds=1]
 
+[editable path="Room1/DialogZone"]
 [editable path="Room1/Level2Base2"]
 [editable path="Room2/Level2Base"]
 [editable path="Room2/Level2Base/Door"]

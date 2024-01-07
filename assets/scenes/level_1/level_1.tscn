@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8ru5h17t67ua"]
+[gd_scene load_steps=11 format=3 uid="uid://b8ru5h17t67ua"]
 
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_762ee"]
 [ext_resource type="PackedScene" uid="uid://b3i4xcriyyhxo" path="res://assets/scenes/level_1/level_1_base.tscn" id="1_bkxfg"]
 [ext_resource type="MeshLibrary" uid="uid://ddta8vtrlxsia" path="res://assets/models/Tiles/tileset/mesh_library_break.tres" id="2_6tcr3"]
+[ext_resource type="PackedScene" uid="uid://l5gf6g3by6ub" path="res://assets/prefabs/dialog_zone.tscn" id="2_pqsry"]
 [ext_resource type="PackedScene" uid="uid://cs5q4q3nndsll" path="res://assets/prefabs/Tubes/tube_tube_002.tscn" id="3_ywtic"]
 [ext_resource type="PackedScene" uid="uid://de8bkj7yiwjyn" path="res://assets/prefabs/Tubes/tube_tube_006.tscn" id="4_7op4h"]
 [ext_resource type="Material" uid="uid://dypjbjdkq2fbx" path="res://assets/models/Tiles/materials/tileset_material_break.tres" id="4_tqraw"]
@@ -15,6 +16,23 @@ script = ExtResource("1_762ee")
 start_point = NodePath("Room1/Level1Base/StartPoint")
 
 [node name="Room1" type="Node3D" parent="."]
+
+[node name="DialogZone" parent="Room1" instance=ExtResource("2_pqsry")]
+transform = Transform3D(0.880171, 0, -0.474657, 0, 1, 0, 0.474657, 0, 0.880171, 1.32123, 0.132906, 3.92569)
+player_state_in_dialog = 0
+speech = Array[Dictionary]([{
+"text": "Если удастся отвлечь их внимание, эти двое могут уничтожить друг друга в перекрёстном огне! Я называю эту стратегию \"Хлопнем по-юбилейному\"",
+"who": "Doctor"
+}, {
+"text": "вхорп...",
+"who": "TARDIS"
+}, {
+"text": "Нет, \"Давай стардисим Галлифрей отсюда\" всё ещё не звучит.",
+"who": "Doctor"
+}])
+
+[node name="CollisionShape3D" parent="Room1/DialogZone" index="0"]
+transform = Transform3D(0.919122, 0, -0.393974, 0, 1, 0, 0.393974, 0, 0.919122, 0.815237, 0.511165, -0.331228)
 
 [node name="Level1Base" parent="Room1" instance=ExtResource("1_bkxfg")]
 
@@ -92,6 +110,7 @@ material_override = ExtResource("4_tqraw")
 [connection signal="level_restart" from="." to="Room1/Level1Base/Door" method="reset" flags=3 unbinds=1]
 [connection signal="level_restart" from="." to="Room2/Level1Base2/Door" method="reset" unbinds=1]
 
+[editable path="Room1/DialogZone"]
 [editable path="Room1/Level1Base"]
 [editable path="Room2/Level1Base2"]
 [editable path="Room2/Level1Base2/Door"]

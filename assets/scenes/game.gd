@@ -22,6 +22,7 @@ func _ready():
 		level.player = player
 		level.portal_controller = portal_controller
 		level.level_finished.connect(_on_level_finished)
+		level.level_failed.connect(_on_level_failed)
 	debug.text = "%d level" % current_level
 	levels[0].restart()
 	var dialogs_nodes = find_children("*", "DialogZone")
@@ -37,15 +38,19 @@ func _process(delta):
 	
 func _input(event):
 	if Input.is_action_just_pressed("restart_level"):
-		levels[current_level].restart()
+		restart_level(current_level)
 		debug.text = "%d level\n%d died" % [current_level,	died_count]
 	else:
 		for i in range(0, min(10, levels.size())):
 			if Input.is_key_label_pressed(KEY_0+i):
-				levels[i].restart()
-				current_level = i
-				debug.text = "%d level\n%d died" % [current_level,	died_count]
+				restart_level(i)
 				break
+
+func restart_level(i: int):
+	levels[i].restart()
+	current_level = i
+	player.state = PlayerController.State.PLAY
+	debug.text = "%d level\n%d died" % [current_level,	died_count]
 
 func _on_level_finished(level: AbstractLevel):
 	if level == levels[current_level]:
@@ -55,10 +60,19 @@ func _on_level_finished(level: AbstractLevel):
 		else:
 			debug.text = "WIN\n%d died" % died_count
 
+func _on_level_failed(_level):
+	ui.play_dialog([
+		{"who": "TARDIS", "text": "Вхорп-вхорп вхорп вхорп-вхорп {R} вхорп-вхорп! "},
+		{"who": "Doctor", "text": "Зачем мне перезапускать временную петлю? Я победил вот того"},
+		{"who": "TARDIS", "text": "{R}"},
+		{"who": "Doctor", "text": "Понял, R."},
+		] as Array[Dictionary])
+
 func _on_player_is_killed(_killer):
+	levels[current_level].restart()
+	ui.play_dialog(death_dialogs[died_count%death_dialogs.size()] as Array[Dictionary], true)
 	died_count+=1
 	debug.text = "%d level\n%d died" % [current_level,	died_count]
-	levels[current_level].restart()
 
 var shoted_zones = {}
 func _on_dialog(zone: DialogZone):
@@ -70,3 +84,40 @@ func _on_dialog(zone: DialogZone):
 	await ui.dialog_finished
 	player.state = zone.player_state_after
 	
+
+var death_dialogs = [
+	[
+		{ "who": "TARDIS", "text": "вхорп-вхорп, вхорп вхорп-вхорп!" },
+		{
+			"who": "Doctor",
+			"text": "Временная петля? Спасибо, но я и сам бы справился. Вот смотри, сейчас сделаю всех с первого раза!"
+		}
+	],
+	[
+		{
+			"who": "Doctor",
+			"text": "Фух. Спасибо за это, у меня даже регенераций не осталось, так и помер бы на месте"
+		},
+		{ "who": "TARDIS", "text": "вхорп)0" },
+		{ "who": "Doctor", "text": "Это что значит?" },
+		{ "who": "TARDIS", "text": "вхорп ( ͡° ͜ʖ ͡°)" },
+		{ "who": "Doctor", "text": "Какое дитя?" }
+	],
+	[
+		{ "who": "TARDIS", "text": "вхорп?" },
+		{
+			"who": "Doctor",
+			"text": "Да иди ты знаешь куда, \"на бис\". \"Поржать\" ей захотелось."
+		}
+	],
+	[
+		{ "who": "Doctor", "text": "Сколько я могу продолжать делать это, Кл-" },
+		{ "who": "TARDIS", "text": "ВХОРП-ВХОРП ВХОРП ВХОРП" }
+	],
+	[
+		{ "who": "TARDIS", "text": "вхорп... вхорп-вхорп" },
+		{ "who": "Doctor", "text": "В смысле \"убирать ещё одно тело\"?" },
+		{ "who": "TARDIS", "text": "вхорп-вхорп-вхорп" },
+		{ "who": "Doctor", "text": "Что такое бигенерация?" }
+	]
+]

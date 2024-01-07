@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://t0k1kwbyucaj"]
+[gd_scene load_steps=7 format=3 uid="uid://t0k1kwbyucaj"]
 
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_3sml8"]
 [ext_resource type="PackedScene" uid="uid://dlowkq41usqmv" path="res://assets/scenes/level_3/level_3_base.tscn" id="1_xr5b3"]
 [ext_resource type="MeshLibrary" uid="uid://ddta8vtrlxsia" path="res://assets/models/Tiles/tileset/mesh_library_break.tres" id="2_lsyuc"]
 [ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="2_qugft"]
 [ext_resource type="Material" uid="uid://dypjbjdkq2fbx" path="res://assets/models/Tiles/materials/tileset_material_break.tres" id="5_gjh70"]
+[ext_resource type="PackedScene" uid="uid://l5gf6g3by6ub" path="res://assets/prefabs/dialog_zone.tscn" id="6_xuuno"]
 
 [node name="Level3" type="Node3D" node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_3sml8")
@@ -55,6 +56,35 @@ surface_material_override/0 = ExtResource("5_gjh70")
 [node name="SpotLight3D" parent="Room2/Level3Base" index="7"]
 light_color = Color(1, 0.470588, 0.513726, 1)
 
+[node name="DialogZone" parent="." instance=ExtResource("6_xuuno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.10643, 2.23517e-08, -3.3836)
+player_state_in_dialog = 0
+speech = Array[Dictionary]([{
+"text": "Не то чтобы далеки последние пятьдесят лет проявляли чудеса интеллекта, но \"проникнуть в ТАРДИС чтобы ездить туда-сюда\" - это не самый гениальный план...",
+"who": "Doctor"
+}, {
+"text": "Вхорп!",
+"who": "TARDIS"
+}, {
+"text": "Ну конечно! Твоё психополе сводит их с ума! Умная девочка!",
+"who": "Doctor"
+}, {
+"text": "Подожди, а это не опасно для людей?",
+"who": "Doctor"
+}, {
+"text": "вхорп...",
+"who": "TARDIS"
+}, {
+"text": "Что ты сделала с Кларой?",
+"who": "Doctor"
+}, {
+"text": "ЧТО ТЫ СДЕЛАЛА С КЛАРОЙ????!!",
+"who": "Doctor"
+}])
+
+[node name="CollisionShape3D" parent="DialogZone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101773, 0.640107, 1.3016)
+
 [connection signal="level_finished" from="." to="Room1/Level3Base/Door" method="open" unbinds=1]
 [connection signal="level_finished" from="." to="Room2/Level3Base/Door" method="open" unbinds=1]
 [connection signal="level_restart" from="." to="Room1/Level3Base/Door" method="reset" unbinds=1]
@@ -63,3 +93,4 @@ light_color = Color(1, 0.470588, 0.513726, 1)
 [editable path="Room1/Level3Base"]
 [editable path="Room2/Level3Base"]
 [editable path="Room2/Level3Base/Door"]
+[editable path="DialogZone"]

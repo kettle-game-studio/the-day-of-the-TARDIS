@@ -74,8 +74,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_p36qt")
 bbcode_enabled = true
-text = "ВХОРП ВХОРП ТВОЮ МАТЬ
-ВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП [i]ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ[/i] ЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП "
+text = "ВХОРП вхорп ВХОРП ТВОЮ МАТЬ
+ВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП [i]ТВОЮ МАТЬ вхорп ВХОРП ТВОЮ[/i] ЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП ВХОРП ТВОЮ МАТЬВХОРП "
 fit_content = true
 
 [node name="PanelContainer" type="PanelContainer" parent="DialogPanel/UI/GridContainer/VBoxContainer"]
@@ -94,3 +94,5 @@ layout_mode = 2
 text = "Нажмите E, чтобы продолжить, или Q, чтобы пропустить"
 
 [node name="DisplayTimer" type="Timer" parent="."]
+
+[node name="ContinueTimer" type="Timer" parent="."]
