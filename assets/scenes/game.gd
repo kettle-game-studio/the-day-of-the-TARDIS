@@ -121,7 +121,7 @@ var death_dialogs = [
 		},
 		{ "who": "TARDIS", "text": "вхорп)0" },
 		{ "who": "Doctor", "text": "Это что значит?" },
-		{ "who": "TARDIS", "text": "вхорп ( ͡° ͜ʖ ͡°)" },
+		{ "who": "TARDIS", "text": "вхорп ;)" },
 		{ "who": "Doctor", "text": "Какое дитя?" }
 	],
 	[
