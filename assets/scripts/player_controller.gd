@@ -31,7 +31,17 @@ var has_screwdriver:
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	call_deferred("subscribe")
 	
+func subscribe():
+	portal_controller.change_state.connect(_on_portal_changed)
+
+func _on_portal_changed(state: PortalController.PortalState):
+	if state == PortalController.PortalState.ENABLED:
+		screwdriver.open()
+	else:
+		screwdriver.close()		
+
 func _ready():
 	pass
 

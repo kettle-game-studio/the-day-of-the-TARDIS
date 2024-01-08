@@ -19,7 +19,7 @@ enum PortalState { ENABLED, DISABLED, INSIDE_THE_TARDIS, OUTSIDE_THE_TARDIS }
 var player_room = Timezone.RoomType.PRESENT
 var portal_state = PortalState.OUTSIDE_THE_TARDIS
 
-
+signal change_state(state: PortalState)
 
 func _process(delta):
 	if portal_state == PortalState.DISABLED:
@@ -75,6 +75,7 @@ func enable_portal(position: Vector3, rotation: Vector3):
 	portal_shadow.global_rotation.y = rotation.y
 	portal_shadow.global_position = position+_get_room_shift()
 	remote_viewport.disable_3d = false
+	change_state.emit(portal_state)
 
 func disable_portal():
 	if portal_state != PortalState.ENABLED:
@@ -82,6 +83,7 @@ func disable_portal():
 	portal_state = PortalState.DISABLED
 	portal.global_position = portal_home.global_position
 	portal_shadow.global_position = portal_home.global_position
+	change_state.emit(portal_state)
 
 var teleportation_in_progress = {}
 

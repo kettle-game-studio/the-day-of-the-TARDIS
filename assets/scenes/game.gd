@@ -102,6 +102,8 @@ func _on_dialog(zone: DialogZone):
 	ui.play_dialog(zone.speech)
 	await ui.dialog_finished
 	player.state = zone.player_state_after
+	if player.state == PlayerController.State.INTRO:
+		player.screwdriver.close()
 	
 
 var death_dialogs = [
