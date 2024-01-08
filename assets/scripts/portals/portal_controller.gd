@@ -67,7 +67,9 @@ func _get_to_future_shift():
 	return shift
 
 func enable_portal(position: Vector3, rotation: Vector3):
-	if portal_state == PortalState.INSIDE_THE_TARDIS || portal_state == PortalState.OUTSIDE_THE_TARDIS:
+	if portal_state == PortalState.OUTSIDE_THE_TARDIS:
+		return
+	elif portal_state == PortalState.INSIDE_THE_TARDIS:
 		insie_the_tardis.position.y += 100
 	portal_state = PortalState.ENABLED
 	portal.global_rotation.y = rotation.y
