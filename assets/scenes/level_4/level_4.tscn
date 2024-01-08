@@ -44,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54693, 1, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54693, 1, -1)
 
 [node name="TubeTube004" parent="Room1/Stuff" instance=ExtResource("6_56fxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5469, 1, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.67852, 1, -1)
 
 [node name="TubeTube008" parent="Room1/Stuff" instance=ExtResource("6_56fxc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1, -3)

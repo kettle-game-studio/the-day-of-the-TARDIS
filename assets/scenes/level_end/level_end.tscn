@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cf00p0vuht12r"]
+[gd_scene load_steps=45 format=3 uid="uid://cf00p0vuht12r"]
 
 [ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_6twfn"]
 [ext_resource type="PackedScene" uid="uid://ds4a7odp8uceg" path="res://assets/scenes/level_end/level_end_base.tscn" id="1_ckw72"]
@@ -11,9 +11,13 @@
 [ext_resource type="FontFile" uid="uid://byx00ddgr7150" path="res://assets/ui/ljk_Inky Thin Pixels.otf" id="4_qvd6o"]
 [ext_resource type="ArrayMesh" uid="uid://dtwr6kn0heyln" path="res://assets/models/TARGIS/meshes/TARDIS_Computer.res" id="5_a4mbg"]
 [ext_resource type="ArrayMesh" uid="uid://cd6fie17a0ns6" path="res://assets/models/TARGIS/meshes/TARDIS_Ladder.res" id="6_fivip"]
+[ext_resource type="Shader" path="res://assets/vfx/dalek.gdshader" id="6_w2w4w"]
 [ext_resource type="ArrayMesh" uid="uid://bhvqpkrfipi04" path="res://assets/models/TARGIS/meshes/TARDIS_Wall.res" id="7_46j0h"]
+[ext_resource type="Texture2D" uid="uid://j2y4bihfisi0" path="res://assets/models/Dalek/Dalek_DalekLight.png" id="7_v7dn2"]
+[ext_resource type="Texture2D" uid="uid://dc1wvhi1f3f2i" path="res://assets/models/Dalek/Dalek_DalekColor.png" id="8_hua07"]
 [ext_resource type="ArrayMesh" uid="uid://c33hnr5jb4koi" path="res://assets/models/TARGIS/meshes/TARDIS_Lamp.res" id="8_y2abt"]
 [ext_resource type="ArrayMesh" uid="uid://1topwam7v16w" path="res://assets/models/TARGIS/meshes/TARDIS_WallDoor.res" id="9_bfwee"]
+[ext_resource type="Texture2D" uid="uid://b7ren02m4gw16" path="res://assets/models/Dalek/DalekColorMask.png" id="9_c5h61"]
 [ext_resource type="ArrayMesh" uid="uid://60r6sip5q2ee" path="res://assets/models/TARGIS/meshes/TARDIS_WallTardisDoor.res" id="10_757js"]
 [ext_resource type="PackedScene" uid="uid://b55fxeo3bwp6c" path="res://assets/models/TARGIS/prefabs/tardis_room_center.tscn" id="11_s0e4q"]
 [ext_resource type="ArrayMesh" uid="uid://bo60wx0o6vj4f" path="res://assets/models/TARGIS/meshes/TARDIS_AngleBorder.res" id="12_djb4l"]
@@ -43,6 +47,16 @@ bind/4/pose = Transform3D(0.310019, -0.95073, -4.5396e-07, 0.95073, 0.310019, 2.
 bind/5/name = &"neutral_bone"
 bind/5/bone = -1
 bind/5/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_orix1"]
+render_priority = 0
+shader = ExtResource("6_w2w4w")
+shader_parameter/color = Vector3(0.5, 0, 0)
+shader_parameter/disappearance = 1.0
+shader_parameter/dirt = 0.0
+shader_parameter/base_texture = ExtResource("8_hua07")
+shader_parameter/color_mask = ExtResource("9_c5h61")
+shader_parameter/Light_texture = ExtResource("7_v7dn2")
 
 [sub_resource type="Animation" id="Animation_ewp2o"]
 length = 0.001
@@ -311,6 +325,7 @@ bones/5/scale = Vector3(1, 1, 1)
 transform = Transform3D(1, -7.45058e-09, 2.98023e-08, -7.45058e-09, 1, -1.49012e-08, -2.98023e-08, 0, 1, 0, 0, 0)
 mesh = ExtResource("18_273y3")
 skin = SubResource("Skin_84a8i")
+surface_material_override/0 = SubResource("ShaderMaterial_orix1")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D"]
 transform = Transform3D(-0.419454, 0.907777, 0, -0.907776, -0.419454, 0, 0, 0, 1, 0.31196, 0.846881, -0.200266)
@@ -325,7 +340,7 @@ bone_idx = 2
 override_pose = true
 
 [node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D"]
-transform = Transform3D(0.195436, 0.940058, 0.279456, -0.979065, 0.203546, 1.49012e-08, -0.0568822, -0.273606, 0.960158, 0.31196, 0.846881, -0.200266)
+transform = Transform3D(0.552045, 0.686519, 0.47322, -0.779299, 0.626652, 0, -0.296544, -0.36878, 0.880944, 0.31196, 0.846881, -0.200266)
 bone_name = "Arm.L"
 bone_idx = 3
 
