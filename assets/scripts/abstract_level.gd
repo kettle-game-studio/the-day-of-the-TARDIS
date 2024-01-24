@@ -54,9 +54,8 @@ func _process(delta):
 	clock+=delta
 
 func _on_dalek_killed(dalek: Dalek, bullet: BulletContoller):
-	if dalek.timezone == present && future.alive_daleks_map.has(dalek.dalek_id):
-		var future_dalek = future.alive_daleks_map[dalek.dalek_id]
-		future_dalek.die(null, dalek.global_transform.translated(portal_controller._get_to_future_shift()))
+	if dalek.timezone == present:
+		future.spawn_dalek_corpse(dalek.dalek_id, dalek.global_transform.translated(portal_controller._get_to_future_shift()))
 	check_fail()
 
 func _on_present_daleks_died(timezone: Timezone):

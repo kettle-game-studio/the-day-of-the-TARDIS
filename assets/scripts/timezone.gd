@@ -10,6 +10,7 @@ signal all_daleks_died(timezone: Timezone)
 var daleks: Array[Dalek] = []
 var alive_daleks_map: Dictionary = {}
 var corpses: Array[DalekCorpse] = []
+var disappearing_corpses: Array[DalekCorpse] = []
 # Initialized by parent
 var level: AbstractLevel
 
@@ -40,10 +41,27 @@ func _on_dalek_died(dalek: Dalek, corpse: DalekCorpse, reason: BulletContoller):
 	if alive_daleks_map.size() == 0:
 		all_daleks_died.emit(self)
 
+func spawn_dalek_corpse(dalek_id: int, where: Transform3D):
+	if alive_daleks_map.has(dalek_id):
+		var dalek = alive_daleks_map[dalek_id]
+		dalek.die(null, where)
+	else:
+		for i in corpses.size():
+			var old_corpse = corpses[i]
+			if old_corpse.dalek_id == dalek_id:
+				disappearing_corpses.push_back(old_corpse)
+				corpses[i] = old_corpse.move_to(where)
+				return
+
 func restart():
 	for corpse in corpses:
-		corpse.get_parent_node_3d().remove_child(corpse)
+		corpse.get_parent().remove_child(corpse)
 	corpses.clear()
+	for corpse in disappearing_corpses:
+		if corpse.lifetime >= 0:
+			corpse.get_parent().remove_child(corpse)
+	disappearing_corpses.clear()
+	
 	alive_daleks_map.clear()
 	for dalek in daleks:
 		dalek.restart()

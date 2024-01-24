@@ -66,11 +66,7 @@ func restart():
 
 func _process(delta):
 	if state == State.DIED:
-		if disappearance > 0.0:
-			disappearance-=delta/disappearance_time
-			material.set_shader_parameter("disappearance", max(0.0, disappearance))
-			if disappearance <= 0.0:
-				global_position = timezone.level.dalek_home.global_position		
+		die_animation(delta)
 		return
 	var bone = head_bone	
 	var head_rotation = head_angle_to_player(bone, "x")
@@ -215,3 +211,10 @@ func die(reason = null, where: Transform3D = global_transform):
 	if reason != null:
 		disappearance = 0.0
 		global_position = timezone.level.dalek_home.global_position
+
+func die_animation(delta: float):
+	if disappearance > 0.0:
+		disappearance-=delta/disappearance_time
+		material.set_shader_parameter("disappearance", max(0.0, disappearance))
+		if disappearance <= 0.0:
+			global_position = timezone.level.dalek_home.global_position	
