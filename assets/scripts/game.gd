@@ -6,8 +6,7 @@ var dialogs: Array[DialogZone] = []
 var current_level = 0
 var died_count = 0
 var debug: Label
-var start_time: float
-var end_time = INF
+var play_time = 0.0
 
 signal end_game()
 
@@ -36,12 +35,11 @@ func _ready():
 		var zone = node as DialogZone
 		dialogs.push_back(zone)
 		zone.player_entered.connect(_on_dialog)
-	start_time = Time.get_ticks_msec()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	play_time+=delta
 	
 var debug_mode = false
 func _input(event):
@@ -75,7 +73,6 @@ func _on_level_finished(level: AbstractLevel):
 			debug.text = "%d level\n%d died" % [current_level,	died_count]
 		else:
 			debug.text = "WIN\n%d died" % died_count
-			end_time = Time.get_ticks_msec()
 			end_game.emit()
 			
 

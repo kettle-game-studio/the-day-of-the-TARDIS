@@ -7,6 +7,8 @@ class_name UIContoller
 @onready var display_timer = $DisplayTimer
 @onready var continue_timer = $ContinueTimer
 @onready var debug = $Label
+@onready var cursor = $Cursor
+@onready var menu = $Menu
 @export var doctorTexture: Texture2D
 @export var tardisTexture: Texture2D
 
@@ -23,6 +25,7 @@ signal dialog_finished()
 
 func _ready():
 	hide_speech()
+	menu.hide()
 	formats.Doctor.avatar = doctorTexture
 	formats.TARDIS.avatar = tardisTexture
 	display_timer.timeout.connect(hide_speech)
@@ -46,6 +49,17 @@ func _input(event):
 	elif Input.is_action_just_pressed("skip_dialog"):
 		_skip_dialog_flag = true
 		_continue_dialog.emit()
+	elif Input.is_action_just_pressed("escape"):
+		menu.open()
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			#cursor.show()
+			#menuContainer.hide()
+			#get_tree().paused = false			
+		#else:
+			#get_tree().paused = true
+			#cursor.hide()
+			#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			#menuContainer.show()
 
 func _async_dialog(dialog, autoskip = false):
 	for line in dialog:

@@ -12,7 +12,7 @@ func subscibe():
 
 func update_stats():
 	var g = level.game
-	time.text = "Время:\n\n%s" % [beautify_time(g.end_time - g.start_time)]
+	time.text = "Время:\n\n%s" % [beautify_time(roundi(g.play_time))]
 	deaths.text = "Смерти:\n\n%s" % [g.died_count]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,9 +20,9 @@ func _process(delta):
 	pass
 
 func beautify_time(time: int) -> String:
-	var seconds = beautify_number((time / 1000) % 60)
-	var minutes = beautify_number((time / 1000 / 60) % 60)
-	var hours = beautify_number(time / 1000 / 60 / 60)
+	var seconds = beautify_number((time) % 60)
+	var minutes = beautify_number((time / 60) % 60)
+	var hours = beautify_number(time / 60 / 60)
 	return "%s:%s:%s" % [hours, minutes, seconds]
 
 func beautify_number(num: int) -> String:

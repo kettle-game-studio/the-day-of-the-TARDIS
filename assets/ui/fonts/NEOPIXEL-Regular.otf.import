@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cihk708arfv2w"
-path="res://.godot/imported/smalle.ttf-c29d44b18f6e942758f7fcd7677ed6b4.fontdata"
+uid="uid://c1fkikfkqmk1h"
+path="res://.godot/imported/NEOPIXEL-Regular.otf-0d27e3d83308a534b3483cd8bdc55d81.fontdata"
 
 [deps]
 
-source_file="res://assets/ui/smalle.ttf"
-dest_files=["res://.godot/imported/smalle.ttf-c29d44b18f6e942758f7fcd7677ed6b4.fontdata"]
+source_file="res://assets/ui/fonts/NEOPIXEL-Regular.otf"
+dest_files=["res://.godot/imported/NEOPIXEL-Regular.otf-0d27e3d83308a534b3483cd8bdc55d81.fontdata"]
 
 [params]
 

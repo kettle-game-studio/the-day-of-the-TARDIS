@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dc7blpyntv6xq"
-path="res://.godot/imported/hometown_memesbruh03.ttf-4381e20d0d047db05f41c014da776a20.fontdata"
+uid="uid://cihk708arfv2w"
+path="res://.godot/imported/smalle.ttf-994ff4aa3b0db9d19ef6c1f0343568f8.fontdata"
 
 [deps]
 
-source_file="res://assets/ui/hometown_memesbruh03.ttf"
-dest_files=["res://.godot/imported/hometown_memesbruh03.ttf-4381e20d0d047db05f41c014da776a20.fontdata"]
+source_file="res://assets/ui/fonts/smalle.ttf"
+dest_files=["res://.godot/imported/smalle.ttf-994ff4aa3b0db9d19ef6c1f0343568f8.fontdata"]
 
 [params]
 

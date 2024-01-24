@@ -51,10 +51,6 @@ func can_set_portal():
 func _input(event):
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_camera(event.relative)
-	elif event is InputEventMouseButton && Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif Input.is_action_just_pressed("escape"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif Input.is_action_just_pressed("main_action"):
 		print(portal_area.has_overlapping_bodies())
 		if !has_screwdriver || !can_set_portal():

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://byx00ddgr7150"
-path="res://.godot/imported/ljk_Inky Thin Pixels.otf-a179607889dffc529cb865a86df83a2c.fontdata"
+path="res://.godot/imported/ljk_Inky Thin Pixels.otf-99ff4b8afb8f58d76d60621d5d9ac8d3.fontdata"
 
 [deps]
 
-source_file="res://assets/ui/ljk_Inky Thin Pixels.otf"
-dest_files=["res://.godot/imported/ljk_Inky Thin Pixels.otf-a179607889dffc529cb865a86df83a2c.fontdata"]
+source_file="res://assets/ui/fonts/ljk_Inky Thin Pixels.otf"
+dest_files=["res://.godot/imported/ljk_Inky Thin Pixels.otf-99ff4b8afb8f58d76d60621d5d9ac8d3.fontdata"]
 
 [params]
 
