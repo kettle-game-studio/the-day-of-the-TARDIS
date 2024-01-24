@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://uyj7dr0gf0xl"]
 
-[ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_p2rp1"]
+[ext_resource type="Script" path="res://assets/scripts/abstract_level.gd" id="1_p2rp1"]
 [ext_resource type="PackedScene" uid="uid://cqkj4vqvemc5b" path="res://assets/scenes/level_4/level_4_base.tscn" id="1_wwoqh"]
 [ext_resource type="MeshLibrary" uid="uid://ddta8vtrlxsia" path="res://assets/models/Tiles/tileset/mesh_library_break.tres" id="2_1k13r"]
 [ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="2_oln81"]

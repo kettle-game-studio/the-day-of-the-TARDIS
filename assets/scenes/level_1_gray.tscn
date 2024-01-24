@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://j7d2oe4hkvd7"]
 
-[ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_agu34"]
+[ext_resource type="Script" path="res://assets/scripts/abstract_level.gd" id="1_agu34"]
 [ext_resource type="PackedScene" uid="uid://bmwgja8ryt4kx" path="res://assets/scenes/level_1_gray/room.tscn" id="2_baem4"]
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="3_wbher"]
 

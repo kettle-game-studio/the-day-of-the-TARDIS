@@ -1,6 +1,6 @@
 [gd_scene load_steps=42 format=3 uid="uid://dvtdwm0nnaq05"]
 
-[ext_resource type="Script" path="res://assets/abstract_level.gd" id="1_qofiy"]
+[ext_resource type="Script" path="res://assets/scripts/abstract_level.gd" id="1_qofiy"]
 [ext_resource type="ArrayMesh" uid="uid://dq768tr3gr13a" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShell.res" id="2_76q80"]
 [ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="2_fs2jm"]
 [ext_resource type="ArrayMesh" uid="uid://dtwr6kn0heyln" path="res://assets/models/TARGIS/meshes/TARDIS_Computer.res" id="4_v1dbv"]

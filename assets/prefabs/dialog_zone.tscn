@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://l5gf6g3by6ub"]
 
-[ext_resource type="Script" path="res://assets/prefabs/dialog_zone.gd" id="1_cv4py"]
+[ext_resource type="Script" path="res://assets/scripts/dialog_zone.gd" id="1_cv4py"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_okd8i"]
 size = Vector3(2.77984, 4.87988, 3.3074)
