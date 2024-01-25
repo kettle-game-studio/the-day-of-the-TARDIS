@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dstfolwlsbqnr"]
+[gd_scene load_steps=8 format=3 uid="uid://dstfolwlsbqnr"]
 
 [ext_resource type="Script" path="res://assets/scripts/player_controller.gd" id="1_1id37"]
 [ext_resource type="PackedScene" uid="uid://pnnlhlv4kfye" path="res://assets/prefabs/sdriver.tscn" id="2_qn5h2"]
+[ext_resource type="Resource" uid="uid://p5jhcj77tsbo" path="res://assets/global_settings.tres" id="2_rboa6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j74et"]
 radius = 0.30457
@@ -18,6 +19,7 @@ height = 1.6
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 4
 script = ExtResource("1_1id37")
+settings = ExtResource("2_rboa6")
 
 [node name="WorldCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00929, 0)

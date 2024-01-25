@@ -8,7 +8,7 @@ signal killed(reason)
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@export var mouse_sensivity = 0.75
+@export var settings: GlobalSettings
 @export var max_up_rotation_angle = 30
 @export var max_down_rotation_angle = 70
 @export var portal_controller: PortalController
@@ -21,6 +21,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var portal_area = $PortalArea
 
 var state = State.INTRO
+var mouse_sensivity:
+	get:
+		return settings.mouse_sensitivity
 
 var can_move:
 	get:

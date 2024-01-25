@@ -51,15 +51,6 @@ func _input(event):
 		_continue_dialog.emit()
 	elif Input.is_action_just_pressed("escape"):
 		menu.open()
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			#cursor.show()
-			#menuContainer.hide()
-			#get_tree().paused = false			
-		#else:
-			#get_tree().paused = true
-			#cursor.hide()
-			#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			#menuContainer.show()
 
 func _async_dialog(dialog, autoskip = false):
 	for line in dialog:
