@@ -47,9 +47,9 @@ func set_particles_settings():
 	particles_material.set_shader_parameter("start_rotation", rotated_from.y)
 	particles_material.set_shader_parameter("end_point", global_position)
 	particles_material.set_shader_parameter("end_rotation", global_rotation.y)
-	particles_material.set_shader_parameter("end_dirt", material.get_shader_parameter("dirty"))
+	particles_material.set_shader_parameter("end_dirt", material.get_shader_parameter("dirt"))
 	if from_corpse:
-		particles_material.set_shader_parameter("start_dirt", material.get_shader_parameter("dirty"))
+		particles_material.set_shader_parameter("start_dirt", material.get_shader_parameter("dirt"))
 		particles_material.set_shader_parameter("start_height", particles_material.get_shader_parameter("end_height"))
 		particles_material.set_shader_parameter("start_neck", particles_material.get_shader_parameter("end_neck"))
 	
