@@ -206,6 +206,7 @@ func die(reason = null, where: Transform3D = global_transform):
 	corpse.color = color
 	corpse.disappearance_time = disappearance_time
 	corpse.translated_from = global_position
+	corpse.rotated_from = global_rotation
 	get_parent().add_child(corpse)
 	corpse.global_transform = where
 	died.emit(self, corpse, reason)

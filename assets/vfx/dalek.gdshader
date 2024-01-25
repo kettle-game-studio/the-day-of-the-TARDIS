@@ -13,7 +13,7 @@ float hash(vec2 p) {
 
 void fragment() {
 	float rand = hash(round(UV*64.0));
-	if (rand > disappearance) {
+	if (rand >= disappearance) {
 		discard;
 	}
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7ren02m4gw16"
 path.s3tc="res://.godot/imported/DalekColorMask.png-6f8f32e528fa178b382933ab567f378b.s3tc.ctex"
+path.etc2="res://.godot/imported/DalekColorMask.png-6f8f32e528fa178b382933ab567f378b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/Dalek/DalekColorMask.png"
-dest_files=["res://.godot/imported/DalekColorMask.png-6f8f32e528fa178b382933ab567f378b.s3tc.ctex"]
+dest_files=["res://.godot/imported/DalekColorMask.png-6f8f32e528fa178b382933ab567f378b.s3tc.ctex", "res://.godot/imported/DalekColorMask.png-6f8f32e528fa178b382933ab567f378b.etc2.ctex"]
 
 [params]
 
