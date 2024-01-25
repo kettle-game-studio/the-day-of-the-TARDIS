@@ -1,0 +1,33 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dnu80dsddpmqi"]
+
+[ext_resource type="FontFile" uid="uid://byx00ddgr7150" path="res://assets/ui/fonts/ljk_Inky Thin Pixels.otf" id="1_6afwk"]
+[ext_resource type="Texture2D" uid="uid://c4oiuncfofgbg" path="res://assets/ui/dialog_panel.png" id="2_54lhn"]
+[ext_resource type="FontFile" uid="uid://c1fkikfkqmk1h" path="res://assets/ui/fonts/NEOPIXEL-Regular.otf" id="3_lup2a"]
+[ext_resource type="FontFile" uid="uid://cihk708arfv2w" path="res://assets/ui/fonts/smalle.ttf" id="4_fydi0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oyqip"]
+texture = ExtResource("2_54lhn")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc1x8"]
+bg_color = Color(0.313726, 0.403922, 0.878431, 0.317647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwquo"]
+bg_color = Color(0.894118, 0, 0.282353, 1)
+
+[resource]
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_6afwk")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_oyqip")
+ProgressBar/font_sizes/font_size = 1
+ProgressBar/styles/background = SubResource("StyleBoxFlat_bc1x8")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_wwquo")
+RichTextLabel/font_sizes/italics_font_size = 32
+RichTextLabel/font_sizes/normal_font_size = 35
+RichTextLabel/fonts/italics_font = ExtResource("3_lup2a")
+RichTextLabel/fonts/normal_font = ExtResource("4_fydi0")

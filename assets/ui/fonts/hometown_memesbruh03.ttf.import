@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c1fkikfkqmk1h"
-path="res://.godot/imported/NEOPIXEL-Regular.otf-7d738d80740a7f8603cd392255ad6b23.fontdata"
+uid="uid://dc7blpyntv6xq"
+path="res://.godot/imported/hometown_memesbruh03.ttf-191eedaf70c9b78276465cf5a054da3b.fontdata"
 
 [deps]
 
-source_file="res://assets/ui/NEOPIXEL-Regular.otf"
-dest_files=["res://.godot/imported/NEOPIXEL-Regular.otf-7d738d80740a7f8603cd392255ad6b23.fontdata"]
+source_file="res://assets/ui/fonts/hometown_memesbruh03.ttf"
+dest_files=["res://.godot/imported/hometown_memesbruh03.ttf-191eedaf70c9b78276465cf5a054da3b.fontdata"]
 
 [params]
 

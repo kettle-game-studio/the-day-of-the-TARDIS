@@ -7,7 +7,6 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(_body):
-	print_debug(_body)
 	var p = level.portal_controller
 	level.player.global_position += p._get_room_shift()
 	p.disable_portal()
