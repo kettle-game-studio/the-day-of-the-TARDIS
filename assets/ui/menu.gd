@@ -13,16 +13,16 @@ func _ready():
 	var menu_nodes = find_children("*", "MenuSection")
 	for node in menu_nodes:
 		var section  = node as MenuSection
-		section.hide()
+		section.deactivate()
 		sections[section.section_name] = node
 
 func back_menu():
 	var active_section = menu_stack.pop_back()
-	active_section.hide()
+	active_section.deactivate()
 	if menu_stack.size() == 0:
 		resume()
 		return
-	menu_stack[menu_stack.size()-1].show()
+	menu_stack[menu_stack.size()-1].activate()
 
 func resume():
 	hide()
@@ -39,10 +39,9 @@ func open(section_name = ""):
 		show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if menu_stack.size() > 0:
-		menu_stack[menu_stack.size()-1].hide()
+		menu_stack[menu_stack.size()-1].deactivate()
 	var current_section = sections[section_name]
-	current_section.show()
-	current_section.get_child(0).grab_focus()
+	current_section.activate()
 	menu_stack.push_back(current_section)
 
 func _process(delta):

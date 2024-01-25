@@ -86,7 +86,7 @@ func _on_level_failed(_level):
 
 func _on_player_is_killed(_killer):
 	levels[current_level].restart()
-	ui.play_dialog(death_dialogs[died_count%death_dialogs.size()] as Array[Dictionary], true)
+	ui.play_dialog(death_dialogs[died_count%death_dialogs.size()] as Array[Dictionary])
 	died_count+=1
 	debug.text = "%d level\n%d died" % [current_level,	died_count]
 

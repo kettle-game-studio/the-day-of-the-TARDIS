@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://puw0ngumyrnc"]
+[gd_scene load_steps=15 format=3 uid="uid://puw0ngumyrnc"]
 
 [ext_resource type="Script" path="res://assets/ui/ui.gd" id="1_kyxx5"]
 [ext_resource type="Texture2D" uid="uid://ytmypi3r7tiw" path="res://assets/ui/doctor_avatar.png" id="2_wdvk0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://assets/ui/menu_section.gd" id="9_h1c41"]
 [ext_resource type="Script" path="res://assets/ui/global_settings_slider.gd" id="9_wys07"]
 [ext_resource type="Resource" uid="uid://p5jhcj77tsbo" path="res://assets/global_settings.tres" id="10_s8dqo"]
+[ext_resource type="Script" path="res://assets/ui/global_settings_toggle.gd" id="12_ihq61"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e176"]
 draw_center = false
@@ -26,6 +27,7 @@ ui_dialog = NodePath("DialogPanel/UI/GridContainer/VBoxContainer/MarginContainer
 ui_avatar = NodePath("DialogPanel/UI/GridContainer/Avatar")
 doctorTexture = ExtResource("2_wdvk0")
 tardisTexture = ExtResource("3_u1in6")
+settings = ExtResource("10_s8dqo")
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -106,7 +108,13 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 text = "Нажмите E, чтобы продолжить, или Q, чтобы пропустить"
 
-[node name="DisplayTimer" type="Timer" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="DialogPanel/UI"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("4_iuexi")
+value = 50.0
+show_percentage = false
 
 [node name="ContinueTimer" type="Timer" parent="."]
 
@@ -148,7 +156,7 @@ fit_content = true
 autowrap_mode = 0
 shortcut_keys_enabled = false
 
-[node name="MainMenu" type="VBoxContainer" parent="Menu/MarginContainer"]
+[node name="MainMenu" type="VBoxContainer" parent="Menu/MarginContainer" node_paths=PackedStringArray("focus_on_open")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 5
@@ -156,6 +164,7 @@ size_flags_vertical = 4
 focus_mode = 2
 alignment = 1
 script = ExtResource("9_h1c41")
+focus_on_open = NodePath("Continue")
 
 [node name="Continue" type="Button" parent="Menu/MarginContainer/MainMenu"]
 layout_mode = 2
@@ -172,11 +181,12 @@ layout_mode = 2
 theme = ExtResource("7_mqj33")
 text = "Выйти"
 
-[node name="SettingsMenu" type="VBoxContainer" parent="Menu/MarginContainer"]
+[node name="SettingsMenu" type="VBoxContainer" parent="Menu/MarginContainer" node_paths=PackedStringArray("focus_on_open")]
 layout_mode = 2
 alignment = 1
 script = ExtResource("9_h1c41")
 section_name = "Настройки"
+focus_on_open = NodePath("SoundVolume/HSlider")
 
 [node name="SoundVolume" type="HBoxContainer" parent="Menu/MarginContainer/SettingsMenu"]
 layout_mode = 2
@@ -218,6 +228,15 @@ max_value = 2.0
 step = 0.01
 script = ExtResource("9_wys07")
 field_name = "mouse_sensitivity"
+settings = ExtResource("10_s8dqo")
+
+[node name="CheckButton" type="CheckButton" parent="Menu/MarginContainer/SettingsMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_mqj33")
+text = "Автоматически проматывать реплики"
+script = ExtResource("12_ihq61")
+field_name = "dialog_auto_continue"
 settings = ExtResource("10_s8dqo")
 
 [node name="Back" type="Button" parent="Menu/MarginContainer/SettingsMenu"]

@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_5n7m8")
 mouse_sensitivity = 0.75
+dialog_auto_continue = true
 audio_sounds_volume = 0.5

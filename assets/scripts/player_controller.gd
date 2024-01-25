@@ -55,7 +55,6 @@ func _input(event):
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_camera(event.relative)
 	elif Input.is_action_just_pressed("main_action"):
-		print(portal_area.has_overlapping_bodies())
 		if !has_screwdriver || !can_set_portal():
 			return
 		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
@@ -74,11 +73,11 @@ func rotate_camera(mouse_shift: Vector2):
 	camera.rotation.x = clamp(camera.rotation.x - shift.y, -deg_to_rad(max_down_rotation_angle), deg_to_rad(max_up_rotation_angle))
 
 func _physics_process(delta):
-	if !can_move:
-		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	if !can_move:
+		return
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
