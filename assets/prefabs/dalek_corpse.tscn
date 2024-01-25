@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://fldgkxyay001"]
+[gd_scene load_steps=16 format=3 uid="uid://fldgkxyay001"]
 
 [ext_resource type="Script" path="res://assets/scripts/dalek_corpse.gd" id="1_e40a4"]
 [ext_resource type="Material" uid="uid://cfqevsq1e5tnx" path="res://assets/models/Dalek/imports/TestMaterial.tres" id="2_scch6"]
+[ext_resource type="PackedScene" uid="uid://d3gkkxd5tedeb" path="res://assets/prefabs/dalek/dalek_translate_particles.tscn" id="2_yxdim"]
 [ext_resource type="PackedScene" uid="uid://b7aewf8mbf18q" path="res://assets/prefabs/VFX/explosion.tscn" id="3_78mbs"]
 [ext_resource type="Shader" path="res://assets/vfx/dalek.gdshader" id="3_vo5mo"]
 [ext_resource type="Texture2D" uid="uid://j2y4bihfisi0" path="res://assets/models/Dalek/Dalek_DalekLight.png" id="4_hvb60"]
@@ -95,6 +96,9 @@ height = 0.537117
 
 [node name="DalekCorpse" type="StaticBody3D"]
 script = ExtResource("1_e40a4")
+
+[node name="DalekTranslateParticles" parent="." instance=ExtResource("2_yxdim")]
+emitting = false
 
 [node name="Armature" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 0.705, 0, 1, 0, -4.37114e-08, 0, 0, 0)
