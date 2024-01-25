@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbv8bhdejqcij"
-path.s3tc="res://.godot/imported/portal.png-d650cdba3e3929411f5e46971454153b.s3tc.ctex"
-path.etc2="res://.godot/imported/portal.png-d650cdba3e3929411f5e46971454153b.etc2.ctex"
+uid="uid://c3okpsqgmcp02"
+path.s3tc="res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.s3tc.ctex"
+path.etc2="res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/models/Portal/portal.png"
-dest_files=["res://.godot/imported/portal.png-d650cdba3e3929411f5e46971454153b.s3tc.ctex", "res://.godot/imported/portal.png-d650cdba3e3929411f5e46971454153b.etc2.ctex"]
+source_file="res://assets/models/Dalek/DalekTranslateParticlesColor.png"
+dest_files=["res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.s3tc.ctex", "res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.etc2.ctex"]
 
 [params]
 

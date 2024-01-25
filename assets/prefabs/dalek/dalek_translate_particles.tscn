@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3gkkxd5tedeb"]
+
+[ext_resource type="Shader" path="res://assets/vfx/dalek/dalek_translate_particles.gdshader" id="1_4bhyl"]
+[ext_resource type="Shader" path="res://assets/vfx/dalek/dalek_translate_maprticles_visual.gdshader" id="2_27mvc"]
+[ext_resource type="Texture2D" uid="uid://c3okpsqgmcp02" path="res://assets/models/Dalek/DalekTranslateParticlesColor.png" id="2_d117i"]
+[ext_resource type="Texture2D" uid="uid://daa0icgc0fymt" path="res://assets/models/Dalek/DalekTranslateParticlesMask.png" id="3_smynw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjuec"]
+shader = ExtResource("1_4bhyl")
+shader_parameter/color = Color(0, 1, 0, 1)
+shader_parameter/dalek_down_radius = 0.465
+shader_parameter/dalek_up_radius = 0.165
+shader_parameter/start_point = null
+shader_parameter/start_height = 1.5
+shader_parameter/start_dirt = 0.0
+shader_parameter/end_point = Vector3(2, 0, 0)
+shader_parameter/end_height = 0.8
+shader_parameter/end_dirt = 0.5
+shader_parameter/base_texture = ExtResource("2_d117i")
+shader_parameter/color_mask = ExtResource("3_smynw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jqhnu"]
+render_priority = 0
+shader = ExtResource("2_27mvc")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8xx3t"]
+material = SubResource("ShaderMaterial_jqhnu")
+size = Vector2(0.05, 0.05)
+
+[node name="DalekTranslateParticles" type="GPUParticles3D"]
+amount = 1024
+process_material = SubResource("ShaderMaterial_yjuec")
+draw_pass_1 = SubResource("QuadMesh_8xx3t")

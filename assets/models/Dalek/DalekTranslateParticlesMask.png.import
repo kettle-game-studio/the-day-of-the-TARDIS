@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbv8bhdejqcij"
-path.s3tc="res://.godot/imported/portal.png-d650cdba3e3929411f5e46971454153b.s3tc.ctex"
-path.etc2="res://.godot/imported/portal.png-d650cdba3e3929411f5e46971454153b.etc2.ctex"
+uid="uid://daa0icgc0fymt"
+path.s3tc="res://.godot/imported/DalekTranslateParticlesMask.png-8fc4edaaeaa41cd17d2c35bb31fba9d6.s3tc.ctex"
+path.etc2="res://.godot/imported/DalekTranslateParticlesMask.png-8fc4edaaeaa41cd17d2c35bb31fba9d6.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/models/Portal/portal.png"
-dest_files=["res://.godot/imported/portal.png-d650cdba3e3929411f5e46971454153b.s3tc.ctex", "res://.godot/imported/portal.png-d650cdba3e3929411f5e46971454153b.etc2.ctex"]
+source_file="res://assets/models/Dalek/DalekTranslateParticlesMask.png"
+dest_files=["res://.godot/imported/DalekTranslateParticlesMask.png-8fc4edaaeaa41cd17d2c35bb31fba9d6.s3tc.ctex", "res://.godot/imported/DalekTranslateParticlesMask.png-8fc4edaaeaa41cd17d2c35bb31fba9d6.etc2.ctex"]
 
 [params]
 
