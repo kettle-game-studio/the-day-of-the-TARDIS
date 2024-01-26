@@ -10,6 +10,7 @@ uniform float bottom_k = 1;
 uniform vec3 bottom_offset;
 uniform sampler2D base_texture : filter_nearest;
 uniform sampler2D color_mask : filter_nearest;
+uniform sampler2D light_texture : filter_nearest;
 
 uniform vec3  start_point;
 uniform float start_rotation;
@@ -88,10 +89,10 @@ void process() {
 	vec2 uv = vec2(angle_h, 1.0 - h);
 	COLOR = vec4(
 		clamp(mix(
-			textureLod(base_texture, uv, 0.0).xyz, color,
-			textureLod(color_mask, uv, 0.0).x) - (0.5 + 0.5 * hash1(seed)) * dirt,
+			textureLod(base_texture, uv, 0.0).rgb, color,
+			textureLod(color_mask, uv, 0.0).r) - (0.5 + 0.5 * hash1(seed)) * dirt,
 			0, 1),
-		1);
+		textureLod(light_texture, uv, 0.0).r);
 
-	if (time_ration > 1.0) COLOR = vec4(COLOR.xyz, 0);
+	if (time_ration > 1.0) COLOR.w = -1.0;
 }

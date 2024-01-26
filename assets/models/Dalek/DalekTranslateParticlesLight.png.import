@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daa0icgc0fymt"
-path="res://.godot/imported/DalekTranslateParticlesMask.png-8fc4edaaeaa41cd17d2c35bb31fba9d6.ctex"
+uid="uid://baatlnfaa5ucd"
+path="res://.godot/imported/DalekTranslateParticlesLight.png-235e23efc23d132f092294de7996dee4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/Dalek/DalekTranslateParticlesMask.png"
-dest_files=["res://.godot/imported/DalekTranslateParticlesMask.png-8fc4edaaeaa41cd17d2c35bb31fba9d6.ctex"]
+source_file="res://assets/models/Dalek/DalekTranslateParticlesLight.png"
+dest_files=["res://.godot/imported/DalekTranslateParticlesLight.png-235e23efc23d132f092294de7996dee4.ctex"]
 
 [params]
 

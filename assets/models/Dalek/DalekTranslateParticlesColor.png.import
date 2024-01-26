@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3okpsqgmcp02"
-path.s3tc="res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.s3tc.ctex"
-path.etc2="res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.etc2.ctex"
+path="res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/Dalek/DalekTranslateParticlesColor.png"
-dest_files=["res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.s3tc.ctex", "res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.etc2.ctex"]
+dest_files=["res://.godot/imported/DalekTranslateParticlesColor.png-ea0ce13cd4d48cc86d4b5b6514db5f5d.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
