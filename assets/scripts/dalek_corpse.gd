@@ -20,11 +20,23 @@ var state = State.APPEAR
 @onready var mesh_head = $Armature/Skeleton3D/DalekBeakHead
 @onready var explosion = $Explosion
 @onready var particles = $DalekTranslateParticles
-var particles_material: ShaderMaterial
+@onready var collider = $Collider
 
-# Called when the node enters the scene tree for the first time.
-var lifetime = 1
+var _lifetime = 1.0
+var lifetime: float:
+	get:
+		return _lifetime
+	set(value):
+		_lifetime = value
+		material.set_shader_parameter("disappearance", clamp(_lifetime, 0.0, 1.0))
+		colliderShape.height = _lifetime*initialShapeHeight
+		collider.position.y = _lifetime*initialColliderY
+
 var material: ShaderMaterial
+var particles_material: ShaderMaterial
+var colliderShape: CylinderShape3D
+var initialShapeHeight: float
+var initialColliderY: float
 func _ready():
 	particles.lifetime = disappearance_time
 	material = mesh_body.get_surface_override_material(0) as ShaderMaterial
@@ -32,13 +44,18 @@ func _ready():
 	material.set_shader_parameter("color", color)
 	mesh_body.set_surface_override_material(0, material)
 	mesh_head.set_surface_override_material(0, material)
+	
+	colliderShape = collider.shape.duplicate()
+	collider.shape = colliderShape
+	initialShapeHeight = colliderShape.radius
+	initialColliderY = collider.position.y
 	if !killed:
 		particles.emitting = true
-		lifetime = -1.0
 		remove_child(explosion)
 		particles_material = particles.process_material
 		particles_material = particles_material.duplicate()
 		particles.process_material = particles_material
+		lifetime = -1.0
 		call_deferred("set_particles_settings")
 
 func set_particles_settings():
@@ -57,10 +74,8 @@ func set_particles_settings():
 func _process(delta):
 	if state == State.APPEAR && lifetime < 1.:
 		lifetime+=delta/disappearance_time
-		material.set_shader_parameter("disappearance", clamp(lifetime, 0.0, 1.0))
 	elif state == State.DISAPPEAR:
 		lifetime-=delta/disappearance_time
-		material.set_shader_parameter("disappearance", clamp(lifetime, 0.0, 1.0))
 		if lifetime < 0.:
 			get_parent().remove_child(self)
 

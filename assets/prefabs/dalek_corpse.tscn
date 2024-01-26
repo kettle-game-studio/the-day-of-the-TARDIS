@@ -157,7 +157,7 @@ mesh = SubResource("ArrayMesh_e5ngx")
 skin = SubResource("Skin_1qu8x")
 surface_material_override/0 = SubResource("ShaderMaterial_ugqpn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286072, 0.189986)
 shape = SubResource("CylinderShape3D_62yqt")
 
