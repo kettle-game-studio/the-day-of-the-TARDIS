@@ -219,7 +219,7 @@ height = 7.07596
 radius = 1.12141
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_caq06"]
-size = Vector3(2.365, 5.58344, 1.945)
+size = Vector3(2.365, 5.583, 3.68)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rxofd"]
 size = Vector3(3.278, 2.479, 3.809)

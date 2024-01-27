@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dvtdwm0nnaq05"]
+[gd_scene load_steps=43 format=3 uid="uid://dvtdwm0nnaq05"]
 
 [ext_resource type="Script" path="res://assets/scripts/abstract_level.gd" id="1_qofiy"]
 [ext_resource type="ArrayMesh" uid="uid://dq768tr3gr13a" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShell.res" id="2_76q80"]
@@ -37,8 +37,8 @@ size = Vector3(30, 2, 30)
 height = 7.07596
 radius = 1.12141
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4jc2c"]
-size = Vector3(2.365, 5.58344, 0.657157)
+[sub_resource type="BoxShape3D" id="BoxShape3D_83mn3"]
+size = Vector3(2.365, 5.583, 3.582)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vbg2k"]
 size = Vector3(3.278, 2.479, 3.809)
@@ -57,6 +57,9 @@ size = Vector3(3.51135, 7.71887, 0.932499)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_20bi8"]
 size = Vector3(3.22705, 1.67432, 2.70905)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jc2c"]
+size = Vector3(2.365, 5.58344, 0.657157)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rm76c"]
 size = Vector3(1.135, 5.583, 2.547)
@@ -699,7 +702,7 @@ shape = SubResource("CylinderShape3D_aswlo")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/Colliders/BaseCollider"]
 transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -9.83747, 2.27328, 3.58284)
-shape = SubResource("BoxShape3D_4jc2c")
+shape = SubResource("BoxShape3D_83mn3")
 
 [node name="Walls" type="Node3D" parent="Room1/Colliders"]
 
@@ -1418,15 +1421,15 @@ surface_material_override/0 = ExtResource("11_8mhpa")
 [node name="TardisRoomCenter" parent="Room2/Meshes" instance=ExtResource("12_wm00o")]
 
 [node name="Skeleton3D" parent="Room2/Meshes/TardisRoomCenter/Armature" index="0"]
-bones/1/position = Vector3(3.41032e-16, 1.4767, -0.215897)
-bones/2/position = Vector3(0.186972, 1.50043, -0.107948)
-bones/3/position = Vector3(0.186972, 1.48875, 0.107948)
-bones/4/position = Vector3(-4.47035e-08, 1.49947, 0.215897)
-bones/5/position = Vector3(-0.186972, 1.50038, 0.107948)
-bones/6/position = Vector3(-0.186972, 1.5893, -0.107948)
-bones/7/rotation = Quaternion(0, -0.975578, 0, 0.219655)
-bones/8/rotation = Quaternion(0, 0.976759, 0, 0.214341)
-bones/9/rotation = Quaternion(0, -0.99823, 0, 0.0594702)
+bones/1/position = Vector3(3.41032e-16, 1.51462, -0.215897)
+bones/2/position = Vector3(0.186972, 1.50354, -0.107948)
+bones/3/position = Vector3(0.186972, 1.45174, 0.107948)
+bones/4/position = Vector3(-4.47035e-08, 1.50579, 0.215897)
+bones/5/position = Vector3(-0.186972, 1.47947, 0.107948)
+bones/6/position = Vector3(-0.186972, 1.53495, -0.107948)
+bones/7/rotation = Quaternion(0, 0.943102, 0, 0.332503)
+bones/8/rotation = Quaternion(0, -0.939172, 0, 0.343447)
+bones/9/rotation = Quaternion(0, 0.863219, 0, 0.50483)
 
 [node name="CenterLight" parent="Room2/Meshes/TardisRoomCenter/Armature/Skeleton3D" index="0"]
 material_override = ExtResource("11_8mhpa")
