@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=6 format=3 uid="uid://byejqnxv5pb4r"]
+
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_acg0x"]
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="1_jaujo"]
+
+[sub_resource type="Resource" id="Resource_anjaj"]
+script = ExtResource("1_acg0x")
+who = "Doctor"
+text = "Для устранения неугодных нет ничего лучше старого доброго временного парадокса уничтожения прошлого будущим..."
+
+[sub_resource type="Resource" id="Resource_ghgac"]
+script = ExtResource("1_acg0x")
+who = "TARDIS"
+text = "вхорп???"
+
+[sub_resource type="Resource" id="Resource_5h2iq"]
+script = ExtResource("1_acg0x")
+who = "Doctor"
+text = "Ничего не знаю, это не нарушает невер би круел, если технически это самоубийство. Ты будто сериал не смотрела."
+
+[resource]
+script = ExtResource("1_jaujo")
+remarks = Array[ExtResource("1_acg0x")]([SubResource("Resource_anjaj"), SubResource("Resource_ghgac"), SubResource("Resource_5h2iq")])

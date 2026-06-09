@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dvtdwm0nnaq05"]
+[gd_scene load_steps=45 format=3 uid="uid://dvtdwm0nnaq05"]
 
 [ext_resource type="Script" path="res://assets/scripts/abstract_level.gd" id="1_qofiy"]
 [ext_resource type="ArrayMesh" uid="uid://dq768tr3gr13a" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShell.res" id="2_76q80"]
@@ -23,6 +23,8 @@
 [ext_resource type="ArrayMesh" uid="uid://inejmrf3aq7e" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShellBreak.res" id="19_fjdaw"]
 [ext_resource type="PackedScene" uid="uid://l5gf6g3by6ub" path="res://assets/prefabs/dialog_zone.tscn" id="20_xji0p"]
 [ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="23_hcqtw"]
+[ext_resource type="Resource" uid="uid://ciwdayekka88d" path="res://assets/dialogs/plot/0_intro.tres" id="23_lmv32"]
+[ext_resource type="Resource" uid="uid://dcxketl5opf81" path="res://assets/dialogs/plot/0_screwdriver_tutorial.tres" id="24_e0kfa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_73ijt"]
 size = Vector3(0.567871, 2.8454, 2.16913)
@@ -63,6 +65,16 @@ size = Vector3(2.365, 5.58344, 0.657157)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rm76c"]
 size = Vector3(1.135, 5.583, 2.547)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3bld"]
+animation = &"broken_door"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_af2yk"]
+graph_offset = Vector2(-148.898, 72.5256)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_y3bld")
+nodes/Animation/position = Vector2(93.3333, 120)
+nodes/output/position = Vector2(373.333, 160)
+node_connections = [&"output", 0, &"Animation"]
 
 [sub_resource type="Animation" id="Animation_6jddo"]
 length = 0.001
@@ -126,16 +138,6 @@ _data = {
 "RESET": SubResource("Animation_6jddo"),
 "broken_door": SubResource("Animation_fr4cs")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3bld"]
-animation = &"broken_door"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_af2yk"]
-graph_offset = Vector2(-148.898, 72.5256)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_y3bld")
-nodes/Animation/position = Vector2(93.3333, 120)
-nodes/output/position = Vector2(373.333, 160)
-node_connections = [&"output", 0, &"Animation"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nmjmr"]
 size = Vector3(1.65613, 1, 2.55518)
@@ -1421,15 +1423,15 @@ surface_material_override/0 = ExtResource("11_8mhpa")
 [node name="TardisRoomCenter" parent="Room2/Meshes" instance=ExtResource("12_wm00o")]
 
 [node name="Skeleton3D" parent="Room2/Meshes/TardisRoomCenter/Armature" index="0"]
-bones/1/position = Vector3(3.41032e-16, 1.51462, -0.215897)
-bones/2/position = Vector3(0.186972, 1.50354, -0.107948)
-bones/3/position = Vector3(0.186972, 1.45174, 0.107948)
-bones/4/position = Vector3(-4.47035e-08, 1.50579, 0.215897)
-bones/5/position = Vector3(-0.186972, 1.47947, 0.107948)
-bones/6/position = Vector3(-0.186972, 1.53495, -0.107948)
-bones/7/rotation = Quaternion(0, 0.943102, 0, 0.332503)
-bones/8/rotation = Quaternion(0, -0.939172, 0, 0.343447)
-bones/9/rotation = Quaternion(0, 0.863219, 0, 0.50483)
+bones/1/position = Vector3(3.41032e-16, 1.51048, -0.215897)
+bones/2/position = Vector3(0.186972, 1.54813, -0.107948)
+bones/3/position = Vector3(0.186972, 1.52504, 0.107948)
+bones/4/position = Vector3(-4.47035e-08, 1.55003, 0.215897)
+bones/5/position = Vector3(-0.186972, 1.5351, 0.107948)
+bones/6/position = Vector3(-0.186972, 1.48632, -0.107948)
+bones/7/rotation = Quaternion(0, -0.370835, 0, 0.928699)
+bones/8/rotation = Quaternion(0, 0.795315, 0, 0.606197)
+bones/9/rotation = Quaternion(0, -0.822141, 0, 0.569283)
 
 [node name="CenterLight" parent="Room2/Meshes/TardisRoomCenter/Armature/Skeleton3D" index="0"]
 material_override = ExtResource("11_8mhpa")
@@ -1999,9 +2001,6 @@ skeleton = NodePath("../../..")
 transform = Transform3D(-0.937768, -0.0305922, 0.113852, -0.0239133, 0.806957, 0.195841, -0.0175937, 0.032527, -1.34263, 0.292453, 0.195687, 0.00333866)
 
 [node name="AnimationTree" type="AnimationTree" parent="Room2/BrokenDoor"]
-libraries = {
-"": SubResource("AnimationLibrary_41rbl")
-}
 tree_root = SubResource("AnimationNodeBlendTree_af2yk")
 anim_player = NodePath("../AnimationPlayer")
 
@@ -2014,34 +2013,7 @@ libraries = {
 transform = Transform3D(0.943766, 0, 0.330613, 0, 1, 0, -0.330613, 0, 0.943766, -4.94946, 0, 0.830194)
 player_state_in_dialog = 3
 player_state_after = 2
-speech = Array[Dictionary]([{
-"text": "вхорп. вхорп.",
-"who": "TARDIS"
-}, {
-"text": "Что происходит? Я вышел на пять минут, почему всё в боевом режиме?",
-"who": "Doctor"
-}, {
-"text": "Вхорп-вхорп-вхорп?!",
-"who": "TARDIS"
-}, {
-"text": "Ну да, я отключил защиту. Как мне ещё обучать Клару вождению, если она не будет испытывать постоянную опасность за свою жизнь? Это же главная часть!",
-"who": "Doctor"
-}, {
-"text": "ВХоРП-ВХОРП вХОРП вХоРП-ВХОРП!",
-"who": "TARDIS"
-}, {
-"text": "Далеки? Прямо здесь? Где Клара, она в безопасности??",
-"who": "Doctor"
-}, {
-"text": "ВХОРП ВХОРП, ВХ*РП, ВХОРП.",
-"who": "TARDIS"
-}, {
-"text": "А, ну да, конечно, а ты как, в порядке?",
-"who": "Doctor"
-}, {
-"text": "вхорп...",
-"who": "TARDIS"
-}])
+speech = ExtResource("23_lmv32")
 
 [node name="CollisionShape3D" parent="Room2/Dialog1" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0332642, 0.511166, 0.67823)
@@ -2050,22 +2022,7 @@ shape = SubResource("BoxShape3D_nmjmr")
 [node name="Dialog2" parent="Room2" instance=ExtResource("20_xji0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9241, -0.300804, 0.609299)
 player_state_in_dialog = 0
-speech = Array[Dictionary]([{
-"text": "Я со всем разберусь. Моя левая кнопка мыш- отвёртка может открывать небольшие разломы во времени",
-"who": "Doctor"
-}, {
-"text": "вхорп?",
-"who": "TARDIS"
-}, {
-"text": "Ничего не знаю, отвёрточка всегда могла так делать.",
-"who": "Doctor"
-}, {
-"text": "вхорп-вхорп...",
-"who": "TARDIS"
-}, {
-"text": "Ну давай без крайностей, создание голографических экранов - это уж совсем чепуха",
-"who": "Doctor"
-}])
+speech = ExtResource("24_e0kfa")
 
 [node name="CollisionShape3D" parent="Room2/Dialog2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89107, 2.85645, -0.29364)

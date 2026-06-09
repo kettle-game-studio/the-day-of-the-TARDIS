@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=5 format=3 uid="uid://cvxkqsvpm7ei8"]
+
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_hylki"]
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="1_uj13x"]
+
+[sub_resource type="Resource" id="Resource_f8tn3"]
+script = ExtResource("1_hylki")
+who = "TARDIS"
+text = "вхорп-вхорп, вхорп вхорп-вхорп!"
+
+[sub_resource type="Resource" id="Resource_ctdnt"]
+script = ExtResource("1_hylki")
+who = "Doctor"
+text = "Временная петля? Спасибо, но я и сам бы справился. Вот смотри, сейчас сделаю всех с первого раза!"
+
+[resource]
+script = ExtResource("1_uj13x")
+remarks = Array[ExtResource("1_hylki")]([SubResource("Resource_f8tn3"), SubResource("Resource_ctdnt")])

@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=12 format=3 uid="uid://ciwdayekka88d"]
+
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_c2iia"]
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="2_bye6k"]
+
+[sub_resource type="Resource" id="Resource_wmdd5"]
+script = ExtResource("1_c2iia")
+who = "TARDIS"
+text = "вхорп. вхорп."
+
+[sub_resource type="Resource" id="Resource_qgrkj"]
+script = ExtResource("1_c2iia")
+who = "Doctor"
+text = "Что происходит? Я вышел на пять минут, почему всё в боевом режиме?"
+
+[sub_resource type="Resource" id="Resource_u0mu2"]
+script = ExtResource("1_c2iia")
+who = "TARDIS"
+text = "Вхорп-вхорп-вхорп?!"
+
+[sub_resource type="Resource" id="Resource_3c000"]
+script = ExtResource("1_c2iia")
+who = "Doctor"
+text = "Ну да, я отключил защиту. Как мне ещё обучать Клару вождению, если она не будет испытывать постоянную опасность за свою жизнь? Это же главная часть!"
+
+[sub_resource type="Resource" id="Resource_jsws3"]
+script = ExtResource("1_c2iia")
+who = "TARDIS"
+text = "ВХоРП-ВХОРП вХОРП вХоРП-ВХОРП!"
+
+[sub_resource type="Resource" id="Resource_u3chu"]
+script = ExtResource("1_c2iia")
+who = "Doctor"
+text = "Далеки? Прямо здесь? Где Клара, она в безопасности??"
+
+[sub_resource type="Resource" id="Resource_53vt5"]
+script = ExtResource("1_c2iia")
+who = "TARDIS"
+text = "ВХОРП ВХОРП, ВХ*РП, ВХОРП."
+
+[sub_resource type="Resource" id="Resource_b4c2r"]
+script = ExtResource("1_c2iia")
+who = "Doctor"
+text = "А, ну да, конечно, а ты как, в порядке?"
+
+[sub_resource type="Resource" id="Resource_g7nla"]
+script = ExtResource("1_c2iia")
+who = "TARDIS"
+text = "вхорп..."
+
+[resource]
+script = ExtResource("2_bye6k")
+remarks = Array[ExtResource("1_c2iia")]([SubResource("Resource_wmdd5"), SubResource("Resource_qgrkj"), SubResource("Resource_u0mu2"), SubResource("Resource_3c000"), SubResource("Resource_jsws3"), SubResource("Resource_u3chu"), SubResource("Resource_53vt5"), SubResource("Resource_b4c2r"), SubResource("Resource_g7nla")])

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=5 format=3 uid="uid://dt10e3suoupqe"]
+
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_qy5ef"]
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="1_v2o4q"]
+
+[sub_resource type="Resource" id="Resource_ql1v1"]
+script = ExtResource("1_qy5ef")
+who = "TARDIS"
+text = "вхорп?"
+
+[sub_resource type="Resource" id="Resource_yrvee"]
+script = ExtResource("1_qy5ef")
+who = "Doctor"
+text = "Да иди ты знаешь куда, \"на бис\". \"Поржать\" ей захотелось."
+
+[resource]
+script = ExtResource("1_v2o4q")
+remarks = Array[ExtResource("1_qy5ef")]([SubResource("Resource_ql1v1"), SubResource("Resource_yrvee")])

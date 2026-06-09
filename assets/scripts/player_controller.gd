@@ -47,30 +47,33 @@ func _on_portal_changed(state: PortalController.PortalState):
 
 func _ready():
 	pass
+	
 
 func can_set_portal():
 	return !portal_area.has_overlapping_bodies()
 
 func _input(event):
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_camera(event.relative)
+		rotate_camera(event.relative * mouse_sensivity/1000)
 	elif event is InputEventMouseButton && Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elif Input.is_action_just_pressed("main_action"):
-		if !has_screwdriver || !can_set_portal():
+		if !has_screwdriver:
+			return
+		if !can_set_portal():
+			InputDeviceLocaliser.start_joy_vibration(0.5, 0.0, 0.25)
 			return
 		portal_controller.enable_portal(global_position - global_basis.z, global_rotation)
 		screwdriver.open()
-	elif Input.is_action_just_pressed("second_action"):
-	#elif Input.is_action_just_released("main_action"):
+	#elif Input.is_action_just_pressed("second_action"):
+	elif Input.is_action_just_released("main_action"):
 		if !has_screwdriver:
 			return
 		portal_controller.disable_portal()
 		screwdriver.close()
 
-
 func rotate_camera(mouse_shift: Vector2):
-	var shift = mouse_shift * mouse_sensivity/1000
+	var shift = mouse_shift
 	rotate_y(-shift.x)
 	camera.rotation.x = clamp(camera.rotation.x - shift.y, -deg_to_rad(max_down_rotation_angle), deg_to_rad(max_up_rotation_angle))
 
@@ -78,6 +81,10 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		
+	var camera_axis = Input.get_vector("rotate_left", "rotate_right", "rotate_up", "rotate_down")
+	rotate_camera(Vector2(camera_axis.x*abs(camera_axis.x), camera_axis.y*abs(camera_axis.y))*delta*settings.joystick_sensitivity)
+
 	if !can_move:
 		return
 
@@ -91,29 +98,29 @@ func _physics_process(delta):
 		else:
 			screwdriver.normal()
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var speed = input_dir.length_squared() * SPEED
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	var dash = Input.is_action_just_pressed("dash")
-	var run = Input.is_action_pressed("dash")
+	var run = Input.get_action_strength("run")
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	if dash:
-		if velocity.length() < SPEED:
-			velocity = transform.basis * Vector3(SPEED, 0, 0)
-		velocity.x*=2.5
-		velocity.z*=2.5
-	elif run:
-		velocity.x*=1.5
-		velocity.z*=1.5
+	if run:
+		velocity.x*=(run/2.0+1)
+		velocity.z*=(run/2.0+1)
 	screwdriver.shake_speed = velocity.length()
 		
 	move_and_slide()
 
 func _on_bullet(bullet: BulletContoller):
+	_die_vibration()
 	killed.emit(bullet)
+
+func _die_vibration():
+	InputDeviceLocaliser.start_joy_vibration(1, 1, 0.2)
+	await get_tree().create_timer(0.25).timeout
+	InputDeviceLocaliser.start_joy_vibration(1, 1, 0.3)
+

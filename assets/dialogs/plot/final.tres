@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=9 format=3 uid="uid://cu3cxjbbxkpk2"]
+
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="1_ww556"]
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_x8k7d"]
+
+[sub_resource type="Resource" id="Resource_80ybd"]
+script = ExtResource("1_x8k7d")
+who = "TARDIS"
+text = "Вхорп вхорп!"
+
+[sub_resource type="Resource" id="Resource_iqo4q"]
+script = ExtResource("1_x8k7d")
+who = "Doctor"
+text = "Знаю я твоё \"Враждебных форм жизни не обнаружено\", в прошлый раз на одной особе жениться пришлось."
+
+[sub_resource type="Resource" id="Resource_u62nu"]
+script = ExtResource("1_x8k7d")
+who = "TARDIS"
+text = "вхорп ;)"
+
+[sub_resource type="Resource" id="Resource_kn7wr"]
+script = ExtResource("1_x8k7d")
+who = "Doctor"
+text = "Ладно. Тогда пора искать Клару. Ты сказала, что она в безопасности? Куда ты её спрятала?"
+
+[sub_resource type="Resource" id="Resource_n7ucm"]
+script = ExtResource("1_x8k7d")
+who = "TARDIS"
+text = "вхорп"
+
+[sub_resource type="Resource" id="Resource_qyx85"]
+script = ExtResource("1_x8k7d")
+who = "Doctor"
+text = "В каком смысле \"в далека\"?"
+
+[resource]
+script = ExtResource("1_ww556")
+remarks = Array[ExtResource("1_x8k7d")]([SubResource("Resource_80ybd"), SubResource("Resource_iqo4q"), SubResource("Resource_u62nu"), SubResource("Resource_kn7wr"), SubResource("Resource_n7ucm"), SubResource("Resource_qyx85")])

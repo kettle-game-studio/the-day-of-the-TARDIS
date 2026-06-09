@@ -1,15 +1,21 @@
-[gd_scene load_steps=20 format=3 uid="uid://civq3dmxwdrwq"]
+[gd_scene load_steps=26 format=3 uid="uid://civq3dmxwdrwq"]
 
 [ext_resource type="Script" path="res://assets/scripts/game.gd" id="1_gfpfg"]
 [ext_resource type="Script" path="res://assets/scripts/portals/portal_controller.gd" id="1_l8aym"]
 [ext_resource type="PackedScene" uid="uid://cb5o00gwvk8fy" path="res://assets/prefabs/portal.tscn" id="2_e4f54"]
+[ext_resource type="Resource" uid="uid://cvxkqsvpm7ei8" path="res://assets/dialogs/death/death_01_timeloop.tres" id="2_jn17b"]
 [ext_resource type="Script" path="res://assets/scripts/portals/viewport_size_observer.gd" id="3_jahyl"]
+[ext_resource type="Resource" uid="uid://b3cxg8tc6m5wg" path="res://assets/dialogs/death/death_02_timlesschild.tres" id="3_je65q"]
 [ext_resource type="PackedScene" uid="uid://b8ru5h17t67ua" path="res://assets/scenes/level_1/level_1.tscn" id="4_bheih"]
 [ext_resource type="PackedScene" uid="uid://dstfolwlsbqnr" path="res://assets/prefabs/player.tscn" id="4_nnpej"]
+[ext_resource type="Resource" uid="uid://dt10e3suoupqe" path="res://assets/dialogs/death/death_03_laught.tres" id="4_wfrpw"]
+[ext_resource type="Resource" uid="uid://cco8gevcmw8k8" path="res://assets/dialogs/death/death_04_heavensent.tres" id="5_3a5or"]
 [ext_resource type="PackedScene" uid="uid://dvtdwm0nnaq05" path="res://assets/scenes/level_0.tscn" id="5_yg82n"]
 [ext_resource type="PackedScene" uid="uid://3uoup28ycmsf" path="res://assets/scenes/level_2/level_2.tscn" id="5_yo5bf"]
 [ext_resource type="PackedScene" uid="uid://uyj7dr0gf0xl" path="res://assets/scenes/level_4/level_4.tscn" id="6_na6xf"]
 [ext_resource type="PackedScene" uid="uid://t0k1kwbyucaj" path="res://assets/scenes/level_3/level_3.tscn" id="6_npcsh"]
+[ext_resource type="Resource" uid="uid://bks06rvtf75vb" path="res://assets/dialogs/death/death_05_biregeneration.tres" id="6_rdpku"]
+[ext_resource type="Resource" uid="uid://qmmlmqx0phv" path="res://assets/dialogs/tutorial_restart.tres" id="7_1ivrc"]
 [ext_resource type="PackedScene" uid="uid://cf00p0vuht12r" path="res://assets/scenes/level_end/level_end.tscn" id="8_urrg2"]
 [ext_resource type="PackedScene" uid="uid://puw0ngumyrnc" path="res://assets/ui/ui.tscn" id="9_72y2c"]
 [ext_resource type="PackedScene" uid="uid://qwllchpk3myw" path="res://assets/prefabs/tardis/tasdis_portal.tscn" id="13_55t3w"]
@@ -28,6 +34,8 @@ size = Vector3(0.7353, 6.669, 0.429055)
 
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_gfpfg")
+death_dialogs = Array[Resource("res://assets/dialogs/dialog.gd")]([ExtResource("2_jn17b"), ExtResource("3_je65q"), ExtResource("4_wfrpw"), ExtResource("5_3a5or"), ExtResource("6_rdpku")])
+restart_dialogs = Array[Resource("res://assets/dialogs/dialog.gd")]([ExtResource("7_1ivrc")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aiut3")

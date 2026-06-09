@@ -17,6 +17,8 @@ func _ready():
 		sections[section.section_name] = node
 
 func back_menu():
+	if menu_stack.size() == 0:
+		return
 	var active_section = menu_stack.pop_back()
 	active_section.deactivate()
 	if menu_stack.size() == 0:

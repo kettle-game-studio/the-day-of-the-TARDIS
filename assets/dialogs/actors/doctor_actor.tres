@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Actor" load_steps=3 format=3 uid="uid://voqfdm4onxvp"]
+
+[ext_resource type="Texture2D" uid="uid://ytmypi3r7tiw" path="res://assets/ui/doctor_avatar.png" id="1_h58k7"]
+[ext_resource type="Script" path="res://assets/dialogs/actor.gd" id="1_vk8wq"]
+
+[resource]
+script = ExtResource("1_vk8wq")
+name = &"Doctor"
+avatar = ExtResource("1_h58k7")
+formatting = "%s"

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=7 format=3 uid="uid://qmmlmqx0phv"]
+
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="1_brnyk"]
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_h1k4j"]
+
+[sub_resource type="Resource" id="Resource_e8ckp"]
+script = ExtResource("1_h1k4j")
+who = "TARDIS"
+text = "Вхорп-вхорп вхорп вхорп-вхорп {restart_level} вхорп-вхорп!"
+
+[sub_resource type="Resource" id="Resource_vh5sb"]
+script = ExtResource("1_h1k4j")
+who = "Doctor"
+text = "Зачем мне перезапускать временную петлю? Я победил вот того"
+
+[sub_resource type="Resource" id="Resource_fatxi"]
+script = ExtResource("1_h1k4j")
+who = "TARDIS"
+text = "{restart_level}"
+
+[sub_resource type="Resource" id="Resource_7iifm"]
+script = ExtResource("1_h1k4j")
+who = "Doctor"
+text = "Понял, {restart_level}."
+
+[resource]
+script = ExtResource("1_brnyk")
+remarks = Array[ExtResource("1_h1k4j")]([SubResource("Resource_e8ckp"), SubResource("Resource_vh5sb"), SubResource("Resource_fatxi"), SubResource("Resource_7iifm")])

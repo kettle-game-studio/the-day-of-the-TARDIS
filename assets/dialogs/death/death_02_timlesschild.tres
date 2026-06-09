@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=8 format=3 uid="uid://b3cxg8tc6m5wg"]
+
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_cb0yp"]
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="2_xsu0t"]
+
+[sub_resource type="Resource" id="Resource_dv4os"]
+script = ExtResource("1_cb0yp")
+who = "Doctor"
+text = "Фух. Спасибо за это, у меня даже регенераций не осталось, так и помер бы на месте"
+
+[sub_resource type="Resource" id="Resource_6b7on"]
+script = ExtResource("1_cb0yp")
+who = "TARDIS"
+text = "вхорп)0"
+
+[sub_resource type="Resource" id="Resource_xqkdy"]
+script = ExtResource("1_cb0yp")
+who = "Doctor"
+text = "Это что значит?"
+
+[sub_resource type="Resource" id="Resource_gvdr3"]
+script = ExtResource("1_cb0yp")
+who = "TARDIS"
+text = "вхорп ;)"
+
+[sub_resource type="Resource" id="Resource_7rg0l"]
+script = ExtResource("1_cb0yp")
+who = "Doctor"
+text = "Какое дитя?"
+
+[resource]
+script = ExtResource("2_xsu0t")
+remarks = Array[ExtResource("1_cb0yp")]([SubResource("Resource_dv4os"), SubResource("Resource_6b7on"), SubResource("Resource_xqkdy"), SubResource("Resource_gvdr3"), SubResource("Resource_7rg0l")])

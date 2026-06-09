@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cf00p0vuht12r"]
+[gd_scene load_steps=46 format=3 uid="uid://cf00p0vuht12r"]
 
 [ext_resource type="Script" path="res://assets/scripts/abstract_level.gd" id="1_6twfn"]
 [ext_resource type="PackedScene" uid="uid://ds4a7odp8uceg" path="res://assets/scenes/level_end/level_end_base.tscn" id="1_ckw72"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://l5gf6g3by6ub" path="res://assets/prefabs/dialog_zone.tscn" id="16_72ggu"]
 [ext_resource type="Script" path="res://assets/scenes/level_end/TeleportInPresent.gd" id="16_5257a"]
 [ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/Dalek/imports/Dalek_Cylinder.res" id="18_273y3"]
+[ext_resource type="Resource" uid="uid://cu3cxjbbxkpk2" path="res://assets/dialogs/plot/final.tres" id="25_wegpt"]
 
 [sub_resource type="Skin" id="Skin_84a8i"]
 resource_name = "Skin"
@@ -340,7 +341,7 @@ bone_idx = 2
 override_pose = true
 
 [node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D"]
-transform = Transform3D(0.552045, 0.686519, 0.47322, -0.779299, 0.626652, 0, -0.296544, -0.36878, 0.880944, 0.31196, 0.846881, -0.200266)
+transform = Transform3D(0.310019, 0.95073, -8.8535e-08, -0.95073, 0.310019, -5.06354e-07, -4.53959e-07, 2.41152e-07, 1, 0.31196, 0.846881, -0.200266)
 bone_name = "Arm.L"
 bone_idx = 3
 
@@ -361,9 +362,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="Room1/Clara"]
-libraries = {
-"": SubResource("AnimationLibrary_dvjqw")
-}
 tree_root = SubResource("AnimationNodeBlendTree_bn2q2")
 anim_player = NodePath("../AnimationPlayer")
 
@@ -1270,25 +1268,7 @@ shape = SubResource("BoxShape3D_8522f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36774, -9.68575e-08, -0.110646)
 player_state_in_dialog = 3
 player_state_after = 2
-speech = Array[Dictionary]([{
-"text": "Вхорп вхорп!",
-"who": "TARDIS"
-}, {
-"text": "Знаю я твоё \"Враждебных форм жизни не обнаружено\", в прошлый раз на одной особе жениться пришлось.",
-"who": "Doctor"
-}, {
-"text": "вхорп ;)",
-"who": "TARDIS"
-}, {
-"text": "Ладно. Тогда пора искать Клару. Ты сказала, что она в безопасности? Куда ты её спрятала?",
-"who": "Doctor"
-}, {
-"text": "вхорп",
-"who": "TARDIS"
-}, {
-"text": "В каком смысле \"в далека\"?",
-"who": "Doctor"
-}])
+speech = ExtResource("25_wegpt")
 
 [node name="CollisionShape3D" parent="Room1/DialogZone" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074502, 2.28802, 0)

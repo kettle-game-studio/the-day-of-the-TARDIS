@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=5 format=3 uid="uid://cco8gevcmw8k8"]
+
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_31qwq"]
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="1_88it1"]
+
+[sub_resource type="Resource" id="Resource_1aigf"]
+script = ExtResource("1_31qwq")
+who = "Doctor"
+text = "Сколько я могу продолжать делать это, Кл-"
+
+[sub_resource type="Resource" id="Resource_lsuwc"]
+script = ExtResource("1_31qwq")
+who = "TARDIS"
+text = "ВХОРП-ВХОРП ВХОРП ВХОРП"
+
+[resource]
+script = ExtResource("1_88it1")
+remarks = Array[ExtResource("1_31qwq")]([SubResource("Resource_1aigf"), SubResource("Resource_lsuwc")])

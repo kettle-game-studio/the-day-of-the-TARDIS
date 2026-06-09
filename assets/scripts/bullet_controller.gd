@@ -11,7 +11,7 @@ func _ready():
 func get_move_direction():
 	return -global_transform.basis.z
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	global_position+= get_move_direction()*delta*speed
 
 

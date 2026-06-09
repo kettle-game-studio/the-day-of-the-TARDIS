@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=8 format=3 uid="uid://dcxketl5opf81"]
+
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_1weu8"]
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="1_8w7dm"]
+
+[sub_resource type="Resource" id="Resource_u7r6k"]
+script = ExtResource("1_1weu8")
+who = "Doctor"
+text = "Я со всем разберусь. Моя {main_action}- отвёртка может открывать небольшие разломы во времени"
+
+[sub_resource type="Resource" id="Resource_4oogw"]
+script = ExtResource("1_1weu8")
+who = "TARDIS"
+text = "вхорп?"
+
+[sub_resource type="Resource" id="Resource_3lqqo"]
+script = ExtResource("1_1weu8")
+who = "Doctor"
+text = "Ничего не знаю, отвёрточка всегда могла так делать."
+
+[sub_resource type="Resource" id="Resource_rvg8n"]
+script = ExtResource("1_1weu8")
+who = "TARDIS"
+text = "вхорп-вхорп..."
+
+[sub_resource type="Resource" id="Resource_fwgj1"]
+script = ExtResource("1_1weu8")
+who = "Doctor"
+text = "Ну давай без крайностей, создание голографических экранов - это уж совсем чепуха"
+
+[resource]
+script = ExtResource("1_8w7dm")
+remarks = Array[ExtResource("1_1weu8")]([SubResource("Resource_u7r6k"), SubResource("Resource_4oogw"), SubResource("Resource_3lqqo"), SubResource("Resource_rvg8n"), SubResource("Resource_fwgj1")])

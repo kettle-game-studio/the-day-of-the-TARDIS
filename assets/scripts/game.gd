@@ -1,6 +1,11 @@
 extends Node3D
 class_name Game
 
+@export
+var death_dialogs: Array[Dialog]
+@export
+var restart_dialogs: Array[Dialog]
+
 var levels: Array[AbstractLevel] = []
 var dialogs: Array[DialogZone] = []
 var current_level = 0
@@ -39,18 +44,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	play_time+=delta
+	play_time += delta
 	
 var debug_mode = false
 func _input(event):
 	if Input.is_action_just_pressed("restart_level"):
 		restart_level(current_level)
-		debug.text = "%d level\n%d died" % [current_level,	died_count]
+		debug.text = "%d level\n%d died" % [current_level, died_count]
 	elif debug_mode:
 		for i in range(0, min(10, levels.size())):
-			if Input.is_key_label_pressed(KEY_0+i):
+			if Input.is_key_label_pressed(KEY_0 + i):
 				restart_level(i)
-				break	
+				break
 	if Input.is_action_just_pressed("debug_mode"):
 		debug_mode = !debug_mode
 		if debug_mode:
@@ -59,36 +64,32 @@ func _input(event):
 			debug.hide()
 
 func restart_level(i: int):
-	if i == 0 || (!debug_mode && i == levels.size()-1):
+	if i == 0 || (!debug_mode && i == levels.size() - 1):
 		return
 	levels[i].restart()
 	current_level = i
 	player.state = PlayerController.State.PLAY
-	debug.text = "%d level\n%d died" % [current_level,	died_count]
+	debug.text = "%d level\n%d died" % [current_level, died_count]
 
 func _on_level_finished(level: AbstractLevel):
 	if level == levels[current_level]:
 		if current_level < levels.size() - 1:
-			current_level+=1
-			debug.text = "%d level\n%d died" % [current_level,	died_count]
+			current_level += 1
+			debug.text = "%d level\n%d died" % [current_level, died_count]
 		else:
 			debug.text = "WIN\n%d died" % died_count
 			end_game.emit()
 			
 
 func _on_level_failed(_level):
-	ui.play_dialog([
-		{"who": "TARDIS", "text": "Вхорп-вхорп вхорп вхорп-вхорп {R} вхорп-вхорп! "},
-		{"who": "Doctor", "text": "Зачем мне перезапускать временную петлю? Я победил вот того"},
-		{"who": "TARDIS", "text": "{R}"},
-		{"who": "Doctor", "text": "Понял, R."},
-		] as Array[Dictionary])
+	ui.play_dialog(restart_dialogs.pick_random())
+
 
 func _on_player_is_killed(_killer):
 	levels[current_level].restart()
-	ui.play_dialog(death_dialogs[died_count%death_dialogs.size()] as Array[Dictionary])
-	died_count+=1
-	debug.text = "%d level\n%d died" % [current_level,	died_count]
+	ui.play_dialog(death_dialogs.pick_random())
+	died_count += 1
+	debug.text = "%d level\n%d died" % [current_level, died_count]
 
 var shoted_zones = {}
 func _on_dialog(zone: DialogZone):
@@ -102,40 +103,3 @@ func _on_dialog(zone: DialogZone):
 	if player.state == PlayerController.State.INTRO:
 		player.screwdriver.close()
 	
-
-var death_dialogs = [
-	[
-		{ "who": "TARDIS", "text": "вхорп-вхорп, вхорп вхорп-вхорп!" },
-		{
-			"who": "Doctor",
-			"text": "Временная петля? Спасибо, но я и сам бы справился. Вот смотри, сейчас сделаю всех с первого раза!"
-		}
-	],
-	[
-		{
-			"who": "Doctor",
-			"text": "Фух. Спасибо за это, у меня даже регенераций не осталось, так и помер бы на месте"
-		},
-		{ "who": "TARDIS", "text": "вхорп)0" },
-		{ "who": "Doctor", "text": "Это что значит?" },
-		{ "who": "TARDIS", "text": "вхорп ;)" },
-		{ "who": "Doctor", "text": "Какое дитя?" }
-	],
-	[
-		{ "who": "TARDIS", "text": "вхорп?" },
-		{
-			"who": "Doctor",
-			"text": "Да иди ты знаешь куда, \"на бис\". \"Поржать\" ей захотелось."
-		}
-	],
-	[
-		{ "who": "Doctor", "text": "Сколько я могу продолжать делать это, Кл-" },
-		{ "who": "TARDIS", "text": "ВХОРП-ВХОРП ВХОРП ВХОРП" }
-	],
-	[
-		{ "who": "TARDIS", "text": "вхорп... вхорп-вхорп" },
-		{ "who": "Doctor", "text": "В смысле \"убирать ещё одно тело\"?" },
-		{ "who": "TARDIS", "text": "вхорп-вхорп-вхорп" },
-		{ "who": "Doctor", "text": "Что такое бигенерация?" }
-	]
-]

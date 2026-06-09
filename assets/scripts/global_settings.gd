@@ -2,6 +2,7 @@ extends Resource
 class_name GlobalSettings
 
 @export var mouse_sensitivity: float
+@export var joystick_sensitivity: float
 @export var dialog_auto_continue: bool
 @export var audio_sounds_volume: float:
 	get:

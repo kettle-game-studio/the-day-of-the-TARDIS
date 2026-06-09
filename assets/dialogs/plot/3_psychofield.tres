@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=10 format=3 uid="uid://wm8ip6aruusm"]
+
+[ext_resource type="Script" path="res://assets/dialogs/remark.gd" id="1_ctxyk"]
+[ext_resource type="Script" path="res://assets/dialogs/dialog.gd" id="1_ke81k"]
+
+[sub_resource type="Resource" id="Resource_5ici7"]
+script = ExtResource("1_ctxyk")
+who = "Doctor"
+text = "Не то чтобы далеки последние пятьдесят лет проявляли чудеса интеллекта, но \"проникнуть в ТАРДИС чтобы ездить туда-сюда\" - это не самый гениальный план..."
+
+[sub_resource type="Resource" id="Resource_gthdo"]
+script = ExtResource("1_ctxyk")
+who = "TARDIS"
+text = "Вхорп!"
+
+[sub_resource type="Resource" id="Resource_xb3r7"]
+script = ExtResource("1_ctxyk")
+who = "Doctor"
+text = "Ну конечно! Твоё психополе сводит их с ума! Умная девочка!"
+
+[sub_resource type="Resource" id="Resource_b4sgb"]
+script = ExtResource("1_ctxyk")
+who = "Doctor"
+text = "Подожди, а это не опасно для людей?"
+
+[sub_resource type="Resource" id="Resource_mpv8c"]
+script = ExtResource("1_ctxyk")
+who = "TARDIS"
+text = "вхорп..."
+
+[sub_resource type="Resource" id="Resource_fruwc"]
+script = ExtResource("1_ctxyk")
+who = "Doctor"
+text = "Что ты сделала с Кларой?"
+
+[sub_resource type="Resource" id="Resource_37jwc"]
+script = ExtResource("1_ctxyk")
+who = "Doctor"
+text = "ЧТО ТЫ СДЕЛАЛА С КЛАРОЙ????!!"
+
+[resource]
+script = ExtResource("1_ke81k")
+remarks = Array[ExtResource("1_ctxyk")]([SubResource("Resource_5ici7"), SubResource("Resource_gthdo"), SubResource("Resource_xb3r7"), SubResource("Resource_b4sgb"), SubResource("Resource_mpv8c"), SubResource("Resource_fruwc"), SubResource("Resource_37jwc")])
