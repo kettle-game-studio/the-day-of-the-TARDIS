@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dgstr4d8q6epf"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dgstr4d8q6epf"]
 
 [ext_resource type="Texture2D" uid="uid://bfe2wwxwqe3oj" path="res://assets/models/TARGIS/TardisColor.png" id="1_vqrvn"]
 [ext_resource type="Texture2D" uid="uid://ba1rorjlfvtsj" path="res://assets/models/TARGIS/TARDIS_TardisLight.png" id="2_mflmc"]

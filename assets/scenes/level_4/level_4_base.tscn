@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqkj4vqvemc5b"]
+[gd_scene format=3 uid="uid://cqkj4vqvemc5b"]
 
 [ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="1_6aeoh"]
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="2_5ibdg"]
@@ -6,9 +6,9 @@
 
 [sub_resource type="Curve3D" id="Curve3D_4rrnx"]
 
-[node name="Level4Base" type="Node3D"]
+[node name="Level4Base" type="Node3D" unique_id=1153885786]
 
-[node name="CeilMap" type="GridMap" parent="."]
+[node name="CeilMap" type="GridMap" parent="." unique_id=299837468]
 mesh_library = ExtResource("1_6aeoh")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
@@ -17,7 +17,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="WallMap" type="GridMap" parent="."]
+[node name="WallMap" type="GridMap" parent="." unique_id=87828500]
 mesh_library = ExtResource("1_6aeoh")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
@@ -26,7 +26,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 2, 0)
 
-[node name="FloorMap" type="GridMap" parent="."]
+[node name="FloorMap" type="GridMap" parent="." unique_id=2089591157]
 mesh_library = ExtResource("1_6aeoh")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
@@ -35,7 +35,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="UndergroundMap" type="GridMap" parent="."]
+[node name="UndergroundMap" type="GridMap" parent="." unique_id=607595009]
 mesh_library = ExtResource("1_6aeoh")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
@@ -44,49 +44,49 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, -3, 0)
 
-[node name="Daleks" type="Node3D" parent="."]
+[node name="Daleks" type="Node3D" parent="." unique_id=2039815450]
 
-[node name="Path3D" type="Path3D" parent="Daleks"]
+[node name="Path3D" type="Path3D" parent="Daleks" unique_id=1853838909]
 transform = Transform3D(0.00198968, 0, 0.999998, 0, 1, 0, -0.999998, 0, 0.00198968, -4.21022, 0, -5.99945)
 curve = SubResource("Curve3D_4rrnx")
 
-[node name="Path3D2" type="Path3D" parent="Daleks"]
+[node name="Path3D2" type="Path3D" parent="Daleks" unique_id=1490489710]
 transform = Transform3D(0.0261944, 0, -0.999657, 0, 1, 0, 0.999657, 0, 0.0261944, 9.16083, 0, -5.85231)
 curve = SubResource("Curve3D_4rrnx")
 
-[node name="Path3D3" type="Path3D" parent="Daleks"]
+[node name="Path3D3" type="Path3D" parent="Daleks" unique_id=1553941529]
 transform = Transform3D(-0.723787, 0, -0.690024, 0, 1, 0, 0.690024, 0, -0.723787, 9.07666, -9.53674e-07, 13.3726)
 curve = SubResource("Curve3D_4rrnx")
 
-[node name="Path3D5" type="Path3D" parent="Daleks"]
+[node name="Path3D5" type="Path3D" parent="Daleks" unique_id=1709541953]
 transform = Transform3D(0.0268748, 0, -0.999639, 0, 1, 0, 0.999639, 0, 0.0268748, 4.3783, 0, 0.128235)
 curve = SubResource("Curve3D_4rrnx")
 
-[node name="Path3D6" type="Path3D" parent="Daleks"]
+[node name="Path3D6" type="Path3D" parent="Daleks" unique_id=852631404]
 transform = Transform3D(-0.0987293, 0, -0.995115, 0, 1, 0, 0.995115, 0, -0.0987293, 4.52226, -0.0547986, 1.22151)
 curve = SubResource("Curve3D_4rrnx")
 
-[node name="Path3D4" type="Path3D" parent="Daleks"]
+[node name="Path3D4" type="Path3D" parent="Daleks" unique_id=1407355087]
 transform = Transform3D(0.0331726, 0, 0.99945, 0, 1, 0, -0.99945, 0, 0.0331726, -8.31508, 0, 12.8891)
 curve = SubResource("Curve3D_4rrnx")
 
-[node name="Dalek1" parent="Daleks" node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_5ibdg")]
+[node name="Dalek1" parent="Daleks" unique_id=1125837529 node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_5ibdg")]
 dalek_id = 1
 patrol_path = NodePath("../Path3D5")
 
-[node name="Dalek2" parent="Daleks" node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_5ibdg")]
+[node name="Dalek2" parent="Daleks" unique_id=257770606 node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_5ibdg")]
 dalek_id = 2
 patrol_path = NodePath("../Path3D6")
 
-[node name="Dalek3" parent="Daleks" node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_5ibdg")]
+[node name="Dalek3" parent="Daleks" unique_id=860421546 node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_5ibdg")]
 dalek_id = 3
 patrol_path = NodePath("../Path3D2")
 
-[node name="Dalek4" parent="Daleks" node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_5ibdg")]
+[node name="Dalek4" parent="Daleks" unique_id=1582654976 node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_5ibdg")]
 dalek_id = 9
 patrol_path = NodePath("../Path3D3")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1404667469]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.80743, 5.53133)
 light_color = Color(0.533333, 1, 1, 1)
 spot_range = 21.6559
@@ -94,5 +94,5 @@ spot_attenuation = 1.56917
 spot_angle = 52.6836
 spot_angle_attenuation = 0.732042
 
-[node name="Door" parent="." instance=ExtResource("3_k81k5")]
+[node name="Door" parent="." unique_id=1257896735 instance=ExtResource("3_k81k5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 6)

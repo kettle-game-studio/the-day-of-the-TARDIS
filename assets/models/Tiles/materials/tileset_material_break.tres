@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dypjbjdkq2fbx"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dypjbjdkq2fbx"]
 
 [ext_resource type="Texture2D" uid="uid://bcpgin217gs74" path="res://assets/models/Tiles/Tiles_TilesColor.png" id="1_wv4k0"]
 [ext_resource type="Texture2D" uid="uid://gdtr8430hkp2" path="res://assets/models/Tiles/Tiles_TilesLightBreak.png" id="2_pq6xw"]

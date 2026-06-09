@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://pnnlhlv4kfye"]
+[gd_scene format=3 uid="uid://pnnlhlv4kfye"]
 
-[ext_resource type="Script" path="res://assets/scripts/sdriver.gd" id="1_xfgxn"]
+[ext_resource type="Script" uid="uid://bn0tsl14tp128" path="res://assets/scripts/sdriver.gd" id="1_xfgxn"]
 [ext_resource type="Animation" uid="uid://bhdguq52wjbvx" path="res://assets/models/SDriver/animation/ArmatureAction.res" id="2_msyqj"]
 [ext_resource type="ArrayMesh" uid="uid://yng1xhjbo52" path="res://assets/models/SDriver/mesh/SDriver_Cylinder.res" id="3_vqt31"]
-[ext_resource type="Shader" path="res://assets/vfx/sdriver.gdshader" id="4_6avco"]
+[ext_resource type="Shader" uid="uid://cm2or3a3myt5h" path="res://assets/vfx/sdriver.gdshader" id="4_6avco"]
 [ext_resource type="AudioStream" uid="uid://mx5acjkbdr53" path="res://assets/sounds/sonic_01.mp3" id="4_us11e"]
 [ext_resource type="Texture2D" uid="uid://dr6yp1613j45e" path="res://assets/models/SDriver/SDriver_SDriverColor.png" id="5_oh4tk"]
 [ext_resource type="Texture2D" uid="uid://c2m2mqqo2dxv6" path="res://assets/models/SDriver/SDriver_SDriverLight.png" id="6_naxl4"]
@@ -163,9 +163,9 @@ tracks/10/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_meyto"]
 _data = {
-"ArmatureAction": ExtResource("2_msyqj"),
-"RESET": SubResource("Animation_2ylkn"),
-"Warning": SubResource("Animation_trk62")
+&"ArmatureAction": ExtResource("2_msyqj"),
+&"RESET": SubResource("Animation_2ylkn"),
+&"Warning": SubResource("Animation_trk62")
 }
 
 [sub_resource type="Skin" id="Skin_iskee"]
@@ -196,22 +196,20 @@ bind/6/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2mg80"]
 render_priority = 0
 shader = ExtResource("4_6avco")
-shader_parameter/color = Vector3(0.215, 1, 0)
-shader_parameter/emission = 0.2
 shader_parameter/base_texture = ExtResource("5_oh4tk")
 shader_parameter/light_texture = ExtResource("6_naxl4")
+shader_parameter/color = Vector3(0.215, 1, 0)
+shader_parameter/emission = 0.2
 
-[node name="Sdriver" type="Node3D"]
+[node name="Sdriver" type="Node3D" unique_id=2089034309]
 script = ExtResource("1_xfgxn")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_meyto")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=439749132]
+libraries/ = SubResource("AnimationLibrary_meyto")
 
-[node name="Armature" type="Node3D" parent="."]
+[node name="Armature" type="Node3D" parent="." unique_id=1536038474]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=1302702235]
 bones/0/name = "Base"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, -3.89414e-07, -3.89414e-07, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -262,12 +260,13 @@ bones/6/position = Vector3(0, 0, 0)
 bones/6/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/6/scale = Vector3(1, 1, 1)
 
-[node name="SDriver" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="SDriver" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=381203698]
 mesh = ExtResource("3_vqt31")
 skin = SubResource("Skin_iskee")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("ShaderMaterial_2mg80")
 
-[node name="Screwdriver" type="AudioStreamPlayer3D" parent="."]
+[node name="Screwdriver" type="AudioStreamPlayer3D" parent="." unique_id=333743304]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.803388)
 stream = ExtResource("4_us11e")
 max_db = 1.642

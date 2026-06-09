@@ -74,4 +74,3 @@ func _process(delta):
 
 func hide_speech():
 	ui_container.hide()
-

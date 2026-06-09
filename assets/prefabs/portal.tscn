@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cb5o00gwvk8fy"]
+[gd_scene format=3 uid="uid://cb5o00gwvk8fy"]
 
-[ext_resource type="Script" path="res://assets/scripts/portals/portal.gd" id="1_u7vlk"]
-[ext_resource type="Shader" path="res://assets/vfx/portal/portal.gdshader" id="2_8wnsr"]
+[ext_resource type="Script" uid="uid://7bqjsio248fa" path="res://assets/scripts/portals/portal.gd" id="1_u7vlk"]
+[ext_resource type="Shader" uid="uid://dbsrvm52vyue4" path="res://assets/vfx/portal/portal.gdshader" id="2_8wnsr"]
 [ext_resource type="Texture2D" uid="uid://bbv8bhdejqcij" path="res://assets/models/Portal/portal.png" id="3_ylafr"]
 [ext_resource type="Texture2D" uid="uid://6k603y3ndixm" path="res://assets/vfx/debug/test_screen.png" id="4_2mvay"]
 [ext_resource type="ArrayMesh" uid="uid://dpgps3r3nghke" path="res://assets/models/Portal/mesh/PortalBorder_Cylinder_001.res" id="6_65cpg"]
-[ext_resource type="Shader" path="res://assets/vfx/portal/portal_border.gdshader" id="6_665s6"]
+[ext_resource type="Shader" uid="uid://coeqvhlyr2xcw" path="res://assets/vfx/portal/portal_border.gdshader" id="6_665s6"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lxn44"]
 size = Vector2(1, 2)
@@ -16,19 +16,19 @@ subdivide_depth = 100
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_8wnsr")
+shader_parameter/portal_camera = ExtResource("4_2mvay")
+shader_parameter/noise_texture = ExtResource("3_ylafr")
 shader_parameter/speed = 5.0
 shader_parameter/size = 20.0
 shader_parameter/close = 0.9
 shader_parameter/color = Vector3(0.2, 0.4, 0.5)
-shader_parameter/portal_camera = ExtResource("4_2mvay")
-shader_parameter/noise_texture = ExtResource("3_ylafr")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ildiv"]
 render_priority = 0
 shader = ExtResource("6_665s6")
+shader_parameter/noise_texture = ExtResource("3_ylafr")
 shader_parameter/mult = 1.0
 shader_parameter/speed = 5.0
-shader_parameter/noise_texture = ExtResource("3_ylafr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rg1xu"]
 size = Vector3(0.893, 1.877, 0.096488)
@@ -44,43 +44,43 @@ size = Vector3(0.108276, 2.4, 0.102661)
 [sub_resource type="BoxShape3D" id="BoxShape3D_6cfx5"]
 size = Vector3(1, 0.1, 0.1)
 
-[node name="Portal" type="Node3D" node_paths=PackedStringArray("mesh")]
+[node name="Portal" type="Node3D" unique_id=2066592175 node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_u7vlk")
 mesh = NodePath("Main")
 
-[node name="Main" type="MeshInstance3D" parent="."]
+[node name="Main" type="MeshInstance3D" parent="." unique_id=58403140]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1.175, 0, 1.06581e-14, 0, 1, 0, 1.2, 0)
 layers = 524288
 mesh = SubResource("QuadMesh_lxn44")
 surface_material_override/0 = SubResource("ShaderMaterial_bur3h")
 
-[node name="PortalBorderCylinder001" type="MeshInstance3D" parent="."]
+[node name="PortalBorderCylinder001" type="MeshInstance3D" parent="." unique_id=2054236776]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1.175, 0, 1.50996e-07, 0, -1, 0, 1.2, 0)
 mesh = ExtResource("6_65cpg")
 surface_material_override/0 = SubResource("ShaderMaterial_ildiv")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=564544485]
 collision_layer = 2
 collision_mask = 11
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1328555871]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00296506, 1.01066, 0.00145569)
 shape = SubResource("BoxShape3D_rg1xu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1488250894]
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_apt48")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1180088998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.19631, 0)
 shape = SubResource("BoxShape3D_c331o")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1844497310]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494201, 1.15085, 0.000553221)
 shape = SubResource("BoxShape3D_wg2e3")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=1182022910]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.62092, 0)
 shape = SubResource("BoxShape3D_6cfx5")
 

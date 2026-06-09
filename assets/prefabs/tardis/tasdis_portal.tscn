@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://qwllchpk3myw"]
+[gd_scene format=3 uid="uid://qwllchpk3myw"]
 
-[ext_resource type="Script" path="res://assets/scripts/portals/tardis_portal.gd" id="1_ettg5"]
-[ext_resource type="Shader" path="res://assets/vfx/portal/tardis_portal.gdshader" id="1_m6xjv"]
+[ext_resource type="Script" uid="uid://c70qw5hnf4fwr" path="res://assets/scripts/portals/tardis_portal.gd" id="1_ettg5"]
+[ext_resource type="Shader" uid="uid://dky7hs7gmkny1" path="res://assets/vfx/portal/tardis_portal.gdshader" id="1_m6xjv"]
 [ext_resource type="Texture2D" uid="uid://6k603y3ndixm" path="res://assets/vfx/debug/test_screen.png" id="2_nvnod"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_xg5go"]
@@ -12,11 +12,11 @@ render_priority = 0
 shader = ExtResource("1_m6xjv")
 shader_parameter/portal_camera = ExtResource("2_nvnod")
 
-[node name="TasdisPortal" type="Node3D" node_paths=PackedStringArray("mesh")]
+[node name="TasdisPortal" type="Node3D" unique_id=393458942 node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_ettg5")
 mesh = NodePath("Mesh")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1881385726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 mesh = SubResource("QuadMesh_xg5go")
 surface_material_override/0 = SubResource("ShaderMaterial_4kgc4")

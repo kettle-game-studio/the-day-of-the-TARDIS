@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Actor" load_steps=3 format=3 uid="uid://20eep0bp7pb5"]
+[gd_resource type="Resource" script_class="Actor" format=3 uid="uid://20eep0bp7pb5"]
 
-[ext_resource type="Script" path="res://assets/dialogs/actor.gd" id="1_58was"]
+[ext_resource type="Script" uid="uid://b5j2bqj6l1brf" path="res://assets/dialogs/actor.gd" id="1_58was"]
 [ext_resource type="Texture2D" uid="uid://b7f404tljg55d" path="res://assets/ui/tardis_avatar.png" id="1_g7uhr"]
 
 [resource]

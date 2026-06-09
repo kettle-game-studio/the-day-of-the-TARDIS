@@ -15,8 +15,12 @@ dest_files=["res://.godot/imported/Tube.gltf-5fe1653411add4f62295cd5e489be75f.sc
 
 nodes/root_type=""
 nodes/root_name=""
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
@@ -28,7 +32,11 @@ animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
 import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
 _subresources={
 "meshes": {
 "Tube_Tube_001": {
@@ -38,8 +46,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_001.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tube/models/Tube_Tube_001.res"
+"save_to_file/path": "uid://b5cit04rkhd5e"
 },
 "Tube_Tube_002": {
 "generate/lightmap_uv": 0,
@@ -48,8 +57,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_002.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tube/models/Tube_Tube_002.res"
+"save_to_file/path": "uid://yr8f5o4t4drm"
 },
 "Tube_Tube_003": {
 "generate/lightmap_uv": 0,
@@ -58,8 +68,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_003.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tube/models/Tube_Tube_003.res"
+"save_to_file/path": "uid://fc2swhgqpod8"
 },
 "Tube_Tube_004": {
 "generate/lightmap_uv": 0,
@@ -68,8 +79,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_004.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tube/models/Tube_Tube_004.res"
+"save_to_file/path": "uid://cqtjb3ehts2mc"
 },
 "Tube_Tube_005": {
 "generate/lightmap_uv": 0,
@@ -78,8 +90,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_005.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tube/models/Tube_Tube_005.res"
+"save_to_file/path": "uid://fp5yjqwl4q17"
 },
 "Tube_Tube_006": {
 "generate/lightmap_uv": 0,
@@ -88,8 +101,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_006.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tube/models/Tube_Tube_006.res"
+"save_to_file/path": "uid://cbao4mti8ifvl"
 },
 "Tube_Tube_007": {
 "generate/lightmap_uv": 0,
@@ -98,8 +112,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_007.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tube/models/Tube_Tube_007.res"
+"save_to_file/path": "uid://b487eyps4umva"
 },
 "Tube_Tube_008": {
 "generate/lightmap_uv": 0,
@@ -108,8 +123,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_008.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tube/models/Tube_Tube_008.res"
+"save_to_file/path": "uid://bcb83a72nf1es"
 },
 "Tube_Tube_009": {
 "generate/lightmap_uv": 0,
@@ -118,8 +134,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_009.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tube/models/Tube_Tube_009.res"
+"save_to_file/path": "uid://dku1a8k23qpal"
 }
 }
 }

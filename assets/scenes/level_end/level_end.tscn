@@ -1,17 +1,17 @@
-[gd_scene load_steps=46 format=3 uid="uid://cf00p0vuht12r"]
+[gd_scene format=3 uid="uid://cf00p0vuht12r"]
 
-[ext_resource type="Script" path="res://assets/scripts/abstract_level.gd" id="1_6twfn"]
+[ext_resource type="Script" uid="uid://xwqlvdpsnx5x" path="res://assets/scripts/abstract_level.gd" id="1_6twfn"]
 [ext_resource type="PackedScene" uid="uid://ds4a7odp8uceg" path="res://assets/scenes/level_end/level_end_base.tscn" id="1_ckw72"]
-[ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="2_3ofxk"]
+[ext_resource type="Script" uid="uid://jpl7ademe0bl" path="res://assets/scripts/timezone.gd" id="2_3ofxk"]
 [ext_resource type="Material" uid="uid://c62848jt8ianq" path="res://assets/models/TARGIS/materials/tardis_material_alpha.tres" id="2_ytwww"]
-[ext_resource type="Script" path="res://assets/scenes/level_end/statistics.gd" id="3_n16ll"]
+[ext_resource type="Script" uid="uid://gvi3rjt4rnec" path="res://assets/scenes/level_end/statistics.gd" id="3_n16ll"]
 [ext_resource type="ArrayMesh" uid="uid://dq768tr3gr13a" path="res://assets/models/TARGIS/meshes/TARDIS_CenterLightShell.res" id="3_s8rly"]
 [ext_resource type="Material" uid="uid://dgstr4d8q6epf" path="res://assets/models/TARGIS/materials/tardis_material.tres" id="4_jsxiu"]
 [ext_resource type="FontFile" uid="uid://cihk708arfv2w" path="res://assets/ui/fonts/smalle.ttf" id="4_lyrfb"]
 [ext_resource type="FontFile" uid="uid://byx00ddgr7150" path="res://assets/ui/fonts/ljk_Inky Thin Pixels.otf" id="4_qvd6o"]
 [ext_resource type="ArrayMesh" uid="uid://dtwr6kn0heyln" path="res://assets/models/TARGIS/meshes/TARDIS_Computer.res" id="5_a4mbg"]
 [ext_resource type="ArrayMesh" uid="uid://cd6fie17a0ns6" path="res://assets/models/TARGIS/meshes/TARDIS_Ladder.res" id="6_fivip"]
-[ext_resource type="Shader" path="res://assets/vfx/dalek.gdshader" id="6_w2w4w"]
+[ext_resource type="Shader" uid="uid://mibkdj4pho7e" path="res://assets/vfx/dalek.gdshader" id="6_w2w4w"]
 [ext_resource type="ArrayMesh" uid="uid://bhvqpkrfipi04" path="res://assets/models/TARGIS/meshes/TARDIS_Wall.res" id="7_46j0h"]
 [ext_resource type="Texture2D" uid="uid://j2y4bihfisi0" path="res://assets/models/Dalek/Dalek_DalekLight.png" id="7_v7dn2"]
 [ext_resource type="Texture2D" uid="uid://dc1wvhi1f3f2i" path="res://assets/models/Dalek/Dalek_DalekColor.png" id="8_hua07"]
@@ -23,7 +23,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bo60wx0o6vj4f" path="res://assets/models/TARGIS/meshes/TARDIS_AngleBorder.res" id="12_djb4l"]
 [ext_resource type="ArrayMesh" uid="uid://bsx1vmmsoeyy8" path="res://assets/models/TARGIS/meshes/TARDIS_Border.res" id="13_2qm71"]
 [ext_resource type="PackedScene" uid="uid://l5gf6g3by6ub" path="res://assets/prefabs/dialog_zone.tscn" id="16_72ggu"]
-[ext_resource type="Script" path="res://assets/scenes/level_end/TeleportInPresent.gd" id="16_5257a"]
+[ext_resource type="Script" uid="uid://cjb428xix5com" path="res://assets/scenes/level_end/TeleportInPresent.gd" id="16_5257a"]
 [ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/Dalek/imports/Dalek_Cylinder.res" id="18_273y3"]
 [ext_resource type="Resource" uid="uid://cu3cxjbbxkpk2" path="res://assets/dialogs/plot/final.tres" id="25_wegpt"]
 
@@ -52,12 +52,12 @@ bind/5/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_orix1"]
 render_priority = 0
 shader = ExtResource("6_w2w4w")
-shader_parameter/color = Vector3(0.5, 0, 0)
-shader_parameter/disappearance = 1.0
-shader_parameter/dirt = 0.0
 shader_parameter/base_texture = ExtResource("8_hua07")
 shader_parameter/color_mask = ExtResource("9_c5h61")
 shader_parameter/Light_texture = ExtResource("7_v7dn2")
+shader_parameter/color = Vector3(0.5, 0, 0)
+shader_parameter/disappearance = 1.0
+shader_parameter/dirt = 0.0
 
 [sub_resource type="Animation" id="Animation_ewp2o"]
 length = 0.001
@@ -189,8 +189,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dvjqw"]
 _data = {
-"RESET": SubResource("Animation_ewp2o"),
-"dancing": SubResource("Animation_uamlx")
+&"RESET": SubResource("Animation_ewp2o"),
+&"dancing": SubResource("Animation_uamlx")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y2l01"]
@@ -240,18 +240,18 @@ size = Vector3(3.51135, 7.71887, 0.932499)
 [sub_resource type="BoxShape3D" id="BoxShape3D_pvhv1"]
 size = Vector3(4.57336, 5.38721, 2.12012)
 
-[node name="LevelEnd" type="Node3D" node_paths=PackedStringArray("start_point")]
+[node name="LevelEnd" type="Node3D" unique_id=1737505216 node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_6twfn")
 start_point = NodePath("Room1/SpawnPoint")
 
-[node name="Room1" type="Node3D" parent="."]
+[node name="Room1" type="Node3D" parent="." unique_id=1473834711]
 script = ExtResource("2_3ofxk")
 
-[node name="Statistics" type="Node3D" parent="Room1" node_paths=PackedStringArray("level")]
+[node name="Statistics" type="Node3D" parent="Room1" unique_id=1611435004 node_paths=PackedStringArray("level")]
 script = ExtResource("3_n16ll")
 level = NodePath("../..")
 
-[node name="Deaths" type="Label3D" parent="Room1/Statistics"]
+[node name="Deaths" type="Label3D" parent="Room1/Statistics" unique_id=125259177]
 transform = Transform3D(-0.819152, -0.196175, 0.538986, 0, 0.939693, 0.34202, -0.573576, 0.280166, -0.769751, -3.56963, -0.620118, 17.4169)
 pixel_size = 0.001
 modulate = Color(0, 0, 0, 1)
@@ -262,7 +262,7 @@ font = ExtResource("4_qvd6o")
 font_size = 80
 outline_size = 0
 
-[node name="Time" type="Label3D" parent="Room1/Statistics"]
+[node name="Time" type="Label3D" parent="Room1/Statistics" unique_id=1679060718]
 transform = Transform3D(1.19249e-08, 0.34202, -0.939693, 0, 0.939693, 0.34202, 1, -4.07855e-09, 1.12057e-08, -4.71325, -0.620118, 18)
 pixel_size = 0.001
 modulate = Color(0, 0, 0, 1)
@@ -273,12 +273,12 @@ font = ExtResource("4_qvd6o")
 font_size = 80
 outline_size = 0
 
-[node name="Clara" type="Node3D" parent="Room1"]
+[node name="Clara" type="Node3D" parent="Room1" unique_id=771301122]
 transform = Transform3D(-0.943043, 0, 0.332671, 0, 1, 0, -0.332671, 0, -0.943043, 5.94537, -0.0458804, 18.1906)
 
-[node name="Armature" type="Node3D" parent="Room1/Clara"]
+[node name="Armature" type="Node3D" parent="Room1/Clara" unique_id=1663009295]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Room1/Clara/Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Room1/Clara/Armature" unique_id=430657736]
 bones/0/name = "Base"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -297,23 +297,23 @@ bones/2/name = "Eye"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0, 1, -3.55271e-15, -1, 0, 7.54979e-08, 7.54979e-08, -3.55271e-15, 1, 0.195899, 0.353197, 8.97165e-09)
 bones/2/enabled = false
-bones/2/position = Vector3(0.195899, 0.353197, 8.97165e-09)
-bones/2/rotation = Quaternion(0.000474975, 0.000474975, -0.999525, 1.00048)
+bones/2/position = Vector3(0.195899, 0.35318995, 8.97165e-09)
+bones/2/rotation = Quaternion(-2.669249e-08, -2.6692586e-08, -0.707108, 0.7071055)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Arm.L"
 bones/3/parent = 0
 bones/3/rest = Transform3D(0.310019, 0.95073, -8.85354e-08, -0.95073, 0.310019, -5.06355e-07, -4.5396e-07, 2.41153e-07, 1, 0.31196, 0.846881, -0.200266)
 bones/3/enabled = true
 bones/3/position = Vector3(0.31196, 0.846881, -0.200266)
-bones/3/rotation = Quaternion(2.30904e-07, 1.12879e-07, -0.587359, 0.809327)
-bones/3/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0, 0, -0.842453, 0.5387698)
+bones/3/scale = Vector3(0.99999946, 1.0000004, 1)
 bones/4/name = "Arm.R"
 bones/4/parent = 0
 bones/4/rest = Transform3D(0.310019, 0.95073, -8.85354e-08, -0.95073, 0.310019, -5.06355e-07, -4.5396e-07, 2.41153e-07, 1, 0.31196, 0.846881, 0.202818)
 bones/4/enabled = true
-bones/4/position = Vector3(0.31196, 0.846881, 0.202818)
-bones/4/rotation = Quaternion(2.30904e-07, 1.12879e-07, -0.587359, 0.809327)
-bones/4/scale = Vector3(1, 1, 1)
+bones/4/position = Vector3(0.311962, 0.846879, 0.202817)
+bones/4/rotation = Quaternion(2.3090458e-07, 1.1287831e-07, -0.5873576, 0.80932754)
+bones/4/scale = Vector3(0.99999964, 1.0000006, 1)
 bones/5/name = "neutral_bone"
 bones/5/parent = -1
 bones/5/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
@@ -322,975 +322,974 @@ bones/5/position = Vector3(0, 0, 0)
 bones/5/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/5/scale = Vector3(1, 1, 1)
 
-[node name="Dalek" type="MeshInstance3D" parent="Room1/Clara/Armature/Skeleton3D"]
+[node name="Dalek" type="MeshInstance3D" parent="Room1/Clara/Armature/Skeleton3D" unique_id=952432809]
 transform = Transform3D(1, -7.45058e-09, 2.98023e-08, -7.45058e-09, 1, -1.49012e-08, -2.98023e-08, 0, 1, 0, 0, 0)
 mesh = ExtResource("18_273y3")
 skin = SubResource("Skin_84a8i")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("ShaderMaterial_orix1")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D"]
-transform = Transform3D(-0.419454, 0.907777, 0, -0.907776, -0.419454, 0, 0, 0, 1, 0.31196, 0.846881, -0.200266)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D" unique_id=869675807]
+transform = Transform3D(-0.41945362, 0.90777695, 0, -0.9077762, -0.419454, 0, 0, 0, 1, 0.31196, 0.846881, -0.200266)
 bone_name = "Arm.L"
 bone_idx = 3
 override_pose = true
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D"]
-transform = Transform3D(-3.61999e-06, 1, 3.55271e-15, -1, -3.61999e-06, 7.54979e-08, 7.54979e-08, 2.69749e-13, 1, 0.195899, 1.42105, 8.97165e-09)
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D" unique_id=1420758092]
+transform = Transform3D(-3.6199901e-06, 1, 3.55271e-15, -1, -3.6199901e-06, 7.54979e-08, 7.54979e-08, 2.6974893e-13, 1, 0.195899, 1.42105, 8.97165e-09)
 bone_name = "Eye"
 bone_idx = 2
 override_pose = true
 
-[node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D"]
-transform = Transform3D(0.310019, 0.95073, -8.8535e-08, -0.95073, 0.310019, -5.06354e-07, -4.53959e-07, 2.41152e-07, 1, 0.31196, 0.846881, -0.200266)
+[node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D" unique_id=49673856]
+transform = Transform3D(-0.4194541, 0.9077769, 0, -0.9077761, -0.4194545, 0, 0, 0, 1, 0.31196, 0.846881, -0.200266)
 bone_name = "Arm.L"
 bone_idx = 3
 
-[node name="BoneAttachment3D4" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D"]
-transform = Transform3D(0.310022, 0.95073, -8.85354e-08, -0.950729, 0.310022, -5.06355e-07, -4.53958e-07, 2.41155e-07, 1, 0.311962, 0.846879, 0.202817)
+[node name="BoneAttachment3D4" type="BoneAttachment3D" parent="Room1/Clara/Armature/Skeleton3D" unique_id=194465366]
+transform = Transform3D(0.3100221, 0.9507299, -8.85354e-08, -0.95072895, 0.31002238, -5.06355e-07, -4.539584e-07, 2.4115462e-07, 1, 0.311962, 0.846879, 0.202817)
 bone_name = "Arm.R"
 bone_idx = 4
 override_pose = true
 
-[node name="Label3D" type="Label3D" parent="Room1/Clara/Armature"]
+[node name="Label3D" type="Label3D" parent="Room1/Clara/Armature" unique_id=563517290]
 transform = Transform3D(0.121869, 0, 0.992545, 0, 1, 0, -0.992545, 0, 0.121869, 0, 1.895, 0)
 text = "Клара"
 font = ExtResource("4_lyrfb")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Room1/Clara"]
-libraries = {
-"": SubResource("AnimationLibrary_dvjqw")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Room1/Clara" unique_id=774344913]
+libraries/ = SubResource("AnimationLibrary_dvjqw")
 
-[node name="AnimationTree" type="AnimationTree" parent="Room1/Clara"]
+[node name="AnimationTree" type="AnimationTree" parent="Room1/Clara" unique_id=1933715684]
 tree_root = SubResource("AnimationNodeBlendTree_bn2q2")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/Clara"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/Clara" unique_id=481212400]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Clara/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Clara/StaticBody3D" unique_id=912663679]
 shape = SubResource("CylinderShape3D_gmec4")
 
-[node name="LevelEndBase" parent="Room1" instance=ExtResource("1_ckw72")]
+[node name="LevelEndBase" parent="Room1" unique_id=428173923 instance=ExtResource("1_ckw72")]
 
-[node name="TARDIS" type="Node3D" parent="Room1"]
+[node name="TARDIS" type="Node3D" parent="Room1" unique_id=1367840006]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -4, -2, 18)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Room1/TARDIS"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Room1/TARDIS" unique_id=1240451749]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15.0511, 0)
 spot_range = 22.0
 spot_angle = 52.7237
 
-[node name="Meshes" type="Node3D" parent="Room1/TARDIS"]
+[node name="Meshes" type="Node3D" parent="Room1/TARDIS" unique_id=13506542]
 
-[node name="TardisCenterLightShell" type="MeshInstance3D" parent="Room1/TARDIS/Meshes"]
+[node name="TardisCenterLightShell" type="MeshInstance3D" parent="Room1/TARDIS/Meshes" unique_id=739960214]
 material_override = ExtResource("2_ytwww")
 material_overlay = ExtResource("2_ytwww")
 mesh = ExtResource("3_s8rly")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisComputer" type="MeshInstance3D" parent="Room1/TARDIS/Meshes"]
+[node name="TardisComputer" type="MeshInstance3D" parent="Room1/TARDIS/Meshes" unique_id=1499313757]
 mesh = ExtResource("5_a4mbg")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisComputer2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes"]
+[node name="TardisComputer2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes" unique_id=854629084]
 transform = Transform3D(-0.584151, 0, -0.811645, 0, 1, 0, 0.811645, 0, -0.584151, 0, 0, 0)
 mesh = ExtResource("5_a4mbg")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLadder" type="MeshInstance3D" parent="Room1/TARDIS/Meshes"]
+[node name="TardisLadder" type="MeshInstance3D" parent="Room1/TARDIS/Meshes" unique_id=595118267]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 0, 0)
 mesh = ExtResource("6_fivip")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLadder2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes"]
+[node name="TardisLadder2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes" unique_id=2042972982]
 transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 0, 0, 0)
 mesh = ExtResource("6_fivip")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLadder3" type="MeshInstance3D" parent="Room1/TARDIS/Meshes"]
+[node name="TardisLadder3" type="MeshInstance3D" parent="Room1/TARDIS/Meshes" unique_id=1750809578]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("6_fivip")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="Walls" type="Node3D" parent="Room1/TARDIS/Meshes"]
+[node name="Walls" type="Node3D" parent="Room1/TARDIS/Meshes" unique_id=1561262860]
 
-[node name="TardisWall16" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall16" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=907279661]
 transform = Transform3D(0.499999, 0, 0.870355, 0, 1, 0, -0.866025, 0, 0.5025, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall16"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall16" unique_id=966749234]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall16"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall16" unique_id=1939870336]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall15" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall15" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=1826263999]
 transform = Transform3D(0.173648, 0, 0.989732, 0, 1, 0, -0.984808, 0, 0.174516, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall15"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall15" unique_id=279927025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall15"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall15" unique_id=318556482]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall14" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall14" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=45580607]
 transform = Transform3D(-0.173649, 0, 0.989731, 0, 1, 0, -0.984808, 0, -0.174517, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall14"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall14" unique_id=265653662]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall14"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall14" unique_id=626317192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall13" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall13" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=1467658336]
 transform = Transform3D(-0.5, 0, 0.870355, 0, 1, 0, -0.866025, 0, -0.5025, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall13"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall13" unique_id=1534394183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall13"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall13" unique_id=140461509]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall12" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall12" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=148521289]
 transform = Transform3D(-0.766044, 0, 0.646001, 0, 1, 0, -0.642787, 0, -0.769875, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall12"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall12" unique_id=158726542]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall12"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall12" unique_id=2020320876]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall11" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall11" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=1453935594]
 transform = Transform3D(-0.939693, 0, 0.34544, 0, 1, 0, -0.34202, 0, -0.94909, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall11"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall11" unique_id=160717602]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall11"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall11" unique_id=2072061709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall10" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall10" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=2050668900]
 transform = Transform3D(0.766044, 0, 0.646001, 0, 1, 0, -0.642787, 0, 0.769874, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall10"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall10" unique_id=308607798]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall10"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall10" unique_id=1594471610]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall9" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall9" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=2088527620]
 transform = Transform3D(-0.939693, 0, -0.34544, 0, 1, 0, 0.34202, 0, -0.94909, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall9"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall9" unique_id=590265207]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall9"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall9" unique_id=1376474882]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall8" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall8" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=204557421]
 transform = Transform3D(-0.766044, 0, -0.646002, 0, 1, 0, 0.642788, 0, -0.769874, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall8"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall8" unique_id=66797210]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall8"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall8" unique_id=971422090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall7" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall7" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=684952819]
 transform = Transform3D(-0.5, 0, -0.870355, 0, 1, 0, 0.866025, 0, -0.5025, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall7"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall7" unique_id=388620639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall7"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall7" unique_id=1858792569]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall6" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall6" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=2078390047]
 transform = Transform3D(-0.173648, 0, -0.989732, 0, 1, 0, 0.984808, 0, -0.174516, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall6"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall6" unique_id=1826025835]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall6"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall6" unique_id=1778516248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall5" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall5" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=93806007]
 transform = Transform3D(0.173648, 0, -0.989732, 0, 1, 0, 0.984808, 0, 0.174517, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall5"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall5" unique_id=1553342272]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall5"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall5" unique_id=342479803]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall4" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall4" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=1419142276]
 transform = Transform3D(0.5, 0, -0.870355, 0, 1, 0, 0.866025, 0, 0.5025, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall4"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall4" unique_id=1973357078]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall4"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall4" unique_id=801175130]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall3" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall3" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=804379184]
 transform = Transform3D(0.766044, 0, -0.646001, 0, 1, 0, 0.642788, 0, 0.769875, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall3"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall3" unique_id=1623141645]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall3"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall3" unique_id=1994500605]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=1452849593]
 transform = Transform3D(0.939693, 0, -0.34373, 0, 1, 0, 0.34202, 0, 0.944391, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall2"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall2" unique_id=27510466]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall2"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall2" unique_id=296078919]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWall" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWall" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=1973003063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.005, 0, 0, 0)
 mesh = ExtResource("7_46j0h")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall" unique_id=1976662122]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWall" unique_id=468443005]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWallDoor" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWallDoor" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=483548061]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("9_bfwee")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisWallTardisDoor" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls"]
+[node name="TardisWallTardisDoor" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls" unique_id=630997870]
 transform = Transform3D(0.939693, 0, 0.34373, 0, 1, 0, -0.34202, 0, 0.944391, 0, 0, 0)
 mesh = ExtResource("10_757js")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWallTardisDoor"]
+[node name="TardisLamp" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWallTardisDoor" unique_id=979423684]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, 1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWallTardisDoor"]
+[node name="TardisLamp2" type="MeshInstance3D" parent="Room1/TARDIS/Meshes/Walls/TardisWallTardisDoor" unique_id=1155004869]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.013, 3.79001, -1)
 mesh = ExtResource("8_y2abt")
 skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="TardisRoomCenter" parent="Room1/TARDIS/Meshes" instance=ExtResource("11_s0e4q")]
+[node name="TardisRoomCenter" parent="Room1/TARDIS/Meshes" unique_id=1546216401 instance=ExtResource("11_s0e4q")]
 
-[node name="Colliders" type="Node3D" parent="Room1/TARDIS"]
+[node name="Colliders" type="Node3D" parent="Room1/TARDIS" unique_id=24473723]
 
-[node name="Borders" type="Node3D" parent="Room1/TARDIS/Colliders"]
+[node name="Borders" type="Node3D" parent="Room1/TARDIS/Colliders" unique_id=339523271]
 
-[node name="TardisAngleBorder" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisAngleBorder" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1628144363]
 transform = Transform3D(0.344414, 0, 0.938818, 0, 1, 0, -0.938818, 0, 0.344414, -3.67051, 0, 3.08006)
 mesh = ExtResource("12_djb4l")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisAngleBorder"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisAngleBorder" unique_id=1357619425]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisAngleBorder/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisAngleBorder/StaticBody3D" unique_id=1382325078]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178443, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_0ck5j")
 
-[node name="TardisAngleBorder2" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisAngleBorder2" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1571629384]
 transform = Transform3D(0.881781, 0, -0.471658, 0, 1, 0, 0.471658, 0, 0.881781, -4.74814, 2.38419e-07, -0.0649655)
 mesh = ExtResource("12_djb4l")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisAngleBorder2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisAngleBorder2" unique_id=1693409353]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisAngleBorder2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisAngleBorder2/StaticBody3D" unique_id=732153074]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178443, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_0ck5j")
 
-[node name="TardisBorder" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1545506715]
 transform = Transform3D(0.405556, 0, -0.91407, 0, 1, 0, 0.91407, 0, 0.405556, -6.54454, 0, 1.05452)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder" unique_id=116317927]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder/StaticBody3D" unique_id=1770862635]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder12" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder12" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=389720503]
 transform = Transform3D(0.166889, 0, -0.985976, 0, 1, 0, 0.985976, 0, 0.166889, -9.42207, 1.92276, 1.4426)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder12"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder12" unique_id=769191641]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder12/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder12/StaticBody3D" unique_id=1498571621]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder13" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder13" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1488560976]
 transform = Transform3D(-0.575662, 0, 0.817688, 0, 1, 0, -0.817688, 0, -0.575662, -7.97963, 1.92276, 4.89752)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder13"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder13" unique_id=2122331248]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder13/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder13/StaticBody3D" unique_id=383494550]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder2" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder2" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1530661376]
 transform = Transform3D(0.419579, 0, -0.907719, 0, 1, 0, 0.907719, 0, 0.419579, -8.58581, 0, 1.86375)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder2" unique_id=1199957936]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder2/StaticBody3D" unique_id=1806969906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder4" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder4" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1430586000]
 transform = Transform3D(-0.405269, 0, 0.914198, 0, 1, 0, -0.914198, 0, -0.405269, -7.61054, 0, 4.00069)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder4" unique_id=1766147759]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder4/StaticBody3D" unique_id=1483079814]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder3" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder3" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1922146980]
 transform = Transform3D(-0.248064, 0, 0.968744, 0, 1, 0, -0.968744, 0, -0.248064, -5.5945, 0, 3.23792)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder3" unique_id=561888302]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder3/StaticBody3D" unique_id=1712339058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder5" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder5" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1668492911]
 transform = Transform3D(-0.287227, 0, -0.957863, 0, 1, 0, 0.957863, 0, -0.287227, -1.86793, -2.38419e-07, 4.10228)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder5" unique_id=1898066922]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder5/StaticBody3D" unique_id=938417842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder6" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder6" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=409003039]
 transform = Transform3D(0.584887, 0, -0.811115, 0, 1, 0, 0.811115, 0, 0.584887, 2.75878, 0, 3.69294)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder6" unique_id=177519809]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder6/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder6/StaticBody3D" unique_id=695407404]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder7" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder7" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1001265140]
 transform = Transform3D(0.915796, 0, -0.401644, 0, 1, 0, 0.401644, 0, 0.915796, 3.97038, 0.00243258, 2.06705)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder7"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder7" unique_id=1373136978]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder7/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder7/StaticBody3D" unique_id=591626997]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder8" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder8" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=737657718]
 transform = Transform3D(0.870296, 0, 0.49253, 0, 1, 0, -0.49253, 0, 0.870296, 3.6628, 0, -2.35539)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder8"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder8" unique_id=410600251]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder8/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder8/StaticBody3D" unique_id=835853796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder9" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder9" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=2103790355]
 transform = Transform3D(0.455933, 0, 0.890014, 0, 1, 0, -0.890014, 0, 0.455933, 2.14778, 0.00243247, -3.85518)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder9"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder9" unique_id=1872926767]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder9/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder9/StaticBody3D" unique_id=1462763328]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder10" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder10" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=1052929411]
 transform = Transform3D(-0.0686595, 0, 0.99764, 0, 1, 0, -0.99764, 0, -0.0686595, 0.0165085, 0.0024327, -4.31986)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder10"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder10" unique_id=115239161]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder10/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder10/StaticBody3D" unique_id=2022806441]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="TardisBorder11" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders"]
+[node name="TardisBorder11" type="MeshInstance3D" parent="Room1/TARDIS/Colliders/Borders" unique_id=138596787]
 transform = Transform3D(-0.838385, 0, 0.545078, 0, 1, 0, -0.545078, 0, -0.838385, -3.78336, 0.00243294, -2.05948)
 mesh = ExtResource("13_2qm71")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("4_jsxiu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder11"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder11" unique_id=1278359661]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder11/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Borders/TardisBorder11/StaticBody3D" unique_id=1311347216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266171, 0.90372, -0.102842)
 shape = SubResource("BoxShape3D_ln2nj")
 
-[node name="BaseCollider" type="StaticBody3D" parent="Room1/TARDIS/Colliders"]
+[node name="BaseCollider" type="StaticBody3D" parent="Room1/TARDIS/Colliders" unique_id=302843454]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/BaseCollider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/BaseCollider" unique_id=440275723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_f0txe")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/BaseCollider"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/BaseCollider" unique_id=2090194216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656322, 0)
 shape = SubResource("CylinderShape3D_ky8ph")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/BaseCollider"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/BaseCollider" unique_id=754441344]
 transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -9.83747, 2.27328, 3.58284)
 shape = SubResource("BoxShape3D_caq06")
 
-[node name="Walls" type="Node3D" parent="Room1/TARDIS/Colliders"]
+[node name="Walls" type="Node3D" parent="Room1/TARDIS/Colliders" unique_id=1488280679]
 
-[node name="Wall" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=1269207701]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall" unique_id=794142783]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall/StaticBody3D" unique_id=653674146]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall/StaticBody3D" unique_id=1139800741]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall/StaticBody3D" unique_id=1885616121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall2" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall2" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=2065329856]
 transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall2" unique_id=264368029]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall2/StaticBody3D" unique_id=2141775090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall2/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall2/StaticBody3D" unique_id=167853168]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall2/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall2/StaticBody3D" unique_id=1155967741]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall3" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall3" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=921011869]
 transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall3" unique_id=594208606]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall3/StaticBody3D" unique_id=1971662603]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall3/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall3/StaticBody3D" unique_id=1816825280]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall3/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall3/StaticBody3D" unique_id=50508508]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall4" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall4" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=613393743]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall4" unique_id=316072909]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall4/StaticBody3D" unique_id=460532735]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall4/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall4/StaticBody3D" unique_id=880215226]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall5" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall5" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=874925242]
 transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall5" unique_id=415634106]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall5/StaticBody3D" unique_id=43645063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall5/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall5/StaticBody3D" unique_id=718850340]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall5/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall5/StaticBody3D" unique_id=875514360]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall6" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall6" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=111098191]
 transform = Transform3D(-0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, -0.173648, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall6" unique_id=441184501]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall6/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall6/StaticBody3D" unique_id=2110874905]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall6/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall6/StaticBody3D" unique_id=978089062]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall6/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall6/StaticBody3D" unique_id=1390286844]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall7" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall7" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=211139965]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall7"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall7" unique_id=2065679065]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall7/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall7/StaticBody3D" unique_id=2115943013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall7/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall7/StaticBody3D" unique_id=1004393993]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall7/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall7/StaticBody3D" unique_id=1601851077]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall8" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall8" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=412931956]
 transform = Transform3D(-0.766044, 0, -0.642787, 0, 1, 0, 0.642787, 0, -0.766044, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall8"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall8" unique_id=493713252]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall8/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall8/StaticBody3D" unique_id=4829563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall8/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall8/StaticBody3D" unique_id=1103054415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall8/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall8/StaticBody3D" unique_id=548089917]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall9" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall9" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=1947111592]
 transform = Transform3D(-0.939692, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939692, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall9"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall9" unique_id=1452586087]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall9/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall9/StaticBody3D" unique_id=1512625701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall9/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall9/StaticBody3D" unique_id=1356167220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall9/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall9/StaticBody3D" unique_id=397283270]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall10" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall10" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=1106182422]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall10"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall10" unique_id=124378114]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall10/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall10/StaticBody3D" unique_id=2069596800]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall10/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall10/StaticBody3D" unique_id=1263859006]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 disabled = true
 
-[node name="Wall11" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall11" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=1050226935]
 transform = Transform3D(-0.939692, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939692, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall11"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall11" unique_id=623882942]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall11/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall11/StaticBody3D" unique_id=1655454176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall11/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall11/StaticBody3D" unique_id=633792855]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall11/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall11/StaticBody3D" unique_id=2060594852]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall12" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall12" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=414219019]
 transform = Transform3D(-0.766044, 0, 0.642787, 0, 1, 0, -0.642787, 0, -0.766044, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall12"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall12" unique_id=1885308884]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall12/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall12/StaticBody3D" unique_id=310202231]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall12/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall12/StaticBody3D" unique_id=2096693917]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall12/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall12/StaticBody3D" unique_id=1984071858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall13" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall13" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=850301335]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall13"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall13" unique_id=628547804]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall13/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall13/StaticBody3D" unique_id=666435519]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall13/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall13/StaticBody3D" unique_id=940652813]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall13/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall13/StaticBody3D" unique_id=2002194761]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall14" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall14" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=1107769246]
 transform = Transform3D(-0.173648, 0, 0.984807, 0, 1, 0, -0.984807, 0, -0.173648, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall14"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall14" unique_id=884107686]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall14/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall14/StaticBody3D" unique_id=2053369975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall14/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall14/StaticBody3D" unique_id=1716664265]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall15" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall15" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=88508936]
 transform = Transform3D(0.173648, 0, 0.984807, 0, 1, 0, -0.984807, 0, 0.173648, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall15"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall15" unique_id=1172930206]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall15/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall15/StaticBody3D" unique_id=1547693505]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall15/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall15/StaticBody3D" unique_id=1502315048]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall15/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall15/StaticBody3D" unique_id=2104961107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall16" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall16" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=1701418498]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall16"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall16" unique_id=1131444353]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall16/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall16/StaticBody3D" unique_id=1002026473]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall16/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall16/StaticBody3D" unique_id=1974175879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall16/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall16/StaticBody3D" unique_id=662488359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Wall17" type="Node3D" parent="Room1/TARDIS/Colliders/Walls"]
+[node name="Wall17" type="Node3D" parent="Room1/TARDIS/Colliders/Walls" unique_id=905427122]
 transform = Transform3D(0.766044, 0, 0.642787, 0, 1, 0, -0.642787, 0, 0.766044, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall17"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Walls/Wall17" unique_id=1080839254]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall17/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall17/StaticBody3D" unique_id=952843261]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51919, 0.720515, -0.102842)
 shape = SubResource("BoxShape3D_rxofd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall17/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall17/StaticBody3D" unique_id=214829968]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94502, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_fy53r")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall17/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Walls/Wall17/StaticBody3D" unique_id=1798858602]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1253, 3.84552, -0.102842)
 shape = SubResource("BoxShape3D_ds70p")
 
-[node name="Tardis" type="Node3D" parent="Room1/TARDIS/Colliders"]
+[node name="Tardis" type="Node3D" parent="Room1/TARDIS/Colliders" unique_id=1100402766]
 
-[node name="Tardis1" type="Node3D" parent="Room1/TARDIS/Colliders/Tardis"]
+[node name="Tardis1" type="Node3D" parent="Room1/TARDIS/Colliders/Tardis" unique_id=772461484]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis1" unique_id=202501756]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis1/StaticBody3D" unique_id=1974315364]
 transform = Transform3D(0.937264, 0.348621, 0, -0.348621, 0.937264, 0, 0, 0, 1, -5.13723, 0.00104294, -0.102843)
 shape = SubResource("BoxShape3D_3ijga")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis1/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis1/StaticBody3D" unique_id=1918189113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, 1.56751)
 shape = SubResource("BoxShape3D_8522f")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis1/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis1/StaticBody3D" unique_id=2047629013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_8522f")
 
-[node name="Tardis2" type="Node3D" parent="Room1/TARDIS/Colliders/Tardis"]
+[node name="Tardis2" type="Node3D" parent="Room1/TARDIS/Colliders/Tardis" unique_id=1254712772]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis2" unique_id=635780602]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis2/StaticBody3D" unique_id=346551534]
 transform = Transform3D(0.937264, 0.348621, 0, -0.348621, 0.937264, 0, 0, 0, 1, -5.13723, 0.00104294, -0.102843)
 shape = SubResource("BoxShape3D_3ijga")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis2/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis2/StaticBody3D" unique_id=828324243]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, 1.56751)
 shape = SubResource("BoxShape3D_8522f")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis2/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis2/StaticBody3D" unique_id=2033031983]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_8522f")
 
-[node name="Tardis3" type="Node3D" parent="Room1/TARDIS/Colliders/Tardis"]
+[node name="Tardis3" type="Node3D" parent="Room1/TARDIS/Colliders/Tardis" unique_id=1074291545]
 transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis3" unique_id=1012902731]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis3/StaticBody3D" unique_id=312088037]
 transform = Transform3D(0.937264, 0.348621, 0, -0.348621, 0.937264, 0, 0, 0, 1, -5.13723, 0.00104294, -0.102843)
 shape = SubResource("BoxShape3D_3ijga")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis3/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis3/StaticBody3D" unique_id=1849484415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, 1.56751)
 shape = SubResource("BoxShape3D_8522f")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis3/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room1/TARDIS/Colliders/Tardis/Tardis3/StaticBody3D" unique_id=527674459]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-07, 0, 1, -5.98783, 3.33489, -1.6386)
 shape = SubResource("BoxShape3D_8522f")
 
-[node name="DialogZone" parent="Room1" instance=ExtResource("16_72ggu")]
+[node name="DialogZone" parent="Room1" unique_id=1366354560 instance=ExtResource("16_72ggu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36774, -9.68575e-08, -0.110646)
 player_state_in_dialog = 3
 player_state_after = 2
 speech = ExtResource("25_wegpt")
 
-[node name="CollisionShape3D" parent="Room1/DialogZone" index="0"]
+[node name="CollisionShape3D" parent="Room1/DialogZone" index="0" unique_id=693587649]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074502, 2.28802, 0)
 
-[node name="SpawnPoint" type="Node3D" parent="Room1"]
+[node name="SpawnPoint" type="Node3D" parent="Room1" unique_id=73848631]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 6, 0.2, 2)
 
-[node name="Room2" type="Node3D" parent="."]
+[node name="Room2" type="Node3D" parent="." unique_id=1927674985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 script = ExtResource("2_3ofxk")
 roomType = 1
 
-[node name="LevelEndBase" parent="Room2" instance=ExtResource("1_ckw72")]
+[node name="LevelEndBase" parent="Room2" unique_id=889861493 instance=ExtResource("1_ckw72")]
 
-[node name="TeleportInPresent" type="Area3D" parent="Room2" node_paths=PackedStringArray("level")]
+[node name="TeleportInPresent" type="Area3D" parent="Room2" unique_id=1186100395 node_paths=PackedStringArray("level")]
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 script = ExtResource("16_5257a")
 level = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room2/TeleportInPresent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room2/TeleportInPresent" unique_id=842995669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.112436, 2.2229, -0.569739)
 shape = SubResource("BoxShape3D_pvhv1")
 

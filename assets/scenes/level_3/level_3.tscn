@@ -1,29 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://t0k1kwbyucaj"]
+[gd_scene format=3 uid="uid://t0k1kwbyucaj"]
 
-[ext_resource type="Script" path="res://assets/scripts/abstract_level.gd" id="1_3sml8"]
+[ext_resource type="Script" uid="uid://xwqlvdpsnx5x" path="res://assets/scripts/abstract_level.gd" id="1_3sml8"]
 [ext_resource type="PackedScene" uid="uid://dlowkq41usqmv" path="res://assets/scenes/level_3/level_3_base.tscn" id="1_xr5b3"]
 [ext_resource type="MeshLibrary" uid="uid://ddta8vtrlxsia" path="res://assets/models/Tiles/tileset/mesh_library_break.tres" id="2_lsyuc"]
-[ext_resource type="Script" path="res://assets/scripts/timezone.gd" id="2_qugft"]
+[ext_resource type="Script" uid="uid://jpl7ademe0bl" path="res://assets/scripts/timezone.gd" id="2_qugft"]
 [ext_resource type="Material" uid="uid://dypjbjdkq2fbx" path="res://assets/models/Tiles/materials/tileset_material_break.tres" id="5_gjh70"]
 [ext_resource type="PackedScene" uid="uid://l5gf6g3by6ub" path="res://assets/prefabs/dialog_zone.tscn" id="6_xuuno"]
 [ext_resource type="Resource" uid="uid://wm8ip6aruusm" path="res://assets/dialogs/plot/3_psychofield.tres" id="7_8veba"]
 
-[node name="Level3" type="Node3D" node_paths=PackedStringArray("start_point")]
+[node name="Level3" type="Node3D" unique_id=1191665748 node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_3sml8")
 start_point = NodePath("Room1/Level3Base/PlayerStart")
 
-[node name="Room1" type="Node3D" parent="."]
+[node name="Room1" type="Node3D" parent="." unique_id=754017552]
 
-[node name="Level3Base" parent="Room1" instance=ExtResource("1_xr5b3")]
+[node name="Level3Base" parent="Room1" unique_id=1131867834 instance=ExtResource("1_xr5b3")]
 script = ExtResource("2_qugft")
 
-[node name="PlayerStart" type="Node3D" parent="Room1/Level3Base"]
+[node name="PlayerStart" type="Node3D" parent="Room1/Level3Base" unique_id=1425485484]
 transform = Transform3D(-0.979233, 0, -0.202736, 0, 1, 0, 0.202736, 0, -0.979233, -5.27584, 0.160501, -5.03193)
 
-[node name="Room2" type="Node3D" parent="."]
+[node name="Room2" type="Node3D" parent="." unique_id=258435097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 
-[node name="Level3Base" parent="Room2" instance=ExtResource("1_xr5b3")]
+[node name="Level3Base" parent="Room2" unique_id=1696976275 instance=ExtResource("1_xr5b3")]
 script = ExtResource("2_qugft")
 roomType = 1
 
@@ -42,14 +42,14 @@ start_patrol_from = 0.6
 [node name="Dalek2" parent="Room2/Level3Base/Daleks" index="1"]
 start_patrol_from = 0.5
 
-[node name="LeftBody" parent="Room2/Level3Base/Door" index="0"]
-transform = Transform3D(0.999999, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 0.999999, 0, 0, 0)
+[node name="LeftBody" parent="Room2/Level3Base/Door" index="0" unique_id=429444969]
+transform = Transform3D(0.999999, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 0.999999, 0, 0, 0)
 
-[node name="Right" parent="Room2/Level3Base/Door" index="2"]
+[node name="Right" parent="Room2/Level3Base/Door" index="2" unique_id=1115042930]
 material_override = ExtResource("5_gjh70")
 surface_material_override/0 = ExtResource("5_gjh70")
 
-[node name="Left" parent="Room2/Level3Base/Door" index="3"]
+[node name="Left" parent="Room2/Level3Base/Door" index="3" unique_id=722937018]
 transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
 material_override = ExtResource("5_gjh70")
 surface_material_override/0 = ExtResource("5_gjh70")
@@ -57,12 +57,12 @@ surface_material_override/0 = ExtResource("5_gjh70")
 [node name="SpotLight3D" parent="Room2/Level3Base" index="7"]
 light_color = Color(1, 0.470588, 0.513726, 1)
 
-[node name="DialogZone" parent="." instance=ExtResource("6_xuuno")]
+[node name="DialogZone" parent="." unique_id=888462933 instance=ExtResource("6_xuuno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.10643, 2.23517e-08, -3.3836)
 player_state_in_dialog = 0
 speech = ExtResource("7_8veba")
 
-[node name="CollisionShape3D" parent="DialogZone" index="0"]
+[node name="CollisionShape3D" parent="DialogZone" index="0" unique_id=693587649]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101773, 0.640107, 1.3016)
 
 [connection signal="level_finished" from="." to="Room1/Level3Base/Door" method="open" unbinds=1]

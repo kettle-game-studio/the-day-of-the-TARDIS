@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://b17qdb7kq2ujy"]
+[gd_scene format=3 uid="uid://b17qdb7kq2ujy"]
 
-[ext_resource type="Script" path="res://assets/scripts/door.gd" id="1_7xn68"]
+[ext_resource type="Script" uid="uid://dvhrr13wf4bii" path="res://assets/scripts/door.gd" id="1_7xn68"]
 [ext_resource type="Material" uid="uid://bku6j6oditrrh" path="res://assets/models/Tiles/materials/tileset_material.tres" id="2_a4s0f"]
 [ext_resource type="ArrayMesh" uid="uid://bj7m7symivymj" path="res://assets/models/Tiles/models/Tiles_DoorLeaf.res" id="3_no5ga"]
 
@@ -90,51 +90,49 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_joqpj"]
 _data = {
-"RESET": SubResource("Animation_16irv"),
-"close_door": SubResource("Animation_2wh5l"),
-"open_door": SubResource("Animation_7h732")
+&"RESET": SubResource("Animation_16irv"),
+&"close_door": SubResource("Animation_2wh5l"),
+&"open_door": SubResource("Animation_7h732")
 }
 
-[node name="Door" type="Node3D"]
+[node name="Door" type="Node3D" unique_id=298239338]
 script = ExtResource("1_7xn68")
 
-[node name="LeftBody" type="AnimatableBody3D" parent="."]
+[node name="LeftBody" type="AnimatableBody3D" parent="." unique_id=429444969]
 transform = Transform3D(0.999999, 0, -3.74561e-15, 0, 1, 0, 3.74561e-15, 0, 0.999999, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBody" unique_id=648027968]
 transform = Transform3D(-1, 0, 1.37059e-07, 0, 1, 0, -5.57626e-08, 0, -1, 1.65284e-07, 1.13331, -0.411931)
 shape = SubResource("BoxShape3D_17w7k")
 
-[node name="RightBody" type="AnimatableBody3D" parent="."]
+[node name="RightBody" type="AnimatableBody3D" parent="." unique_id=1144301776]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBody" unique_id=1828034628]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12462, -0.406122)
 shape = SubResource("BoxShape3D_17w7k")
 
-[node name="Right" type="MeshInstance3D" parent="."]
+[node name="Right" type="MeshInstance3D" parent="." unique_id=1115042930]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 material_override = ExtResource("2_a4s0f")
 mesh = ExtResource("3_no5ga")
 skeleton = NodePath("../../..")
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Right"]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Right" unique_id=1337117675]
 remote_path = NodePath("../../RightBody")
 update_rotation = false
 update_scale = false
 
-[node name="Left" type="MeshInstance3D" parent="."]
+[node name="Left" type="MeshInstance3D" parent="." unique_id=722937018]
 transform = Transform3D(1, 0, -3.74561e-15, 0, 1, 0, 3.74561e-15, 0, 1, 0, 0, 0)
 material_override = ExtResource("2_a4s0f")
 mesh = ExtResource("3_no5ga")
 skeleton = NodePath("../../..")
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Left"]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Left" unique_id=1977794984]
 remote_path = NodePath("../../LeftBody")
 update_rotation = false
 update_scale = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_joqpj")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=125291551]
+libraries/ = SubResource("AnimationLibrary_joqpj")

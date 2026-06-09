@@ -1,35 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://j7d2oe4hkvd7"]
+[gd_scene format=3 uid="uid://j7d2oe4hkvd7"]
 
-[ext_resource type="Script" path="res://assets/scripts/abstract_level.gd" id="1_agu34"]
+[ext_resource type="Script" uid="uid://xwqlvdpsnx5x" path="res://assets/scripts/abstract_level.gd" id="1_agu34"]
 [ext_resource type="PackedScene" uid="uid://bmwgja8ryt4kx" path="res://assets/scenes/level_1_gray/room.tscn" id="2_baem4"]
 [ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="3_wbher"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5bxb"]
 albedo_color = Color(1, 0.00392157, 0.0901961, 1)
 
-[node name="Level1" type="Node3D" node_paths=PackedStringArray("start_point")]
+[node name="Level1" type="Node3D" unique_id=269381386 node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_agu34")
 start_point = NodePath("Room1/PlayerSpawn")
 
-[node name="Room1" parent="." instance=ExtResource("2_baem4")]
+[node name="Room1" parent="." unique_id=739080966 instance=ExtResource("2_baem4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="Dalek" parent="Room1" node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_wbher")]
+[node name="Dalek" parent="Room1" unique_id=720424801 node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_wbher")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.6, 0, -1.31134e-07)
 dalek_id = 1
 patrol_path = NodePath("../Path3D")
 
-[node name="PlayerSpawn" type="Node3D" parent="Room1"]
+[node name="PlayerSpawn" type="Node3D" parent="Room1" unique_id=2018911831]
 transform = Transform3D(-0.99762, 0, 0.0689554, 0, 1, 0, -0.0689554, 0, -0.99762, -1.37426, -4.76837e-07, -6.87552)
 
-[node name="Room2" parent="." instance=ExtResource("2_baem4")]
+[node name="Room2" parent="." unique_id=1457320059 instance=ExtResource("2_baem4")]
 transform = Transform3D(4.47035e-08, 0, 1, 0, 1, 0, -1, 0, 4.47035e-08, 64, 0, 0)
 roomType = 1
 
 [node name="MeshInstance3D" parent="Room2" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_k5bxb")
 
-[node name="Dalek" parent="Room2" node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_wbher")]
+[node name="Dalek" parent="Room2" unique_id=1334454347 node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_wbher")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.925, 0, 0)
 dalek_id = 1
 patrol_path = NodePath("../Path3D")

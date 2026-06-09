@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://0donue74ycyk"]
+[gd_scene format=3 uid="uid://0donue74ycyk"]
 
-[ext_resource type="Script" path="res://assets/scripts/dalek.gd" id="1_acjio"]
+[ext_resource type="Script" uid="uid://2oc0finth7af" path="res://assets/scripts/dalek.gd" id="1_acjio"]
 [ext_resource type="PackedScene" uid="uid://fldgkxyay001" path="res://assets/prefabs/dalek_corpse.tscn" id="2_ewxuu"]
 [ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/Dalek/imports/Dalek_Cylinder.res" id="2_yx3a7"]
 [ext_resource type="PackedScene" uid="uid://cgookivq886s1" path="res://assets/prefabs/gun.tscn" id="3_c86vl"]
-[ext_resource type="Script" path="res://assets/scripts/debug_dalek.gd" id="4_554bn"]
-[ext_resource type="Shader" path="res://assets/vfx/dalek.gdshader" id="4_cb43e"]
+[ext_resource type="Script" uid="uid://d4bc47hecf0ns" path="res://assets/scripts/debug_dalek.gd" id="4_554bn"]
+[ext_resource type="Shader" uid="uid://mibkdj4pho7e" path="res://assets/vfx/dalek.gdshader" id="4_cb43e"]
 [ext_resource type="Texture2D" uid="uid://j2y4bihfisi0" path="res://assets/models/Dalek/Dalek_DalekLight.png" id="5_4ikg2"]
 [ext_resource type="Texture2D" uid="uid://dc1wvhi1f3f2i" path="res://assets/models/Dalek/Dalek_DalekColor.png" id="6_gm63v"]
 [ext_resource type="Texture2D" uid="uid://b7ren02m4gw16" path="res://assets/models/Dalek/DalekColorMask.png" id="7_d3so8"]
@@ -32,12 +32,12 @@ bind/4/pose = Transform3D(0.310019, -0.95073, -4.5396e-07, 0.95073, 0.310019, 2.
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jwr3b"]
 render_priority = 0
 shader = ExtResource("4_cb43e")
-shader_parameter/color = Vector3(0.5, 0.5, 0.32)
-shader_parameter/disappearance = 1.0
-shader_parameter/dirt = 0.0
 shader_parameter/base_texture = ExtResource("6_gm63v")
 shader_parameter/color_mask = ExtResource("7_d3so8")
 shader_parameter/Light_texture = ExtResource("5_4ikg2")
+shader_parameter/color = Vector3(0.5, 0.5, 0.32)
+shader_parameter/disappearance = 1.0
+shader_parameter/dirt = 0.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dga62"]
 height = 1.52545
@@ -49,6 +49,15 @@ radius = 0.558179
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -88,7 +97,7 @@ viewport_path = NodePath("DebugDrawer/SubViewport")
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_xk6ka")
 
-[node name="Dalek" type="CharacterBody3D"]
+[node name="Dalek" type="CharacterBody3D" unique_id=456703432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.139451)
 collision_layer = 8
 collision_mask = 13
@@ -96,12 +105,12 @@ script = ExtResource("1_acjio")
 colors = Array[Color]([Color(1, 0, 1, 1), Color(0.886275, 0, 0, 1), Color(0, 0, 0, 1), Color(0.901961, 0.901961, 0.901961, 1), Color(0, 0.615686, 0, 1), Color(0.54902, 0.47451, 0, 1), Color(0.686275, 0.505882, 0.345098, 1), Color(0.85098, 0.156863, 0.533333, 1), Color(0.560784, 0.298039, 0.733333, 1), Color(0.298039, 0.435294, 0.662745, 1)])
 corpse_prefab = ExtResource("2_ewxuu")
 
-[node name="Dalek2" type="Node3D" parent="."]
+[node name="Dalek2" type="Node3D" parent="." unique_id=404061331]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="Armature" type="Node3D" parent="Dalek2"]
+[node name="Armature" type="Node3D" parent="Dalek2" unique_id=1712537185]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Dalek2/Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Dalek2/Armature" unique_id=54115553]
 bones/0/name = "Base"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -114,8 +123,8 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06786, 0)
 bones/1/enabled = true
 bones/1/position = Vector3(0, 1.06786, 0)
-bones/1/rotation = Quaternion(0.000474975, 0.000474975, 0.000474975, 0.989475)
-bones/1/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(0.00048002682, 0.00048002665, 0.00048002682, 0.99999964)
+bones/1/scale = Vector3(0.9999999, 0.9999999, 0.9999999)
 bones/2/name = "Eye"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0, 1, -3.55271e-15, -1, 0, 7.54979e-08, 7.54979e-08, -3.55271e-15, 1, 0.195899, 0.353197, 8.97165e-09)
@@ -128,53 +137,54 @@ bones/3/parent = 0
 bones/3/rest = Transform3D(0.310019, 0.95073, -8.85354e-08, -0.95073, 0.310019, -5.06355e-07, -4.5396e-07, 2.41153e-07, 1, 0.31196, 0.846881, -0.200266)
 bones/3/enabled = true
 bones/3/position = Vector3(0.31196, 0.846881, -0.200266)
-bones/3/rotation = Quaternion(0.000474975, 0.000474975, -0.999525, 1.00048)
-bones/3/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0.00033585783, 0.00033585783, -0.7067708, 0.70744246)
+bones/3/scale = Vector3(0.9999999, 1.0000005, 1.0000005)
 bones/4/name = "Arm.R"
 bones/4/parent = 0
 bones/4/rest = Transform3D(0.310019, 0.95073, -8.85354e-08, -0.95073, 0.310019, -5.06355e-07, -4.5396e-07, 2.41153e-07, 1, 0.31196, 0.846881, 0.202818)
 bones/4/enabled = true
 bones/4/position = Vector3(0.31196, 0.846881, 0.202818)
-bones/4/rotation = Quaternion(0.000474975, 0.000474975, -0.999525, 1.00048)
-bones/4/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.0007024007, 0.0005178538, -0.5934187, 0.8048935)
+bones/4/scale = Vector3(1.0000001, 1.0000007, 1.0000005)
 
-[node name="Dalek" type="MeshInstance3D" parent="Dalek2/Armature/Skeleton3D"]
+[node name="Dalek" type="MeshInstance3D" parent="Dalek2/Armature/Skeleton3D" unique_id=799766958]
 mesh = ExtResource("2_yx3a7")
 skin = SubResource("Skin_jhx4l")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("ShaderMaterial_jwr3b")
 
-[node name="HeadBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D"]
+[node name="HeadBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D" unique_id=1923684382]
 transform = Transform3D(0.999999, -0.000959592, 0.000960514, 0.000960514, 0.999999, -0.000959592, -0.000959592, 0.000960514, 0.999999, 0, 1.06786, 0)
 bone_name = "Head"
 bone_idx = 1
 override_pose = true
 
-[node name="EyeBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D"]
-transform = Transform3D(0.00191366, 0.999998, 0.000961879, -0.999996, 0.0019155, -0.00190954, -0.00191138, -0.000958222, 0.999998, 0.19556, 1.42124, 0.000151277)
+[node name="EyeBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D" unique_id=1647173569]
+transform = Transform3D(0.0019136637, 0.9999977, 0.0009618784, -0.9999963, 0.0019154977, -0.0019095377, -0.0019113758, -0.0009582207, 0.9999976, 0.19555987, 1.4212449, 0.00015127653)
 bone_name = "Eye"
 bone_idx = 2
 
-[node name="LeftArmBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D"]
+[node name="LeftArmBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D" unique_id=1496716028]
 transform = Transform3D(0.000949979, 1, 4.51226e-07, -0.999999, 0.000949979, -0.000949949, -0.000949949, 4.51226e-07, 1, 0.31196, 0.846881, -0.200266)
 bone_name = "Arm.L"
 bone_idx = 3
 override_pose = true
 
-[node name="Gun" parent="Dalek2/Armature/Skeleton3D/LeftArmBone" instance=ExtResource("3_c86vl")]
+[node name="Gun" parent="Dalek2/Armature/Skeleton3D/LeftArmBone" unique_id=1270514913 instance=ExtResource("3_c86vl")]
 transform = Transform3D(1, -3.64028e-12, 0, 0, -4.3711e-08, -1, -2.03427e-11, 1, -4.37114e-08, 3.49283e-05, 0.512736, 7.45058e-08)
 reload_time = 0.2
 
-[node name="RightArmBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D"]
+[node name="RightArmBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D" unique_id=123532603]
 transform = Transform3D(0.295708, 0.955279, 0, -0.955277, 0.295708, -0.00174533, -0.00166727, 0.000516108, 0.999999, 0.31196, 0.846881, 0.202818)
 bone_name = "Arm.R"
 bone_idx = 4
 override_pose = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=903157746]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0108414, 0.761636, 0.223885)
 shape = SubResource("CylinderShape3D_dga62")
 
-[node name="DebugDrawer" type="MeshInstance3D" parent="." node_paths=PackedStringArray("dalek", "label")]
+[node name="DebugDrawer" type="MeshInstance3D" parent="." unique_id=1243323373 node_paths=PackedStringArray("dalek", "label")]
 process_mode = 4
 visible = false
 mesh = SubResource("ImmediateMesh_w8lq4")
@@ -182,17 +192,17 @@ script = ExtResource("4_554bn")
 dalek = NodePath("..")
 label = NodePath("SubViewport/Panel/Label")
 
-[node name="SubViewport" type="SubViewport" parent="DebugDrawer"]
+[node name="SubViewport" type="SubViewport" parent="DebugDrawer" unique_id=1207607664]
 size = Vector2i(1024, 512)
 
-[node name="Panel" type="Panel" parent="DebugDrawer/SubViewport"]
+[node name="Panel" type="Panel" parent="DebugDrawer/SubViewport" unique_id=1774726828]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="DebugDrawer/SubViewport/Panel"]
+[node name="Label" type="Label" parent="DebugDrawer/SubViewport/Panel" unique_id=1460568750]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -206,16 +216,16 @@ Timezone: Undefiend
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DebugText" type="MeshInstance3D" parent="DebugDrawer"]
+[node name="DebugText" type="MeshInstance3D" parent="DebugDrawer" unique_id=364648661]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.92922, 0)
 mesh = SubResource("PlaneMesh_j65lq")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")
 
-[node name="DebugText2" type="MeshInstance3D" parent="DebugDrawer"]
+[node name="DebugText2" type="MeshInstance3D" parent="DebugDrawer" unique_id=160217033]
 transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 1.92922, 0)
 mesh = SubResource("PlaneMesh_j65lq")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")
 
-[node name="DesapiarTimer" type="Timer" parent="."]
+[node name="DesapiarTimer" type="Timer" parent="." unique_id=2114842290]

@@ -123,4 +123,3 @@ func _die_vibration():
 	InputDeviceLocaliser.start_joy_vibration(1, 1, 0.2)
 	await get_tree().create_timer(0.25).timeout
 	InputDeviceLocaliser.start_joy_vibration(1, 1, 0.3)
-

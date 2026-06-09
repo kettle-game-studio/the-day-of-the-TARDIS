@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfige1ywuqkl1"]
+[gd_scene format=3 uid="uid://dfige1ywuqkl1"]
 
 [ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="1_robhd"]
 
-[node name="TestTilesScene" type="Node3D"]
+[node name="TestTilesScene" type="Node3D" unique_id=1510682096]
 
-[node name="WallTiles" type="GridMap" parent="."]
+[node name="WallTiles" type="GridMap" parent="." unique_id=1997014251]
 mesh_library = ExtResource("1_robhd")
 cell_size = Vector3(1, 1, 1)
 data = {
@@ -12,7 +12,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
-[node name="FloorTiles" type="GridMap" parent="."]
+[node name="FloorTiles" type="GridMap" parent="." unique_id=93142593]
 mesh_library = ExtResource("1_robhd")
 cell_size = Vector3(1, 1, 1)
 data = {

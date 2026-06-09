@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd7k55dhqpagn"]
+[gd_scene format=3 uid="uid://bd7k55dhqpagn"]
 
 [ext_resource type="PackedScene" uid="uid://dstfolwlsbqnr" path="res://assets/prefabs/player.tscn" id="1_k27hw"]
 
@@ -8,18 +8,18 @@ size = Vector3(11, 0.18457, 16)
 [sub_resource type="BoxMesh" id="BoxMesh_ms1id"]
 size = Vector3(11, 0.185, 16)
 
-[node name="PlayerTestScene" type="Node3D"]
+[node name="PlayerTestScene" type="Node3D" unique_id=1714879741]
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1691788089]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1465172864]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0881277, -0.5)
 shape = SubResource("BoxShape3D_32wxn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=661770991]
 mesh = SubResource("BoxMesh_ms1id")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1495474932]
 transform = Transform3D(0.622269, 0.701767, -0.34685, 0, 0.443087, 0.896479, 0.782804, -0.557851, 0.275719, -12.0583, 0, -4.5611)
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_k27hw")]
+[node name="CharacterBody3D" parent="." unique_id=30546115 instance=ExtResource("1_k27hw")]

@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="GlobalSettings" load_steps=2 format=3 uid="uid://p5jhcj77tsbo"]
+[gd_resource type="Resource" script_class="GlobalSettings" format=3 uid="uid://p5jhcj77tsbo"]
 
-[ext_resource type="Script" path="res://assets/scripts/global_settings.gd" id="1_5n7m8"]
+[ext_resource type="Script" uid="uid://35mxsf0nijnk" path="res://assets/scripts/global_settings.gd" id="1_5n7m8"]
 
 [resource]
 script = ExtResource("1_5n7m8")

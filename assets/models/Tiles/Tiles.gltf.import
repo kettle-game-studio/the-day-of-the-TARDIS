@@ -15,8 +15,12 @@ dest_files=["res://.godot/imported/Tiles.gltf-6ef8e79b9a781c036b74af8d0de95802.s
 
 nodes/root_type=""
 nodes/root_name=""
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
@@ -28,7 +32,11 @@ animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
 import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
 _subresources={
 "meshes": {
 "Tiles_AngleLightA": {
@@ -38,8 +46,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_AngleLightA.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_AngleLightA.res"
+"save_to_file/path": "uid://dtgg3whkftcie"
 },
 "Tiles_Border": {
 "generate/lightmap_uv": 0,
@@ -48,8 +57,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_Border.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_Border.res"
+"save_to_file/path": "uid://llmngxo0ffwq"
 },
 "Tiles_BorderLightFloor": {
 "generate/lightmap_uv": 0,
@@ -58,8 +68,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_BorderLightFloor.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_BorderLightFloor.res"
+"save_to_file/path": "uid://0gggbvlm76tr"
 },
 "Tiles_CutFloor": {
 "generate/lightmap_uv": 0,
@@ -68,8 +79,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_CutFloor.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_CutFloor.res"
+"save_to_file/path": "uid://b2q4fwskv5wtm"
 },
 "Tiles_Door": {
 "generate/lightmap_uv": 0,
@@ -78,8 +90,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_Door.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_Door.res"
+"save_to_file/path": "uid://bj2lglf8eaudl"
 },
 "Tiles_DoorLeaf": {
 "generate/lightmap_uv": 0,
@@ -88,8 +101,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_DoorLeaf.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_DoorLeaf.res"
+"save_to_file/path": "uid://bj7m7symivymj"
 },
 "Tiles_DownSkirting": {
 "generate/lightmap_uv": 0,
@@ -98,8 +112,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_DownSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_DownSkirting.res"
+"save_to_file/path": "uid://d5tqxc3amfn1"
 },
 "Tiles_ExternalCutFloor": {
 "generate/lightmap_uv": 0,
@@ -108,8 +123,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_ExternalCutFloor.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_ExternalCutFloor.res"
+"save_to_file/path": "uid://c1khma5nfxe7h"
 },
 "Tiles_ExternalDownSkirting": {
 "generate/lightmap_uv": 0,
@@ -118,8 +134,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_ExternalDownSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_ExternalDownSkirting.res"
+"save_to_file/path": "uid://btbuyypqmaabf"
 },
 "Tiles_ExternalLightDownSkirting": {
 "generate/lightmap_uv": 0,
@@ -128,8 +145,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_ExternalLightDownSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_ExternalLightDownSkirting.res"
+"save_to_file/path": "uid://b60dw6wnmog3g"
 },
 "Tiles_ExternalLightFloor": {
 "generate/lightmap_uv": 0,
@@ -138,8 +156,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_ExternalLightFloor.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_ExternalLightFloor.res"
+"save_to_file/path": "uid://diubcwf35sf5u"
 },
 "Tiles_ExternalLightUpSkirting": {
 "generate/lightmap_uv": 0,
@@ -148,8 +167,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_ExternalLightUpSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_ExternalLightUpSkirting.res"
+"save_to_file/path": "uid://s7rgvtry6pa2"
 },
 "Tiles_ExternalUpSkirting": {
 "generate/lightmap_uv": 0,
@@ -158,8 +178,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_ExternalUpSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_ExternalUpSkirting.res"
+"save_to_file/path": "uid://c7y104xp40t01"
 },
 "Tiles_ExternalWall": {
 "generate/lightmap_uv": 0,
@@ -168,8 +189,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_ExternalWall.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_ExternalWall.res"
+"save_to_file/path": "uid://c3di25a42oed"
 },
 "Tiles_Floor_001": {
 "generate/lightmap_uv": 0,
@@ -178,8 +200,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_Floor_001.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_Floor_001.res"
+"save_to_file/path": "uid://b5gsoqohtmbup"
 },
 "Tiles_Floor_002": {
 "generate/lightmap_uv": 0,
@@ -188,8 +211,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_Floor_002.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_Floor_002.res"
+"save_to_file/path": "uid://dupvqg2oj48c7"
 },
 "Tiles_Glass": {
 "generate/lightmap_uv": 0,
@@ -198,8 +222,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_Glass.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_Glass.res"
+"save_to_file/path": "uid://dy155m8bh1jlj"
 },
 "Tiles_GlassEnd": {
 "generate/lightmap_uv": 0,
@@ -208,8 +233,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_GlassEnd.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_GlassEnd.res"
+"save_to_file/path": "uid://didjswy38ua7b"
 },
 "Tiles_GlassWall": {
 "generate/lightmap_uv": 0,
@@ -218,8 +244,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_GlassWall.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_GlassWall.res"
+"save_to_file/path": "uid://ct3l6frpd13rv"
 },
 "Tiles_InternalCutFloor": {
 "generate/lightmap_uv": 0,
@@ -228,8 +255,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_InternalCutFloor.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_InternalCutFloor.res"
+"save_to_file/path": "uid://ltjradtef0k5"
 },
 "Tiles_InternalDownSkirting": {
 "generate/lightmap_uv": 0,
@@ -238,8 +266,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_InternalDownSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_InternalDownSkirting.res"
+"save_to_file/path": "uid://b1r61t2c5jc52"
 },
 "Tiles_InternalLightDownSkirting": {
 "generate/lightmap_uv": 0,
@@ -248,8 +277,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_InternalLightDownSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_InternalLightDownSkirting.res"
+"save_to_file/path": "uid://85ewc1umi6i2"
 },
 "Tiles_InternalLightFloor": {
 "generate/lightmap_uv": 0,
@@ -258,8 +288,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_InternalLightFloor.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_InternalLightFloor.res"
+"save_to_file/path": "uid://ppemthuyhkiy"
 },
 "Tiles_InternalLightUpSkirting": {
 "generate/lightmap_uv": 0,
@@ -268,8 +299,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_InternalLightUpSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_InternalLightUpSkirting.res"
+"save_to_file/path": "uid://5prbifjyhbaj"
 },
 "Tiles_InternalUpSkirting": {
 "generate/lightmap_uv": 0,
@@ -278,8 +310,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_InternalUpSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_InternalUpSkirting.res"
+"save_to_file/path": "uid://cbyw16med2qr0"
 },
 "Tiles_InternalWall": {
 "generate/lightmap_uv": 0,
@@ -288,8 +321,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_InternalWall.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_InternalWall.res"
+"save_to_file/path": "uid://ck2rpcfy17826"
 },
 "Tiles_LightA": {
 "generate/lightmap_uv": 0,
@@ -298,8 +332,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightA.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightA.res"
+"save_to_file/path": "uid://df3fiy1qvu00k"
 },
 "Tiles_LightAUpSkirting": {
 "generate/lightmap_uv": 0,
@@ -308,8 +343,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightAUpSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightAUpSkirting.res"
+"save_to_file/path": "uid://ioww4nw4titi"
 },
 "Tiles_LightDownSkirting": {
 "generate/lightmap_uv": 0,
@@ -318,8 +354,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightDownSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightDownSkirting.res"
+"save_to_file/path": "uid://dux3c7gvqm776"
 },
 "Tiles_LightDownSkirting_001": {
 "generate/lightmap_uv": 0,
@@ -328,8 +365,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightDownSkirting_001.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightDownSkirting_001.res"
+"save_to_file/path": "uid://dxqls14q8hsvr"
 },
 "Tiles_LightExternalWall": {
 "generate/lightmap_uv": 0,
@@ -338,8 +376,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightExternalWall.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightExternalWall.res"
+"save_to_file/path": "uid://dtbtidwfi46o4"
 },
 "Tiles_LightFloor": {
 "generate/lightmap_uv": 0,
@@ -348,8 +387,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightFloor.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightFloor.res"
+"save_to_file/path": "uid://cc7mpu4orwgpc"
 },
 "Tiles_LightInternalWall": {
 "generate/lightmap_uv": 0,
@@ -358,8 +398,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightInternalWall.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightInternalWall.res"
+"save_to_file/path": "uid://i7k6hs1w3lxi"
 },
 "Tiles_LightUpSkirting": {
 "generate/lightmap_uv": 0,
@@ -368,8 +409,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightUpSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightUpSkirting.res"
+"save_to_file/path": "uid://d2t0igi7qkfwt"
 },
 "Tiles_LightWall": {
 "generate/lightmap_uv": 0,
@@ -378,8 +420,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightWall.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightWall.res"
+"save_to_file/path": "uid://bcfmryyjpol5m"
 },
 "Tiles_LightWallEnd": {
 "generate/lightmap_uv": 0,
@@ -388,8 +431,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightWallEnd.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightWallEnd.res"
+"save_to_file/path": "uid://krd0vpypbam2"
 },
 "Tiles_LightWallStart": {
 "generate/lightmap_uv": 0,
@@ -398,8 +442,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LightWallStart.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LightWallStart.res"
+"save_to_file/path": "uid://rh7tpx4saud8"
 },
 "Tiles_LladderCenter": {
 "generate/lightmap_uv": 0,
@@ -408,8 +453,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LladderCenter.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LladderCenter.res"
+"save_to_file/path": "uid://dwy0kcpy3y7rk"
 },
 "Tiles_LladderLeft": {
 "generate/lightmap_uv": 0,
@@ -418,8 +464,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LladderLeft.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LladderLeft.res"
+"save_to_file/path": "uid://be0eryrg4o0wn"
 },
 "Tiles_LladderRight": {
 "generate/lightmap_uv": 0,
@@ -428,8 +475,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_LladderRight.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_LladderRight.res"
+"save_to_file/path": "uid://c57d7i5alqyr3"
 },
 "Tiles_UpSkirting": {
 "generate/lightmap_uv": 0,
@@ -438,8 +486,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_UpSkirting.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_UpSkirting.res"
+"save_to_file/path": "uid://ds87ie4lkdn15"
 },
 "Tiles_Wall": {
 "generate/lightmap_uv": 0,
@@ -448,8 +497,9 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/Tiles/models/Tiles_Wall.res",
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://assets/models/Tiles/models/Tiles_Wall.res"
+"save_to_file/path": "uid://duj7vxxr7n4ur"
 }
 }
 }

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dnu80dsddpmqi"]
+[gd_resource type="Theme" format=3 uid="uid://dnu80dsddpmqi"]
 
 [ext_resource type="FontFile" uid="uid://byx00ddgr7150" path="res://assets/ui/fonts/ljk_Inky Thin Pixels.otf" id="1_6afwk"]
 [ext_resource type="Texture2D" uid="uid://c4oiuncfofgbg" path="res://assets/ui/dialog_panel.png" id="2_54lhn"]

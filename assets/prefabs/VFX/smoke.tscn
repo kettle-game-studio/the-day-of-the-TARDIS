@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctwwhu2g2r34n"]
+[gd_scene format=3 uid="uid://ctwwhu2g2r34n"]
 
 [ext_resource type="Texture2D" uid="uid://bo15cfuumlcfe" path="res://assets/models/Smoke/Smoke.png" id="1_w3f8o"]
 
@@ -21,9 +21,9 @@ billboard_keep_scale = true
 [sub_resource type="QuadMesh" id="QuadMesh_26d7x"]
 material = SubResource("StandardMaterial3D_1h40m")
 
-[node name="Smoke" type="Node3D"]
+[node name="Smoke" type="Node3D" unique_id=1564483611]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=554280680]
 amount = 16
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_57yo7")

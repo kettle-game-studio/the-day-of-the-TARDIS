@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ds4a7odp8uceg"]
+[gd_scene format=3 uid="uid://ds4a7odp8uceg"]
 
 [ext_resource type="MeshLibrary" uid="uid://gall0t587rlm" path="res://assets/models/Tiles/tileset/mesh_library.tres" id="1_81rha"]
 
-[node name="LevelEndBase" type="Node3D"]
+[node name="LevelEndBase" type="Node3D" unique_id=2078187908]
 
-[node name="ConnectMap" type="GridMap" parent="."]
+[node name="ConnectMap" type="GridMap" parent="." unique_id=98977305]
 mesh_library = ExtResource("1_81rha")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
@@ -13,7 +13,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="WallMap" type="GridMap" parent="."]
+[node name="WallMap" type="GridMap" parent="." unique_id=300476624]
 mesh_library = ExtResource("1_81rha")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
@@ -22,7 +22,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="FloorMap" type="GridMap" parent="."]
+[node name="FloorMap" type="GridMap" parent="." unique_id=1344048032]
 mesh_library = ExtResource("1_81rha")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
