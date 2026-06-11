@@ -29,7 +29,7 @@ var lifetime: float:
 	set(value):
 		_lifetime = value
 		material.set_shader_parameter("disappearance", clamp(_lifetime, 0.0, 1.0))
-		colliderShape.height = _lifetime*initialShapeHeight
+		colliderShape.height = max(0, _lifetime*initialShapeHeight)
 		collider.position.y = _lifetime*initialColliderY
 
 var material: ShaderMaterial

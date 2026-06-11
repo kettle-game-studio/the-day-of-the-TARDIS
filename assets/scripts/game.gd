@@ -16,10 +16,15 @@ var play_time = 0.0
 signal end_game()
 
 @onready var dalek_cemetery = $DalekCemetery
-@onready var player = $Player
+@onready var player: PlayerController = $Player
 @onready var portal_controller = $PortalController
 @onready var ui = $UI
-# Called when the node enters the scene tree for the first time.
+
+@export var preload_scenes: Array[PackedScene]
+
+
+var shaders_node = Node3D.new()
+
 func _ready():
 	debug = ui.debug
 	player.killed.connect(_on_player_is_killed)
@@ -40,7 +45,15 @@ func _ready():
 		var zone = node as DialogZone
 		dialogs.push_back(zone)
 		zone.player_entered.connect(_on_dialog)
+	shaders_node.name = "SHADERS"
+	player.camera.add_child(shaders_node)
+	shaders_node.position.z = -1
+	compile_shaders(shaders_node, preload_scenes)
+	await get_tree().create_timer(1).timeout
+	#remove_shaders()
 
+func remove_shaders():
+	shaders_node.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -103,3 +116,91 @@ func _on_dialog(zone: DialogZone):
 	if player.state == PlayerController.State.INTRO:
 		player.screwdriver.close()
 	
+
+func compile_shaders(node, scenes: Array[PackedScene]):
+	copy_all_renderable_from_scenes(scenes, node)
+	return
+	for scene in scenes:
+		var inst = scene.instantiate()
+		inst.process_mode = Node.PROCESS_MODE_DISABLED
+		node.call_deferred("add_child", inst)
+	return
+	var materials = get_all_materials_from_scenes(scenes)
+	for key in materials:
+		var new_mesh: MeshInstance3D = MeshInstance3D.new()
+		new_mesh.add_to_group("mesh")
+		new_mesh.mesh = QuadMesh.new()
+		new_mesh.set_surface_override_material(0, materials[key])
+		new_mesh.name = key
+		#new_mesh.position = Vector3(GameManager.boundary.left + GameManager.boundary_margin / 2, 0, GameManager.boundary.bottom - GameManager.boundary_margin / 2)
+		node.call_deferred("add_child", new_mesh)
+
+
+func remove_quads():
+	# remove temporary meshes that were used to force the shader compiling
+	for mesh in get_tree().get_nodes_in_group("mesh"):
+		mesh.queue_free()
+		
+func get_all_children(in_node, array := []):
+	array.push_back(in_node)
+	for child in in_node.get_children():
+		array = get_all_children(child, array)
+	return array
+
+
+func get_all_materials_from_scenes(scenes):
+	var materials = {}  # dictionary to return only unique materials
+	for scene in scenes:
+		for material in get_all_materials(scene.instantiate()):
+			materials[str(material.get_rid().get_id())] = material
+	return materials
+
+
+func get_all_materials(source_node):
+	var materials = []
+	for child in get_all_children(source_node):
+		if child is MeshInstance3D:
+			var mesh: MeshInstance3D = child as MeshInstance3D
+			for i in mesh.get_surface_override_material_count():
+				# we need only active materials
+				var material = mesh.get_active_material(i)
+				if material != null and is_instance_valid(material):
+					materials.append(material)
+		if child is GPUParticles3D:
+			var particle: GPUParticles3D = child as GPUParticles3D
+			var material = particle.draw_pass_1.surface_get_material(0)
+			if material != null and is_instance_valid(material):
+				materials.append(material)
+		if child is CPUParticles3D:
+			var particle: CPUParticles3D = child as CPUParticles3D
+			var material = particle.mesh.surface_get_material(0)
+			if material != null and is_instance_valid(material):
+				materials.append(material)
+	return materials
+
+func copy_all_renderable_from_scenes(scenes, destination_node):
+	for scene in scenes:
+		copy_all_renderable(scene.instantiate(), destination_node)
+
+func copy_all_renderable(source_node: Node, destination_node: Node):
+	var materials = []
+	for child in get_all_children(source_node):
+		if child is MeshInstance3D:
+			var mesh: MeshInstance3D = child as MeshInstance3D
+			child.reparent(destination_node, false)
+			#destination_node.add_child(child)
+		if child is GPUParticles3D:
+			#var particle: GPUParticles3D = child as GPUParticles3D
+			#var material = particle.draw_pass_1.surface_get_material(0)
+			#if material != null and is_instance_valid(material):
+				#materials.append(material)
+			child.reparent(destination_node, false)
+			#destination_node.add_child(child)
+		if child is CPUParticles3D:
+			#var particle: CPUParticles3D = child as CPUParticles3D
+			#var material = particle.mesh.surface_get_material(0)
+			#if material != null and is_instance_valid(material):
+				#materials.append(material)
+			child.reparent(destination_node, false)
+			#destination_node.add_child(child)
+	return materials
