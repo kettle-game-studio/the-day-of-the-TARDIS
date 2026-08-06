@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://qlgtf24k1i82"]
+
+[ext_resource type="Texture2D" uid="uid://boqacc2m1jkb" path="res://assets/models/TARGIS/TARDIS_TardisColorBreak_3.png" id="1_i06vj"]
+[ext_resource type="Texture2D" uid="uid://ba1rorjlfvtsj" path="res://assets/models/TARGIS/TARDIS_TardisLight.png" id="2_k82xs"]
+
+[resource]
+resource_name = "RoomTestMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("1_i06vj")
+metallic = 0.32901555
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("2_k82xs")
+texture_filter = 2

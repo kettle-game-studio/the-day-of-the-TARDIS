@@ -9,4 +9,5 @@ albedo_texture = ExtResource("1_vqrvn")
 metallic = 0.3
 emission_enabled = true
 emission_texture = ExtResource("2_mflmc")
+uv1_triplanar_sharpness = 150.0
 texture_filter = 0

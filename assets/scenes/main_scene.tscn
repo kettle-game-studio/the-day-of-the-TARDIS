@@ -25,7 +25,13 @@
 [ext_resource type="Material" uid="uid://dgstr4d8q6epf" path="res://assets/models/TARGIS/materials/tardis_material.tres" id="15_2iws7"]
 
 [sub_resource type="Environment" id="Environment_aiut3"]
+ambient_light_source = 2
+ambient_light_color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+tonemap_exposure = 0.84
+glow_intensity = 2.46
 fog_enabled = true
+fog_depth_begin = 440.9
+fog_depth_end = 1449.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_86w27"]
 size = Vector3(1.46345, 6.669, 2.06974)

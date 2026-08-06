@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://c8eg35ey1wdu"]
+
+[ext_resource type="Script" uid="uid://bhok82vxgfbp8" path="res://addons/shader_stutter_tracker/shaders_precompiler_scene.gd" id="1_tjfty"]
+[ext_resource type="PackedScene" uid="uid://civq3dmxwdrwq" path="res://assets/scenes/main_scene.tscn" id="2_tgx5i"]
+[ext_resource type="Script" uid="uid://bopa6veieyi0b" path="res://addons/shader_stutter_tracker/shaders_precompiler.gd" id="3_syjg2"]
+[ext_resource type="Resource" uid="uid://ba07vwpg84jq3" path="res://assets/shader_precompiler_config10.tres" id="4_tgx5i"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_tgx5i"]
+color = Color(0.99607843, 0, 0, 1)
+grow_begin = 71.0
+
+[node name="ShaderPrecompilerScene" type="Node" unique_id=325346513]
+script = ExtResource("1_tjfty")
+next_scene = ExtResource("2_tgx5i")
+
+[node name="ShaderPrecompiler" type="Node3D" parent="." unique_id=654450537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8871483)
+script = ExtResource("3_syjg2")
+config = ExtResource("4_tgx5i")
+
+[node name="Camera3D" type="Camera3D" parent="ShaderPrecompiler" unique_id=925293979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.8871483)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ShaderPrecompiler" unique_id=625431128]
+
+[node name="Control" type="Control" parent="ShaderPrecompiler/CanvasLayer" unique_id=671110486]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ShaderPrecompiler/CanvasLayer" unique_id=1743556920]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_styles/normal = SubResource("StyleBoxLine_tgx5i")
+text = "Gegeg"
+
+[node name="Label3D" type="Label3D" parent="ShaderPrecompiler" unique_id=230652929]
+text = "Test"
+
+[connection signal="all_shaders_compiled" from="ShaderPrecompiler" to="." method="run_next_scene"]

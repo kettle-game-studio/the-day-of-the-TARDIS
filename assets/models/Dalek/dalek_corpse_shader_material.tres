@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://fiimbr01a20j"]
+
+[ext_resource type="Shader" uid="uid://mibkdj4pho7e" path="res://assets/vfx/dalek.gdshader" id="1_w6s0d"]
+[ext_resource type="Texture2D" uid="uid://j2y4bihfisi0" path="res://assets/models/Dalek/Dalek_DalekLight.png" id="2_rxuj4"]
+[ext_resource type="Texture2D" uid="uid://dc1wvhi1f3f2i" path="res://assets/models/Dalek/Dalek_DalekColor.png" id="3_sakyu"]
+[ext_resource type="Texture2D" uid="uid://b7ren02m4gw16" path="res://assets/models/Dalek/DalekColorMask.png" id="4_0t6th"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_w6s0d")
+shader_parameter/base_texture = ExtResource("3_sakyu")
+shader_parameter/color_mask = ExtResource("4_0t6th")
+shader_parameter/Light_texture = ExtResource("2_rxuj4")
+shader_parameter/color = Vector3(0.5, 0, 0)
+shader_parameter/disappearance = 1.0
+shader_parameter/dirt = 0.35

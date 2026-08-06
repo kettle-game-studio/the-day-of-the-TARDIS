@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ovpri081f5qq"]
+
+[ext_resource type="Texture2D" uid="uid://d1dsxqm45vnmx" path="res://assets/models/TARGIS/TARDIS_TardisColorBreak.png" id="1_rqw3c"]
+[ext_resource type="Texture2D" uid="uid://cjngbjturxrb" path="res://assets/models/TARGIS/TARDIS_TardisLightBreak.png" id="2_7q66f"]
+
+[resource]
+resource_name = "AlphaTardisMaterial"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("1_rqw3c")
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("2_7q66f")
+texture_filter = 2

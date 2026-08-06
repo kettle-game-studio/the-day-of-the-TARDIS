@@ -38,16 +38,26 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
+"materials": {
+"TubeMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/Tube/materials/TubeMaterial.tres",
+"use_external/path": "uid://ccdvifroynewr"
+},
+"TubeMaterial.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/Tube/materials/TubeMaterial.001.tres",
+"use_external/path": "uid://cosvg5jjepb76"
+}
+},
 "meshes": {
 "Tube_Tube_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_001.res",
-"save_to_file/make_streamable": "",
 "save_to_file/path": "uid://b5cit04rkhd5e"
 },
 "Tube_Tube_002": {
@@ -55,10 +65,8 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_002.res",
-"save_to_file/make_streamable": "",
 "save_to_file/path": "uid://yr8f5o4t4drm"
 },
 "Tube_Tube_003": {
@@ -66,10 +74,8 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_003.res",
-"save_to_file/make_streamable": "",
 "save_to_file/path": "uid://fc2swhgqpod8"
 },
 "Tube_Tube_004": {
@@ -77,10 +83,8 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_004.res",
-"save_to_file/make_streamable": "",
 "save_to_file/path": "uid://cqtjb3ehts2mc"
 },
 "Tube_Tube_005": {
@@ -88,10 +92,8 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_005.res",
-"save_to_file/make_streamable": "",
 "save_to_file/path": "uid://fp5yjqwl4q17"
 },
 "Tube_Tube_006": {
@@ -99,10 +101,8 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_006.res",
-"save_to_file/make_streamable": "",
 "save_to_file/path": "uid://cbao4mti8ifvl"
 },
 "Tube_Tube_007": {
@@ -110,10 +110,8 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_007.res",
-"save_to_file/make_streamable": "",
 "save_to_file/path": "uid://b487eyps4umva"
 },
 "Tube_Tube_008": {
@@ -121,10 +119,8 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_008.res",
-"save_to_file/make_streamable": "",
 "save_to_file/path": "uid://bcb83a72nf1es"
 },
 "Tube_Tube_009": {
@@ -132,10 +128,8 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/Tube/models/Tube_Tube_009.res",
-"save_to_file/make_streamable": "",
 "save_to_file/path": "uid://dku1a8k23qpal"
 }
 }

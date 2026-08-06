@@ -28,13 +28,13 @@ transform = Transform3D(0.919122, 0, -0.393974, 0, 1, 0, 0.393974, 0, 0.919122, 
 
 [node name="Level1Base" parent="Room1" unique_id=1034638830 instance=ExtResource("1_bkxfg")]
 
-[node name="TubeTube018" parent="Room1/Level1Base/Stuff" index="5" unique_id=1784358565 instance=ExtResource("3_ywtic")]
+[node name="TubeTube018" parent="Room1/Level1Base/Stuff" parent_id_path=PackedInt32Array(1034638830, 632063897) index="5" unique_id=1784358565 instance=ExtResource("3_ywtic")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, 11)
 
-[node name="TubeTube019" parent="Room1/Level1Base/Stuff" index="6" unique_id=1813299557 instance=ExtResource("3_ywtic")]
+[node name="TubeTube019" parent="Room1/Level1Base/Stuff" parent_id_path=PackedInt32Array(1034638830, 632063897) index="6" unique_id=1813299557 instance=ExtResource("3_ywtic")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, 9)
 
-[node name="TubeTube020" parent="Room1/Level1Base/Stuff" index="7" unique_id=1377760700 instance=ExtResource("3_ywtic")]
+[node name="TubeTube020" parent="Room1/Level1Base/Stuff" parent_id_path=PackedInt32Array(1034638830, 632063897) index="7" unique_id=1377760700 instance=ExtResource("3_ywtic")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, 7)
 
 [node name="StartPoint" type="Node3D" parent="Room1/Level1Base" unique_id=2117891639]
@@ -46,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 [node name="Level1Base2" parent="Room2" unique_id=1862870502 instance=ExtResource("1_bkxfg")]
 roomType = 1
 
-[node name="TubeTube006" parent="Room2/Level1Base2/Stuff" index="5" unique_id=1713150494 instance=ExtResource("4_7op4h")]
+[node name="TubeTube006" parent="Room2/Level1Base2/Stuff" parent_id_path=PackedInt32Array(1862870502, 632063897) index="5" unique_id=1713150494 instance=ExtResource("4_7op4h")]
 transform = Transform3D(0.847771, 0, -0.530363, 0, 1, 0, 0.530363, 0, 0.847771, -3.29745, 0.440943, 11.017)
 
 [node name="Smoke" parent="Room2/Level1Base2/Stuff/TubeTube006" unique_id=1546376432 instance=ExtResource("5_qra48")]
@@ -64,38 +64,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25106, 1.82262, -2.75844)
 [node name="Smoke4" parent="Room2/Level1Base2/Stuff/TubeTube006" unique_id=90129713 instance=ExtResource("5_qra48")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0420544, 2.43071, -0.825886)
 
-[node name="TubeTube007" parent="Room2/Level1Base2/Stuff" index="6" unique_id=1759414213 instance=ExtResource("6_v5say")]
+[node name="TubeTube007" parent="Room2/Level1Base2/Stuff" parent_id_path=PackedInt32Array(1862870502, 632063897) index="6" unique_id=1759414213 instance=ExtResource("6_v5say")]
 transform = Transform3D(4.37114e-08, -8.74228e-08, 1, -3.82137e-15, -1, -8.74228e-08, 1, 0, -4.37114e-08, -3, 3, 11)
 
-[node name="TubeTube005" parent="Room2/Level1Base2/Stuff" index="7" unique_id=1326335229 instance=ExtResource("7_aa78a")]
+[node name="TubeTube005" parent="Room2/Level1Base2/Stuff" parent_id_path=PackedInt32Array(1862870502, 632063897) index="7" unique_id=1326335229 instance=ExtResource("7_aa78a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, 7)
 
-[node name="WallMap" parent="Room2/Level1Base2" index="1"]
+[node name="WallMap" parent="Room2/Level1Base2" index="1" unique_id=1303944973]
 mesh_library = ExtResource("2_6tcr3")
 
-[node name="FloorMap" parent="Room2/Level1Base2" index="2"]
+[node name="FloorMap" parent="Room2/Level1Base2" index="2" unique_id=188841732]
 mesh_library = ExtResource("2_6tcr3")
 
-[node name="DalekPatrol" parent="Room2/Level1Base2" index="3"]
+[node name="DalekPatrol" parent="Room2/Level1Base2" index="3" unique_id=1204142749]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0.032, 6.491)
 
-[node name="DalekPatrol2" parent="Room2/Level1Base2" index="4"]
+[node name="DalekPatrol2" parent="Room2/Level1Base2" index="4" unique_id=377850216]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3, 0.032, 6.491)
 
-[node name="Dalek" parent="Room2/Level1Base2" index="5"]
+[node name="Dalek" parent="Room2/Level1Base2" index="5" unique_id=1054600108]
 dalek_id = 2
 
-[node name="Dalek2" parent="Room2/Level1Base2" index="6"]
+[node name="Dalek2" parent="Room2/Level1Base2" index="6" unique_id=617525922]
 dalek_id = 1
 
-[node name="LeftBody" parent="Room2/Level1Base2/Door" index="0" unique_id=429444969]
+[node name="LeftBody" parent="Room2/Level1Base2/Door" parent_id_path=PackedInt32Array(1862870502, 1926877397) index="0" unique_id=429444969]
 transform = Transform3D(0.999999, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 0.999999, 0, 0, 0)
 
-[node name="Right" parent="Room2/Level1Base2/Door" index="2" unique_id=1115042930]
+[node name="Right" parent="Room2/Level1Base2/Door" parent_id_path=PackedInt32Array(1862870502, 1926877397) index="2" unique_id=1115042930]
 material_override = ExtResource("4_tqraw")
 
-[node name="Left" parent="Room2/Level1Base2/Door" index="3" unique_id=722937018]
+[node name="Left" parent="Room2/Level1Base2/Door" parent_id_path=PackedInt32Array(1862870502, 1926877397) index="3" unique_id=722937018]
 material_override = ExtResource("4_tqraw")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1334855321]
 
 [connection signal="level_finished" from="." to="Room1/Level1Base/Door" method="open" unbinds=1]
 [connection signal="level_finished" from="." to="Room2/Level1Base2/Door" method="open" unbinds=1]

@@ -1,0 +1,134 @@
+[gd_resource type="Resource" script_class="ShadersCompilerConfig" format=3 uid="uid://d3cj3rvqan2n8"]
+
+[ext_resource type="Shader" uid="uid://cm2or3a3myt5h" path="res://assets/vfx/sdriver.gdshader" id="1_b87sk"]
+[ext_resource type="Texture2D" uid="uid://dr6yp1613j45e" path="res://assets/models/SDriver/SDriver_SDriverColor.png" id="2_0yoax"]
+[ext_resource type="Texture2D" uid="uid://c2m2mqqo2dxv6" path="res://assets/models/SDriver/SDriver_SDriverLight.png" id="3_leq7u"]
+[ext_resource type="Material" uid="uid://dgstr4d8q6epf" path="res://assets/models/TARGIS/materials/tardis_material.tres" id="4_ih88s"]
+[ext_resource type="Texture2D" uid="uid://bcpgin217gs74" path="res://assets/models/Tiles/Tiles_TilesColor.png" id="5_8dr6x"]
+[ext_resource type="Texture2D" uid="uid://dtayuem8dly4t" path="res://assets/models/Tiles/Tiles_TilesLight.png" id="6_5jcql"]
+[ext_resource type="Texture2D" uid="uid://bpdf1tv3or8dl" path="res://assets/models/Tiles/Tiles_TileAlphaMask.png" id="7_lxy5x"]
+[ext_resource type="Material" uid="uid://l8vi6ugcmoiu" path="res://assets/models/Dalek/smoke_material.tres" id="8_vrv2c"]
+[ext_resource type="Texture2D" uid="uid://bo15cfuumlcfe" path="res://assets/models/Smoke/Smoke.png" id="9_qscyh"]
+[ext_resource type="Material" uid="uid://ccdvifroynewr" path="res://assets/models/Tube/materials/TubeMaterial.tres" id="10_a77m7"]
+[ext_resource type="Shader" uid="uid://dbsrvm52vyue4" path="res://assets/vfx/portal/portal.gdshader" id="11_b2wq7"]
+[ext_resource type="Shader" uid="uid://coeqvhlyr2xcw" path="res://assets/vfx/portal/portal_border.gdshader" id="12_tfvbe"]
+[ext_resource type="Shader" uid="uid://dky7hs7gmkny1" path="res://assets/vfx/portal/tardis_portal.gdshader" id="13_4m1n3"]
+[ext_resource type="Material" uid="uid://c62848jt8ianq" path="res://assets/models/TARGIS/materials/tardis_material_alpha.tres" id="14_dgagk"]
+[ext_resource type="Shader" uid="uid://mibkdj4pho7e" path="res://assets/vfx/dalek.gdshader" id="15_j7cc7"]
+[ext_resource type="Material" uid="uid://cfqevsq1e5tnx" path="res://assets/models/Dalek/imports/TestMaterial.tres" id="16_bu52u"]
+[ext_resource type="Shader" uid="uid://c7l36drmfaleo" path="res://assets/vfx/bullet.gdshader" id="17_8dr6x"]
+[ext_resource type="Script" uid="uid://cejy88jrfph1m" path="res://addons/shader_stutter_tracker/shaders_compiler_config.gd" id="17_xk7im"]
+[ext_resource type="Shader" uid="uid://bc1uw1vp2ngf" path="res://assets/vfx/dalek/dalek_translate_particles.gdshader" id="18_5jcql"]
+[ext_resource type="Shader" uid="uid://dqedaq8xq23ne" path="res://assets/vfx/dalek/dalek_translate_maprticles_visual.gdshader" id="19_lxy5x"]
+[ext_resource type="Shader" uid="uid://0isn1qohrgwr" path="res://assets/vfx/explosion.gdshader" id="20_vrv2c"]
+
+[sub_resource type="Environment" id="Environment_aiut3"]
+ambient_light_source = 2
+ambient_light_color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+tonemap_exposure = 0.84
+glow_intensity = 2.46
+fog_enabled = true
+fog_depth_begin = 440.9
+fog_depth_end = 1449.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ch3l"]
+render_priority = 0
+shader = ExtResource("1_b87sk")
+shader_parameter/color = Vector3(0, 1, 0)
+shader_parameter/emission = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1v7x"]
+resource_name = "SDriverMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("2_0yoax")
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("3_leq7u")
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgfyc"]
+resource_name = "TileMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("5_8dr6x")
+metallic = 1.0
+metallic_texture = ExtResource("7_lxy5x")
+metallic_texture_channel = 2
+roughness = 0.5
+roughness_texture = ExtResource("7_lxy5x")
+roughness_texture_channel = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("6_5jcql")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h40m"]
+transparency = 1
+albedo_texture = ExtResource("9_qscyh")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmlgs"]
+render_priority = 0
+shader = ExtResource("11_b2wq7")
+shader_parameter/speed = 1.0
+shader_parameter/size = 20.0
+shader_parameter/close = 1.0
+shader_parameter/color = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_upg5r"]
+render_priority = 0
+shader = ExtResource("12_tfvbe")
+shader_parameter/mult = 1.0
+shader_parameter/speed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q32m3"]
+render_priority = 0
+shader = ExtResource("13_4m1n3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h084p"]
+render_priority = 0
+shader = ExtResource("15_j7cc7")
+shader_parameter/color = Vector3(0.5, 0, 0)
+shader_parameter/disappearance = 1.0
+shader_parameter/dirt = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qe5vl"]
+render_priority = 0
+shader = ExtResource("17_8dr6x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v04vr"]
+shader = ExtResource("18_5jcql")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/dalek_down_radius = 0.0
+shader_parameter/dalek_up_radius = 0.0
+shader_parameter/bottom_k = 1.0
+shader_parameter/bottom_offset = Vector3(0, 0, 0)
+shader_parameter/start_point = Vector3(0, 0, 0)
+shader_parameter/start_rotation = 0.0
+shader_parameter/start_height = 0.0
+shader_parameter/start_dirt = 0.0
+shader_parameter/start_neck = 0.0
+shader_parameter/end_point = Vector3(0, 0, 0)
+shader_parameter/end_rotation = 0.0
+shader_parameter/end_height = 0.0
+shader_parameter/end_dirt = 0.0
+shader_parameter/end_neck = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqo2c"]
+render_priority = 0
+shader = ExtResource("19_lxy5x")
+shader_parameter/emission = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulxqf"]
+render_priority = 0
+shader = ExtResource("20_vrv2c")
+shader_parameter/speed = 1.0
+shader_parameter/alpha = 1.0
+
+[resource]
+script = ExtResource("17_xk7im")
+materials = Array[Material]([SubResource("ShaderMaterial_7ch3l"), SubResource("StandardMaterial3D_n1v7x"), ExtResource("4_ih88s"), SubResource("StandardMaterial3D_qgfyc"), ExtResource("8_vrv2c"), SubResource("StandardMaterial3D_1h40m"), ExtResource("10_a77m7"), SubResource("ShaderMaterial_wmlgs"), SubResource("ShaderMaterial_upg5r"), SubResource("ShaderMaterial_q32m3"), ExtResource("14_dgagk"), SubResource("ShaderMaterial_h084p"), ExtResource("16_bu52u"), SubResource("ShaderMaterial_qe5vl"), SubResource("ShaderMaterial_v04vr"), SubResource("ShaderMaterial_dqo2c"), SubResource("ShaderMaterial_ulxqf")])
+environments = Array[Environment]([SubResource("Environment_aiut3")])

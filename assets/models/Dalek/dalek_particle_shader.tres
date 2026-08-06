@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bg5ry4q7ca831"]
+
+[ext_resource type="Shader" uid="uid://dqedaq8xq23ne" path="res://assets/vfx/dalek/dalek_translate_maprticles_visual.gdshader" id="1_o8nbb"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_o8nbb")
+shader_parameter/emission = Color(0.894118, 0.882353, 0.705882, 1)

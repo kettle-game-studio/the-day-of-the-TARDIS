@@ -5,10 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bnueokcce36mj" path="res://assets/models/Dalek/imports/Dalek_Cylinder.res" id="2_yx3a7"]
 [ext_resource type="PackedScene" uid="uid://cgookivq886s1" path="res://assets/prefabs/gun.tscn" id="3_c86vl"]
 [ext_resource type="Script" uid="uid://d4bc47hecf0ns" path="res://assets/scripts/debug_dalek.gd" id="4_554bn"]
-[ext_resource type="Shader" uid="uid://mibkdj4pho7e" path="res://assets/vfx/dalek.gdshader" id="4_cb43e"]
-[ext_resource type="Texture2D" uid="uid://j2y4bihfisi0" path="res://assets/models/Dalek/Dalek_DalekLight.png" id="5_4ikg2"]
-[ext_resource type="Texture2D" uid="uid://dc1wvhi1f3f2i" path="res://assets/models/Dalek/Dalek_DalekColor.png" id="6_gm63v"]
-[ext_resource type="Texture2D" uid="uid://b7ren02m4gw16" path="res://assets/models/Dalek/DalekColorMask.png" id="7_d3so8"]
+[ext_resource type="Material" uid="uid://cp1fk00hy0jr4" path="res://assets/models/Dalek/dalek_shader_material.tres" id="4_xjhjr"]
 
 [sub_resource type="Skin" id="Skin_jhx4l"]
 resource_name = "Skin"
@@ -28,16 +25,6 @@ bind/3/pose = Transform3D(0.310019, -0.95073, -4.5396e-07, 0.95073, 0.310019, 2.
 bind/4/name = &"Arm.R"
 bind/4/bone = -1
 bind/4/pose = Transform3D(0.310019, -0.95073, -4.5396e-07, 0.95073, 0.310019, 2.41153e-07, -8.85354e-08, -5.06355e-07, 1, 0.708442, -0.559139, -0.202817)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwr3b"]
-render_priority = 0
-shader = ExtResource("4_cb43e")
-shader_parameter/base_texture = ExtResource("6_gm63v")
-shader_parameter/color_mask = ExtResource("7_d3so8")
-shader_parameter/Light_texture = ExtResource("5_4ikg2")
-shader_parameter/color = Vector3(0.5, 0.5, 0.32)
-shader_parameter/disappearance = 1.0
-shader_parameter/dirt = 0.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dga62"]
 height = 1.52545
@@ -94,7 +81,6 @@ size = Vector2(1, 0.5)
 viewport_path = NodePath("DebugDrawer/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxpqc"]
-resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_xk6ka")
 
 [node name="Dalek" type="CharacterBody3D" unique_id=456703432]
@@ -151,7 +137,7 @@ bones/4/scale = Vector3(1.0000001, 1.0000007, 1.0000005)
 mesh = ExtResource("2_yx3a7")
 skin = SubResource("Skin_jhx4l")
 skeleton = NodePath("..")
-surface_material_override/0 = SubResource("ShaderMaterial_jwr3b")
+surface_material_override/0 = ExtResource("4_xjhjr")
 
 [node name="HeadBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D" unique_id=1923684382]
 transform = Transform3D(0.999999, -0.000959592, 0.000960514, 0.000960514, 0.999999, -0.000959592, -0.000959592, 0.000960514, 0.999999, 0, 1.06786, 0)

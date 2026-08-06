@@ -12,4 +12,3 @@ void fragment() {
 	ALBEDO = textureLod(noise_texture, UV + vec2(0, mult * TIME), 0.0).xyz;
 	ALPHA = 0.8;
 }
-

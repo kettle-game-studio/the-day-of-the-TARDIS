@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="ShadersCompilerConfig" format=3 uid="uid://ba07vwpg84jq3"]
+
+[ext_resource type="Shader" uid="uid://cm2or3a3myt5h" path="res://assets/vfx/sdriver.gdshader" id="1_gefr0"]
+[ext_resource type="Texture2D" uid="uid://dr6yp1613j45e" path="res://assets/models/SDriver/SDriver_SDriverColor.png" id="2_snty0"]
+[ext_resource type="Texture2D" uid="uid://c2m2mqqo2dxv6" path="res://assets/models/SDriver/SDriver_SDriverLight.png" id="3_fgk4f"]
+[ext_resource type="Material" uid="uid://c62848jt8ianq" path="res://assets/models/TARGIS/materials/tardis_material_alpha.tres" id="4_56al1"]
+[ext_resource type="Material" uid="uid://dgstr4d8q6epf" path="res://assets/models/TARGIS/materials/tardis_material.tres" id="5_luilx"]
+[ext_resource type="Material" uid="uid://ovpri081f5qq" path="res://assets/models/TARGIS/materials/AlphaTardisMaterial.tres" id="6_s68wj"]
+[ext_resource type="Material" uid="uid://qlgtf24k1i82" path="res://assets/models/TARGIS/materials/RoomTestMaterial.tres" id="7_svq66"]
+[ext_resource type="Material" uid="uid://l8vi6ugcmoiu" path="res://assets/models/Dalek/smoke_material.tres" id="8_ii0e1"]
+[ext_resource type="Texture2D" uid="uid://bo15cfuumlcfe" path="res://assets/models/Smoke/Smoke.png" id="9_ujha5"]
+[ext_resource type="Material" uid="uid://ccdvifroynewr" path="res://assets/models/Tube/materials/TubeMaterial.tres" id="10_c7h2m"]
+[ext_resource type="Material" uid="uid://bku6j6oditrrh" path="res://assets/models/Tiles/materials/tileset_material.tres" id="11_qd4l7"]
+[ext_resource type="Material" uid="uid://cav8qac5am725" path="res://assets/models/Tiles/materials/tileset_glass_material.tres" id="12_qp26s"]
+[ext_resource type="Shader" uid="uid://mibkdj4pho7e" path="res://assets/vfx/dalek.gdshader" id="13_20x2w"]
+[ext_resource type="Material" uid="uid://cfqevsq1e5tnx" path="res://assets/models/Dalek/imports/TestMaterial.tres" id="14_wxy5y"]
+[ext_resource type="Shader" uid="uid://dbsrvm52vyue4" path="res://assets/vfx/portal/portal.gdshader" id="15_iqq2b"]
+[ext_resource type="Shader" uid="uid://coeqvhlyr2xcw" path="res://assets/vfx/portal/portal_border.gdshader" id="16_wx2yf"]
+[ext_resource type="Shader" uid="uid://dky7hs7gmkny1" path="res://assets/vfx/portal/tardis_portal.gdshader" id="17_55tkx"]
+[ext_resource type="Script" uid="uid://cejy88jrfph1m" path="res://addons/shader_stutter_tracker/shaders_compiler_config.gd" id="18_k8fto"]
+
+[sub_resource type="Environment" id="Environment_aiut3"]
+ambient_light_source = 2
+ambient_light_color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+tonemap_exposure = 0.84
+glow_intensity = 2.46
+fog_enabled = true
+fog_depth_begin = 440.9
+fog_depth_end = 1449.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xldig"]
+render_priority = 0
+shader = ExtResource("1_gefr0")
+shader_parameter/color = Vector3(0, 1, 0)
+shader_parameter/emission = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1v7x"]
+resource_name = "SDriverMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("2_snty0")
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("3_fgk4f")
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h40m"]
+transparency = 1
+albedo_texture = ExtResource("9_ujha5")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tko3s"]
+render_priority = 0
+shader = ExtResource("13_20x2w")
+shader_parameter/color = Vector3(0.5, 0, 0)
+shader_parameter/disappearance = 1.0
+shader_parameter/dirt = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xk6ka"]
+viewport_path = NodePath("DebugDrawer/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxpqc"]
+albedo_texture = SubResource("ViewportTexture_xk6ka")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2630q"]
+render_priority = 0
+shader = ExtResource("15_iqq2b")
+shader_parameter/speed = 1.0
+shader_parameter/size = 20.0
+shader_parameter/close = 1.0
+shader_parameter/color = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxmp7"]
+render_priority = 0
+shader = ExtResource("16_wx2yf")
+shader_parameter/mult = 1.0
+shader_parameter/speed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcw0g"]
+render_priority = 0
+shader = ExtResource("17_55tkx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gefr0"]
+
+[resource]
+script = ExtResource("18_k8fto")
+materials = Array[Material]([SubResource("ShaderMaterial_xldig"), SubResource("StandardMaterial3D_n1v7x"), ExtResource("4_56al1"), ExtResource("5_luilx"), ExtResource("6_s68wj"), ExtResource("5_luilx"), ExtResource("7_svq66"), ExtResource("8_ii0e1"), SubResource("StandardMaterial3D_1h40m"), ExtResource("10_c7h2m"), ExtResource("11_qd4l7"), ExtResource("12_qp26s"), SubResource("ShaderMaterial_tko3s"), ExtResource("14_wxy5y"), SubResource("StandardMaterial3D_oxpqc"), SubResource("ShaderMaterial_2630q"), SubResource("ShaderMaterial_dxmp7"), SubResource("ShaderMaterial_jcw0g"), SubResource("StandardMaterial3D_gefr0")])
+environments = Array[Environment]([SubResource("Environment_aiut3")])

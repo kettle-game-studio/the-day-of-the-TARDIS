@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ccdvifroynewr"]
+
+[ext_resource type="Texture2D" uid="uid://bf3c0hcu2kyne" path="res://assets/models/Tube/Tube_TubeColor.png" id="1_ew7tm"]
+
+[resource]
+resource_name = "TubeMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("1_ew7tm")
+roughness = 0.5
+texture_filter = 2
