@@ -39,7 +39,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/self_inspect/plugin.cfg", "res://addons/shader_stutter_tracker/plugin.cfg")
+enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/self_inspect/plugin.cfg", "res://addons/shader_stutter_tracker/plugin.cfg")
 
 [filesystem]
 

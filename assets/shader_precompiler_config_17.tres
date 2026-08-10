@@ -1,0 +1,167 @@
+[gd_resource type="Resource" script_class="ShadersCompilerConfig" format=3 uid="uid://kil563h065g0"]
+
+[ext_resource type="Shader" uid="uid://cm2or3a3myt5h" path="res://assets/vfx/sdriver.gdshader" id="1_d1hr6"]
+[ext_resource type="Texture2D" uid="uid://dr6yp1613j45e" path="res://assets/models/SDriver/SDriver_SDriverColor.png" id="2_mikpq"]
+[ext_resource type="Texture2D" uid="uid://c2m2mqqo2dxv6" path="res://assets/models/SDriver/SDriver_SDriverLight.png" id="3_obgp3"]
+[ext_resource type="Material" uid="uid://dgstr4d8q6epf" path="res://assets/models/TARGIS/materials/tardis_material.tres" id="4_h60le"]
+[ext_resource type="Texture2D" uid="uid://bcpgin217gs74" path="res://assets/models/Tiles/Tiles_TilesColor.png" id="5_fauqg"]
+[ext_resource type="Texture2D" uid="uid://dtayuem8dly4t" path="res://assets/models/Tiles/Tiles_TilesLight.png" id="6_w2qtb"]
+[ext_resource type="Texture2D" uid="uid://bpdf1tv3or8dl" path="res://assets/models/Tiles/Tiles_TileAlphaMask.png" id="7_yfcjq"]
+[ext_resource type="Material" uid="uid://l8vi6ugcmoiu" path="res://assets/models/Dalek/smoke_material.tres" id="8_65d2r"]
+[ext_resource type="Texture2D" uid="uid://bo15cfuumlcfe" path="res://assets/models/Smoke/Smoke.png" id="9_ufbnb"]
+[ext_resource type="Material" uid="uid://ccdvifroynewr" path="res://assets/models/Tube/materials/TubeMaterial.tres" id="10_k7ouj"]
+[ext_resource type="Shader" uid="uid://dbsrvm52vyue4" path="res://assets/vfx/portal/portal.gdshader" id="11_v80jj"]
+[ext_resource type="Shader" uid="uid://coeqvhlyr2xcw" path="res://assets/vfx/portal/portal_border.gdshader" id="12_23wst"]
+[ext_resource type="Shader" uid="uid://dky7hs7gmkny1" path="res://assets/vfx/portal/tardis_portal.gdshader" id="13_xwwfl"]
+[ext_resource type="Shader" uid="uid://mibkdj4pho7e" path="res://assets/vfx/dalek.gdshader" id="14_axsos"]
+[ext_resource type="Material" uid="uid://cfqevsq1e5tnx" path="res://assets/models/Dalek/imports/TestMaterial.tres" id="15_7o0t1"]
+[ext_resource type="Material" uid="uid://c62848jt8ianq" path="res://assets/models/TARGIS/materials/tardis_material_alpha.tres" id="16_1ubuh"]
+[ext_resource type="Shader" uid="uid://c7l36drmfaleo" path="res://assets/vfx/bullet.gdshader" id="17_ae1v5"]
+[ext_resource type="Shader" uid="uid://bc1uw1vp2ngf" path="res://assets/vfx/dalek/dalek_translate_particles.gdshader" id="18_g0e1h"]
+[ext_resource type="Shader" uid="uid://dqedaq8xq23ne" path="res://assets/vfx/dalek/dalek_translate_maprticles_visual.gdshader" id="19_f5ige"]
+[ext_resource type="Shader" uid="uid://0isn1qohrgwr" path="res://assets/vfx/explosion.gdshader" id="20_6ejli"]
+[ext_resource type="Material" uid="uid://cav8qac5am725" path="res://assets/models/Tiles/materials/tileset_glass_material.tres" id="21_fe6r1"]
+[ext_resource type="Script" uid="uid://cejy88jrfph1m" path="res://addons/shader_stutter_tracker/compiler/shaders_compiler_config.gd" id="22_wij4t"]
+
+[sub_resource type="Environment" id="Environment_aiut3"]
+ambient_light_source = 2
+ambient_light_color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+tonemap_exposure = 0.84
+glow_intensity = 2.46
+fog_enabled = true
+fog_depth_begin = 440.9
+fog_depth_end = 1449.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8omf4"]
+render_priority = 0
+shader = ExtResource("1_d1hr6")
+shader_parameter/color = Vector3(0, 1, 0)
+shader_parameter/emission = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1v7x"]
+resource_name = "SDriverMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("2_mikpq")
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("3_obgp3")
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgfyc"]
+resource_name = "TileMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("5_fauqg")
+metallic = 1.0
+metallic_texture = ExtResource("7_yfcjq")
+metallic_texture_channel = 2
+roughness = 0.5
+roughness_texture = ExtResource("7_yfcjq")
+roughness_texture_channel = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("6_w2qtb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h40m"]
+transparency = 1
+albedo_texture = ExtResource("9_ufbnb")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4dcij"]
+render_priority = 0
+shader = ExtResource("11_v80jj")
+shader_parameter/speed = 1.0
+shader_parameter/size = 20.0
+shader_parameter/close = 1.0
+shader_parameter/color = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ypsyg"]
+render_priority = 0
+shader = ExtResource("12_23wst")
+shader_parameter/mult = 1.0
+shader_parameter/speed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmi0h"]
+render_priority = 0
+shader = ExtResource("13_xwwfl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yqjcn"]
+render_priority = 0
+shader = ExtResource("14_axsos")
+shader_parameter/color = Vector3(0.5, 0, 0)
+shader_parameter/disappearance = 1.0
+shader_parameter/dirt = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eccar"]
+render_priority = 0
+shader = ExtResource("17_ae1v5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_phgu1"]
+shader = ExtResource("18_g0e1h")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/dalek_down_radius = 0.0
+shader_parameter/dalek_up_radius = 0.0
+shader_parameter/bottom_k = 1.0
+shader_parameter/bottom_offset = Vector3(0, 0, 0)
+shader_parameter/start_point = Vector3(0, 0, 0)
+shader_parameter/start_rotation = 0.0
+shader_parameter/start_height = 0.0
+shader_parameter/start_dirt = 0.0
+shader_parameter/start_neck = 0.0
+shader_parameter/end_point = Vector3(0, 0, 0)
+shader_parameter/end_rotation = 0.0
+shader_parameter/end_height = 0.0
+shader_parameter/end_dirt = 0.0
+shader_parameter/end_neck = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u11tf"]
+render_priority = 0
+shader = ExtResource("19_f5ige")
+shader_parameter/emission = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tc8cl"]
+render_priority = 0
+shader = ExtResource("20_6ejli")
+shader_parameter/speed = 1.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xk6ka"]
+viewport_path = NodePath("DebugDrawer/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxpqc"]
+albedo_texture = SubResource("ViewportTexture_xk6ka")
+
+[resource]
+script = ExtResource("22_wij4t")
+materials = Array[Material]([SubResource("ShaderMaterial_8omf4"), SubResource("StandardMaterial3D_n1v7x"), ExtResource("4_h60le"), SubResource("StandardMaterial3D_qgfyc"), ExtResource("8_65d2r"), SubResource("StandardMaterial3D_1h40m"), ExtResource("10_k7ouj"), SubResource("ShaderMaterial_4dcij"), SubResource("ShaderMaterial_ypsyg"), SubResource("ShaderMaterial_pmi0h"), SubResource("ShaderMaterial_yqjcn"), ExtResource("15_7o0t1"), ExtResource("16_1ubuh"), SubResource("ShaderMaterial_eccar"), SubResource("ShaderMaterial_phgu1"), SubResource("ShaderMaterial_u11tf"), SubResource("ShaderMaterial_tc8cl"), ExtResource("21_fe6r1"), SubResource("StandardMaterial3D_oxpqc")])
+environments = Array[Environment]([SubResource("Environment_aiut3")])
+nodes = Array[Dictionary]([{
+&"class": "SpotLight3D",
+&"owner": NodePath("/root/ShaderPrecompilerScene/ShaderPrecompiler"),
+&"path": NodePath("/root/ShaderPrecompilerScene/ShaderPrecompiler/@SpotLight3D@98"),
+&"properties": {
+"spot_angle": 52.7237,
+"spot_range": 22.0
+},
+&"scene": "",
+&"script": null
+}, {
+&"class": "Label3D",
+&"owner": NodePath("/root/ShaderPrecompilerScene/MainScene/Levels/LevelEnd"),
+&"path": NodePath("/root/ShaderPrecompilerScene/MainScene/Levels/LevelEnd/Room1/Statistics/Deaths"),
+&"properties": {
+"font_size": 80,
+"outline_size": 0,
+"pixel_size": 0.001,
+"process_mode": 4,
+"text": "Смертей:
+
+ 13"
+},
+&"scene": "",
+&"script": null
+}])

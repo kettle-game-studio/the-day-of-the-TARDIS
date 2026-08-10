@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dpj584i0u2ff0"]
 
-[ext_resource type="Script" uid="uid://cttxei1s2fmbl" path="res://addons/shader_stutter_tracker/ui/debug_tab.gd" id="1_qolij"]
+[ext_resource type="Script" uid="uid://cttxei1s2fmbl" path="res://addons/shader_stutter_tracker/debug/debug_tab.gd" id="1_qolij"]
 
 [node name="DebugTab" type="VBoxContainer" unique_id=862536311]
 anchors_preset = 15

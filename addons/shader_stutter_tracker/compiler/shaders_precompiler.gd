@@ -1,0 +1,78 @@
+extends Node
+
+signal all_shaders_compiled
+
+@export var config: ShadersCompilerConfig
+@export var camera: Camera3D
+
+var _quad := SSTResourceUtils.make_skinned_quad()
+var _counter: int = -3
+
+
+func _ready():
+	_add_material3d(null)
+	for mat in config.materials:
+		if (
+			mat is BaseMaterial3D
+			or SSTResourceUtils.is_shader_with_mode(mat, Shader.Mode.MODE_SPATIAL)
+		):
+			_add_material_with_skeleton3d(mat)
+		elif (
+			mat is ParticleProcessMaterial
+			or SSTResourceUtils.is_shader_with_mode(mat, Shader.Mode.MODE_PARTICLES)
+		):
+			_add_particles3d(mat)
+	for description in config.nodes:
+		_add_node(description)
+
+
+func _process(_delta: float) -> void:
+	var active_env := _counter / 2
+	if active_env >= config.environments.size():
+		all_shaders_compiled.emit()
+		queue_free()
+	elif active_env >= 0:
+		camera.environment = config.environments.get(active_env)
+	_counter += 1
+
+
+func _add_node(description: Dictionary) -> Node:
+	var node := SSTNodeUtils.create(description)
+	add_child(node)
+	node.owner = self
+	if node is VisualInstance3D:
+		SSTNodeUtils.disable_culling(node)
+	return node
+
+
+func _add_material3d(material: Material) -> MeshInstance3D:
+	var instance := MeshInstance3D.new()
+	instance.mesh = _quad
+	add_child(instance)
+	instance.owner = self
+	instance.material_override = material
+	SSTNodeUtils.disable_culling(instance)
+	return instance
+
+
+func _add_material_with_skeleton3d(material: Material) -> Skeleton3D:
+	var skeleton := Skeleton3D.new()
+	add_child(skeleton)
+	skeleton.owner = self
+
+	var bone := skeleton.add_bone("Bone1")
+	skeleton.set_bone_rest(bone, Transform3D.IDENTITY)
+
+	var instance := _add_material3d(material)
+	instance.reparent(skeleton)
+	instance.skeleton = instance.get_path_to(skeleton)
+	instance.skin = skeleton.create_skin_from_rest_transforms()
+
+	return skeleton
+
+
+func _add_particles3d(mat: Material):
+	var particles := GPUParticles3D.new()
+	particles.process_material = mat
+	add_child(particles)
+	particles.owner = self

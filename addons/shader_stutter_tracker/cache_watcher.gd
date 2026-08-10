@@ -7,41 +7,6 @@ const ACTIVE_LOGS_SUBDIR := "logs"
 signal new_tick_processed
 signal new_shaders_compiled(report: Dictionary)
 
-func diff(old: Dictionary[String, int], new: Dictionary[String, int]) -> Dictionary[String, int]:
-	var d := old.duplicate()
-	for key in d.keys():
-		d[key] = new.get_or_add(key, 0) - d[key]
-	for key in new.keys():
-		if !d.has(key):
-			d[key] = new[key]
-	var res: Dictionary[String, int] = {}
-	for key in d.keys():
-		var v = d[key]
-		if v != 0:
-			res[key] = v
-	return res
-
-
-func get_stats() -> Dictionary[String, int]:
-	var dirs := DirAccess.get_directories_at("user://shader_cache")
-	var stats: Dictionary[String, int] = {}
-	for dir in dirs:
-		if not dir.contains("Shader"):
-			continue
-		var count = 0
-		for subdir in DirAccess.get_directories_at("user://shader_cache/" + dir):
-			count += DirAccess.get_files_at("user://shader_cache/%s/%s" % [dir, subdir]).size()
-		stats[dir] = count
-	return stats
-
-func clear_cache():
-	var dirs := DirAccess.get_directories_at("user://shader_cache")
-	for dir in dirs:
-		for subdir in DirAccess.get_directories_at("user://shader_cache/" + dir):
-			var d := DirAccess.open("user://shader_cache/%s/%s" % [dir, subdir])
-			for file in DirAccess.get_files_at("user://shader_cache/%s/%s" % [dir, subdir]):
-				d.remove(file)
-
 func logs_rotation():
 	DirAccess.make_dir_recursive_absolute(PLUGIN_DATA_DIR)
 	var oldest_logs := ""
@@ -61,8 +26,8 @@ func _init() -> void:
 	settings.add_to_project_settings()
 	logs_rotation()
 	if settings.clear_cache_on_start.value:
-		clear_cache()
-	prev_stats = get_stats()
+		SSTShaderCacheService.clear_cache()
+	prev_stats = SSTShaderCacheService.get_stats()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func register_monitor(shader_key: String) -> void:
@@ -83,10 +48,10 @@ func _process(delta: float) -> void:
 	work.call_deferred()
 
 func work():
-	var new_stats := get_stats()
+	var new_stats := SSTShaderCacheService.get_stats()
 	if new_stats != prev_stats:
 		var frame_number := Engine.get_process_frames()
-		var new_shaders := diff(prev_stats, new_stats)
+		var new_shaders := SSTShaderCacheService.diff(prev_stats, new_stats)
 		var scene_path := PLUGIN_DATA_DIR.path_join(ACTIVE_LOGS_SUBDIR).path_join("%d.tscn" % frame_number)
 		for key in new_shaders:
 			register_monitor(key)

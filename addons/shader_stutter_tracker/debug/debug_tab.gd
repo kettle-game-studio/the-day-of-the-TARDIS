@@ -50,16 +50,20 @@ func save_resources(file: String):
 	for frame in frames:
 		for node in frame["nodes"]:
 			for trigger in node["triggers"]:
-				var resource := load(trigger["path"])
-				if resource is Material:
-					res.materials.push_back(resource)
-				if resource is Shader:
-					var shader := resource as Shader
-					var mat := ShaderMaterial.new()
-					mat.shader = shader
-					res.materials.push_back(mat)
-				if resource is Environment:
-					res.environments.push_back(resource)
+				if trigger["type"] == &"RESOURCE":
+					var path = trigger["path"]
+					var resource := load(path)
+					if resource is Material:
+						res.materials.push_back(resource)
+					if resource is Shader:
+						var shader := resource as Shader
+						var mat := ShaderMaterial.new()
+						mat.shader = shader
+						res.materials.push_back(mat)
+					if resource is Environment:
+						res.environments.push_back(resource)
+				else:
+					res.nodes.push_back(node["tree_nodes"].back())
 	ResourceSaver.save(res, file)
 
 func draw_frame(report: Dictionary):
@@ -155,16 +159,16 @@ func _on_frames_tree_item_selected():
 	trigger_tree.clear()
 	var last_node: TreeItem
 	for n in branch:
-		var path: NodePath = n["path"]
+		var path: NodePath = n[&"path"]
 		var item := trigger_tree.create_item() if last_node == null else last_node.create_child()
-		var cl = n["class"]
+		var cl = n[&"class"]
 		item.set_icon(0, get_icon(cl))
 		item.set_metadata(0, meta.fork(CellType.NODE, n))
 		var name: String = path.get_name(path.get_name_count()-1)
 		last_node = item
-		var script = n.get("script", null)
-		var scene = n.get("scene", null)
-		var owner = n.get("owner", null)
+		var script = n.get(&"script", null)
+		var scene = n.get(&"scene", null)
+		var owner = n.get(&"owner", null)
 		var tooltip_parts := [
 			name,
 			"Type: %s" % [cl]

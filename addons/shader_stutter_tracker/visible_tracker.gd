@@ -2,25 +2,34 @@ extends Node
 
 const TrackOnScreen := preload("res://addons/shader_stutter_tracker/track_on_screen.gd")
 
-
-var saw_triggers: Dictionary[Dictionary, int] = {}
+var saw_triggers: Dictionary[Dictionary, int] = { }
 var on_screen_triggers: Array[Node] = []
 var on_screen_enviroments: Array[WorldEnvironment] = []
-var saw_keys: Dictionary[String,Dictionary] = {}
+var saw_keys: Dictionary[String, Dictionary] = { }
 
-func report() -> Array:
-	return on_screen_triggers.map(func (n: Node): return n.get_meta(&"Report"))
 
 func _ready() -> void:
-	Performance.add_custom_monitor(&"shaders/new_triggers", func(): return saw_keys.size())
+	Performance.add_custom_monitor(
+		&"shaders/new_triggers",
+		func():
+			return saw_keys.size(),
+	)
 	# Performance.add_custom_monitor(&"shaders/new_triggers", get_new_triggers_on_screen_count)
 	add_existed_nodes.call_deferred(get_tree().current_scene)
 	get_tree().node_added.connect(_on_node_added)
-	ShaderTriggers.prepare()
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+func report() -> Array:
+	return on_screen_triggers.map(
+		func(n: Node):
+			return n.get_meta(&"Report"),
+	)
+
 
 func clear() -> void:
 	on_screen_triggers.clear()
+
 
 func copy_visible_as_scene() -> PackedScene:
 	var packed_scene = PackedScene.new()
@@ -28,81 +37,62 @@ func copy_visible_as_scene() -> PackedScene:
 	root.name = "root"
 	var active_camera := get_viewport().get_camera_3d()
 	if active_camera and active_camera.environment != null:
-		var triggers := ShaderTriggers.new()
-		triggers.add_from_environment(active_camera.environment)
-		add_new_triggers(active_camera, triggers)
+		add_new_triggers(active_camera, ShaderTriggerCandidate.from(active_camera.environment))
 	else:
 		for env in on_screen_enviroments:
-			var triggers := ShaderTriggers.new()
-			triggers.add_from_environment(env.environment)
-			add_new_triggers(env, triggers)
+			add_new_triggers(env, ShaderTriggerCandidate.from(env.environment))
 	for item in on_screen_triggers:
-		var node := copy_from_root(item, root)
+		var node := SSTNodeUtils.copy_from_root(item, root)
 		node.set_meta(&"Report", item.get_meta(&"Report"))
 	assert(packed_scene.pack(root) == Error.OK)
 	root.free()
 	return packed_scene
-			
-func copy_all(source_node: Node, destination_node: Node, destination_scene_root: Node):
-	var dst := clone_node_shallow(source_node)
-	dst.name = source_node.get_path().get_concatenated_names().replace("/", "_")
-	destination_node.add_child(dst)
-	dst.owner = destination_scene_root
-	if dst is Node3D:
-		(dst as Node3D).global_transform = (source_node as Node3D).global_transform
-	elif dst is Node2D:
-		(dst as Node2D).global_transform = (source_node as Node2D).global_transform
-
-
-func copy_from_root(source_node: Node, destination_scene_root: Node) -> Node:
-	if source_node.get_parent() == null:
-		return destination_scene_root
-	var parent := copy_from_root(source_node.get_parent(), destination_scene_root)
-	var existed_copy := parent.find_child(source_node.name, false, false)
-	if existed_copy:
-		return existed_copy
-	var dst := clone_node_shallow(source_node)
-	dst.name = source_node.name
-	parent.add_child(dst)
-	dst.owner = destination_scene_root
-	if dst is Node3D:
-		(dst as Node3D).transform = (source_node as Node3D).transform
-	elif dst is Node2D:
-		(dst as Node2D).transform = (source_node as Node2D).transform
-	return dst
-
-
-static func clone_node_shallow(src: Node) -> Node:
-	var dst := Node.new() if src.get_class() == "" else ClassDB.instantiate(src.get_class())
-
-	copy_propierties(src, dst)
-	
-	return dst
-
-static func copy_propierties(src: Node, dst = {}, type_filter: Array[Variant.Type] = []):
-	# copy built-in properties only
-	if not src.has_method("get"):
-		return
-	for p in src.get_property_list():
-		if p.usage & PROPERTY_USAGE_STORAGE == 0:
-			continue
-		if not type_filter.is_empty() and not (p.type in type_filter):
-			continue
-		var name = p.name
-		if name == "script":
-			continue
-		var value = src.get(name)
-		if value == ClassDB.class_get_property_default_value(src.get_class(), name):
-			continue
-		if dst is Dictionary or dst.has_method("set"):
-			dst.set(name, value)
-	return dst
 
 
 func add_existed_nodes(node):
 	for child in node.get_children():
 		add_existed_nodes(child)
 		_on_node_added(child)
+
+
+func on_enter_visible(node: VisualInstance3D):
+	add_new_triggers(node, ShaderTriggerCandidate.from(node))
+
+
+func add_new_triggers(node: Node, triggers: Array[ShaderTriggerCandidate]):
+	var filtered = triggers.filter(
+		func(t):
+			return !saw_triggers.has(t.key),
+	)
+	if filtered.is_empty():
+		return
+	if not add_new_triggers_force(node, filtered):
+		return
+	var time = Time.get_ticks_msec()
+	for t in filtered:
+		saw_triggers[t.key] = time
+
+
+func add_new_triggers_force(node: Node, triggers: Array[ShaderTriggerCandidate]):
+	if node in on_screen_triggers:
+		return false
+	node.set_meta(
+		&"Report",
+		{
+			"tree_nodes": SSTNodeUtils.owners_chain(node),
+			"triggers": triggers.map(
+				func(t: ShaderTriggerCandidate):
+					return t.to_dict(),
+			),
+		},
+	)
+	on_screen_triggers.push_back(node)
+	return true
+
+
+func get_new_triggers_on_screen_count() -> int:
+	return on_screen_triggers.size()
+
 
 func _on_node_added(node: Node):
 	if node.get_script() == TrackOnScreen:
@@ -112,67 +102,84 @@ func _on_node_added(node: Node):
 		node.add_child(t)
 	if node is WorldEnvironment:
 		on_screen_enviroments.push_back(node)
-		node.tree_exited.connect(func (): on_screen_enviroments.erase(node))
-
-func on_enter_visible(node: VisualInstance3D):
-	var triggers := ShaderTriggers.new()
-	triggers.add_from_visual_instance_3d(node)
-	add_new_triggers(node, triggers)
-
-func add_new_triggers(node: Node, triggers: ShaderTriggers):
-	var filtered = triggers.triggers.filter(func(t): return !saw_triggers.has(t.key))
-	if filtered.is_empty():
-		return
-	if not add_new_triggers_force(node, filtered):
-		return
-	var time = Time.get_ticks_msec()
-	for t in filtered:
-		saw_triggers[t.key] = time
-
-func add_new_triggers_force(node: Node, triggers: Array[TriggerV1]):
-	if node in on_screen_triggers:
-		return false
-	node.set_meta(&"Report", {
-		"tree_nodes": owners_chain(node),
-		"triggers": triggers.map(func (t: TriggerV1): return {
-				"path": t.path, 
-				"type": t.type, 
-				"class": t.key["class"],
-				"shaders": t.shaders,
-				"resources": t.resources_chain.map(func (e: Resource): return {
-					"path": e.resource_path,
-					"class": e.get_class(),
-				}),
-				"keys": t.key,
-		}),
-	})
-	on_screen_triggers.push_back(node)
-	return true
-
-func get_new_triggers_on_screen_count() -> int:
-	return on_screen_triggers.size()
+		node.tree_exited.connect(
+			func():
+				on_screen_enviroments.erase(node),
+		)
 
 
-class TriggerV1:
+class ShaderTriggerCandidate:
 	var type := &"NODE"
 	var shaders: Array[StringName]
 	var path: String
 	var key: Dictionary
-	var resources_chain: Array[Resource];
-	func _init(type: StringName, 
-			shaders: Array[StringName], 
-			path: String, 
-			key: Dictionary = { "path": path }, 
-			resources_chain: Array[Resource] = []):
+	var resources_chain: Array[Resource]
+
+
+	func _init(
+		type: StringName,
+		shaders: Array[StringName],
+		path: String,
+		key: Dictionary = { "path": path },
+		resources_chain: Array[Resource] = [],
+	):
 		self.type = type
 		self.shaders = shaders
 		self.path = path
 		self.key = key
 		self.resources_chain = resources_chain
 
+
+	func to_dict() -> Dictionary:
+		return {
+			"path": path,
+			"type": type,
+			"class": key["class"],
+			"shaders": shaders,
+			"resources": resources_chain.map(
+				func(e: Resource):
+					return { "path": e.resource_path, "class": e.get_class() },
+			),
+			"keys": key,
+		}
+
+
+	static func from(obj: Object) -> Array[ShaderTriggerCandidate]:
+		var collector := ShaderTriggers.new()
+		if obj is VisualInstance3D:
+			collector.add_from_visual_instance_3d(obj)
+		elif obj is GridMap:
+			collector.add_from_grid_map(obj)
+		elif obj is Environment:
+			collector.add_from_environment(obj)
+		return collector.triggers
+
+
+	static func from_or_unknown(obj: Object) -> Array[ShaderTriggerCandidate]:
+		var triggers := from(obj)
+		if not triggers.is_empty():
+			return triggers
+		if obj is Node:
+			var node := obj as Node
+			return [
+				ShaderTriggerCandidate.new(
+					&"NODE",
+					["UNKNOWN"],
+					node.get_path(),
+					{ "class": node.get_class(), "path": node.get_path() },
+				)
+			]
+		return []
+
+
 class ShaderTriggers:
-	var triggers: Array[TriggerV1] = []
-	static func prepare():
+	var triggers: Array[ShaderTriggerCandidate] = []
+	var savedmats := { }
+
+	static var _prepared := false
+
+
+	static func prepare() -> void:
 		var classes := [&"BaseMaterial3D", &"Light3D", &"Environment"]
 		classes.append_array(ClassDB.get_inheriters_from_class(&"Light3D"))
 		for clazz in classes:
@@ -181,10 +188,15 @@ class ShaderTriggers:
 				var type: Variant.Type = property["type"]
 				var hint: PropertyHint = property["hint"]
 				var name: String = property["name"]
-				if (type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM) and !name.ends_with("_texture_channel"):
+				if (
+					(type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM)
+					and !name.ends_with("_texture_channel")
+				):
 					trigger_properties_by_class[clazz].push_back(StringName(name))
-			print_rich(clazz, trigger_properties_by_class[clazz])
-	static var trigger_properties_by_class: Dictionary[StringName, Array] = {}
+		_prepared = true
+
+
+	static var trigger_properties_by_class: Dictionary[StringName, Array] = { }
 	static var label3d_trigger_properties: Array[StringName] = [
 		&"alpha_antialiasing_mode",
 		&"alpha_cut",
@@ -207,19 +219,22 @@ class ShaderTriggers:
 		&"shaded",
 		&"texture_filter",
 		&"transparent",
-	 ]
+	]
+
+
 	static func fill_keys_by_properties(source: Object, key: Dictionary, clazz: StringName) -> void:
+		if not _prepared:
+			prepare()
 		for p in trigger_properties_by_class[clazz]:
 			key[p] = source.get(p)
-	var savedmats := {}
+
+
 	func add_material(mat: Material, prev_resources: Array[Resource] = []):
 		if mat == null:
 			return
 		var resources := prev_resources.duplicate()
 		resources.push_back(mat)
-		var key := {
-				"class": mat.get_class()
-			}
+		var key := { "class": mat.get_class() }
 		var shader_types: Array[StringName] = []
 		if mat is BaseMaterial3D:
 			shader_types = [&"Scene"]
@@ -236,11 +251,7 @@ class ShaderTriggers:
 		elif mat is ShaderMaterial:
 			var sh := mat as ShaderMaterial
 			var path := sh.shader.resource_path
-			var k := {
-				"class": "Shader",
-				"path": path,
-				"mode": sh.shader.get_mode(),
-			}
+			var k := { "class": "Shader", "path": path, "mode": sh.shader.get_mode() }
 			if savedmats.has(k):
 				return
 			savedmats[k] = true
@@ -257,7 +268,9 @@ class ShaderTriggers:
 				# Mode used for setting the color and density of volumetric fog effect.
 				Shader.Mode.MODE_FOG: [&"Sky"] as Array[StringName],
 			}[sh.shader.get_mode()]
-			triggers.push_back(TriggerV1.new(&"RESOURCE", shader_types, path, k, resources))
+			triggers.push_back(
+				ShaderTriggerCandidate.new(&"RESOURCE", shader_types, path, k, resources)
+			)
 			return
 		else:
 			key["path"] = mat.resource_path
@@ -265,8 +278,11 @@ class ShaderTriggers:
 		if savedmats.has(key):
 			return
 		savedmats[key] = true
-		triggers.push_back(TriggerV1.new(&"RESOURCE", shader_types, path, key, resources))
-	
+		triggers.push_back(
+			ShaderTriggerCandidate.new(&"RESOURCE", shader_types, path, key, resources)
+		)
+
+
 	func add_from_mesh(mesh: Mesh, resources: Array[Resource] = []):
 		if mesh == null:
 			return
@@ -277,16 +293,19 @@ class ShaderTriggers:
 			var p := mesh as PrimitiveMesh
 			add_material(p.material, resources)
 		resources.pop_back()
+
+
 	func add_from_grid_map(node: GridMap):
 		var lib := node.mesh_library
 		for id in lib.get_item_list():
 			var mesh := lib.get_item_mesh(id)
 			add_from_mesh(mesh, [lib])
-		pass
+
+
 	func add_from_visual_instance_3d(node: VisualInstance3D):
 		# Decal: all decals are drowed by one shader, so just ignore it
 		if node is Decal:
-			triggers.push_back(TriggerV1.new(&"NODE", [&"Scene"], node.get_path()))
+			triggers.push_back(ShaderTriggerCandidate.new(&"NODE", [&"Scene"], node.get_path()))
 			return
 		# FogVolume
 		if node is FogVolume:
@@ -331,30 +350,34 @@ class ShaderTriggers:
 			# Label3D
 			elif gi is Label3D:
 				var l := gi as Label3D
-				var key := {"class": "Label3D"}
+				var key := { "class": "Label3D" }
 				for p in label3d_trigger_properties:
 					key[p] = l.get(p)
-				triggers.push_back(TriggerV1.new(&"NODE", [&"Scene", &"CanvasSdf"], l.get_path(), key))
+				triggers.push_back(
+					ShaderTriggerCandidate.new(&"NODE", [&"Scene", &"CanvasSdf"], l.get_path(), key)
+				)
 			# SpriteBase3D
 			elif gi is SpriteBase3D:
 				var s := gi as SpriteBase3D
-				var key := {"class": gi.get_class()}
+				var key := { "class": gi.get_class() }
 				for p in sprite3d_trigger_properties:
 					key[p] = s.get(p)
-				triggers.push_back(TriggerV1.new(&"NODE", [&"Scene"], s.get_path(), key))
+				triggers.push_back(
+					ShaderTriggerCandidate.new(&"NODE", [&"Scene"], s.get_path(), key)
+				)
 		# Rest subtypes don't use materials (todo: check)
 		# GPUParticlesAttractor3D
 		# GPUParticlesCollision3D
 		if node is Light3D:
 			if (node as Light3D).editor_only:
 				return
-			var key := {
-				"class": node.get_class()
-			}
+			var key := { "class": node.get_class() }
 			fill_keys_by_properties(node, key, &"Light3D")
 			fill_keys_by_properties(node, key, node.get_class())
-			triggers.push_back(TriggerV1.new(&"NODE", [&"LIGHT"], node.get_path(), key))
-			
+			triggers.push_back(
+				ShaderTriggerCandidate.new(&"NODE", [&"LIGHT"], node.get_path(), key)
+			)
+
 		# LightmapGI
 		# OccluderInstance3D
 		# OpenXRVisibilityMask
@@ -362,44 +385,35 @@ class ShaderTriggers:
 		# RootMotionView
 		# VisibleOnScreenNotifier3D
 		# VoxelGI
+
+
 	func add_from_environment(env: Environment):
 		var prev_resources: Array[Resource] = [env]
 		var shader_types: Array[StringName] = []
 		var key := { "class": env.get_class() }
 		fill_keys_by_properties(env, key, env.get_class())
-		if env.background_mode in [Environment.BGMode.BG_CLEAR_COLOR, Environment.BGMode.BG_COLOR, Environment.BGMode.BG_SKY]:
+		if env.background_mode in [
+			Environment.BGMode.BG_CLEAR_COLOR,
+			Environment.BGMode.BG_COLOR,
+			Environment.BGMode.BG_SKY,
+		]:
 			shader_types.push_back(&"Sky")
 		if env.background_mode == Environment.BGMode.BG_SKY:
 			if env.sky:
 				add_material(env.sky.sky_material, prev_resources)
-		if env.fog_enabled or env.volumetric_fog_enabled:
+		if (env.fog_enabled or env.volumetric_fog_enabled) and &"Sky" not in shader_types:
 			shader_types.push_back(&"Sky")
 		if env.adjustment_enabled:
 			shader_types.push_back(&"Post")
 		if env.glow_enabled:
 			shader_types.push_back(&"Glow")
 		if shader_types.size() != 0:
-			triggers.push_back(TriggerV1.new(&"RESOURCE", shader_types, env.resource_path, key, prev_resources))
-
-static func node_description(node: Node):
-	var owner := node.owner
-	var original_scene := node.scene_file_path
-	var owner_path := owner.get_path() if owner != null else null
-	var path := node.get_path()
-	var clazz := node.get_class()
-	var script := node.get_script()
-	var script_path := (script as Script).resource_path if script != null else null
-	return {
-		"owner": owner_path,
-		"path": path,
-		"scene": original_scene,
-		"class": clazz,
-		"script": script_path,
-		"properties": copy_propierties(node, {},  [TYPE_BOOL, TYPE_INT, TYPE_FLOAT, TYPE_STRING]),
-	}
-
-static func owners_chain(node: Node, arr: Array[Dictionary] = []) -> Array[Dictionary]:
-	if node.get_parent() != null:
-		owners_chain(node.get_parent(), arr)
-	arr.push_back(node_description(node))
-	return arr
+			triggers.push_back(
+				ShaderTriggerCandidate.new(
+					&"RESOURCE",
+					shader_types,
+					env.resource_path,
+					key,
+					prev_resources,
+				)
+			)
