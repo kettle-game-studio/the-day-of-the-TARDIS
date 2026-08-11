@@ -49,7 +49,7 @@ func debug_scene(scene: PackedScene):
 	var current_node := [scene_root]
 	var catched := func(report: Dictionary):
 		var node = current_node[0] as Node
-		var triggers := SSTVisibleTracker.ShaderTriggerCandidate.from_or_unknown(node)
+		var triggers := SSTTriggerCandidate.from_or_unknown(node)
 		SSTVisibleTracker.add_new_triggers_force(node, triggers)
 	SSTShaderStutterWatcher.new_shaders_compiled.connect(catched)
 	await SSTShaderStutterWatcher.new_tick_processed

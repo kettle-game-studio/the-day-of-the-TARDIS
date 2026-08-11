@@ -48,22 +48,7 @@ func add_frame(report: Dictionary):
 func save_resources(file: String):
 	var res := ShadersCompilerConfig.new()
 	for frame in frames:
-		for node in frame["nodes"]:
-			for trigger in node["triggers"]:
-				if trigger["type"] == &"RESOURCE":
-					var path = trigger["path"]
-					var resource := load(path)
-					if resource is Material:
-						res.materials.push_back(resource)
-					if resource is Shader:
-						var shader := resource as Shader
-						var mat := ShaderMaterial.new()
-						mat.shader = shader
-						res.materials.push_back(mat)
-					if resource is Environment:
-						res.environments.push_back(resource)
-				else:
-					res.nodes.push_back(node["tree_nodes"].back())
+		res.add_triggers(frame["nodes"])
 	ResourceSaver.save(res, file)
 
 func draw_frame(report: Dictionary):

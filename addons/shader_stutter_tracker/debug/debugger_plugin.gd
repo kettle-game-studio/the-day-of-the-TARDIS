@@ -1,7 +1,7 @@
 extends EditorDebuggerPlugin
 
-const DebugTabScene := preload("res://addons/shader_stutter_tracker/ui/debug_tab.tscn")
-const DebugTab :=  preload("res://addons/shader_stutter_tracker/ui/debug_tab.gd")
+const DebugTabScene := preload("res://addons/shader_stutter_tracker/debug/debug_tab.tscn")
+const DebugTab :=  preload("res://addons/shader_stutter_tracker/debug/debug_tab.gd")
 
 var session_tabs: Dictionary[int, DebugTab] = {}
 
