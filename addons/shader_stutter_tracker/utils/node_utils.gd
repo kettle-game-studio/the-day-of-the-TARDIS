@@ -9,7 +9,7 @@ static func create(description: Dictionary) -> Node:
 		node.set(property, properties.get(property))
 	return node
 
-static func get_path(node: Node) -> NodePath:
+static func get_node_path(node: Node) -> NodePath:
 	if node.is_inside_tree():
 		return node.get_path()
 	return _extract_path(node)
@@ -22,8 +22,8 @@ static func _extract_path(node: Node) -> NodePath:
 static func get_description(node: Node) -> Dictionary:
 	var owner := node.owner
 	var original_scene := node.scene_file_path
-	var owner_path := get_path(owner) if owner != null else null
-	var path := get_path(node)
+	var owner_path := get_node_path(owner) if owner != null else null
+	var path := get_node_path(node)
 	var clazz := node.get_class()
 	var script := node.get_script()
 	var script_path := (script as Script).resource_path if script != null else null
@@ -45,7 +45,7 @@ static func owners_chain(node: Node, arr: Array[Dictionary] = []) -> Array[Dicti
 
 static func copy_recursive(source_node: Node, destination_node: Node, destination_scene_root: Node) -> void:
 	var dst := clone_node_shallow(source_node)
-	dst.name = get_path(source_node).get_concatenated_names().replace("/", "_")
+	dst.name = get_node_path(source_node).get_concatenated_names().replace("/", "_")
 	destination_node.add_child(dst)
 	dst.owner = destination_scene_root
 	if dst is Node3D:

@@ -46,9 +46,10 @@ func add_frame(report: Dictionary):
 	draw_frame(report)
 
 func save_resources(file: String):
-	var res := ShadersCompilerConfig.new()
+	var res := SSTCompilerConfig.new()
 	for frame in frames:
 		res.add_triggers(frame["nodes"])
+	res.take_over_path(file)
 	ResourceSaver.save(res, file)
 
 func draw_frame(report: Dictionary):

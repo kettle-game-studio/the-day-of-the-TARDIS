@@ -8,6 +8,32 @@ static var _prepared := false
 
 
 static func prepare() -> void:
+	trigger_properties_by_class = {
+		&"Label3D": [
+			&"alpha_antialiasing_mode",
+			&"alpha_cut",
+			&"billboard",
+			&"cast_shadow",
+			&"double_sided",
+			&"fixed_size",
+			&"gi_mode",
+			&"no_depth_test",
+			&"shaded",
+			&"texture_filter",
+		],
+		&"Sprite3D": [
+			&"alpha_antialiasing_mode",
+			&"alpha_cut",
+			&"billboard",
+			&"double_sided",
+			&"fixed_size",
+			&"no_depth_test",
+			&"shaded",
+			&"texture_filter",
+			&"transparent",
+		],
+		&"CanvasItemMaterial": [&"blend_mode", &"light_mode"],
+	}
 	var classes := [&"BaseMaterial3D", &"Light3D", &"Environment"]
 	classes.append_array(ClassDB.get_inheriters_from_class(&"Light3D"))
 	for clazz in classes:
@@ -24,35 +50,7 @@ static func prepare() -> void:
 	_prepared = true
 
 
-static var trigger_properties_by_class: Dictionary[StringName, Array] = {
-	&"Label3D": [
-		&"alpha_antialiasing_mode",
-		&"alpha_cut",
-		&"billboard",
-		&"cast_shadow",
-		&"double_sided",
-		&"fixed_size",
-		&"gi_mode",
-		&"no_depth_test",
-		&"shaded",
-		&"texture_filter",
-	],
-	&"Sprite3D": [
-		&"alpha_antialiasing_mode",
-		&"alpha_cut",
-		&"billboard",
-		&"double_sided",
-		&"fixed_size",
-		&"no_depth_test",
-		&"shaded",
-		&"texture_filter",
-		&"transparent",
-	],
-	&"CanvasItemMaterial": [
-		&"blend_mode",
-		&"light_mode",
-	]
-}
+static var trigger_properties_by_class: Dictionary[StringName, Array] = { }
 
 
 static func fill_keys_by_properties(source: Object, key: Dictionary, clazz: StringName) -> void:
@@ -60,6 +58,7 @@ static func fill_keys_by_properties(source: Object, key: Dictionary, clazz: Stri
 		prepare()
 	for p in trigger_properties_by_class[clazz]:
 		key[p] = source.get(p)
+
 
 func add(obj: Object):
 	var collector := self
@@ -168,14 +167,16 @@ func add_from_grid_map(node: GridMap):
 
 
 func add_from_visual_instance_3d(node: VisualInstance3D):
+	var path := SSTNodeUtils.get_node_path(node)
+	var clazz := node.get_class()
 	# Decal: all decals are drowed by one shader, so just ignore it
 	if node is Decal:
 		triggers.push_back(
 			SSTTriggerCandidate.new(
 				SSTTriggerCandidate.Type.NODE,
-				node.get_class(),
+				clazz,
 				[&"Scene"],
-				node.get_path(),
+				path,
 			)
 		)
 		return
@@ -227,9 +228,9 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 			triggers.push_back(
 				SSTTriggerCandidate.new(
 					SSTTriggerCandidate.Type.NODE,
-					node.get_class(),
+					clazz,
 					[&"Scene", &"CanvasSdf"],
-					l.get_path(),
+					path,
 					key,
 				)
 			)
@@ -241,9 +242,9 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 			triggers.push_back(
 				SSTTriggerCandidate.new(
 					SSTTriggerCandidate.Type.NODE,
-					node.get_class(),
+					clazz,
 					[&"Scene"],
-					s.get_path(),
+					path,
 					key,
 				)
 			)
@@ -256,9 +257,9 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 		triggers.push_back(
 			SSTTriggerCandidate.new(
 				SSTTriggerCandidate.Type.NODE,
-				node.get_class(),
+				clazz,
 				[&"LIGHT"],
-				node.get_path(),
+				path,
 				key,
 			)
 		)
@@ -277,6 +278,7 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 
 func add_from_canvas_item(node: CanvasItem):
 	add_material(node.material)
+
 
 func add_from_environment(env: Environment):
 	if env == null:

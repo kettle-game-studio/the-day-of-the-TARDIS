@@ -4,19 +4,22 @@ extends EditorPlugin
 const SHADER_WATCHER_AUTOLOAD_NAME = "SSTShaderStutterWatcher"
 const VISIBLE_TRACKER_AUTOLOAD_NAME = "SSTVisibleTracker"
 
-const DebuggerPlugin := preload("res://addons/shader_stutter_tracker/debug/debugger_plugin.gd")
+const DebuggerPlugin := preload("res://addons/shader_stutter_tracker/plugins/debug/debugger_plugin.gd")
 
 var settings := preload("res://addons/shader_stutter_tracker/settings.gd").new()
-var context_menu := preload("res://addons/shader_stutter_tracker/context_menu/filesystem.gd").new()
+var context_menu := preload("res://addons/shader_stutter_tracker/plugins/context_menu/filesystem.gd").new()
+var scene_compiler_config_refresh := preload("res://addons/shader_stutter_tracker/plugins/scene_compiler_config_refresh.gd").new()
 var debugger := DebuggerPlugin.new()
 
 
 func _enter_tree():
 	add_debugger_plugin(debugger)
 	add_context_menu_plugin(EditorContextMenuPlugin.CONTEXT_SLOT_FILESYSTEM, context_menu)
+	add_inspector_plugin(scene_compiler_config_refresh)
 
 
 func _exit_tree():
+	remove_inspector_plugin(scene_compiler_config_refresh)
 	remove_context_menu_plugin(context_menu)
 	remove_debugger_plugin(debugger)
 

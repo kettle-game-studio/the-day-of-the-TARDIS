@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bhok82vxgfbp8" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler_scene.gd" id="1_tjfty"]
 [ext_resource type="PackedScene" uid="uid://civq3dmxwdrwq" path="res://assets/scenes/main_scene.tscn" id="2_tgx5i"]
 [ext_resource type="Script" uid="uid://bopa6veieyi0b" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler.gd" id="3_syjg2"]
-[ext_resource type="Resource" uid="uid://kil563h065g0" path="res://assets/shader_precompiler_config_17.tres" id="4_rrg6a"]
+[ext_resource type="Resource" uid="uid://b4rqefvm7anyb" path="res://assets/test.tres" id="4_rrg6a"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_tgx5i"]
 color = Color(0.99607843, 0, 0, 1)

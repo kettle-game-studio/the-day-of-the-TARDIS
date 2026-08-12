@@ -2,7 +2,7 @@ extends Node
 
 signal all_shaders_compiled
 
-@export var config: ShadersCompilerConfig
+@export var config: SSTCompilerConfig
 @export var camera: Camera3D
 
 var _quad := SSTResourceUtils.make_skinned_quad()

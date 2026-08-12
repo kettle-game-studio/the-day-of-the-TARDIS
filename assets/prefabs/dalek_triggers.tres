@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ShadersCompilerConfig" format=3 uid="uid://dggon3d0tc8g1"]
+
+[ext_resource type="Shader" uid="uid://mibkdj4pho7e" path="res://assets/vfx/dalek.gdshader" id="1_chi7v"]
+[ext_resource type="Material" uid="uid://cfqevsq1e5tnx" path="res://assets/models/Dalek/imports/TestMaterial.tres" id="2_h2fej"]
+[ext_resource type="Script" uid="uid://cejy88jrfph1m" path="res://addons/shader_stutter_tracker/compiler/compiler_config.gd" id="3_fdkui"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chi7v"]
+render_priority = 0
+shader = ExtResource("1_chi7v")
+shader_parameter/color = Vector3(0.5, 0, 0)
+shader_parameter/disappearance = 1.0
+shader_parameter/dirt = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xk6ka"]
+viewport_path = NodePath("DebugDrawer/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxpqc"]
+albedo_texture = SubResource("ViewportTexture_xk6ka")
+
+[resource]
+script = ExtResource("3_fdkui")
+materials = Array[Material]([SubResource("ShaderMaterial_chi7v"), ExtResource("2_h2fej"), SubResource("StandardMaterial3D_oxpqc")])

@@ -1,0 +1,65 @@
+@tool
+extends EditorContextMenuPlugin
+
+var save_dialog: EditorFileDialog
+
+var _resource_to_save: SSTScenesCompilerConfig
+
+
+func _exit_tree() -> void:
+	if is_instance_valid(save_dialog):
+		if save_dialog.file_selected.is_connected(_on_file_selected):
+			save_dialog.file_selected.disconnect(_on_file_selected)
+		save_dialog.queue_free()
+		save_dialog = null
+
+
+func _popup_menu(paths):
+	var scenes: Array[PackedScene] = []
+	var has_scenes := false
+	for path in paths:
+		if (path.ends_with(".tscn") or path.ends_with(".scn")):
+			has_scenes = true
+			break
+	if not has_scenes:
+		return
+	_init_save_dialog()
+	add_context_menu_item("Extract triggers...", _extract)
+
+
+func _extract(paths):
+	var scenes: Array[PackedScene] = []
+	for path in paths:
+		if not (path.ends_with(".tscn") or path.ends_with(".scn")):
+			continue
+		print(path)
+		var scene_path: String = path
+		var scene: PackedScene = load(scene_path)
+		scenes.push_back(scene)
+	# var file := scene_path.get_basename() + "_triggers.tres"
+	var res := SSTScenesCompilerConfig.new()
+	res.scenes = scenes
+	res.refresh()
+	_save_to_user_file(res)
+
+
+func _init_save_dialog() -> void:
+	if save_dialog == null:
+		save_dialog = EditorFileDialog.new()
+		save_dialog.file_mode = EditorFileDialog.FILE_MODE_SAVE_FILE
+		save_dialog.access = EditorFileDialog.ACCESS_RESOURCES
+		save_dialog.title = "Save SSTScenesCompilerConfig"
+		save_dialog.file_selected.connect(_on_file_selected)
+		save_dialog.add_filter("*.tres", "Godot Resource")
+		save_dialog.add_filter("*.res", "Binary Resource")
+		EditorInterface.get_base_control().add_child(save_dialog)
+
+
+func _save_to_user_file(res: SSTScenesCompilerConfig):
+	_resource_to_save = res
+	save_dialog.popup_file_dialog()
+
+
+func _on_file_selected(path: String) -> void:
+	_resource_to_save.take_over_path(path)
+	ResourceSaver.save(_resource_to_save, path)
