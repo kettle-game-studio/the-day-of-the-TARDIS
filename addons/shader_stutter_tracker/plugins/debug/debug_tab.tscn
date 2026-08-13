@@ -21,7 +21,6 @@ text = "Save all resources"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-split_offsets = PackedInt32Array(0, 0)
 
 [node name="Frames" type="Tree" parent="Trees" unique_id=1329062771]
 unique_name_in_owner = true
@@ -37,6 +36,7 @@ size_flags_horizontal = 3
 
 [node name="MetaDisplay" type="RichTextLabel" parent="Trees" unique_id=932532494]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2

@@ -232,6 +232,7 @@ func get_or_load_scene(scene_path: String) -> Node:
 	return _tree_item_scene
 
 func show_meta(meta):
+	return
 	if not meta:
 		return
 	meta_display.text = "%s" % meta.data

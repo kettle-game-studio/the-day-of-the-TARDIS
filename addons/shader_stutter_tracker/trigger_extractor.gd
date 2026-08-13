@@ -6,7 +6,6 @@ var savedmats := { }
 
 static var _prepared := false
 
-
 static func prepare() -> void:
 	trigger_properties_by_class = {
 		&"Label3D": [
@@ -46,9 +45,20 @@ static func prepare() -> void:
 				(type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM)
 				and !name.ends_with("_texture_channel")
 			):
-				trigger_properties_by_class[clazz].push_back(StringName(name))
+				trigger_properties_by_class[clazz].push_back([StringName(name), false])
+	trigger_properties_by_class[&"ParticleProcessMaterial"] = []
+	for property in ClassDB.class_get_property_list(&"ParticleProcessMaterial", true):
+			var type: Variant.Type = property["type"]
+			var hint: PropertyHint = property["hint"]
+			var name: String = property["name"]
+			var clazz_name: String = property["class_name"]
+			if (
+				(type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM)
+			):
+				trigger_properties_by_class[&"ParticleProcessMaterial"].push_back([StringName(name), false])
+			elif (clazz_name.contains("Texture")):
+				trigger_properties_by_class[&"ParticleProcessMaterial"].push_back([StringName(name), true])
 	_prepared = true
-
 
 static var trigger_properties_by_class: Dictionary[StringName, Array] = { }
 
@@ -57,7 +67,13 @@ static func fill_keys_by_properties(source: Object, key: Dictionary, clazz: Stri
 	if not _prepared:
 		prepare()
 	for p in trigger_properties_by_class[clazz]:
-		key[p] = source.get(p)
+		var k = p[0]
+		var is_nullable = p[1]
+		if is_nullable:
+			key[k] = source.get(k) == null
+		else:
+			key[k] = source.get(k)
+		
 
 
 func add(obj: Object):
@@ -97,7 +113,9 @@ func add_material(mat: Material, prev_resources: Array[Resource] = []):
 		key["path"] = mat.resource_path
 		shader_types = [&"Sky"]
 	elif mat is ParticleProcessMaterial:
+		#print_rich(trigger_properties_by_class[&"ParticleProcessMaterial"])
 		shader_types = [&"Particles", &"ParticlesCopy"]
+		fill_keys_by_properties(mat, key, &"ParticleProcessMaterial")	
 	elif mat is ShaderMaterial:
 		var sh := mat as ShaderMaterial
 		var path := sh.shader.resource_path
