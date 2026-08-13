@@ -3,7 +3,16 @@
 [ext_resource type="Script" uid="uid://bhok82vxgfbp8" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler_scene.gd" id="1_tjfty"]
 [ext_resource type="PackedScene" uid="uid://civq3dmxwdrwq" path="res://assets/scenes/main_scene.tscn" id="2_tgx5i"]
 [ext_resource type="Script" uid="uid://bopa6veieyi0b" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler.gd" id="3_syjg2"]
-[ext_resource type="Resource" uid="uid://b4rqefvm7anyb" path="res://assets/test.tres" id="4_rrg6a"]
+[ext_resource type="PackedScene" uid="uid://0donue74ycyk" path="res://assets/prefabs/dalek.tscn" id="4_84c7p"]
+[ext_resource type="PackedScene" uid="uid://cckv52vkj5pih" path="res://assets/prefabs/bullet.tscn" id="5_6edml"]
+[ext_resource type="PackedScene" uid="uid://fldgkxyay001" path="res://assets/prefabs/dalek_corpse.tscn" id="6_gr64m"]
+[ext_resource type="Script" uid="uid://diigtcwy3t5mb" path="res://addons/shader_stutter_tracker/compiler/scenes_compiler_config.gd" id="7_i8org"]
+
+[sub_resource type="Resource" id="Resource_imr4h"]
+script = ExtResource("7_i8org")
+rescan_on_play = true
+scenes = Array[PackedScene]([ExtResource("4_84c7p"), ExtResource("2_tgx5i"), ExtResource("5_6edml"), ExtResource("6_gr64m")])
+metadata/_custom_type_script = "uid://diigtcwy3t5mb"
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_tgx5i"]
 color = Color(0.99607843, 0, 0, 1)
@@ -18,7 +27,7 @@ next_scene = ExtResource("2_tgx5i")
 [node name="ShaderPrecompiler" type="Node3D" parent="." unique_id=654450537 node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.33151978)
 script = ExtResource("3_syjg2")
-config = ExtResource("4_rrg6a")
+config = SubResource("Resource_imr4h")
 camera = NodePath("../Camera3D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ShaderPrecompiler" unique_id=625431128]

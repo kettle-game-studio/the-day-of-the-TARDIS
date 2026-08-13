@@ -7,24 +7,42 @@ var _nodes: Array[Dictionary] = []
 
 @export var materials: Array[Material]:
 	get:
-		return _materials
+		return get_materials()
 	set(value):
-		_materials = value
-		emit_changed()
+		set_materials(value)
 
 @export var environments: Array[Environment]:
 	get:
-		return _environments
+		return get_environments()
 	set(value):
-		_environments = value
-		emit_changed()
+		set_environments(value)
 
 @export var nodes: Array[Dictionary]:
 	get:
-		return _nodes
+		return get_nodes()
 	set(value):
-		_nodes = value
-		emit_changed()
+		set_nodes(value)
+
+func get_materials() -> Array[Material]:
+	return _materials
+
+func set_materials(value: Array[Material]) -> void:
+	_materials = value
+	emit_changed()
+
+func get_environments() -> Array[Environment]:
+	return _environments
+
+func set_environments(value: Array[Environment]) -> void:
+	_environments = value
+	emit_changed()
+
+func get_nodes() -> Array[Dictionary]:
+	return _nodes
+
+func set_nodes(value: Array[Dictionary]) -> void:
+	_nodes = value
+	emit_changed()
 
 
 func add_triggers(nodes_report: Array):
@@ -45,7 +63,6 @@ func add_triggers(nodes_report: Array):
 			else:
 				nodes.push_back(node["tree_nodes"].back())
 	emit_changed()
-
 
 func clear():
 	materials.clear()
