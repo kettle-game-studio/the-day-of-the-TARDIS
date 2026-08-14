@@ -22,7 +22,7 @@ static func debug_by_node_scene(node: Node, current_node: Array):
 	if node is CanvasLayer or node is CanvasItem or node is Node3D:
 		current_node[0] = node
 		node.visible = true
-		if node is GPUParticles3D:
+		if node is GPUParticles3D or node is CPUParticles3D:
 			node.emitting = true
 		await SSTShaderStutterWatcher.new_tick_processed
 		await SSTShaderStutterWatcher.new_tick_processed

@@ -25,7 +25,7 @@ func _popup_menu(paths):
 		_init_save_dialog()
 		if paths.size() == 1:
 			add_context_menu_item("Brute-force analysis...", _bruteforce)
-		add_context_menu_item("Extract triggers...", _extract)
+		add_context_menu_item("Extract triggers from scenes...", _extract)
 
 const BRUTE_FORCE_DEBUG = preload("uid://bv3kp7tsv0ml4")
 const BruteForceDebug = preload("uid://nbnn1kdbeqk8")

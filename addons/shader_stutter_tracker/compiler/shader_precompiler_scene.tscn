@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://c8eg35ey1wdu"]
 
 [ext_resource type="Script" uid="uid://bhok82vxgfbp8" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler_scene.gd" id="1_tjfty"]
-[ext_resource type="PackedScene" uid="uid://dmp13e1xswsm0" path="res://main/main.tscn" id="2_rrg6a"]
 [ext_resource type="Script" uid="uid://bopa6veieyi0b" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler.gd" id="3_syjg2"]
-[ext_resource type="Resource" uid="uid://kt7eheuflp7s" path="res://static_config.tres" id="4_rrg6a"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_tgx5i"]
 color = Color(0.99607843, 0, 0, 1)
@@ -11,14 +9,12 @@ grow_begin = 71.0
 
 [node name="ShaderPrecompilerScene" type="Node" unique_id=325346513]
 script = ExtResource("1_tjfty")
-next_scene = ExtResource("2_rrg6a")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=925293979]
 
 [node name="ShaderPrecompiler" type="Node3D" parent="." unique_id=654450537 node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.9977539)
 script = ExtResource("3_syjg2")
-config = ExtResource("4_rrg6a")
 camera = NodePath("../Camera3D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ShaderPrecompiler" unique_id=625431128]

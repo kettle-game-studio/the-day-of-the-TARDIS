@@ -32,8 +32,9 @@ static func prepare() -> void:
 			&"transparent",
 		],
 		&"CanvasItemMaterial": [&"blend_mode", &"light_mode"],
+		&"CPUParticles3D": [&"particle_flag_align_y", &"particle_flag_rotate_y", &"particle_flag_disable_z"]
 	}
-	var classes := [&"BaseMaterial3D", &"Light3D", &"Environment"]
+	var classes := [&"BaseMaterial3D", &"Light3D", &"Environment", &"CPUParticles3D"]
 	classes.append_array(ClassDB.get_inheriters_from_class(&"Light3D"))
 	for clazz in classes:
 		trigger_properties_by_class[clazz] = []
@@ -212,6 +213,17 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 		if gi is CPUParticles3D:
 			var p := gi as CPUParticles3D
 			add_from_mesh(p.mesh)
+			var key := { "class": "CPUParticles3D" }
+			fill_keys_by_properties(node, key, &"CPUParticles3D")
+			triggers.push_back(
+				SSTTriggerCandidate.new(
+					SSTTriggerCandidate.Type.NODE,
+					clazz,
+					[&"Scene"],
+					path,
+					key,
+				)
+			)
 		# CSGShape3D
 		elif gi is CSGShape3D:
 			if "material" in gi:

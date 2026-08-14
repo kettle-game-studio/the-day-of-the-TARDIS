@@ -83,5 +83,5 @@ func add_from_scenes(scenes: Array[PackedScene]):
 
 static func _extract(node: Node, collector: SSTTriggerCollector):
 	collector.add_new_triggers(node, SSTTriggerCandidate.from(node))
-	for child in node.get_children():
+	for child in node.get_children(true):
 		_extract(child, collector)
