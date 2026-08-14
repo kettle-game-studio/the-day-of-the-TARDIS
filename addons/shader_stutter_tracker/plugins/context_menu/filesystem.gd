@@ -21,11 +21,25 @@ func _popup_menu(paths):
 		if (path.ends_with(".tscn") or path.ends_with(".scn")):
 			has_scenes = true
 			break
-	if not has_scenes:
-		return
-	_init_save_dialog()
-	add_context_menu_item("Extract triggers...", _extract)
+	if has_scenes:
+		_init_save_dialog()
+		if paths.size() == 1:
+			add_context_menu_item("Brute-force analysis...", _bruteforce)
+		add_context_menu_item("Extract triggers...", _extract)
 
+const BRUTE_FORCE_DEBUG = preload("uid://bv3kp7tsv0ml4")
+const BruteForceDebug = preload("uid://nbnn1kdbeqk8")
+
+func _bruteforce(paths):
+	var tmp := BRUTE_FORCE_DEBUG.instantiate() as BruteForceDebug
+	tmp.scene = load(paths[0])
+	var pack := PackedScene.new()
+	pack.pack(tmp)
+	var tmp_project_dir := "res://.godot/shader_stutter_tracker/tmp"
+	DirAccess.make_dir_recursive_absolute(tmp_project_dir)
+	var filepath := tmp_project_dir + "/" + "bruteforce.scn"
+	ResourceSaver.save(pack, filepath)
+	EditorInterface.play_custom_scene(filepath)
 
 func _extract(paths):
 	var scenes: Array[PackedScene] = []
