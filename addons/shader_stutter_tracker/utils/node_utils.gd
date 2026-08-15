@@ -95,6 +95,10 @@ static func copy_propierties(src: Node, dst = { }, type_filter: Array[Variant.Ty
 		var value = src.get(name)
 		if value == ClassDB.class_get_property_default_value(src.get_class(), name):
 			continue
+		if value is Resource:
+			value = value.duplicate_deep()
+			value.resource_local_to_scene = true
+			value.resource_path = ""
 		if dst is Dictionary or dst.has_method("set"):
 			dst.set(name, value)
 	return dst

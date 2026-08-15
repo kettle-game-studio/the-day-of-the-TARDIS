@@ -44,7 +44,6 @@ static func prepare() -> void:
 			var name: String = property["name"]
 			if (
 				(type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM)
-				and !name.ends_with("_texture_channel")
 			):
 				trigger_properties_by_class[clazz].push_back([StringName(name), false])
 	trigger_properties_by_class[&"ParticleProcessMaterial"] = []
@@ -63,10 +62,22 @@ static func prepare() -> void:
 
 static var trigger_properties_by_class: Dictionary[StringName, Array] = { }
 
-
+static func prepare_keys_fallback(clazz: StringName):
+	trigger_properties_by_class[clazz] = []
+	for property in ClassDB.class_get_property_list(clazz, true):
+		var type: Variant.Type = property["type"]
+		var hint: PropertyHint = property["hint"]
+		var name: String = property["name"]
+		if (
+			(type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM)
+			and !name.ends_with("_texture_channel")
+		):
+			trigger_properties_by_class[clazz].push_back([StringName(name), false])
 static func fill_keys_by_properties(source: Object, key: Dictionary, clazz: StringName) -> void:
 	if not _prepared:
 		prepare()
+	if not trigger_properties_by_class.has(clazz):
+		prepare_keys_fallback(clazz)
 	for p in trigger_properties_by_class[clazz]:
 		var k = p[0]
 		var is_nullable = p[1]
@@ -98,6 +109,7 @@ func add_material(mat: Material, prev_resources: Array[Resource] = []):
 		return
 	var resources := prev_resources.duplicate()
 	resources.push_back(mat)
+	add_material(mat.next_pass, resources)
 	var key := { "class": mat.get_class() }
 	var shader_types: Array[StringName] = []
 	if mat is CanvasItemMaterial:
@@ -120,7 +132,9 @@ func add_material(mat: Material, prev_resources: Array[Resource] = []):
 	elif mat is ShaderMaterial:
 		var sh := mat as ShaderMaterial
 		var path := sh.shader.resource_path
-		var k := { "class": "Shader", "path": path, "mode": sh.shader.get_mode() }
+		var code := sh.shader.code
+		
+		var k := { "class": "Shader", "hash": code.hash(), "mode": sh.shader.get_mode() }
 		if savedmats.has(k):
 			return
 		savedmats[k] = true
@@ -169,6 +183,8 @@ func add_material(mat: Material, prev_resources: Array[Resource] = []):
 func add_from_mesh(mesh: Mesh, resources: Array[Resource] = []):
 	if mesh == null:
 		return
+	if mesh is ArrayMesh:
+		pass
 	resources.push_back(mesh)
 	for s in range(mesh.get_surface_count()):
 		add_material(mesh.surface_get_material(s), resources)
@@ -196,6 +212,7 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 				clazz,
 				[&"Scene"],
 				path,
+				{"class": "Decal"}
 			)
 		)
 		return
@@ -213,17 +230,17 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 		if gi is CPUParticles3D:
 			var p := gi as CPUParticles3D
 			add_from_mesh(p.mesh)
-			var key := { "class": "CPUParticles3D" }
-			fill_keys_by_properties(node, key, &"CPUParticles3D")
-			triggers.push_back(
-				SSTTriggerCandidate.new(
-					SSTTriggerCandidate.Type.NODE,
-					clazz,
-					[&"Scene"],
-					path,
-					key,
-				)
-			)
+			#var key := { "class": "CPUParticles3D" }
+			#fill_keys_by_properties(node, key, &"CPUParticles3D")
+			#triggers.push_back(
+				#SSTTriggerCandidate.new(
+					#SSTTriggerCandidate.Type.NODE,
+					#clazz,
+					#[&"Scene"],
+					#path,
+					#key,
+				#)
+			#)
 		# CSGShape3D
 		elif gi is CSGShape3D:
 			if "material" in gi:
@@ -308,7 +325,6 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 
 func add_from_canvas_item(node: CanvasItem):
 	add_material(node.material)
-
 
 func add_from_environment(env: Environment):
 	if env == null:

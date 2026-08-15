@@ -1,10 +1,12 @@
 extends Node
 
-@export var scene: PackedScene
+@export var scenes: Array[PackedScene]
 
 func _ready() -> void:
 	await get_tree().process_frame
-	await debug_scene(scene)
+	for scene in scenes:
+		await debug_scene(scene)
+		await SSTShaderStutterWatcher.new_tick_processed
 	await get_tree().process_frame
 	get_tree().quit()
 
@@ -50,3 +52,4 @@ func debug_scene(scene: PackedScene):
 	Engine.max_fps = 60
 	DisplayServer.window_set_vsync_mode(old_mode)
 	SSTShaderStutterWatcher.new_shaders_compiled.disconnect(catched)
+	remove_child(scene_root)

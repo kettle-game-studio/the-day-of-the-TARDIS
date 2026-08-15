@@ -3,10 +3,6 @@
 [ext_resource type="Script" uid="uid://bhok82vxgfbp8" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler_scene.gd" id="1_tjfty"]
 [ext_resource type="Script" uid="uid://bopa6veieyi0b" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler.gd" id="3_syjg2"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_tgx5i"]
-color = Color(0.99607843, 0, 0, 1)
-grow_begin = 71.0
-
 [node name="ShaderPrecompilerScene" type="Node" unique_id=325346513]
 script = ExtResource("1_tjfty")
 
@@ -16,19 +12,5 @@ script = ExtResource("1_tjfty")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.9977539)
 script = ExtResource("3_syjg2")
 camera = NodePath("../Camera3D")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="ShaderPrecompiler" unique_id=625431128]
-
-[node name="Control" type="Control" parent="ShaderPrecompiler/CanvasLayer" unique_id=671110486]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="ShaderPrecompiler/CanvasLayer" unique_id=1743556920]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_styles/normal = SubResource("StyleBoxLine_tgx5i")
-text = "Gegeg"
 
 [connection signal="all_shaders_compiled" from="ShaderPrecompiler" to="." method="run_next_scene"]

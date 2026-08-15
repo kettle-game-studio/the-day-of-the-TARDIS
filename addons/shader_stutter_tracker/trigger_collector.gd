@@ -41,6 +41,8 @@ func add_new_triggers(node: Node, triggers: Array[SSTTriggerCandidate]):
 	for t in filtered:
 		saw_triggers[t.key] = time
 
+func add_node_as_trigger_force(node: Node):
+	pass
 
 func add_new_triggers_force(node: Node, triggers: Array[SSTTriggerCandidate]):
 	if node in on_screen_triggers:

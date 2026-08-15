@@ -23,8 +23,7 @@ func _popup_menu(paths):
 			break
 	if has_scenes:
 		_init_save_dialog()
-		if paths.size() == 1:
-			add_context_menu_item("Brute-force analysis...", _bruteforce)
+		add_context_menu_item("Brute-force analysis...", _bruteforce)
 		add_context_menu_item("Extract triggers from scenes...", _extract)
 
 const BRUTE_FORCE_DEBUG = preload("uid://bv3kp7tsv0ml4")
@@ -32,7 +31,7 @@ const BruteForceDebug = preload("uid://nbnn1kdbeqk8")
 
 func _bruteforce(paths):
 	var tmp := BRUTE_FORCE_DEBUG.instantiate() as BruteForceDebug
-	tmp.scene = load(paths[0])
+	tmp.scenes = _get_scenes(paths)
 	var pack := PackedScene.new()
 	pack.pack(tmp)
 	var tmp_project_dir := "res://.godot/shader_stutter_tracker/tmp"
@@ -40,8 +39,7 @@ func _bruteforce(paths):
 	var filepath := tmp_project_dir + "/" + "bruteforce.scn"
 	ResourceSaver.save(pack, filepath)
 	EditorInterface.play_custom_scene(filepath)
-
-func _extract(paths):
+func _get_scenes(paths) -> Array[PackedScene]:
 	var scenes: Array[PackedScene] = []
 	for path in paths:
 		if not (path.ends_with(".tscn") or path.ends_with(".scn")):
@@ -50,6 +48,10 @@ func _extract(paths):
 		var scene_path: String = path
 		var scene: PackedScene = load(scene_path)
 		scenes.push_back(scene)
+	return scenes
+
+func _extract(paths):
+	var scenes := _get_scenes(paths)
 	# var file := scene_path.get_basename() + "_triggers.tres"
 	var res := SSTScenesCompilerConfig.new()
 	res.scenes = scenes

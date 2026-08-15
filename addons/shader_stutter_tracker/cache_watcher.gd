@@ -64,7 +64,7 @@ func work():
 		})
 		var save_scene: bool = settings.save_scenes.value
 		var saved := save_scene
-		
+		SSTVisibleTracker.force_frustrum_scan(get_tree().root, get_viewport().get_camera_3d())
 		if save_scene:
 			var packed_scene := SSTVisibleTracker.copy_visible_as_scene()
 			saved = ResourceSaver.save(packed_scene, scene_path) == Error.OK

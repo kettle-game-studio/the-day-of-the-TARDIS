@@ -11,8 +11,8 @@ func _init(target: VisualInstance3D, on_enter: Callable):
 
 
 func _ready() -> void:
-	if watchable is GPUParticles3D:
-		aabb = (watchable as GPUParticles3D).visibility_aabb
+	if watchable is GPUParticles3D or watchable is CPUParticles3D:
+		aabb = watchable.visibility_aabb
 	else:
 		aabb = watchable.get_aabb()
 
