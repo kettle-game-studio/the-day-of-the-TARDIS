@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bv3kp7tsv0ml4"]
 
-[ext_resource type="Script" uid="uid://nbnn1kdbeqk8" path="res://addons/shader_stutter_tracker/debug/brute_force_debug.gd" id="1_mt05n"]
+[ext_resource type="Script" uid="uid://nbnn1kdbeqk8" path="res://addons/shader_stutter_tracker/debug/brute_force_analysis.gd" id="1_mt05n"]
 
 [node name="BruteForceDebug" type="Node3D" unique_id=778882056]
 script = ExtResource("1_mt05n")

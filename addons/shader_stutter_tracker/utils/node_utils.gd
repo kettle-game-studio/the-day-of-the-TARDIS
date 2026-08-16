@@ -31,7 +31,7 @@ static func get_description(node: Node) -> Dictionary:
 		&"scene": original_scene,
 		&"class": clazz,
 		&"script": script_path,
-		&"properties": copy_propierties(node, { }, [TYPE_BOOL, TYPE_INT, TYPE_FLOAT, TYPE_STRING]),
+		&"properties": copy_properties(node, { }, [TYPE_BOOL, TYPE_INT, TYPE_FLOAT, TYPE_STRING]),
 	}
 
 
@@ -78,12 +78,12 @@ static func copy_from_root(source_node: Node, destination_scene_root: Node) -> N
 static func clone_node_shallow(src: Node) -> Node:
 	var dst := Node.new() if src.get_class() == "" else ClassDB.instantiate(src.get_class())
 
-	copy_propierties(src, dst)
+	copy_properties(src, dst)
 
 	return dst
 
 
-static func copy_propierties(src: Node, dst = { }, type_filter: Array[Variant.Type] = []):
+static func copy_properties(src: Node, dst = { }, type_filter: Array[Variant.Type] = []):
 	# copy built-in properties only
 	if not src.has_method("get"):
 		return

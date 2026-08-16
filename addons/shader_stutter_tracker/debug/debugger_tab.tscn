@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dpj584i0u2ff0"]
 
-[ext_resource type="Script" uid="uid://cttxei1s2fmbl" path="res://addons/shader_stutter_tracker/debug/debug_tab.gd" id="1_qolij"]
+[ext_resource type="Script" uid="uid://cttxei1s2fmbl" path="res://addons/shader_stutter_tracker/debug/debugger_tab.gd" id="1_4rhk3"]
 
 [node name="DebugTab" type="VBoxContainer" unique_id=862536311]
 anchors_preset = 15
@@ -8,7 +8,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qolij")
+script = ExtResource("1_4rhk3")
 
 [node name="Buttons" type="HBoxContainer" parent="." unique_id=1695212102]
 layout_mode = 2

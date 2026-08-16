@@ -1,6 +1,6 @@
 extends Node
 
-var report_servoce: SSTReportService
+var report_service: SSTReportService
 var settings := SSTPluginSettings.new()
 
 
@@ -14,11 +14,11 @@ func _init() -> void:
 	settings.add_to_project_settings()
 	var shader_watcher = SSTShaderWatcher.new(settings.shader_watcher)
 	var triggers_collector = FrustumTriggerCollectorService.new(self)
-	report_servoce = SSTReportService.new(settings.report, shader_watcher, triggers_collector)
+	report_service = SSTReportService.new(settings.report, shader_watcher, triggers_collector)
 
 
 func _process(_delta: float) -> void:
-	report_servoce.send_report_if_needed(get_viewport())
+	report_service.send_report_if_needed(get_viewport())
 
 
 class FrustumTriggerCollectorService:

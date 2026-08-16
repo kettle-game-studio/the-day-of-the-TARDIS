@@ -1,9 +1,9 @@
 extends EditorDebuggerPlugin
 
-const DebugTabScene := preload("res://addons/shader_stutter_tracker/debug/debug_tab.tscn")
-const DebugTab := preload("res://addons/shader_stutter_tracker/debug/debug_tab.gd")
+const DebuggerTabScene := preload("res://addons/shader_stutter_tracker/debug/debugger_tab.tscn")
+const DebuggerTab := preload("res://addons/shader_stutter_tracker/debug/debugger_tab.gd")
 
-var session_tabs: Dictionary[int, DebugTab] = { }
+var session_tabs: Dictionary[int, DebuggerTab] = { }
 
 
 func clear_session(session_id: int):
@@ -25,7 +25,7 @@ func _capture(message, data, session_id):
 
 func _setup_session(session_id):
 	var session := get_session(session_id)
-	var tab := DebugTabScene.instantiate()
+	var tab := DebuggerTabScene.instantiate()
 	tab.name = "Shader Freeze Tracker"
 	session_tabs[session_id] = tab
 	session.add_session_tab(tab)
