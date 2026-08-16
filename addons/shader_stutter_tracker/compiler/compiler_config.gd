@@ -1,10 +1,6 @@
 class_name SSTCompilerConfig
 extends Resource
 
-var _materials: Array[Material] = []
-var _environments: Array[Environment] = []
-var _nodes: Array[Dictionary] = []
-
 @export var materials: Array[Material]:
 	get:
 		return get_materials()
@@ -23,22 +19,38 @@ var _nodes: Array[Dictionary] = []
 	set(value):
 		set_nodes(value)
 
+var _materials: Array[Material] = []
+var _environments: Array[Environment] = []
+var _nodes: Array[Dictionary] = []
+
+
+static func _extract(node: Node, collector: SSTTriggerCollector):
+	collector.add_new_triggers(node, SSTTriggerCandidate.from(node))
+	for child in node.get_children(true):
+		_extract(child, collector)
+
+
 func get_materials() -> Array[Material]:
 	return _materials
+
 
 func set_materials(value: Array[Material]) -> void:
 	_materials = value
 	emit_changed()
 
+
 func get_environments() -> Array[Environment]:
 	return _environments
+
 
 func set_environments(value: Array[Environment]) -> void:
 	_environments = value
 	emit_changed()
 
+
 func get_nodes() -> Array[Dictionary]:
 	return _nodes
+
 
 func set_nodes(value: Array[Dictionary]) -> void:
 	_nodes = value
@@ -64,6 +76,7 @@ func add_triggers(nodes_report: Array):
 				nodes.push_back(node["tree_nodes"].back())
 	emit_changed()
 
+
 func clear():
 	materials.clear()
 	environments.clear()
@@ -79,9 +92,3 @@ func add_from_scenes(scenes: Array[PackedScene]):
 		add_triggers(collector.report())
 		collector.clear()
 		root.free()
-
-
-static func _extract(node: Node, collector: SSTTriggerCollector):
-	collector.add_new_triggers(node, SSTTriggerCandidate.from(node))
-	for child in node.get_children(true):
-		_extract(child, collector)

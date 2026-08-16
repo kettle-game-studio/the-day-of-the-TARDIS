@@ -58,8 +58,6 @@ static func from(obj: Object) -> Array[SSTTriggerCandidate]:
 		collector.add_from_environment(obj.environment)
 	elif obj is WorldEnvironment:
 		collector.add_from_environment(obj.environment)
-	elif obj is CanvasItem:
-		collector.add_from_canvas_item(obj)
 	return collector.triggers
 
 
@@ -72,12 +70,6 @@ static func from_or_unknown(obj: Object) -> Array[SSTTriggerCandidate]:
 		var key := { "class": node.get_class() }
 		SSTTriggerExtractor.fill_keys_by_properties(node, key, StringName(node.get_class()))
 		return [
-			SSTTriggerCandidate.new(
-				Type.NODE,
-				node.get_class(),
-				["UNKNOWN"],
-				node.get_path(),
-				key,
-			)
+			SSTTriggerCandidate.new(Type.NODE, node.get_class(), ["UNKNOWN"], node.get_path(), key)
 		]
 	return []

@@ -1,38 +1,39 @@
 class_name SSTTriggerExtractor
 extends RefCounted
 
+static var trigger_properties_by_class: Dictionary[StringName, Array] = { }
+static var _prepared := false
+
 var triggers: Array[SSTTriggerCandidate] = []
 var savedmats := { }
 
-static var _prepared := false
 
 static func prepare() -> void:
 	trigger_properties_by_class = {
 		&"Label3D": [
-			&"alpha_antialiasing_mode",
-			&"alpha_cut",
-			&"billboard",
-			&"cast_shadow",
-			&"double_sided",
-			&"fixed_size",
-			&"gi_mode",
-			&"no_depth_test",
-			&"shaded",
-			&"texture_filter",
+			[&"alpha_antialiasing_mode", false],
+			[&"alpha_cut", false],
+			[&"billboard", false],
+			[&"cast_shadow", false],
+			[&"double_sided", false],
+			[&"fixed_size", false],
+			[&"gi_mode", false],
+			[&"no_depth_test", false],
+			[&"shaded", false],
+			[&"texture_filter", false],
 		],
 		&"Sprite3D": [
-			&"alpha_antialiasing_mode",
-			&"alpha_cut",
-			&"billboard",
-			&"double_sided",
-			&"fixed_size",
-			&"no_depth_test",
-			&"shaded",
-			&"texture_filter",
-			&"transparent",
+			[&"alpha_antialiasing_mode", false],
+			[&"alpha_cut", false],
+			[&"billboard", false],
+			[&"double_sided", false],
+			[&"fixed_size", false],
+			[&"no_depth_test", false],
+			[&"shaded", false],
+			[&"texture_filter", false],
+			[&"transparent", false],
 		],
-		&"CanvasItemMaterial": [&"blend_mode", &"light_mode"],
-		&"CPUParticles3D": [&"particle_flag_align_y", &"particle_flag_rotate_y", &"particle_flag_disable_z"]
+		&"CanvasItemMaterial": [[&"blend_mode", false], [&"light_mode", false]],
 	}
 	var classes := [&"BaseMaterial3D", &"Light3D", &"Environment", &"CPUParticles3D"]
 	classes.append_array(ClassDB.get_inheriters_from_class(&"Light3D"))
@@ -42,25 +43,24 @@ static func prepare() -> void:
 			var type: Variant.Type = property["type"]
 			var hint: PropertyHint = property["hint"]
 			var name: String = property["name"]
-			if (
-				(type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM)
-			):
+			if ((type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM)):
 				trigger_properties_by_class[clazz].push_back([StringName(name), false])
 	trigger_properties_by_class[&"ParticleProcessMaterial"] = []
 	for property in ClassDB.class_get_property_list(&"ParticleProcessMaterial", true):
-			var type: Variant.Type = property["type"]
-			var hint: PropertyHint = property["hint"]
-			var name: String = property["name"]
-			var clazz_name: String = property["class_name"]
-			if (
-				(type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM)
-			):
-				trigger_properties_by_class[&"ParticleProcessMaterial"].push_back([StringName(name), false])
-			elif (clazz_name.contains("Texture")):
-				trigger_properties_by_class[&"ParticleProcessMaterial"].push_back([StringName(name), true])
+		var type: Variant.Type = property["type"]
+		var hint: PropertyHint = property["hint"]
+		var name: String = property["name"]
+		var clazz_name: String = property["class_name"]
+		if ((type == TYPE_BOOL or hint == PROPERTY_HINT_ENUM)):
+			trigger_properties_by_class[&"ParticleProcessMaterial"].push_back(
+				[StringName(name), false]
+			)
+		elif (clazz_name.contains("Texture")):
+			trigger_properties_by_class[&"ParticleProcessMaterial"].push_back(
+				[StringName(name), true]
+			)
 	_prepared = true
 
-static var trigger_properties_by_class: Dictionary[StringName, Array] = { }
 
 static func prepare_keys_fallback(clazz: StringName):
 	trigger_properties_by_class[clazz] = []
@@ -73,6 +73,8 @@ static func prepare_keys_fallback(clazz: StringName):
 			and !name.ends_with("_texture_channel")
 		):
 			trigger_properties_by_class[clazz].push_back([StringName(name), false])
+
+
 static func fill_keys_by_properties(source: Object, key: Dictionary, clazz: StringName) -> void:
 	if not _prepared:
 		prepare()
@@ -85,7 +87,6 @@ static func fill_keys_by_properties(source: Object, key: Dictionary, clazz: Stri
 			key[k] = source.get(k) == null
 		else:
 			key[k] = source.get(k)
-		
 
 
 func add(obj: Object):
@@ -126,14 +127,13 @@ func add_material(mat: Material, prev_resources: Array[Resource] = []):
 		key["path"] = mat.resource_path
 		shader_types = [&"Sky"]
 	elif mat is ParticleProcessMaterial:
-		#print_rich(trigger_properties_by_class[&"ParticleProcessMaterial"])
 		shader_types = [&"Particles", &"ParticlesCopy"]
-		fill_keys_by_properties(mat, key, &"ParticleProcessMaterial")	
+		fill_keys_by_properties(mat, key, &"ParticleProcessMaterial")
 	elif mat is ShaderMaterial:
 		var sh := mat as ShaderMaterial
 		var path := sh.shader.resource_path
 		var code := sh.shader.code
-		
+
 		var k := { "class": "Shader", "hash": code.hash(), "mode": sh.shader.get_mode() }
 		if savedmats.has(k):
 			return
@@ -212,7 +212,7 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 				clazz,
 				[&"Scene"],
 				path,
-				{"class": "Decal"}
+				{ "class": "Decal" },
 			)
 		)
 		return
@@ -233,13 +233,13 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 			#var key := { "class": "CPUParticles3D" }
 			#fill_keys_by_properties(node, key, &"CPUParticles3D")
 			#triggers.push_back(
-				#SSTTriggerCandidate.new(
-					#SSTTriggerCandidate.Type.NODE,
-					#clazz,
-					#[&"Scene"],
-					#path,
-					#key,
-				#)
+			#SSTTriggerCandidate.new(
+			#SSTTriggerCandidate.Type.NODE,
+			#clazz,
+			#[&"Scene"],
+			#path,
+			#key,
+			#)
 			#)
 		# CSGShape3D
 		elif gi is CSGShape3D:
@@ -287,13 +287,7 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 			var key := { "class": gi.get_class() }
 			fill_keys_by_properties(node, key, &"SpriteBase3D")
 			triggers.push_back(
-				SSTTriggerCandidate.new(
-					SSTTriggerCandidate.Type.NODE,
-					clazz,
-					[&"Scene"],
-					path,
-					key,
-				)
+				SSTTriggerCandidate.new(SSTTriggerCandidate.Type.NODE, clazz, [&"Scene"], path, key)
 			)
 	if node is Light3D:
 		if (node as Light3D).editor_only:
@@ -302,13 +296,7 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 		fill_keys_by_properties(node, key, &"Light3D")
 		fill_keys_by_properties(node, key, node.get_class())
 		triggers.push_back(
-			SSTTriggerCandidate.new(
-				SSTTriggerCandidate.Type.NODE,
-				clazz,
-				[&"LIGHT"],
-				path,
-				key,
-			)
+			SSTTriggerCandidate.new(SSTTriggerCandidate.Type.NODE, clazz, [&"LIGHT"], path, key)
 		)
 
 	# Rest subtypes don't use materials (todo: check)
@@ -325,6 +313,7 @@ func add_from_visual_instance_3d(node: VisualInstance3D):
 
 func add_from_canvas_item(node: CanvasItem):
 	add_material(node.material)
+
 
 func add_from_environment(env: Environment):
 	if env == null:

@@ -5,17 +5,21 @@ var saw_triggers: Dictionary[Dictionary, int] = { }
 var on_screen_triggers: Array[Node] = []
 var saw_keys: Dictionary[String, Dictionary] = { }
 
+
 func report() -> Array:
 	return on_screen_triggers.map(
 		func(n: Node):
 			return n.get_meta(&"Report"),
 	)
 
+
 func clear() -> void:
 	on_screen_triggers.clear()
 
+
 func size() -> int:
 	return saw_keys.size()
+
 
 func copy_as_scene() -> PackedScene:
 	var packed_scene = PackedScene.new()
@@ -28,8 +32,9 @@ func copy_as_scene() -> PackedScene:
 	root.free()
 	return packed_scene
 
+
 func add_new_triggers(node: Node, triggers: Array[SSTTriggerCandidate]):
-	var filtered = triggers.filter(
+	var filtered := triggers.filter(
 		func(t):
 			return !saw_triggers.has(t.key),
 	)
@@ -41,8 +46,6 @@ func add_new_triggers(node: Node, triggers: Array[SSTTriggerCandidate]):
 	for t in filtered:
 		saw_triggers[t.key] = time
 
-func add_node_as_trigger_force(node: Node):
-	pass
 
 func add_new_triggers_force(node: Node, triggers: Array[SSTTriggerCandidate]):
 	if node in on_screen_triggers:
@@ -59,3 +62,18 @@ func add_new_triggers_force(node: Node, triggers: Array[SSTTriggerCandidate]):
 	)
 	on_screen_triggers.push_back(node)
 	return true
+
+
+func add_in_frustum_3d(node: Node, cam: Camera3D):
+	if node is WorldEnvironment:
+		add_new_triggers(node, SSTTriggerCandidate.from(node))
+	elif node is Camera3D and cam == node and cam.environment != null:
+		add_new_triggers(node, SSTTriggerCandidate.from(node))
+	elif node is Node3D:
+		if SSTNodeUtils.is_actually_on_screen_3d(node):
+			add_new_triggers(node, SSTTriggerCandidate.from(node))
+	elif node is CanvasItem:
+		# if node is Control: TODO: is_actually_on_screen_2d
+		add_new_triggers(node, SSTTriggerCandidate.from(node))
+	for child in node.get_children():
+		add_in_frustum_3d(child, cam)

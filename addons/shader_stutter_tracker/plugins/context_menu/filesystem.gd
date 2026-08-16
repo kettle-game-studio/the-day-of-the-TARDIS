@@ -1,8 +1,12 @@
 @tool
 extends EditorContextMenuPlugin
 
+const BRUTE_FORCE_DEBUG = preload("uid://bv3kp7tsv0ml4")
+const BruteForceDebug = preload("uid://nbnn1kdbeqk8")
+
 var save_dialog: EditorFileDialog
 
+var running_scene: String = ""
 var _resource_to_save: SSTScenesCompilerConfig
 
 
@@ -23,11 +27,9 @@ func _popup_menu(paths):
 			break
 	if has_scenes:
 		_init_save_dialog()
-		add_context_menu_item("Brute-force analysis...", _bruteforce)
-		add_context_menu_item("Extract triggers from scenes...", _extract)
+		add_context_menu_item("SST: Extract shader triggers from scenes...", _extract)
+		add_context_menu_item("SST: Brute-force shader triggers analysis...", _bruteforce)
 
-const BRUTE_FORCE_DEBUG = preload("uid://bv3kp7tsv0ml4")
-const BruteForceDebug = preload("uid://nbnn1kdbeqk8")
 
 func _bruteforce(paths):
 	var tmp := BRUTE_FORCE_DEBUG.instantiate() as BruteForceDebug
@@ -38,7 +40,11 @@ func _bruteforce(paths):
 	DirAccess.make_dir_recursive_absolute(tmp_project_dir)
 	var filepath := tmp_project_dir + "/" + "bruteforce.scn"
 	ResourceSaver.save(pack, filepath)
+	running_scene = filepath
 	EditorInterface.play_custom_scene(filepath)
+	running_scene = ""
+
+
 func _get_scenes(paths) -> Array[PackedScene]:
 	var scenes: Array[PackedScene] = []
 	for path in paths:
@@ -49,6 +55,7 @@ func _get_scenes(paths) -> Array[PackedScene]:
 		var scene: PackedScene = load(scene_path)
 		scenes.push_back(scene)
 	return scenes
+
 
 func _extract(paths):
 	var scenes := _get_scenes(paths)

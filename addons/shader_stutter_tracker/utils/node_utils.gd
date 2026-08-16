@@ -1,6 +1,7 @@
 class_name SSTNodeUtils
 extends Object
 
+
 static func create(description: Dictionary) -> Node:
 	var clazz: StringName = description[&"class"]
 	var properties: Dictionary = description[&"properties"]
@@ -9,15 +10,12 @@ static func create(description: Dictionary) -> Node:
 		node.set(property, properties.get(property))
 	return node
 
+
 static func get_node_path(node: Node) -> NodePath:
 	if node.is_inside_tree():
 		return node.get_path()
 	return _extract_path(node)
 
-static func _extract_path(node: Node) -> NodePath:
-	if node.get_parent() == null:
-		return NodePath(node.name)
-	return NodePath(String(_extract_path(node.get_parent())) + "/" + node.name)
 
 static func get_description(node: Node) -> Dictionary:
 	var owner := node.owner
@@ -43,7 +41,12 @@ static func owners_chain(node: Node, arr: Array[Dictionary] = []) -> Array[Dicti
 	arr.push_back(get_description(node))
 	return arr
 
-static func copy_recursive(source_node: Node, destination_node: Node, destination_scene_root: Node) -> void:
+
+static func copy_recursive(
+	source_node: Node,
+	destination_node: Node,
+	destination_scene_root: Node,
+) -> void:
 	var dst := clone_node_shallow(source_node)
 	dst.name = get_node_path(source_node).get_concatenated_names().replace("/", "_")
 	destination_node.add_child(dst)
@@ -103,5 +106,105 @@ static func copy_propierties(src: Node, dst = { }, type_filter: Array[Variant.Ty
 			dst.set(name, value)
 	return dst
 
+
 static func disable_culling(node: VisualInstance3D):
 	RenderingServer.instance_set_ignore_culling(node.get_instance(), true)
+
+
+static func is_actually_on_screen_3d(node: Node3D) -> bool:
+	if not node.is_visible_in_tree():
+		return false
+	var cam := node.get_viewport().get_camera_3d()
+	if cam == null:
+		return false
+
+	var aabb := _get_node_aabb(node)
+	if aabb.size == Vector3.ZERO:
+		return false
+
+	var world_aabb := node.global_transform * aabb
+	return is_aabb_in_frustum(cam, world_aabb)
+
+
+static func is_aabb_in_frustum(cam: Camera3D, aabb: AABB) -> bool:
+	var p := aabb.position
+	var s := aabb.size
+
+	var c := [
+		p,
+		p + Vector3(s.x, 0.0, 0.0),
+		p + Vector3(0.0, s.y, 0.0),
+		p + Vector3(0.0, 0.0, s.z),
+		p + Vector3(s.x, s.y, 0.0),
+		p + Vector3(s.x, 0.0, s.z),
+		p + Vector3(0.0, s.y, s.z),
+		p + s,
+	]
+
+	for v in c:
+		if cam.is_position_in_frustum(v):
+			return true
+
+	var frustum := cam.get_frustum()
+
+	var edges := [
+		[c[0], c[1]],
+		[c[0], c[2]],
+		[c[0], c[3]],
+		[c[7], c[4]],
+		[c[7], c[5]],
+		[c[7], c[6]],
+		[c[1], c[4]],
+		[c[1], c[5]],
+		[c[2], c[4]],
+		[c[2], c[6]],
+		[c[3], c[5]],
+		[c[3], c[6]],
+	]
+
+	for e in edges:
+		if Geometry3D.segment_intersects_convex(e[0], e[1], frustum):
+			return true
+
+	return false
+
+
+static func gridmap_aabb(gridmap: GridMap) -> AABB:
+	var cells := gridmap.get_used_cells()
+	if cells.is_empty():
+		return AABB()
+
+	var cell_size := gridmap.cell_size
+	var half := cell_size * 0.5
+
+	var min_v := Vector3(INF, INF, INF)
+	var max_v := Vector3(-INF, -INF, -INF)
+
+	for cell in cells:
+		var p := gridmap.map_to_local(cell)
+		min_v = min_v.min(p - half)
+		max_v = max_v.max(p + half)
+
+	return AABB(min_v, max_v - min_v)
+
+
+static func _extract_path(node: Node) -> NodePath:
+	if node.get_parent() == null:
+		return NodePath(node.name)
+	return NodePath(String(_extract_path(node.get_parent())) + "/" + node.name)
+
+
+static func _get_node_aabb(node: Node3D) -> AABB:
+	if node is GPUParticles3D:
+		return node.visibility_aabb
+
+	if node is CPUParticles3D:
+		return node.visibility_aabb
+
+	if node is VisualInstance3D:
+		return node.get_aabb()
+
+	if node is GridMap:
+		return gridmap_aabb(node)
+
+	return AABB()

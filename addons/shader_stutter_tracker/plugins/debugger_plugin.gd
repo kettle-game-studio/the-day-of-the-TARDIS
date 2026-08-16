@@ -1,9 +1,14 @@
 extends EditorDebuggerPlugin
 
-const DebugTabScene := preload("res://addons/shader_stutter_tracker/plugins/debug/debug_tab.tscn")
-const DebugTab :=  preload("res://addons/shader_stutter_tracker/plugins/debug/debug_tab.gd")
+const DebugTabScene := preload("res://addons/shader_stutter_tracker/debug/debug_tab.tscn")
+const DebugTab := preload("res://addons/shader_stutter_tracker/debug/debug_tab.gd")
 
-var session_tabs: Dictionary[int, DebugTab] = {}
+var session_tabs: Dictionary[int, DebugTab] = { }
+
+
+func clear_session(session_id: int):
+	session_tabs[session_id].clear()
+
 
 func _has_capture(capture):
 	return capture == "shader_stutter_tracker"
@@ -25,6 +30,3 @@ func _setup_session(session_id):
 	session_tabs[session_id] = tab
 	session.add_session_tab(tab)
 	session.started.connect(clear_session.bind(session_id))
-
-func clear_session(session_id: int):
-	session_tabs[session_id].clear()
