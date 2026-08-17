@@ -4,15 +4,18 @@ signal all_shaders_compiled
 
 @export var config: SSTCompilerConfig
 @export var camera: Camera3D
+@export var batch_size := 1
+
+var ready_triggers: int = 0
+var total_triggers := 0
 
 var _quad := SSTResourceUtils.make_skinned_quad()
-var _counter: int = -3
 
 
 func _ready():
+	total_triggers = config.materials.size() + config.environments.size() * 2 + config.nodes.size()
 	_add_material3d(null)
 	_add_canvas_item_material(null)
-	
 	for mat in config.materials:
 		if (
 			mat is BaseMaterial3D
@@ -29,23 +32,24 @@ func _ready():
 			or SSTResourceUtils.is_shader_with_mode(mat, Shader.Mode.MODE_CANVAS_ITEM)
 		):
 			_add_canvas_item_material(mat)
-		elif (
-			mat is FogMaterial
-			or SSTResourceUtils.is_shader_with_mode(mat, Shader.Mode.MODE_FOG)
-		):
+		elif (mat is FogMaterial or SSTResourceUtils.is_shader_with_mode(mat, Shader.Mode.MODE_FOG)):
 			_add_fog(mat)
+		await _check_counter()
 	for description in config.nodes:
 		_add_node(description)
+		await _check_counter()
+	for env in config.environments:
+		camera.environment = env
+		await get_tree().process_frame
+		await get_tree().process_frame
+		await _check_counter()
+	all_shaders_compiled.emit()
+	queue_free()
 
-
-func _process(_delta: float) -> void:
-	var active_env := _counter / 2
-	if active_env >= config.environments.size():
-		all_shaders_compiled.emit()
-		queue_free()
-	elif active_env >= 0:
-		camera.environment = config.environments.get(active_env)
-	_counter += 1
+func _check_counter():
+	ready_triggers += 1
+	if ready_triggers % batch_size == 0:
+		await get_tree().process_frame
 
 
 func _add_node(description: Dictionary) -> Node:
@@ -56,6 +60,7 @@ func _add_node(description: Dictionary) -> Node:
 		SSTNodeUtils.disable_culling(node)
 	return node
 
+
 func _add_canvas_item_material(material: Material) -> Control:
 	var item := Panel.new()
 	item.size.x = 10
@@ -65,12 +70,14 @@ func _add_canvas_item_material(material: Material) -> Control:
 	item.owner = self
 	return item
 
+
 func _add_fog(material: Material) -> FogVolume:
 	var fog := FogVolume.new()
 	fog.material = material
 	add_child(fog)
 	fog.owner = self
 	return fog
+
 
 func _add_material3d(material: Material) -> MeshInstance3D:
 	var instance := MeshInstance3D.new()
