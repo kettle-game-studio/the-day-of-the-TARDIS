@@ -43,37 +43,33 @@ func send_report_if_needed(viewport: Viewport):
 	var new_shaders := shader_watcher.check()
 	if new_shaders.size() == 0:
 		return
-
-	var triggers_collector := collector_service.collect()
 	var frame_number := Engine.get_process_frames()
-	var scene_path := PLUGIN_DATA_DIR.path_join(ACTIVE_LOGS_SUBDIR).path_join(
-		"%d.tscn" % frame_number
-	)
-	var packed_scene := triggers_collector.copy_as_scene()
-	var saved: bool = settings.save_scenes.value
-	if saved:
-		saved = ResourceSaver.save(packed_scene, scene_path) == Error.OK
-	var screenshot = null
+
+	var report := { "frame": { "number": frame_number }, "new_shaders": new_shaders }
 	if settings.save_screenshots.value:
-		screenshot = viewport.get_texture().get_image().save_png_to_buffer()
-	var report := {
-		"frame": {
-			"number": frame_number,
-			"scene_path": scene_path,
-			"scene_saved": saved,
-			"screenshot": screenshot,
-		},
-		"new_shaders": new_shaders,
-		"nodes": triggers_collector.report(),
-	}
+		report["frame"]["screenshot"] = viewport.get_texture().get_image().save_png_to_buffer()
+	if settings.scan_triggers.value:
+		var triggers_collector := collector_service.collect()
+		report["nodes"] = triggers_collector.report()
+		var saved: bool = settings.save_scenes.value and settings.scan_triggers.value
+		if saved:
+			var packed_scene := triggers_collector.copy_as_scene()
+			var scene_path := PLUGIN_DATA_DIR.path_join(ACTIVE_LOGS_SUBDIR).path_join(
+				"%d.tscn" % frame_number
+			)
+			saved = ResourceSaver.save(packed_scene, scene_path) == Error.OK
+			report["frame"]["scene_path"] = scene_path
+			report["frame"]["scene_saved"] = saved
+
 	collector_service.clear()
 	EngineDebugger.send_message("shader_stutter_tracker:stutter_event", [report])
 
 
 class Settings:
 	extends SSTSettingSpec.Group
-	var save_screenshots := SSTSettingSpec.new("save_screenshots", true)
-	var save_scenes := SSTSettingSpec.new("save_scenes", true)
+	var scan_triggers := SSTSettingSpec.new("scan_triggers", false, { "debug": true })
+	var save_screenshots := SSTSettingSpec.new("take_screenshots", false, { "debug": true })
+	var save_scenes := SSTSettingSpec.new("save_scenes", false, { "debug": true })
 	var preserve_last_n_logs := SSTSettingSpec.new("preserve_last_logs", 3)
 
 

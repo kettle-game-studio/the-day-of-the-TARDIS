@@ -58,9 +58,9 @@ func save_resources(file: String):
 
 func draw_frame(report: Dictionary):
 	var frame_number: int = report["frame"]["number"]
-	var frame_scene_path: String = report["frame"]["scene_path"]
-	var frame_scene_saved: bool = report["frame"]["scene_saved"]
-	var maybe_screenshot = report["frame"]["screenshot"]
+	var frame_scene_path: String = report["frame"].get("scene_path", "")
+	var frame_scene_saved: bool = report["frame"].get("scene_saved", false)
+	var maybe_screenshot = report["frame"].get("screenshot", null)
 	var frame_node := frames_tree.get_root().create_child()
 	frame_node.set_text(0, "frame #%d" % frame_number)
 	frame_node.set_metadata(0, CellMetadata.new(CellType.FRAME, report))
@@ -92,7 +92,7 @@ func draw_frame(report: Dictionary):
 	shaders_node.set_text(0, "Shaders: %d" % shaders_count)
 
 	var triggers_node := frame_node.create_child()
-	var nodes: Array = report["nodes"]
+	var nodes: Array = report.get("nodes", [])
 	var node_items: Dictionary[String, TreeItem] = { }
 	var triggers_count := 0
 	for node in nodes:

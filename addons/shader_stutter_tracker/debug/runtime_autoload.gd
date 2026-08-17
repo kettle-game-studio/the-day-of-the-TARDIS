@@ -5,13 +5,20 @@ var settings := SSTPluginSettings.new()
 
 
 func _init() -> void:
-	if "--enable-sst-autoload" not in OS.get_cmdline_args():
+	settings.add_to_project_settings()
+	print(settings.shader_watcher.enable.full_name)
+	print(ProjectSettings.get_setting(settings.shader_watcher.enable.full_name))
+	print(ProjectSettings.get_setting_with_override(settings.shader_watcher.enable.full_name))
+	print(settings.shader_watcher.enable.value)
+	if (
+		"--enable-sst-autoload" not in OS.get_cmdline_args()
+		or not settings.shader_watcher.enable.value
+	):
 		queue_free()
 		return
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	process_priority = 1000
 
-	settings.add_to_project_settings()
 	var shader_watcher = SSTShaderWatcher.new(settings.shader_watcher)
 	var triggers_collector = FrustumTriggerCollectorService.new(self)
 	report_service = SSTReportService.new(settings.report, shader_watcher, triggers_collector)

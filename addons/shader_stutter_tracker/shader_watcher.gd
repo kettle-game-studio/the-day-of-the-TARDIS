@@ -58,4 +58,5 @@ func get_shaders_count(name: StringName) -> int:
 
 class Settings:
 	extends SSTSettingSpec.Group
-	var clear_cache_on_run := SSTSettingSpec.new("clear_cache_on_run", true)
+	var enable := SSTSettingSpec.new("enable", false, { "debug": true })
+	var clear_cache_on_run := SSTSettingSpec.new("clear_cache_on_run", false, { "debug": true })

@@ -3,7 +3,7 @@ extends RefCounted
 
 const PREFIX := "shader_stutter_tracker/"
 
-var base := BaseSettings.new()
+var base := BaseSettings.new("")
 var shader_watcher := SSTShaderWatcher.Settings.new("shader_watcher/")
 var report := SSTReportService.Settings.new("logs/")
 
@@ -16,18 +16,16 @@ func _init():
 
 func add_to_project_settings():
 	for setting in settings:
-		if not ProjectSettings.has_setting(setting.name):
-			ProjectSettings.set_setting(setting.name, setting.default)
-			ProjectSettings.set_initial_value(setting.name, setting.default)
-			if Engine.is_editor_hint():
-				ProjectSettings.add_property_info(setting.property_info)
-				ProjectSettings.set_as_basic(setting.name, setting.basic)
+		setting.add_to_project()
+	if Engine.is_editor_hint():
+		ProjectSettings.save()
 
 
 func delete_from_project_settings():
 	for setting in settings:
-		if ProjectSettings.has_setting(setting.name):
-			ProjectSettings.set_setting(setting.name, null)
+		setting.delete_from_project()
+	if Engine.is_editor_hint():
+		ProjectSettings.save()
 
 
 func _get_settings_list() -> Array[SSTSettingSpec]:
@@ -46,9 +44,5 @@ func _get_settings_list() -> Array[SSTSettingSpec]:
 
 class BaseSettings:
 	extends SSTSettingSpec.Group
-
-	func _init():
-		super._init("")
-
 
 	var preserve_settings := SSTSettingSpec.new("preserve_settings_when_disabled", false)
