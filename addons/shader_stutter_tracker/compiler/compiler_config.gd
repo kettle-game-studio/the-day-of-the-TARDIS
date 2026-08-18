@@ -1,3 +1,4 @@
+@tool
 class_name SSTCompilerConfig
 extends Resource
 
@@ -22,12 +23,6 @@ extends Resource
 var _materials: Array[Material] = []
 var _environments: Array[Environment] = []
 var _nodes: Array[Dictionary] = []
-
-
-static func _extract(node: Node, collector: SSTTriggerCollector):
-	collector.add_new_triggers(node, SSTTriggerCandidate.from(node))
-	for child in node.get_children(true):
-		_extract(child, collector)
 
 
 func get_materials() -> Array[Material]:
@@ -56,6 +51,11 @@ func set_nodes(value: Array[Dictionary]) -> void:
 	_nodes = value
 	emit_changed()
 
+func merge(another: SSTCompilerConfig) -> void:
+	_materials.append_array(another.materials)
+	_nodes.append_array(another.nodes)
+	_environments.append_array(another.environments)
+	emit_changed()
 
 func add_triggers(nodes_report: Array):
 	for node in nodes_report:
@@ -64,32 +64,21 @@ func add_triggers(nodes_report: Array):
 				var path = trigger["path"]
 				var resource := load(path)
 				if resource is Material:
-					materials.push_back(resource)
+					_materials.push_back(resource)
 				if resource is Shader:
 					var shader := resource as Shader
 					var mat := ShaderMaterial.new()
 					mat.shader = shader
-					materials.push_back(mat)
+					_materials.push_back(mat)
 				if resource is Environment:
-					environments.push_back(resource)
+					_environments.push_back(resource)
 			else:
-				nodes.push_back(node["tree_nodes"].back())
+				_nodes.push_back(node["tree_nodes"].back())
 	emit_changed()
 
 
 func clear():
-	materials.clear()
-	environments.clear()
-	nodes.clear()
+	_materials.clear()
+	_environments.clear()
+	_nodes.clear()
 	emit_changed()
-
-
-func add_from_scenes(scenes: Array[PackedScene]):
-	var collector := SSTTriggerCollector.new()
-	for scene in scenes:
-		print(scene.resource_path)
-		var root := scene.instantiate()
-		_extract(root, collector)
-		add_triggers(collector.report())
-		collector.clear()
-		root.free()

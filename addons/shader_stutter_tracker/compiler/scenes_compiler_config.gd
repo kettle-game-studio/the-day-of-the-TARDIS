@@ -2,10 +2,20 @@
 class_name SSTScenesCompilerConfig
 extends SSTCompilerConfig
 
-# Scan scenes for triggers on build export
-@export var rescan_on_export := false
-# Scan scenes for triggers on play in editor
-@export var rescan_on_play := false
+enum ExportScanSetting {
+	DISABLED,
+	BAKE_ON_EXPORT,
+	RUNTIME_SCAN,
+}
+enum EditorScanSetting {
+	DISABLED,
+	RUNTIME_SCAN,
+}
+
+## Scan scenes for exported build
+@export var rescan_on_export := ExportScanSetting.DISABLED
+## Scan scenes for play in editor
+@export var rescan_in_editor := EditorScanSetting.DISABLED
 
 @export var scenes: Array[PackedScene]:
 	get:
@@ -18,6 +28,12 @@ var _refreshing := false
 
 var _scenes: Array[PackedScene] = []
 var _refreshed := false
+
+
+static func _extract(node: Node, collector: SSTTriggerCollector):
+	collector.add_new_triggers(node, SSTTriggerCandidate.from(node))
+	for child in node.get_children(true):
+		_extract(child, collector)
 
 
 func get_materials() -> Array[Material]:
@@ -39,25 +55,62 @@ func refresh(save = true):
 	clear()
 	add_from_scenes(scenes)
 	emit_changed()
-	if resource_path != "":
+	if save and resource_path != "":
 		ResourceSaver.save(self, resource_path)
 
 
-func add_all_scenes():
+func add_scenes_from_directory(dir_path: String, recursive: bool):
 	scenes.clear()
 	var scene_exts := ResourceLoader.get_recognized_extensions_for_type("PackedScene")
-	_scan_scenes("res://assets", scene_exts, scenes)
+	_scan_scenes(dir_path, scene_exts, scenes, recursive)
 	emit_changed()
 
 
-func get_scenes_in_folder(folder_path: String) -> Array[PackedScene]:
+func add_from_scenes(scenes: Array[PackedScene]):
+	var collector := SSTTriggerCollector.new()
+	var visited_scenes: Dictionary[String, bool] = { }
+	for scene in scenes:
+		var path := scene.resource_path
+		if path != "" and visited_scenes.has(path):
+			continue
+		visited_scenes.set(path, true)
+		_add_from_scene(collector, scene)
+		if path == "":
+			continue
+		SSTResourceUtils.walk_dependencies_graph(
+			func(new_path, depth):
+				if new_path == path:
+					return
+				if SSTResourceUtils.is_scene_path(new_path) and not visited_scenes.has(new_path):
+					var new_scene = load(new_path)
+					if new_scene is not PackedScene:
+						return
+					_add_from_scene(collector, new_scene),
+			path,
+		)
+
+
+func get_scenes_in_folder(folder_path: String, recursive: bool) -> Array[PackedScene]:
 	var result: Array[PackedScene] = []
 	var scene_exts := ResourceLoader.get_recognized_extensions_for_type("PackedScene")
-	_scan_scenes(folder_path, scene_exts, result)
+	_scan_scenes(folder_path, scene_exts, result, recursive)
 	return result
 
 
-func _scan_scenes(folder_path: String, scene_exts: Array, result: Array[PackedScene]) -> void:
+func _add_from_scene(collector: SSTTriggerCollector, scene: PackedScene):
+	var root := scene.instantiate()
+	_extract(root, collector)
+	add_triggers(collector.report())
+	collector.clear()
+	root.free()
+
+
+func _scan_scenes(
+	folder_path: String,
+	scene_exts: Array,
+	result: Array[PackedScene],
+	recursive: bool,
+) -> void:
 	var dir := DirAccess.open(folder_path)
 	if dir == null:
 		return
@@ -68,34 +121,34 @@ func _scan_scenes(folder_path: String, scene_exts: Array, result: Array[PackedSc
 	while file_name != "":
 		if file_name != "." and file_name != "..":
 			var full_path := folder_path.path_join(file_name)
-
-			if dir.current_is_dir():
-				_scan_scenes(full_path, scene_exts, result)
+			if recursive and dir.current_is_dir():
+				_scan_scenes(full_path, scene_exts, result, recursive)
 			else:
 				var ext := file_name.get_extension().to_lower()
 				if ext in scene_exts:
 					var scene := load(full_path)
 					if scene is PackedScene:
-						print(full_path)
 						result.append(scene)
-
 		file_name = dir.get_next()
-
 	dir.list_dir_end()
 
 
 func _on_export():
-	if rescan_on_export:
+	if rescan_on_export == ExportScanSetting.BAKE_ON_EXPORT:
 		refresh(false)
 
 
 func _lazy_rescan():
-	if Engine.is_editor_hint() or not OS.has_feature("editor_runtime"):
+	if _refreshing or _refreshed:
 		return
-	if _refreshing:
+	var in_editor := Engine.is_editor_hint() or not OS.has_feature("editor")
+	if not (
+		in_editor and rescan_in_editor == EditorScanSetting.RUNTIME_SCAN
+		or (not in_editor) and rescan_on_export == ExportScanSetting.RUNTIME_SCAN
+	):
 		return
-	if rescan_on_play and not _refreshed:
-		_refreshing = true
-		refresh(false)
-		_refreshed = true
-		_refreshing = false
+
+	_refreshing = true
+	refresh(false)
+	_refreshed = true
+	_refreshing = false

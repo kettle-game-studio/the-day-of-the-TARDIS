@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8eg35ey1wdu"]
 
 [ext_resource type="Script" uid="uid://bhok82vxgfbp8" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler_scene.gd" id="1_tjfty"]
-[ext_resource type="Texture2D" uid="uid://duq5j5i2gbrg6" path="res://icon.svg" id="3_c2mjg"]
+[ext_resource type="Texture2D" uid="uid://6xqb0wsxwlik" path="res://addons/shader_stutter_tracker/compiler/godot_icon.svg" id="3_c2mjg"]
 [ext_resource type="Script" uid="uid://bopa6veieyi0b" path="res://addons/shader_stutter_tracker/compiler/shaders_precompiler.gd" id="3_syjg2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrg6a"]
