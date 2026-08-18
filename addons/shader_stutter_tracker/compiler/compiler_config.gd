@@ -87,6 +87,7 @@ func clear():
 func add_from_scenes(scenes: Array[PackedScene]):
 	var collector := SSTTriggerCollector.new()
 	for scene in scenes:
+		print(scene.resource_path)
 		var root := scene.instantiate()
 		_extract(root, collector)
 		add_triggers(collector.report())

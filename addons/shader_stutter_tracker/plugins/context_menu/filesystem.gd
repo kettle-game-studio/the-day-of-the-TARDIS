@@ -9,6 +9,10 @@ var save_dialog: EditorFileDialog
 var running_scene: String = ""
 var _resource_to_save: SSTScenesCompilerConfig
 
+var _scene_extensions := ResourceLoader.get_recognized_extensions_for_type("PackedScene")
+
+func _is_scene_path(path: String) -> bool:
+	return path.get_extension().to_lower() in _scene_extensions
 
 func _exit_tree() -> void:
 	if is_instance_valid(save_dialog):
@@ -22,7 +26,7 @@ func _popup_menu(paths):
 	var scenes: Array[PackedScene] = []
 	var has_scenes := false
 	for path in paths:
-		if (path.ends_with(".tscn") or path.ends_with(".scn")):
+		if _is_scene_path(path):
 			has_scenes = true
 			break
 	if has_scenes:
@@ -48,9 +52,8 @@ func _bruteforce(paths):
 func _get_scenes(paths) -> Array[PackedScene]:
 	var scenes: Array[PackedScene] = []
 	for path in paths:
-		if not (path.ends_with(".tscn") or path.ends_with(".scn")):
+		if not _is_scene_path(path):
 			continue
-		print(path)
 		var scene_path: String = path
 		var scene: PackedScene = load(scene_path)
 		scenes.push_back(scene)
@@ -59,7 +62,6 @@ func _get_scenes(paths) -> Array[PackedScene]:
 
 func _extract(paths):
 	var scenes := _get_scenes(paths)
-	# var file := scene_path.get_basename() + "_triggers.tres"
 	var res := SSTScenesCompilerConfig.new()
 	res.scenes = scenes
 	res.refresh()
