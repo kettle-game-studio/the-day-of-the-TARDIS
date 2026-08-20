@@ -150,12 +150,6 @@ portal_controller = NodePath("../../..")
 
 [node name="UI" parent="." unique_id=1591435094 instance=ExtResource("9_72y2c")]
 
-[node name="UI" parent="UI/DialogPanel" index="0"]
-auto_translate_mode = 2
-
-[node name="Container" parent="UI/Menu/MarginContainer/HBoxContainer" index="1"]
-auto_translate_mode = 2
-
 [connection signal="teleport_activation" from="PortalController/Portal" to="PortalController" method="switch_room"]
 [connection signal="teleport_attacked" from="PortalController/Portal" to="PortalController" method="_on_portal_teleport_attacked"]
 [connection signal="teleport_exit" from="PortalController/Portal" to="PortalController" method="end_teleportation"]

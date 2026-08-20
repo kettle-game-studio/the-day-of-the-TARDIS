@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="The Day of The TARDIS"
-run/main_scene="res://assets/scenes/main_scene.tscn"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="uid://cuc4btg42tmke"
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://u3iufmlkkx3q"
 [autoload]
 
 InputDeviceLocaliser="*res://assets/scripts/autoloads/input_device_localiser.gd"
+SSTDebugRuntime="*uid://i2t4ncew612g"
 
 [display]
 
@@ -29,6 +30,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/shader_stutter_tracker/plugin.cfg")
 
 [filesystem]
 
