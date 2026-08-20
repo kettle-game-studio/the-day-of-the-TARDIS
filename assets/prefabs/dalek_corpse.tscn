@@ -58,7 +58,6 @@ shader = ExtResource("3_vo5mo")
 shader_parameter/base_texture = ExtResource("5_l65oo")
 shader_parameter/color_mask = ExtResource("6_v8gg8")
 shader_parameter/Light_texture = ExtResource("4_hvb60")
-shader_parameter/color = Vector3(0.5, 0, 0)
 shader_parameter/disappearance = 1.0
 shader_parameter/dirt = 0.35
 
@@ -87,7 +86,6 @@ shader = ExtResource("3_vo5mo")
 shader_parameter/base_texture = ExtResource("5_l65oo")
 shader_parameter/color_mask = ExtResource("6_v8gg8")
 shader_parameter/Light_texture = ExtResource("4_hvb60")
-shader_parameter/color = Vector3(0.5, 0, 0)
 shader_parameter/disappearance = 1.0
 shader_parameter/dirt = 0.25
 

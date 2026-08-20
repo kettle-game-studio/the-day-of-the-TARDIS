@@ -28,22 +28,19 @@ var lifetime: float:
 		return _lifetime
 	set(value):
 		_lifetime = value
-		material.set_shader_parameter("disappearance", clamp(_lifetime, 0.0, 1.0))
+		mesh_body.set_instance_shader_parameter("disappearance", clamp(_lifetime, 0.0, 1.0))
+		mesh_head.set_instance_shader_parameter("disappearance", clamp(_lifetime, 0.0, 1.0))
 		colliderShape.height = max(0, _lifetime*initialShapeHeight)
 		collider.position.y = _lifetime*initialColliderY
 
-var material: ShaderMaterial
 var particles_material: ShaderMaterial
 var colliderShape: CylinderShape3D
 var initialShapeHeight: float
 var initialColliderY: float
 func _ready():
 	particles.lifetime = disappearance_time
-	material = mesh_body.get_surface_override_material(0) as ShaderMaterial
-	material = material.duplicate()
-	material.set_shader_parameter("color", color)
-	mesh_body.set_surface_override_material(0, material)
-	mesh_head.set_surface_override_material(0, material)
+	mesh_body.set_instance_shader_parameter("color", color)
+	mesh_head.set_instance_shader_parameter("color", color)
 	
 	colliderShape = collider.shape.duplicate()
 	collider.shape = colliderShape
@@ -64,9 +61,9 @@ func set_particles_settings():
 	particles_material.set_shader_parameter("start_rotation", rotated_from.y)
 	particles_material.set_shader_parameter("end_point", global_position)
 	particles_material.set_shader_parameter("end_rotation", global_rotation.y)
-	particles_material.set_shader_parameter("end_dirt", material.get_shader_parameter("dirt"))
+	particles_material.set_shader_parameter("end_dirt", mesh_body.get_instance_shader_parameter("dirt"))
 	if from_corpse:
-		particles_material.set_shader_parameter("start_dirt", material.get_shader_parameter("dirt"))
+		particles_material.set_shader_parameter("start_dirt", mesh_body.get_instance_shader_parameter("dirt"))
 		particles_material.set_shader_parameter("start_height", particles_material.get_shader_parameter("end_height"))
 		particles_material.set_shader_parameter("start_neck", particles_material.get_shader_parameter("end_neck"))
 	

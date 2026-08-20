@@ -40,22 +40,18 @@ var color:
 	get:
 		return colors[dalek_id]
 
-var material: ShaderMaterial
 func _ready():
 	assert(dalek_id != 0, "DALEK WITH DEFAULT ID")
 	gun.scene = get_parent_node_3d()
 	gun.ignore_bodies[self] = true
-	material = mesh.get_surface_override_material(0) as ShaderMaterial
-	material = material.duplicate()
-	material.set_shader_parameter("color", color)
-	mesh.set_surface_override_material(0, material)
+	mesh.set_instance_shader_parameter("color", color)
 	restart()
 
 func restart():
 	state = State.PATROL
 	gun.restart()
 	disappearance = 1.0
-	material.set_shader_parameter("disappearance", 1.0)
+	mesh.set_instance_shader_parameter("disappearance", 1.0)
 	if patrol_path:
 		if patrol_path.curve.point_count > 1:
 			last_offset = start_patrol_from*patrol_path.curve.get_baked_length()
@@ -217,6 +213,6 @@ func die(reason = null, where: Transform3D = global_transform):
 func die_animation(delta: float):
 	if disappearance > 0.0:
 		disappearance-=delta/disappearance_time
-		material.set_shader_parameter("disappearance", max(0.0, disappearance))
+		mesh.set_instance_shader_parameter("disappearance", max(0.0, disappearance))
 		if disappearance <= 0.0:
 			global_position = timezone.level.dalek_home.global_position	
