@@ -23,13 +23,13 @@ script = ExtResource("2_oln81")
 
 [node name="Level4Base" parent="Room1" unique_id=1109728966 instance=ExtResource("1_wwoqh")]
 
-[node name="Dalek1" parent="Room1/Level4Base/Daleks" index="6" node_paths=PackedStringArray("patrol_path")]
+[node name="Dalek1" parent="Room1/Level4Base/Daleks" parent_id_path=PackedInt32Array(1109728966, 2039815450) index="6" unique_id=1125837529 node_paths=PackedStringArray("patrol_path")]
 patrol_path = NodePath("../Path3D")
 
-[node name="Dalek2" parent="Room1/Level4Base/Daleks" index="7" node_paths=PackedStringArray("patrol_path")]
+[node name="Dalek2" parent="Room1/Level4Base/Daleks" parent_id_path=PackedInt32Array(1109728966, 2039815450) index="7" unique_id=257770606 node_paths=PackedStringArray("patrol_path")]
 patrol_path = NodePath("../Path3D3")
 
-[node name="Dalek4" parent="Room1/Level4Base/Daleks" index="9" node_paths=PackedStringArray("patrol_path")]
+[node name="Dalek4" parent="Room1/Level4Base/Daleks" parent_id_path=PackedInt32Array(1109728966, 2039815450) index="9" unique_id=1582654976 node_paths=PackedStringArray("patrol_path")]
 patrol_path = NodePath("../Path3D4")
 
 [node name="StartPoint" type="Node3D" parent="Room1" unique_id=1102515929]
@@ -103,25 +103,25 @@ roomType = 1
 
 [node name="Level4Base" parent="Room2" unique_id=1276968694 instance=ExtResource("1_wwoqh")]
 
-[node name="CeilMap" parent="Room2/Level4Base" index="0"]
+[node name="CeilMap" parent="Room2/Level4Base" index="0" unique_id=299837468]
 mesh_library = ExtResource("2_1k13r")
 
-[node name="WallMap" parent="Room2/Level4Base" index="1"]
+[node name="WallMap" parent="Room2/Level4Base" index="1" unique_id=87828500]
 mesh_library = ExtResource("2_1k13r")
 
-[node name="FloorMap" parent="Room2/Level4Base" index="2"]
+[node name="FloorMap" parent="Room2/Level4Base" index="2" unique_id=2089591157]
 mesh_library = ExtResource("2_1k13r")
 
-[node name="UndergroundMap" parent="Room2/Level4Base" index="3"]
+[node name="UndergroundMap" parent="Room2/Level4Base" index="3" unique_id=607595009]
 mesh_library = ExtResource("2_1k13r")
 
-[node name="SpotLight3D" parent="Room2/Level4Base" index="5"]
+[node name="SpotLight3D" parent="Room2/Level4Base" index="5" unique_id=1404667469]
 light_color = Color(1, 0.470588, 0.513726, 1)
 
-[node name="Right" parent="Room2/Level4Base/Door" index="2" unique_id=1115042930]
+[node name="Right" parent="Room2/Level4Base/Door" parent_id_path=PackedInt32Array(1276968694, 1257896735) index="2" unique_id=1115042930]
 material_override = ExtResource("6_um7vt")
 
-[node name="Left" parent="Room2/Level4Base/Door" index="3" unique_id=722937018]
+[node name="Left" parent="Room2/Level4Base/Door" parent_id_path=PackedInt32Array(1276968694, 1257896735) index="3" unique_id=722937018]
 material_override = ExtResource("6_um7vt")
 
 [node name="Stuff" type="Node3D" parent="Room2" unique_id=524150271]

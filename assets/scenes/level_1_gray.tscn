@@ -26,7 +26,7 @@ transform = Transform3D(-0.99762, 0, 0.0689554, 0, 1, 0, -0.0689554, 0, -0.99762
 transform = Transform3D(4.47035e-08, 0, 1, 0, 1, 0, -1, 0, 4.47035e-08, 64, 0, 0)
 roomType = 1
 
-[node name="MeshInstance3D" parent="Room2" index="1"]
+[node name="MeshInstance3D" parent="Room2" index="1" unique_id=1351551719]
 surface_material_override/0 = SubResource("StandardMaterial3D_k5bxb")
 
 [node name="Dalek" parent="Room2" unique_id=1334454347 node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_wbher")]
