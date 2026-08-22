@@ -48,3 +48,4 @@ func fix_library(mesh_library: MeshLibrary, tileset_material: Material, glass_ma
 			
 		mesh_library.set_item_mesh(name_id_mapping[mesh_name], mesh)
 		mesh_library.take_over_path(mesh_library.resource_path)
+		ResourceSaver.save(mesh_library)
