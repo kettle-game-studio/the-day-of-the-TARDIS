@@ -195,7 +195,7 @@ surface_material_override/0 = ExtResource("10_2q6f0")
 [node name="Walls" type="Node3D" parent="Room1/Meshes" unique_id=893528428]
 
 [node name="TardisWall16" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=591975077]
-transform = Transform3D(0.499999, 0, 0.870355, 0, 1, 0, -0.866025, 0, 0.5025, 0, 0, 0)
+transform = Transform3D(0.49999902, 0, 0.87381995, 0, 1, 0, -0.866025, 0, 0.50449944, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -213,7 +213,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall15" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=759577757]
-transform = Transform3D(0.173648, 0, 0.989732, 0, 1, 0, -0.984808, 0, 0.174516, 0, 0, 0)
+transform = Transform3D(0.17364803, 0, 0.993671, 0, 1, 0, -0.984808, 0, 0.1752108, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -231,7 +231,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall14" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=1662126792]
-transform = Transform3D(-0.173649, 0, 0.989731, 0, 1, 0, -0.984808, 0, -0.174517, 0, 0, 0)
+transform = Transform3D(-0.17364895, 0, 0.9936708, 0, 1, 0, -0.98480797, 0, -0.17521173, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -249,7 +249,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall13" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=1328247057]
-transform = Transform3D(-0.5, 0, 0.870355, 0, 1, 0, -0.866025, 0, -0.5025, 0, 0, 0)
+transform = Transform3D(-0.5, 0, 0.8738195, 0, 1, 0, -0.8660249, 0, -0.5045002, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -267,7 +267,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall12" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=1892920477]
-transform = Transform3D(-0.766044, 0, 0.646001, 0, 1, 0, -0.642787, 0, -0.769875, 0, 0, 0)
+transform = Transform3D(-0.7660441, 0, 0.6485725, 0, 1, 0, -0.642787, 0, -0.77293897, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -285,7 +285,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall11" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=1974292513]
-transform = Transform3D(-0.939693, 0, 0.34544, 0, 1, 0, -0.34202, 0, -0.94909, 0, 0, 0)
+transform = Transform3D(-0.9396929, 0, 0.34509817, 0, 1, 0, -0.3420201, 0, -0.94814986, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -303,7 +303,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall10" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=815725575]
-transform = Transform3D(0.766044, 0, 0.646001, 0, 1, 0, -0.642787, 0, 0.769874, 0, 0, 0)
+transform = Transform3D(0.766044, 0, 0.6485725, 0, 1, 0, -0.642787, 0, 0.7729389, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -321,7 +321,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall9" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=721644326]
-transform = Transform3D(-0.939693, 0, -0.34544, 0, 1, 0, 0.34202, 0, -0.94909, 0, 0, 0)
+transform = Transform3D(-0.9396929, 0, -0.34509817, 0, 1, 0, 0.3420201, 0, -0.94814986, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -339,7 +339,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall8" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=474626273]
-transform = Transform3D(-0.766044, 0, -0.646002, 0, 1, 0, 0.642788, 0, -0.769874, 0, 0, 0)
+transform = Transform3D(-0.7660441, 0, -0.64857304, 0, 1, 0, 0.64278793, 0, -0.7729385, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -357,7 +357,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall7" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=157410781]
-transform = Transform3D(-0.5, 0, -0.870355, 0, 1, 0, 0.866025, 0, -0.5025, 0, 0, 0)
+transform = Transform3D(-0.5, 0, -0.8738195, 0, 1, 0, 0.8660249, 0, -0.5045002, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -375,7 +375,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall6" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=984054005]
-transform = Transform3D(-0.173648, 0, -0.989732, 0, 1, 0, 0.984808, 0, -0.174516, 0, 0, 0)
+transform = Transform3D(-0.173648, 0, -0.993671, 0, 1, 0, 0.984808, 0, -0.17521077, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -393,7 +393,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall5" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=17224835]
-transform = Transform3D(0.173648, 0, -0.989732, 0, 1, 0, 0.984808, 0, 0.174517, 0, 0, 0)
+transform = Transform3D(0.17364803, 0, -0.993671, 0, 1, 0, 0.984808, 0, 0.1752108, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -411,7 +411,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall4" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=182812061]
-transform = Transform3D(0.5, 0, -0.870355, 0, 1, 0, 0.866025, 0, 0.5025, 0, 0, 0)
+transform = Transform3D(0.49999997, 0, -0.87381953, 0, 1, 0, 0.866025, 0, 0.50450015, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -429,7 +429,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall3" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=1024525063]
-transform = Transform3D(0.766044, 0, -0.646001, 0, 1, 0, 0.642788, 0, 0.769875, 0, 0, 0)
+transform = Transform3D(0.7660441, 0, -0.64857304, 0, 1, 0, 0.64278793, 0, 0.7729385, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -447,7 +447,7 @@ skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall2" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=510696243]
-transform = Transform3D(0.939693, 0, -0.34373, 0, 1, 0, 0.34202, 0, 0.944391, 0, 0, 0)
+transform = Transform3D(0.9396929, 0, -0.34509808, 0, 1, 0, 0.34202, 0, 0.94814986, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -465,7 +465,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWall" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=606801591]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.005, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.009, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -483,13 +483,13 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWallDoor" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=773662945]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 1.5235476e-07, 0, 1, 0, -1.509958e-07, 0, -1.009, 0, 0, 0)
 mesh = ExtResource("15_ufe55")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
 
 [node name="TardisWallTardisDoor" type="MeshInstance3D" parent="Room1/Meshes/Walls" unique_id=1173525465]
-transform = Transform3D(0.939693, 0, 0.34373, 0, 1, 0, -0.34202, 0, 0.944391, 0, 0, 0)
+transform = Transform3D(0.9396929, 0, 0.34509808, 0, 1, 0, -0.34202, 0, 0.94814986, 0, 0, 0)
 mesh = ExtResource("16_75iku")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("10_2q6f0")
@@ -1109,7 +1109,7 @@ surface_material_override/0 = ExtResource("11_8mhpa")
 [node name="Walls" type="Node3D" parent="Room2/Meshes" unique_id=1672430453]
 
 [node name="TardisWall16" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=272057352]
-transform = Transform3D(0.499999, 0, 0.870355, 0, 1, 0, -0.866025, 0, 0.5025, 0, 0, 0)
+transform = Transform3D(0.49999946, 0, 0.87381995, 0, 1, 0, -0.86602575, 0, 0.50449944, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1127,7 +1127,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall15" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=202793424]
-transform = Transform3D(0.173648, 0, 0.989732, 0, 1, 0, -0.984808, 0, 0.174516, 0, 0, 0)
+transform = Transform3D(0.17364798, 0, 0.993671, 0, 1, 0, -0.9848078, 0, 0.1752108, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1145,7 +1145,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall14" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=719781436]
-transform = Transform3D(-0.173649, 0, 0.989731, 0, 1, 0, -0.984808, 0, -0.174517, 0, 0, 0)
+transform = Transform3D(-0.1736489, 0, 0.9936708, 0, 1, 0, -0.9848076, 0, -0.17521173, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1163,7 +1163,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall13" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=372581486]
-transform = Transform3D(-0.5, 0, 0.870355, 0, 1, 0, -0.866025, 0, -0.5025, 0, 0, 0)
+transform = Transform3D(-0.50000024, 0, 0.8738195, 0, 1, 0, -0.86602527, 0, -0.5045002, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1181,7 +1181,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall12" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=2067536408]
-transform = Transform3D(-0.766044, 0, 0.646001, 0, 1, 0, -0.642787, 0, -0.769875, 0, 0, 0)
+transform = Transform3D(-0.7660446, 0, 0.6485725, 0, 1, 0, -0.64278746, 0, -0.77293897, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1199,7 +1199,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall11" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=161189190]
-transform = Transform3D(-0.939693, 0, 0.34544, 0, 1, 0, -0.34202, 0, -0.94909, 0, 0, 0)
+transform = Transform3D(-0.9396927, 0, 0.34509817, 0, 1, 0, -0.34202, 0, -0.94814986, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1217,7 +1217,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall10" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=1003942723]
-transform = Transform3D(0.766044, 0, 0.646001, 0, 1, 0, -0.642787, 0, 0.769874, 0, 0, 0)
+transform = Transform3D(0.76604456, 0, 0.6485725, 0, 1, 0, -0.64278746, 0, 0.7729389, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1235,7 +1235,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall9" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=687728949]
-transform = Transform3D(-0.939693, 0, -0.34544, 0, 1, 0, 0.34202, 0, -0.94909, 0, 0, 0)
+transform = Transform3D(-0.9396927, 0, -0.34509817, 0, 1, 0, 0.34202, 0, -0.94814986, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1253,7 +1253,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall8" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=959677223]
-transform = Transform3D(-0.766044, 0, -0.646002, 0, 1, 0, 0.642788, 0, -0.769874, 0, 0, 0)
+transform = Transform3D(-0.76604414, 0, -0.64857304, 0, 1, 0, 0.642788, 0, -0.7729385, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1271,7 +1271,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall7" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=987410343]
-transform = Transform3D(-0.5, 0, -0.870355, 0, 1, 0, 0.866025, 0, -0.5025, 0, 0, 0)
+transform = Transform3D(-0.50000024, 0, -0.8738195, 0, 1, 0, 0.86602527, 0, -0.5045002, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1289,7 +1289,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall6" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=1916121568]
-transform = Transform3D(-0.173648, 0, -0.989732, 0, 1, 0, 0.984808, 0, -0.174516, 0, 0, 0)
+transform = Transform3D(-0.17364796, 0, -0.993671, 0, 1, 0, 0.9848078, 0, -0.17521077, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1307,7 +1307,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall5" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=291333173]
-transform = Transform3D(0.173648, 0, -0.989732, 0, 1, 0, 0.984808, 0, 0.174517, 0, 0, 0)
+transform = Transform3D(0.17364798, 0, -0.993671, 0, 1, 0, 0.9848078, 0, 0.1752108, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1325,7 +1325,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall4" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=548610223]
-transform = Transform3D(0.5, 0, -0.870355, 0, 1, 0, 0.866025, 0, 0.5025, 0, 0, 0)
+transform = Transform3D(0.5000002, 0, -0.87381953, 0, 1, 0, 0.8660253, 0, 0.50450015, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1343,7 +1343,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall3" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=867835176]
-transform = Transform3D(0.766044, 0, -0.646001, 0, 1, 0, 0.642788, 0, 0.769875, 0, 0, 0)
+transform = Transform3D(0.76604414, 0, -0.64857304, 0, 1, 0, 0.642788, 0, 0.7729385, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1361,7 +1361,7 @@ skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall2" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=877653903]
-transform = Transform3D(0.939693, 0, -0.34373, 0, 1, 0, 0.34202, 0, 0.944391, 0, 0, 0)
+transform = Transform3D(0.9396927, 0, -0.34509808, 0, 1, 0, 0.34201992, 0, 0.94814986, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1379,7 +1379,7 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWall" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=869128785]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.005, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.009, 0, 0, 0)
 mesh = ExtResource("14_rfk1b")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1397,13 +1397,13 @@ skeleton = NodePath("../../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWallDoor" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=991666530]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 1.5235476e-07, 0, 1, 0, -1.509958e-07, 0, -1.009, 0, 0, 0)
 mesh = ExtResource("15_ufe55")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
 
 [node name="TardisWallTardisDoor" type="MeshInstance3D" parent="Room2/Meshes/Walls" unique_id=2138852122]
-transform = Transform3D(0.939693, 0, 0.34373, 0, 1, 0, -0.34202, 0, 0.944391, 0, 0, 0)
+transform = Transform3D(0.9396927, 0, 0.34509808, 0, 1, 0, -0.34201992, 0, 0.94814986, 0, 0, 0)
 mesh = ExtResource("16_75iku")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("11_8mhpa")
@@ -1423,15 +1423,15 @@ surface_material_override/0 = ExtResource("11_8mhpa")
 [node name="TardisRoomCenter" parent="Room2/Meshes" unique_id=1488610947 instance=ExtResource("12_wm00o")]
 
 [node name="Skeleton3D" parent="Room2/Meshes/TardisRoomCenter/Armature" parent_id_path=PackedInt32Array(1488610947, 1171074045) index="0" unique_id=1601525161]
-bones/1/position = Vector3(3.41032e-16, 1.4968501, -0.215897)
-bones/2/position = Vector3(0.186972, 1.502341, -0.107948)
-bones/3/position = Vector3(0.186972, 1.486727, 0.107948)
-bones/4/position = Vector3(-4.47035e-08, 1.4821492, 0.215897)
-bones/5/position = Vector3(-0.186972, 1.4053267, 0.107948)
-bones/6/position = Vector3(-0.186972, 1.5900999, -0.107948)
-bones/7/rotation = Quaternion(0, 0.5313712, 0, 0.8471392)
-bones/8/rotation = Quaternion(0, -0.5280579, 0, 0.84920835)
-bones/9/rotation = Quaternion(0, 0.3978943, 0, 0.9174313)
+bones/1/position = Vector3(3.41032e-16, 1.5987747, -0.215897)
+bones/2/position = Vector3(0.186972, 1.6137626, -0.107948)
+bones/3/position = Vector3(0.186972, 1.5351821, 0.107948)
+bones/4/position = Vector3(-4.47035e-08, 1.568532, 0.215897)
+bones/5/position = Vector3(-0.186972, 1.5464787, 0.107948)
+bones/6/position = Vector3(-0.186972, 1.4860901, -0.107948)
+bones/7/rotation = Quaternion(0, 0.79122066, 0, 0.6115307)
+bones/8/rotation = Quaternion(0, -0.83275497, 0, 0.55364186)
+bones/9/rotation = Quaternion(0, 0.6583054, 0, 0.75275105)
 
 [node name="CenterLight" parent="Room2/Meshes/TardisRoomCenter/Armature/Skeleton3D" index="0" unique_id=1483796283]
 material_override = ExtResource("11_8mhpa")

@@ -22,7 +22,6 @@ buses/default_bus_layout="uid://u3iufmlkkx3q"
 [autoload]
 
 InputDeviceLocaliser="*res://assets/scripts/autoloads/input_device_localiser.gd"
-SSTDebugRuntime="*uid://i2t4ncew612g"
 
 [display]
 
@@ -30,10 +29,6 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/shader_stutter_tracker/plugin.cfg")
 
 [filesystem]
 
