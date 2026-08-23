@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://j2y4bihfisi0" path="res://assets/models/Dalek/Dalek_DalekLight.png" id="5_4ikg2"]
 [ext_resource type="Texture2D" uid="uid://dc1wvhi1f3f2i" path="res://assets/models/Dalek/Dalek_DalekColor.png" id="6_gm63v"]
 [ext_resource type="Texture2D" uid="uid://b7ren02m4gw16" path="res://assets/models/Dalek/DalekColorMask.png" id="7_d3so8"]
+[ext_resource type="AudioStream" uid="uid://c8npw2g45ca01" path="res://assets/sounds/exterminate_01.mp3" id="10_uf08n"]
 
 [sub_resource type="Skin" id="Skin_jhx4l"]
 resource_name = "Skin"
@@ -127,16 +128,16 @@ bones/2/name = "Eye"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0, 1, -3.55271e-15, -1, 0, 7.54979e-08, 7.54979e-08, -3.55271e-15, 1, 0.195899, 0.353197, 8.97165e-09)
 bones/2/enabled = true
-bones/2/position = Vector3(0.195899, 0.353197, 8.97165e-09)
-bones/2/rotation = Quaternion(0.000474975, 0.000474975, -0.999525, 1.00048)
-bones/2/scale = Vector3(1, 1, 1)
+bones/2/position = Vector3(0.19589902, 0.3531971, 8.731149e-09)
+bones/2/rotation = Quaternion(0.0003358571, 0.00033585692, -0.706769, 0.70744425)
+bones/2/scale = Vector3(1.0000002, 1.0000001, 1.0000001)
 bones/3/name = "Arm.L"
 bones/3/parent = 0
 bones/3/rest = Transform3D(0.310019, 0.95073, -8.85354e-08, -0.95073, 0.310019, -5.06355e-07, -4.5396e-07, 2.41153e-07, 1, 0.31196, 0.846881, -0.200266)
 bones/3/enabled = true
 bones/3/position = Vector3(0.31196, 0.846881, -0.200266)
-bones/3/rotation = Quaternion(0.00033585783, 0.00033585783, -0.7067708, 0.70744246)
-bones/3/scale = Vector3(0.9999999, 1.0000005, 1.0000005)
+bones/3/rotation = Quaternion(0, 0, -0.70648944, 0.70772356)
+bones/3/scale = Vector3(0.9999998, 1.0000005, 1.0000005)
 bones/4/name = "Arm.R"
 bones/4/parent = 0
 bones/4/rest = Transform3D(0.310019, 0.95073, -8.85354e-08, -0.95073, 0.310019, -5.06355e-07, -4.5396e-07, 2.41153e-07, 1, 0.31196, 0.846881, 0.202818)
@@ -157,13 +158,16 @@ bone_name = "Head"
 bone_idx = 1
 override_pose = true
 
-[node name="EyeBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D" unique_id=1647173569]
-transform = Transform3D(0.0019136637, 0.9999977, 0.0009618784, -0.9999963, 0.0019154977, -0.0019095377, -0.0019113758, -0.0009582207, 0.9999976, 0.19555987, 1.4212449, 0.00015127653)
+[node name="EyeBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D/HeadBone" unique_id=1647173569]
+transform = Transform3D(0.00095498597, 0.99999964, 4.5326306e-07, -0.9999992, 0.00095498544, -0.0009499475, -0.00094994716, 4.5372872e-07, 0.9999996, 0.19589901, 0.35319698, 8.8475645e-09)
 bone_name = "Eye"
 bone_idx = 2
+override_pose = true
+use_external_skeleton = true
+external_skeleton = NodePath("../..")
 
 [node name="LeftArmBone" type="BoneAttachment3D" parent="Dalek2/Armature/Skeleton3D" unique_id=1496716028]
-transform = Transform3D(0.000949979, 1, 4.51226e-07, -0.999999, 0.000949979, -0.000949949, -0.000949949, 4.51226e-07, 1, 0.31196, 0.846881, -0.200266)
+transform = Transform3D(0.0017452984, 0.9999989, 0, -0.99999833, 0.0017452994, 0, 0, 0, 1.0000005, 0.31196, 0.846881, -0.200266)
 bone_name = "Arm.L"
 bone_idx = 3
 override_pose = true
@@ -227,3 +231,9 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_oxpqc")
 
 [node name="DesapiarTimer" type="Timer" parent="." unique_id=2114842290]
+
+[node name="Scream" type="AudioStreamPlayer3D" parent="." unique_id=1581799700]
+stream = ExtResource("10_uf08n")
+volume_db = -3.762
+max_db = 1.889
+bus = &"Sounds"

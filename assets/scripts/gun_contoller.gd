@@ -33,6 +33,7 @@ func _reload_on_time():
 	can_fire = true
 	
 func immediate_fire():
+	can_fire = false
 	shoot_audio_stream.play()
 	var bullet = bullet_prefab.instantiate() as BulletContoller
 	bullet.ignore_bodies = ignore_bodies

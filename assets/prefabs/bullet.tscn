@@ -16,6 +16,9 @@ shader = ExtResource("1_jv4vr")
 height = 0.340897
 radius = 0.05
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7diy"]
+size = Vector3(0.57611084, 0.1529541, 0.7211914)
+
 [node name="Bullet" type="Area3D" unique_id=765847511]
 collision_layer = 2
 collision_mask = 13
@@ -32,4 +35,13 @@ surface_material_override/0 = SubResource("ShaderMaterial_hlu8q")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_kk68e")
 
+[node name="Dalek" type="Area3D" parent="." unique_id=345685660]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dalek" unique_id=1852155035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0043640137, 0.018780708, -0.1394043)
+shape = SubResource("BoxShape3D_t7diy")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Dalek" to="." method="_on_body_entered"]

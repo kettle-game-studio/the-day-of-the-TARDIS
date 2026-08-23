@@ -16,7 +16,7 @@ signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
 @export var head_speed = 200
 @export var gun_speed = 90
 @export var rotation_speed = 90
-@export var fire_angle_trigger = 3
+@export var fire_angle_trigger = 3.5
 @export var disappearance_time = PI
 enum State {PATROL, ATTAK, DIED}
 var state = State.PATROL
@@ -28,7 +28,7 @@ var timezone: Timezone = null
 
 @onready var gun: Gun = $Dalek2/Armature/Skeleton3D/LeftArmBone/Gun
 @onready var head_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/HeadBone
-@onready var eye_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/EyeBone
+@onready var eye_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/HeadBone/EyeBone
 @onready var left_arm_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/LeftArmBone
 @onready var right_arm_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/RightArmBone
 @onready var skeleton = $Dalek2/Armature/Skeleton3D
@@ -50,6 +50,7 @@ func _ready():
 func restart():
 	state = State.PATROL
 	gun.restart()
+	clear_scream()
 	disappearance = 1.0
 	mesh.set_instance_shader_parameter("disappearance", 1.0)
 	if patrol_path:
@@ -60,9 +61,21 @@ func restart():
 			last_offset = 0
 			global_transform = patrol_path.global_transform
 
+@onready var scream_stream: AudioStreamPlayer3D = $Scream
+
+func scream():
+	scream_stream.play(0)
+	scream_stream.finished.connect(gun.immediate_fire, CONNECT_ONE_SHOT)
+
+func clear_scream():
+	scream_stream.finished.disconnect(gun.immediate_fire)
+	scream_stream.stop()
+
 func _process(delta):
 	if state == State.DIED:
 		die_animation(delta)
+		return
+	if not gun.can_fire:
 		return
 	var bone = head_bone	
 	var head_rotation = head_angle_to_player(bone, "x")
@@ -70,24 +83,42 @@ func _process(delta):
 	var gun_bone = left_arm_bone
 
 	if head_rotation == null || abs(head_rotation) > deg_to_rad(view_angle):
+		if scream_stream.playing:
+			return
 		state = State.PATROL
 		rotate_with_speed(bone, 0, deg_to_rad(head_speed)*delta)
 		rotate_with_speed(gun_bone, 0, deg_to_rad(gun_speed)*delta)
+		rotate_with_speed(eye_bone, -PI/2, deg_to_rad(gun_speed)*delta, "z")
+		rotate_with_speed(right_arm_bone, 0, deg_to_rad(gun_speed)*delta)
+		rotate_with_speed(right_arm_bone, -PI/2, deg_to_rad(gun_speed)*delta, "z")
 		return
 	state = State.ATTAK
+	
+	little_shake(eye_bone, "z", -PI/2, deg_to_rad(gun_speed)*delta)
+	little_shake(right_arm_bone, "z", -PI/2, deg_to_rad(gun_speed)*delta)
+	little_shake(right_arm_bone, "y", 0, deg_to_rad(gun_speed)*delta)
+
 	var gun_rotation = head_angle_to_player(gun_bone, "y")
-	if gun_rotation != null && abs(gun_rotation) < deg_to_rad(fire_angle_trigger):
-		gun.fire()
+	if gun_rotation != null && abs(gun_bone.rotation.y - gun_rotation) < deg_to_rad(fire_angle_trigger):
+		if gun.can_fire and not scream_stream.playing:
+			scream()
 		return
-	#var clumped = clamp(gun_rotation, -PI/4, PI/4)
-	#rotate_with_speed(gun_bone, clumped, deg_to_rad(gun_speed)*delta)
+	if gun_rotation != null:
+		rotate_with_speed(gun_bone, clamp(gun_rotation, -PI/6, PI/6), deg_to_rad(gun_speed)*delta)
 	var body_rotation = head_angle_to_player(self, "z")
 	if body_rotation != null:
 		rotate_with_speed(self, body_rotation, deg_to_rad(rotation_speed)*delta)
 	rotate_with_speed(bone, head_rotation, deg_to_rad(head_speed)*delta)
 
-func rotate_with_speed(node: Node3D, angle: float, speed: float):
-	node.rotation.y = rotate_toward(node.rotation.y, angle, speed)
+func rotate_with_speed(node: Node3D, angle: float, speed: float, axis = "y"):
+	node.rotation[axis] = rotate_toward(node.rotation[axis], angle, speed)
+
+func little_shake(node: Node3D, axis: String, base: float, speed: float):
+	var next_rotation := node.rotation[axis] + randf_range(-0.1, 0.1)
+	next_rotation = clamp(next_rotation, base-PI/5, base+PI/5)
+	rotate_with_speed(node, next_rotation, speed, axis)
+	
+
 func look_dir_angle(node: Node3D, look_dir: Vector3, forward_axis = "z"):
 	var angle_to_player = atan2(look_dir.x, look_dir.z)
 	var actual_dir = node.global_basis[forward_axis];
@@ -196,6 +227,7 @@ func die(reason = null, where: Transform3D = global_transform):
 		return
 	state = State.DIED
 	gun.cancel()
+	clear_scream()
 	var corpse = corpse_prefab.instantiate() as DalekCorpse
 	corpse.dalek_id = dalek_id
 	corpse.killed = reason != null
