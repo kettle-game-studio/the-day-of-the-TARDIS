@@ -21,6 +21,7 @@ one_shot = true
 stream = ExtResource("3_2kdj0")
 volume_db = -3.762
 bus = &"Sounds"
+area_mask = 1536
 
 [node name="Delay" type="Timer" parent="." unique_id=1311499323]
 one_shot = true
@@ -30,6 +31,7 @@ stream = ExtResource("4_lvs8r")
 volume_db = -3.762
 max_db = 1.889
 bus = &"Sounds"
+area_mask = 1536
 
 [connection signal="timeout" from="Reload" to="." method="_reload_on_time"]
 [connection signal="timeout" from="Delay" to="." method="immediate_fire"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blac6bhmelps1" path="res://assets/scripts/bullet_controller.gd" id="1_5q4lk"]
 [ext_resource type="Shader" uid="uid://c7l36drmfaleo" path="res://assets/vfx/bullet.gdshader" id="1_jv4vr"]
+[ext_resource type="AudioStream" uid="uid://bwco082rg0leh" path="res://assets/sounds/shoot_end.mp3" id="3_bcitq"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_25uwa"]
 top_radius = 0.025
@@ -43,5 +44,10 @@ collision_mask = 8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0043640137, 0.018780708, -0.1394043)
 shape = SubResource("BoxShape3D_t7diy")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1185170276]
+stream = ExtResource("3_bcitq")
+area_mask = 1536
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Dalek" to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer3D" to="AudioStreamPlayer3D" method="queue_free"]

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bkvwfdftqrn65" path="res://assets/scripts/explosion.gd" id="1_wrafc"]
 [ext_resource type="Shader" uid="uid://0isn1qohrgwr" path="res://assets/vfx/explosion.gdshader" id="2_n07m6"]
 [ext_resource type="Texture2D" uid="uid://d4fn0c01lli50" path="res://assets/models/VFX/Explosion_ExplosionLight.png" id="3_1rpgn"]
+[ext_resource type="AudioStream" uid="uid://dtn8lcjkal8cs" path="res://assets/sounds/boom.mp3" id="5_otkyu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hml16"]
 render_priority = 0
@@ -125,3 +126,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_n4h71")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=678853354]
 libraries/ = SubResource("AnimationLibrary_1h07r")
+
+[node name="boom" type="AudioStreamPlayer3D" parent="." unique_id=841618443]
+stream = ExtResource("5_otkyu")
+autoplay = true
+area_mask = 1536

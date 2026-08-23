@@ -21,6 +21,7 @@ var state = State.APPEAR
 @onready var explosion = $Explosion
 @onready var particles = $DalekTranslateParticles
 @onready var collider = $Collider
+@onready var particles_sound: AudioStreamPlayer3D = $ParticlesSound
 
 var _lifetime = 1.0
 var lifetime: float:
@@ -48,6 +49,7 @@ func _ready():
 	initialColliderY = collider.position.y
 	if !killed:
 		particles.emitting = true
+		particles_sound.play()
 		remove_child(explosion)
 		particles_material = particles.process_material
 		particles_material = particles_material.duplicate()
@@ -71,6 +73,8 @@ func set_particles_settings():
 func _process(delta):
 	if state == State.APPEAR && lifetime < 1.:
 		lifetime+=delta/disappearance_time
+		if lifetime > 1.:
+			particles_sound.stop()
 	elif state == State.DISAPPEAR:
 		lifetime-=delta/disappearance_time
 		if lifetime < 0.:

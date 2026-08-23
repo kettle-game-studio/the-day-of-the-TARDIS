@@ -192,6 +192,8 @@ rotate_down={
 3d_physics/layer_2="Teleports"
 3d_physics/layer_3="Player"
 3d_physics/layer_4="Enemy"
+3d_physics/layer_10="Present"
+3d_physics/layer_11="Future"
 
 [rendering]
 

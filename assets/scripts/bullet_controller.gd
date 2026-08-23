@@ -14,10 +14,13 @@ func get_move_direction():
 func _physics_process(delta):
 	global_position+= get_move_direction()*delta*speed
 
+@onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 func _on_body_entered(body):
 	if ignore_bodies.has(body):
 		return
 	if "_on_bullet" in body:
 		body._on_bullet(self)
+	audio_stream_player_3d.reparent(get_parent_node_3d())
+	audio_stream_player_3d.play()
 	get_parent().call_deferred("remove_child", self)

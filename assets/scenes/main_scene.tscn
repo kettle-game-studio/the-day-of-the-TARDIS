@@ -27,6 +27,9 @@
 [sub_resource type="Environment" id="Environment_aiut3"]
 fog_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7diy"]
+size = Vector3(80.16983, 16.642685, 62.867676)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_86w27"]
 size = Vector3(1.46345, 6.669, 2.06974)
 
@@ -69,6 +72,31 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 2
 
 [node name="LevelEnd" parent="Levels" unique_id=123532412 instance=ExtResource("8_urrg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 2, 18)
+
+[node name="SoundAreas" type="Node3D" parent="Levels" unique_id=22577719]
+
+[node name="Present" type="Area3D" parent="Levels/SoundAreas" unique_id=721967190]
+collision_layer = 512
+collision_mask = 512
+audio_bus_override = true
+audio_bus_name = &"Present"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Levels/SoundAreas/Present" unique_id=2067676575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.841629, 0.27046967, 19.162354)
+shape = SubResource("BoxShape3D_t7diy")
+debug_color = Color(0.9647059, 0, 0.47843137, 1)
+
+[node name="Future" type="Area3D" parent="Levels/SoundAreas" unique_id=18634912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, 0)
+collision_layer = 1024
+collision_mask = 1024
+audio_bus_override = true
+audio_bus_name = &"Future"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Levels/SoundAreas/Future" unique_id=1087098458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.841629, 0.27046967, 19.162354)
+shape = SubResource("BoxShape3D_t7diy")
+debug_color = Color(0.9647059, 0, 0.47843137, 1)
 
 [node name="DalekCemetery" type="Node3D" parent="." unique_id=888457321]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, -27.5618, 0)

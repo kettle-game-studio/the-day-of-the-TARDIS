@@ -10,6 +10,14 @@ resource_name = "Phaser"
 range_max_hz = 3820.0
 feedback = 0.4
 
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_g28q7"]
+resource_name = "Delay"
+dry = 0.5
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
+resource_name = "Delay"
+dry = 0.5
+
 [resource]
 bus/1/name = &"Sounds"
 bus/1/solo = false
@@ -33,3 +41,19 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = 0.0
 bus/3/send = &"Master"
+bus/4/name = &"Present"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = -0.014953613
+bus/4/send = &"Sounds"
+bus/4/effect/0/effect = SubResource("AudioEffectDelay_g28q7")
+bus/4/effect/0/enabled = true
+bus/5/name = &"Future"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"Sounds"
+bus/5/effect/0/effect = SubResource("AudioEffectDelay_j3pel")
+bus/5/effect/0/enabled = true

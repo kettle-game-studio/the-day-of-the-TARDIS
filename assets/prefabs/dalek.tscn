@@ -237,3 +237,4 @@ stream = ExtResource("10_uf08n")
 volume_db = -3.762
 max_db = 1.889
 bus = &"Sounds"
+area_mask = 1536

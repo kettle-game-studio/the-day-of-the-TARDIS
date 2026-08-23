@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bb7mgmv672hvb"]
+
+[sub_resource type="GDScript" id="GDScript_2evia"]
+script/source = "extends Node
+
+func _ready():
+	var scene := preload(\"res://assets/prefabs/dalek.tscn\") as PackedScene
+	#analyze(scene)
+	var start_time = Time.get_ticks_msec() # Замеряем время в мс
+	generate_tree()
+	print(\"took: \", Time.get_ticks_msec() - start_time, \"ms\")
+	get_tree().quit()
+
+static func analyze(scene: PackedScene, depht = 0):
+	var state := scene.get_state()
+	for i in range(0, state.get_node_count()):
+		var name := state.get_node_name(i)
+		var type := state.get_node_type(i)
+		var path := state.get_node_path(i)
+		var owner := state.get_node_owner_path(i)
+		var instance := state.get_node_instance(i)
+		print(\"%s%d. %s (%s), %s\" % [\"\\t\".repeat(depht), i, path, type, owner])
+		if instance != null:
+			analyze(instance, depht+1)
+		for j in range(state.get_node_property_count(i)):
+			var property := state.get_node_property_name(i, j)
+			var value = state.get_node_property_value(i, j)
+			print(\"\\t\".repeat(depht)+\"\\t\", property, \" = \", value)
+static func save_dict(path: String, data) -> void:
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file == null:
+		push_error(\"Не удалось открыть файл для записи: %s\" % path)
+		return
+
+	file.store_string(JSON.stringify(data, \"\\t\"))
+	file.close()
+static func generate_tree():
+	var trigger_resources_parents := [\"Material\", \"Mesh\", \"Shader\", \"MeshLibrary\", \"MultiMesh\", \"Environment\"]
+	var trigger_resources := {}
+	for r in trigger_resources_parents:
+		trigger_resources.set(r, r)
+		for rr in ClassDB.get_inheriters_from_class(r):
+			trigger_resources.set(rr, r)
+	var trigger_classes := []
+	for clazz in ClassDB.get_inheriters_from_class(\"Node\"):
+		var trigger_properties := []
+		
+		for property in ClassDB.class_get_property_list(clazz, true):
+			var type: Variant.Type = property[\"type\"]
+			var hint: PropertyHint = property[\"hint\"]
+			var name: String = property[\"name\"]
+			var clazz_names: PackedStringArray = property[\"class_name\"].split(\",\")
+			for clazz_name in clazz_names:
+				if clazz_name in trigger_resources:
+					trigger_properties.push_back(name)
+					break
+
+		var trigger_functions := []
+		for method in ClassDB.class_get_method_list(clazz, true):
+			var property = method[\"return\"]
+			var name: String = method[\"name\"]
+			var type: Variant.Type = property[\"type\"]
+			var hint: PropertyHint = property[\"hint\"]
+			var clazz_names: PackedStringArray = property[\"class_name\"].split(\",\")
+			if not name.begins_with(\"get_\") or name.substr(4) in trigger_properties:
+				continue
+			for clazz_name in clazz_names:
+				if clazz_name in trigger_resources:
+					trigger_functions.push_back(method)
+					break
+
+		if trigger_properties.size() > 0:
+			trigger_classes.push_back({
+				\"class\": clazz,
+				\"properties\": trigger_properties,
+				\"functions\": trigger_functions,
+			})
+	return trigger_classes
+"
+
+[node name="Test" type="Node" unique_id=277813620]
+script = SubResource("GDScript_2evia")

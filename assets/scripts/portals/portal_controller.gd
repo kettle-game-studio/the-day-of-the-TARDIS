@@ -16,11 +16,45 @@ class_name PortalController
 
 enum PortalState { ENABLED, DISABLED, INSIDE_THE_TARDIS, OUTSIDE_THE_TARDIS }
 
-var player_room = Timezone.RoomType.PRESENT
-var portal_state = PortalState.OUTSIDE_THE_TARDIS
+var _player_room := Timezone.RoomType.PRESENT
+var player_room: Timezone.RoomType = Timezone.RoomType.PRESENT:
+	get():
+		return _player_room
+	set(value):
+		_player_room = value
+		update_sound_bus.call_deferred()
+var portal_state := PortalState.OUTSIDE_THE_TARDIS
 
 signal change_state(state: PortalState)
 
+@onready var bus_present := AudioServer.get_bus_index("Present")
+@onready var bus_future := AudioServer.get_bus_index("Future")
+
+func update_sound_bus():
+	if player_room == Timezone.RoomType.PRESENT:
+		AudioServer.set_bus_bypass_effects(bus_present, true)
+		AudioServer.set_bus_mute(bus_present, false)
+		if portal_state == PortalState.ENABLED:
+			AudioServer.set_bus_bypass_effects(bus_future, false)
+			AudioServer.set_bus_mute(bus_future, false)
+		else:
+			AudioServer.set_bus_mute(bus_future, true)
+	elif player_room == Timezone.RoomType.FUTURE:
+		AudioServer.set_bus_bypass_effects(bus_future, true)
+		AudioServer.set_bus_mute(bus_future, false)
+		if portal_state == PortalState.ENABLED:
+			AudioServer.set_bus_bypass_effects(bus_present, false)
+			AudioServer.set_bus_mute(bus_present, false)
+		else:
+			AudioServer.set_bus_mute(bus_present, true)
+	#_print_bus_state(bus_present)
+	#_print_bus_state(bus_future)
+
+func _print_bus_state(idx: int):
+	print(AudioServer.get_bus_name(idx))
+	print("Mute: ", AudioServer.is_bus_mute(idx))
+	print("Bypass: ", AudioServer.is_bus_bypassing_effects(idx))
+	
 func _process(delta):
 	if portal_state == PortalState.DISABLED:
 		return
@@ -78,6 +112,7 @@ func enable_portal(position: Vector3, rotation: Vector3):
 	portal_shadow.global_position = position+_get_room_shift()
 	remote_viewport.disable_3d = false
 	change_state.emit(portal_state)
+	update_sound_bus()
 
 func disable_portal():
 	if portal_state != PortalState.ENABLED:
@@ -86,6 +121,7 @@ func disable_portal():
 	portal.global_position = portal_home.global_position
 	portal_shadow.global_position = portal_home.global_position
 	change_state.emit(portal_state)
+	update_sound_bus()
 
 var teleportation_in_progress = {}
 
