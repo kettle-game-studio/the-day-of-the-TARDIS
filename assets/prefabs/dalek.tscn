@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dc1wvhi1f3f2i" path="res://assets/models/Dalek/Dalek_DalekColor.png" id="6_gm63v"]
 [ext_resource type="Texture2D" uid="uid://b7ren02m4gw16" path="res://assets/models/Dalek/DalekColorMask.png" id="7_d3so8"]
 [ext_resource type="AudioStream" uid="uid://c8npw2g45ca01" path="res://assets/sounds/exterminate_01.mp3" id="10_uf08n"]
+[ext_resource type="AudioStream" uid="uid://c5v5ihgh2f8ld" path="res://assets/sounds/mooove.mp3" id="11_g2g44"]
 
 [sub_resource type="Skin" id="Skin_jhx4l"]
 resource_name = "Skin"
@@ -238,3 +239,7 @@ volume_db = -3.762
 max_db = 1.889
 bus = &"Sounds"
 area_mask = 1536
+
+[node name="Moving" type="AudioStreamPlayer3D" parent="." unique_id=41257773]
+stream = ExtResource("11_g2g44")
+max_distance = 20.0

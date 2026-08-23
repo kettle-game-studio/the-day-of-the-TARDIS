@@ -62,6 +62,7 @@ func restart():
 			global_transform = patrol_path.global_transform
 
 @onready var scream_stream: AudioStreamPlayer3D = $Scream
+@onready var moving: AudioStreamPlayer3D = $Moving
 
 func scream():
 	scream_stream.play(0)
@@ -71,11 +72,30 @@ func clear_scream():
 	scream_stream.finished.disconnect(gun.immediate_fire)
 	scream_stream.stop()
 
+var is_process_moving := false
+var is_physics_moving := false
+
+func process_play_sound():
+	if is_process_moving == false:
+		if moving.playing and not is_physics_moving:
+			moving.stop()
+	else:
+		moving.play()
+
+func physics_play_sound():
+	if is_physics_moving == false:
+		if moving.playing and not is_process_moving:
+			moving.stop()
+	else:
+		moving.play()	
+
 func _process(delta):
 	if state == State.DIED:
 		die_animation(delta)
 		return
+	is_process_moving = false
 	if not gun.can_fire:
+		process_play_sound()
 		return
 	var bone = head_bone	
 	var head_rotation = head_angle_to_player(bone, "x")
@@ -91,6 +111,7 @@ func _process(delta):
 		rotate_with_speed(eye_bone, -PI/2, deg_to_rad(gun_speed)*delta, "z")
 		rotate_with_speed(right_arm_bone, 0, deg_to_rad(gun_speed)*delta)
 		rotate_with_speed(right_arm_bone, -PI/2, deg_to_rad(gun_speed)*delta, "z")
+		process_play_sound()
 		return
 	state = State.ATTAK
 	
@@ -102,6 +123,7 @@ func _process(delta):
 	if gun_rotation != null && abs(gun_bone.rotation.y - gun_rotation) < deg_to_rad(fire_angle_trigger):
 		if gun.can_fire and not scream_stream.playing:
 			scream()
+		process_play_sound()
 		return
 	if gun_rotation != null:
 		rotate_with_speed(gun_bone, clamp(gun_rotation, -PI/6, PI/6), deg_to_rad(gun_speed)*delta)
@@ -109,8 +131,11 @@ func _process(delta):
 	if body_rotation != null:
 		rotate_with_speed(self, body_rotation, deg_to_rad(rotation_speed)*delta)
 	rotate_with_speed(bone, head_rotation, deg_to_rad(head_speed)*delta)
+	process_play_sound()
 
 func rotate_with_speed(node: Node3D, angle: float, speed: float, axis = "y"):
+	if abs(node.rotation[axis] -angle) > speed:
+		is_process_moving = true
 	node.rotation[axis] = rotate_toward(node.rotation[axis], angle, speed)
 
 func little_shake(node: Node3D, axis: String, base: float, speed: float):
@@ -181,8 +206,9 @@ func _physics_process(delta):
 		return
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	is_physics_moving = false
 	if state == State.ATTAK || patrol_path == null:
+		physics_play_sound()
 		return
 	var target_offset = last_offset+move_speed
 	if patrol_path.curve.point_count > 1:
@@ -201,6 +227,7 @@ func _physics_process(delta):
 		var angle = look_dir_angle(self, direction)
 		rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)
 		move_and_slide()
+		physics_play_sound()
 		return
 	var angle = look_dir_angle(self, direction)
 	rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)
@@ -215,6 +242,9 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
 	last_offset += speed*delta
+	is_physics_moving = true
+	physics_play_sound()
+	
 
 func _on_bullet(bullet):
 	if state == State.DIED:
