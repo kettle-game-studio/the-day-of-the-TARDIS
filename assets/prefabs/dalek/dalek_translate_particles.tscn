@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://baatlnfaa5ucd" path="res://assets/models/Dalek/DalekTranslateParticlesLight.png" id="4_wnt0l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjuec"]
+resource_local_to_scene = true
 shader = ExtResource("1_4bhyl")
 shader_parameter/color = Color(0, 1, 0, 1)
 shader_parameter/dalek_down_radius = 0.51

@@ -3,8 +3,8 @@ shader_type spatial;
 uniform sampler2D base_texture : filter_nearest;
 uniform sampler2D color_mask : filter_nearest;
 uniform sampler2D Light_texture : filter_nearest;
-instance uniform vec3 color = vec3(0.5, 0, 0);
-instance uniform float disappearance = 1.0;
+uniform vec3 color = vec3(0.5, 0, 0);
+uniform float disappearance = 1.0;
 uniform float dirt = 0.0;
 
 float hash(vec2 p) {

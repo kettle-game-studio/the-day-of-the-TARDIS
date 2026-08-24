@@ -6,4 +6,4 @@ func _process(delta):
 	if DisplayServer.window_get_size() != windows_size:
 		windows_size = DisplayServer.window_get_size()
 		add_text(" ")
-		print_debug(text)
+		#print_debug(text)

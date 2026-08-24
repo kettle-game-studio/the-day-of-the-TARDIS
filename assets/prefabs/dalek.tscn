@@ -32,6 +32,7 @@ bind/4/bone = -1
 bind/4/pose = Transform3D(0.310019, -0.95073, -4.5396e-07, 0.95073, 0.310019, 2.41153e-07, -8.85354e-08, -5.06355e-07, 1, 0.708442, -0.559139, -0.202817)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jwr3b"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cb43e")
 shader_parameter/base_texture = ExtResource("6_gm63v")
@@ -242,4 +243,5 @@ area_mask = 1536
 
 [node name="Moving" type="AudioStreamPlayer3D" parent="." unique_id=41257773]
 stream = ExtResource("11_g2g44")
+max_db = -13.739
 max_distance = 20.0

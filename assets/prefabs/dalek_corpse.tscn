@@ -4,12 +4,38 @@
 [ext_resource type="Material" uid="uid://cfqevsq1e5tnx" path="res://assets/models/Dalek/imports/TestMaterial.tres" id="2_scch6"]
 [ext_resource type="PackedScene" uid="uid://d3gkkxd5tedeb" path="res://assets/prefabs/dalek/dalek_translate_particles.tscn" id="2_yxdim"]
 [ext_resource type="PackedScene" uid="uid://b7aewf8mbf18q" path="res://assets/prefabs/VFX/explosion.tscn" id="3_78mbs"]
+[ext_resource type="Shader" uid="uid://bc1uw1vp2ngf" path="res://assets/vfx/dalek/dalek_translate_particles.gdshader" id="3_iofru"]
 [ext_resource type="AudioStream" uid="uid://ewshvurbthhc" path="res://assets/sounds/disappear.mp3" id="3_lslaq"]
 [ext_resource type="Shader" uid="uid://mibkdj4pho7e" path="res://assets/vfx/dalek.gdshader" id="3_vo5mo"]
+[ext_resource type="Texture2D" uid="uid://c3okpsqgmcp02" path="res://assets/models/Dalek/DalekTranslateParticlesColor.png" id="4_6akpf"]
 [ext_resource type="Texture2D" uid="uid://j2y4bihfisi0" path="res://assets/models/Dalek/Dalek_DalekLight.png" id="4_hvb60"]
 [ext_resource type="PackedScene" uid="uid://ctwwhu2g2r34n" path="res://assets/prefabs/VFX/smoke.tscn" id="4_t1uve"]
+[ext_resource type="Texture2D" uid="uid://daa0icgc0fymt" path="res://assets/models/Dalek/DalekTranslateParticlesMask.png" id="5_arcfu"]
 [ext_resource type="Texture2D" uid="uid://dc1wvhi1f3f2i" path="res://assets/models/Dalek/Dalek_DalekColor.png" id="5_l65oo"]
 [ext_resource type="Texture2D" uid="uid://b7ren02m4gw16" path="res://assets/models/Dalek/DalekColorMask.png" id="6_v8gg8"]
+[ext_resource type="Texture2D" uid="uid://baatlnfaa5ucd" path="res://assets/models/Dalek/DalekTranslateParticlesLight.png" id="6_y2noj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ti1dg"]
+resource_local_to_scene = true
+shader = ExtResource("3_iofru")
+shader_parameter/color = Color(0, 1, 0, 1)
+shader_parameter/dalek_down_radius = 0.51
+shader_parameter/dalek_up_radius = 0.165
+shader_parameter/bottom_k = 0.7
+shader_parameter/bottom_offset = Vector3(0, 0, 0.18)
+shader_parameter/base_texture = ExtResource("4_6akpf")
+shader_parameter/color_mask = ExtResource("5_arcfu")
+shader_parameter/light_texture = ExtResource("6_y2noj")
+shader_parameter/start_point = Vector3(0, 0, 0)
+shader_parameter/start_rotation = 0.0
+shader_parameter/start_height = 1.5
+shader_parameter/start_dirt = 0.0
+shader_parameter/start_neck = 1.04
+shader_parameter/end_point = Vector3(2, 0, 0)
+shader_parameter/end_rotation = 1.0
+shader_parameter/end_height = 0.8
+shader_parameter/end_dirt = 0.5
+shader_parameter/end_neck = 0.62
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_a10i1"]
 resource_name = "Dalek_Cylinder_002"
@@ -54,11 +80,14 @@ bind/5/bone = -1
 bind/5/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bf8fk"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_vo5mo")
 shader_parameter/base_texture = ExtResource("5_l65oo")
 shader_parameter/color_mask = ExtResource("6_v8gg8")
 shader_parameter/Light_texture = ExtResource("4_hvb60")
+shader_parameter/color = Vector3(0.5, 0, 0)
+shader_parameter/disappearance = 1.0
 shader_parameter/dirt = 0.35
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e5ngx"]
@@ -81,11 +110,14 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ugqpn"]
+resource_local_to_scene = true
 render_priority = 127
 shader = ExtResource("3_vo5mo")
 shader_parameter/base_texture = ExtResource("5_l65oo")
 shader_parameter/color_mask = ExtResource("6_v8gg8")
 shader_parameter/Light_texture = ExtResource("4_hvb60")
+shader_parameter/color = Vector3(0.5, 0, 0)
+shader_parameter/disappearance = 1.0
 shader_parameter/dirt = 0.25
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_62yqt"]
@@ -96,6 +128,7 @@ script = ExtResource("1_e40a4")
 
 [node name="DalekTranslateParticles" parent="." unique_id=1322766485 instance=ExtResource("2_yxdim")]
 emitting = false
+process_material = SubResource("ShaderMaterial_ti1dg")
 
 [node name="ParticlesSound" type="AudioStreamPlayer3D" parent="." unique_id=99820538]
 stream = ExtResource("3_lslaq")

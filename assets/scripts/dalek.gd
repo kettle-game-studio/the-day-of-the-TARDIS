@@ -1,14 +1,20 @@
-extends CharacterBody3D
 class_name Dalek
+extends CharacterBody3D
 
 signal killed(dalek: Dalek, by: BulletContoller)
 signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
+
+enum State {
+	PATROL,
+	ATTAK,
+	DIED,
+}
+
 @export var colors: Array[Color] = []
 
 @export var dalek_id: int = 0
 @export var corpse_prefab: PackedScene
 @export var patrol_path: Path3D
-@export_range(0., 1.) var start_patrol_from = 0.0
 @export_category("Move and perception")
 @export var move_speed = 1.0
 @export var max_move_speed = 5.0
@@ -18,21 +24,14 @@ signal died(dalek: Dalek, corpse: DalekCorpse, by: BulletContoller)
 @export var rotation_speed = 90
 @export var fire_angle_trigger = 3.5
 @export var disappearance_time = PI
-enum State {PATROL, ATTAK, DIED}
+
+@export_range(0., 1.) var start_patrol_from = 0.0
 var state = State.PATROL
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Initialized outiside by parent
 var timezone: Timezone = null
-
-@onready var gun: Gun = $Dalek2/Armature/Skeleton3D/LeftArmBone/Gun
-@onready var head_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/HeadBone
-@onready var eye_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/HeadBone/EyeBone
-@onready var left_arm_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/LeftArmBone
-@onready var right_arm_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/RightArmBone
-@onready var skeleton = $Dalek2/Armature/Skeleton3D
-@onready var mesh = $Dalek2/Armature/Skeleton3D/Dalek
 # distanse, meters
 var last_offset = 0.0
 var disappearance = 1.0
@@ -40,54 +39,28 @@ var color:
 	get:
 		return colors[dalek_id]
 
-func _ready():
-	assert(dalek_id != 0, "DALEK WITH DEFAULT ID")
-	gun.scene = get_parent_node_3d()
-	gun.ignore_bodies[self] = true
-	mesh.set_instance_shader_parameter("color", color)
-	restart()
+var is_process_moving := false
+var is_physics_moving := false
 
-func restart():
-	state = State.PATROL
-	gun.restart()
-	clear_scream()
-	disappearance = 1.0
-	mesh.set_instance_shader_parameter("disappearance", 1.0)
-	if patrol_path:
-		if patrol_path.curve.point_count > 1:
-			last_offset = start_patrol_from*patrol_path.curve.get_baked_length()
-			global_transform = patrol_path.global_transform * patrol_path.curve.sample_baked_with_rotation(last_offset)
-		else:
-			last_offset = 0
-			global_transform = patrol_path.global_transform
+@onready var gun: Gun = $Dalek2/Armature/Skeleton3D/LeftArmBone/Gun
+@onready var head_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/HeadBone
+@onready var eye_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/HeadBone/EyeBone
+@onready var left_arm_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/LeftArmBone
+@onready var right_arm_bone: BoneAttachment3D = $Dalek2/Armature/Skeleton3D/RightArmBone
+@onready var skeleton = $Dalek2/Armature/Skeleton3D
+@onready var mesh: MeshInstance3D = $Dalek2/Armature/Skeleton3D/Dalek
 
 @onready var scream_stream: AudioStreamPlayer3D = $Scream
 @onready var moving: AudioStreamPlayer3D = $Moving
 
-func scream():
-	scream_stream.play(0)
-	scream_stream.finished.connect(gun.immediate_fire, CONNECT_ONE_SHOT)
 
-func clear_scream():
-	scream_stream.finished.disconnect(gun.immediate_fire)
-	scream_stream.stop()
+func _ready():
+	#assert(dalek_id != 0, "DALEK WITH DEFAULT ID")
+	gun.scene = get_parent_node_3d()
+	gun.ignore_bodies[self] = true
+	set_shader_parameter("color", color)
+	restart()
 
-var is_process_moving := false
-var is_physics_moving := false
-
-func process_play_sound():
-	if is_process_moving == false:
-		if moving.playing and not is_physics_moving:
-			moving.stop()
-	else:
-		moving.play()
-
-func physics_play_sound():
-	if is_physics_moving == false:
-		if moving.playing and not is_process_moving:
-			moving.stop()
-	else:
-		moving.play()	
 
 func _process(delta):
 	if state == State.DIED:
@@ -97,108 +70,48 @@ func _process(delta):
 	if not gun.can_fire:
 		process_play_sound()
 		return
-	var bone = head_bone	
+	var bone = head_bone
 	var head_rotation = head_angle_to_player(bone, "x")
-	
+
 	var gun_bone = left_arm_bone
 
 	if head_rotation == null || abs(head_rotation) > deg_to_rad(view_angle):
 		if scream_stream.playing:
 			return
 		state = State.PATROL
-		rotate_with_speed(bone, 0, deg_to_rad(head_speed)*delta)
-		rotate_with_speed(gun_bone, 0, deg_to_rad(gun_speed)*delta)
-		rotate_with_speed(eye_bone, -PI/2, deg_to_rad(gun_speed)*delta, "z")
-		rotate_with_speed(right_arm_bone, 0, deg_to_rad(gun_speed)*delta)
-		rotate_with_speed(right_arm_bone, -PI/2, deg_to_rad(gun_speed)*delta, "z")
+		rotate_with_speed(bone, 0, deg_to_rad(head_speed) * delta)
+		rotate_with_speed(gun_bone, 0, deg_to_rad(gun_speed) * delta)
+		rotate_with_speed(eye_bone, -PI / 2, deg_to_rad(gun_speed) * delta, "z")
+		rotate_with_speed(right_arm_bone, 0, deg_to_rad(gun_speed) * delta)
+		rotate_with_speed(right_arm_bone, -PI / 2, deg_to_rad(gun_speed) * delta, "z")
 		process_play_sound()
 		return
 	state = State.ATTAK
-	
-	little_shake(eye_bone, "z", -PI/2, deg_to_rad(gun_speed)*delta)
-	little_shake(right_arm_bone, "z", -PI/2, deg_to_rad(gun_speed)*delta)
-	little_shake(right_arm_bone, "y", 0, deg_to_rad(gun_speed)*delta)
+
+	little_shake(eye_bone, "z", -PI / 2, deg_to_rad(gun_speed) * delta)
+	little_shake(right_arm_bone, "z", -PI / 2, deg_to_rad(gun_speed) * delta)
+	little_shake(right_arm_bone, "y", 0, deg_to_rad(gun_speed) * delta)
 
 	var gun_rotation = head_angle_to_player(gun_bone, "y")
-	if gun_rotation != null && abs(gun_bone.rotation.y - gun_rotation) < deg_to_rad(fire_angle_trigger):
+	if gun_rotation != null && abs(gun_bone.rotation.y - gun_rotation) < deg_to_rad(
+		fire_angle_trigger
+	):
 		if gun.can_fire and not scream_stream.playing:
 			scream()
 		process_play_sound()
 		return
 	if gun_rotation != null:
-		rotate_with_speed(gun_bone, clamp(gun_rotation, -PI/6, PI/6), deg_to_rad(gun_speed)*delta)
+		rotate_with_speed(
+			gun_bone,
+			clamp(gun_rotation, -PI / 6, PI / 6),
+			deg_to_rad(gun_speed) * delta,
+		)
 	var body_rotation = head_angle_to_player(self, "z")
 	if body_rotation != null:
-		rotate_with_speed(self, body_rotation, deg_to_rad(rotation_speed)*delta)
-	rotate_with_speed(bone, head_rotation, deg_to_rad(head_speed)*delta)
+		rotate_with_speed(self, body_rotation, deg_to_rad(rotation_speed) * delta)
+	rotate_with_speed(bone, head_rotation, deg_to_rad(head_speed) * delta)
 	process_play_sound()
 
-func rotate_with_speed(node: Node3D, angle: float, speed: float, axis = "y"):
-	if abs(node.rotation[axis] -angle) > speed:
-		is_process_moving = true
-	node.rotation[axis] = rotate_toward(node.rotation[axis], angle, speed)
-
-func little_shake(node: Node3D, axis: String, base: float, speed: float):
-	var next_rotation := node.rotation[axis] + randf_range(-0.1, 0.1)
-	next_rotation = clamp(next_rotation, base-PI/5, base+PI/5)
-	rotate_with_speed(node, next_rotation, speed, axis)
-	
-
-func look_dir_angle(node: Node3D, look_dir: Vector3, forward_axis = "z"):
-	var angle_to_player = atan2(look_dir.x, look_dir.z)
-	var actual_dir = node.global_basis[forward_axis];
-	var requred_delta = angle_to_player - atan2(actual_dir.x, actual_dir.z)
-	var requred_angle = node.rotation.y + requred_delta
-	while requred_angle < -PI:
-		requred_angle += 2*PI
-	while requred_angle > PI:
-		requred_angle -= 2*PI
-	return requred_angle
-func rotate_to_dir(node: Node3D, look_dir: Vector3, speed: float, forward_axis = "z"):
-	rotate_with_speed(node, look_dir_angle(node, look_dir, forward_axis), speed)
-
-func head_angle_to_player(look_bone: Node3D, forward = "z"):
-	var bone = look_bone
-	var look_dir = where_player(bone, head_bone.global_position.y)
-	if look_dir == null:
-		return null
-	return look_dir_angle(bone, look_dir, forward)
-
-func where_player(look_bone: Node3D, y_raycast: float):
-	var enemy = timezone.level.player;
-	var enemy_position = enemy.global_position;
-	var bone = look_bone;
-	var our_position = bone.global_position
-	enemy_position.y = y_raycast
-	our_position.y = y_raycast
-	var look_dir = (enemy_position - our_position)
-	
-	if timezone.level.player_room == timezone.roomType:
-		var cast_result = raycast_enemy(enemy_position-look_dir, enemy_position, true)
-		if !cast_result || !(cast_result.collider is PlayerController):
-			return null
-		return look_dir
-		
-	var time_shift = timezone.level.portal_controller._get_room_shift()
-	look_dir += time_shift
-	look_dir.y = 0
-	var cast_out_time = raycast_enemy(our_position, our_position+look_dir, true)
-	if !cast_out_time || !(cast_out_time.collider is Area3D):
-		return null
-	var collision_shifted = cast_out_time.position-time_shift
-	var cast_player_time = raycast_enemy(
-		collision_shifted-0.4*look_dir.normalized(),
-		collision_shifted+look_dir, false)
-	if !cast_player_time || !(cast_player_time.collider is PlayerController):
-		return null
-	return look_dir
-
-func raycast_enemy(from: Vector3, to: Vector3, collide_with_areas: bool):#, enemy_timezone: Timezone.RoomType):
-	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(from, to)
-	query.exclude = [self]
-	query.collide_with_areas = collide_with_areas
-	return space_state.intersect_ray(query)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -210,29 +123,30 @@ func _physics_process(delta):
 	if state == State.ATTAK || patrol_path == null:
 		physics_play_sound()
 		return
-	var target_offset = last_offset+move_speed
+	var target_offset = last_offset + move_speed
 	if patrol_path.curve.point_count > 1:
-		target_offset = move_speed*timezone.level.clock+(start_patrol_from*patrol_path.curve.get_baked_length())
-	var speed = min(max_move_speed, max(0, target_offset-last_offset))
+		target_offset = move_speed * timezone.level.clock + (start_patrol_from
+		* patrol_path.curve.get_baked_length())
+	var speed = min(max_move_speed, max(0, target_offset - last_offset))
 	#print_debug(dalek_id, " ", last_offset, " ", patrol_path.curve.get_baked_length())
 	var closest_target_position = patrol_path.global_position
 	if patrol_path.curve.point_count > 1:
-		closest_target_position = patrol_path.global_transform* patrol_path.curve.sample_baked(
-			fmod(last_offset+move_speed, patrol_path.curve.get_baked_length())
+		closest_target_position = patrol_path.global_transform * patrol_path.curve.sample_baked(
+			fmod(last_offset + move_speed, patrol_path.curve.get_baked_length())
 		)
 	var to_closest_target = closest_target_position - global_position
 	var direction = Vector3(to_closest_target.x, 0, to_closest_target.z).normalized()
 	if patrol_path.curve.point_count <= 1 && to_closest_target.length() < 0.4:
 		direction = patrol_path.global_basis.z.normalized()
 		var angle = look_dir_angle(self, direction)
-		rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)
+		rotate_with_speed(self, angle, deg_to_rad(rotation_speed) * delta)
 		move_and_slide()
 		physics_play_sound()
 		return
 	var angle = look_dir_angle(self, direction)
-	rotate_with_speed(self, angle, deg_to_rad(rotation_speed)*delta)
+	rotate_with_speed(self, angle, deg_to_rad(rotation_speed) * delta)
 	#move_speed*=max(1., 1./(abs(2*angle)*abs(2*angle)))
-	if abs(rotation.y - angle) > PI/4:
+	if abs(rotation.y - angle) > PI / 4:
 		speed = 0.1
 	if direction:
 		velocity.x = direction.x * speed
@@ -241,16 +155,138 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
-	last_offset += speed*delta
+	last_offset += speed * delta
 	is_physics_moving = true
 	physics_play_sound()
-	
 
-func _on_bullet(bullet):
-	if state == State.DIED:
-		return
-	killed.emit(self, bullet)
-	die(bullet)
+
+func set_shader_parameter(name: String, value: Variant):
+	(mesh.get_active_material(0) as ShaderMaterial).set_shader_parameter(name, value)
+
+
+func restart():
+	state = State.PATROL
+	gun.restart()
+	clear_scream()
+	disappearance = 1.0
+	set_shader_parameter("disappearance", 1.0)
+	if patrol_path:
+		if patrol_path.curve.point_count > 1:
+			last_offset = start_patrol_from * patrol_path.curve.get_baked_length()
+			global_transform = patrol_path.global_transform * patrol_path \
+					.curve \
+					.sample_baked_with_rotation(last_offset)
+		else:
+			last_offset = 0
+			global_transform = patrol_path.global_transform
+
+
+func scream():
+	scream_stream.play(0)
+	scream_stream.finished.connect(gun.immediate_fire, CONNECT_ONE_SHOT)
+
+
+func clear_scream():
+	if scream_stream.finished.has_connections():
+		scream_stream.finished.disconnect(gun.immediate_fire)
+	scream_stream.stop()
+
+
+func process_play_sound():
+	if is_process_moving == false:
+		if moving.playing and not is_physics_moving:
+			moving.stop()
+	else:
+		moving.play()
+
+
+func physics_play_sound():
+	if is_physics_moving == false:
+		if moving.playing and not is_process_moving:
+			moving.stop()
+	else:
+		moving.play()
+
+
+func rotate_with_speed(node: Node3D, angle: float, speed: float, axis = "y"):
+	if abs(node.rotation[axis] - angle) > speed:
+		is_process_moving = true
+	node.rotation[axis] = rotate_toward(node.rotation[axis], angle, speed)
+
+
+func little_shake(node: Node3D, axis: String, base: float, speed: float):
+	var next_rotation := node.rotation[axis] + randf_range(-0.1, 0.1)
+	next_rotation = clamp(next_rotation, base - PI / 5, base + PI / 5)
+	rotate_with_speed(node, next_rotation, speed, axis)
+
+
+func look_dir_angle(node: Node3D, look_dir: Vector3, forward_axis = "z"):
+	var angle_to_player = atan2(look_dir.x, look_dir.z)
+	var actual_dir = node.global_basis[forward_axis]
+	var requred_delta = angle_to_player - atan2(actual_dir.x, actual_dir.z)
+	var requred_angle = node.rotation.y + requred_delta
+	while requred_angle < -PI:
+		requred_angle += 2 * PI
+	while requred_angle > PI:
+		requred_angle -= 2 * PI
+	return requred_angle
+
+
+func rotate_to_dir(node: Node3D, look_dir: Vector3, speed: float, forward_axis = "z"):
+	rotate_with_speed(node, look_dir_angle(node, look_dir, forward_axis), speed)
+
+
+func head_angle_to_player(look_bone: Node3D, forward = "z"):
+	var bone = look_bone
+	var look_dir = where_player(bone, head_bone.global_position.y)
+	if look_dir == null:
+		return null
+	return look_dir_angle(bone, look_dir, forward)
+
+
+func where_player(look_bone: Node3D, y_raycast: float):
+	var enemy = timezone.level.player
+	var enemy_position = enemy.global_position
+	var bone = look_bone
+	var our_position = bone.global_position
+	enemy_position.y = y_raycast
+	our_position.y = y_raycast
+	var look_dir = (enemy_position - our_position)
+
+	if timezone.level.player_room == timezone.roomType:
+		var cast_result = raycast_enemy(enemy_position - look_dir, enemy_position, true)
+		if !cast_result || !(cast_result.collider is PlayerController):
+			return null
+		return look_dir
+
+	var time_shift = timezone.level.portal_controller._get_room_shift()
+	look_dir += time_shift
+	look_dir.y = 0
+	var cast_out_time = raycast_enemy(our_position, our_position + look_dir, true)
+	if !cast_out_time || !(cast_out_time.collider is Area3D):
+		return null
+	var collision_shifted = cast_out_time.position - time_shift
+	var cast_player_time = raycast_enemy(
+		collision_shifted - 0.4 * look_dir.normalized(),
+		collision_shifted + look_dir,
+		false,
+	)
+	if !cast_player_time || !(cast_player_time.collider is PlayerController):
+		return null
+	return look_dir
+
+
+func raycast_enemy(
+	from: Vector3,
+	to: Vector3,
+	collide_with_areas: bool,
+): #, enemy_timezone: Timezone.RoomType):
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.exclude = [self]
+	query.collide_with_areas = collide_with_areas
+	return space_state.intersect_ray(query)
+
 
 func die(reason = null, where: Transform3D = global_transform):
 	if state == State.DIED:
@@ -272,9 +308,17 @@ func die(reason = null, where: Transform3D = global_transform):
 		disappearance = 0.0
 		global_position = timezone.level.dalek_home.global_position
 
+
 func die_animation(delta: float):
 	if disappearance > 0.0:
-		disappearance-=delta/disappearance_time
-		mesh.set_instance_shader_parameter("disappearance", max(0.0, disappearance))
+		disappearance -= delta / disappearance_time
+		set_shader_parameter("disappearance", max(0.0, disappearance))
 		if disappearance <= 0.0:
-			global_position = timezone.level.dalek_home.global_position	
+			global_position = timezone.level.dalek_home.global_position
+
+
+func _on_bullet(bullet):
+	if state == State.DIED:
+		return
+	killed.emit(self, bullet)
+	die(bullet)

@@ -16,7 +16,7 @@ var state = State.APPEAR
 
 @export var color: Color
 
-@onready var mesh_body = $Armature/Skeleton3D/DalekBreak
+@onready var mesh_body: MeshInstance3D = $Armature/Skeleton3D/DalekBreak
 @onready var mesh_head = $Armature/Skeleton3D/DalekBeakHead
 @onready var explosion = $Explosion
 @onready var particles = $DalekTranslateParticles
@@ -29,10 +29,13 @@ var lifetime: float:
 		return _lifetime
 	set(value):
 		_lifetime = value
-		mesh_body.set_instance_shader_parameter("disappearance", clamp(_lifetime, 0.0, 1.0))
-		mesh_head.set_instance_shader_parameter("disappearance", clamp(_lifetime, 0.0, 1.0))
+		set_shader_parameter("disappearance", clamp(_lifetime, 0.0, 1.0))
 		colliderShape.height = max(0, _lifetime*initialShapeHeight)
 		collider.position.y = _lifetime*initialColliderY
+
+func set_shader_parameter(name: String, value: Variant):
+	(mesh_body.get_active_material(0) as ShaderMaterial).set_shader_parameter(name, value)
+	(mesh_head.get_active_material(0) as ShaderMaterial).set_shader_parameter(name, value)
 
 var particles_material: ShaderMaterial
 var colliderShape: CylinderShape3D
@@ -40,8 +43,7 @@ var initialShapeHeight: float
 var initialColliderY: float
 func _ready():
 	particles.lifetime = disappearance_time
-	mesh_body.set_instance_shader_parameter("color", color)
-	mesh_head.set_instance_shader_parameter("color", color)
+	set_shader_parameter("color", color)
 	
 	colliderShape = collider.shape.duplicate()
 	collider.shape = colliderShape
@@ -63,9 +65,9 @@ func set_particles_settings():
 	particles_material.set_shader_parameter("start_rotation", rotated_from.y)
 	particles_material.set_shader_parameter("end_point", global_position)
 	particles_material.set_shader_parameter("end_rotation", global_rotation.y)
-	particles_material.set_shader_parameter("end_dirt", mesh_body.get_instance_shader_parameter("dirt"))
+	particles_material.set_shader_parameter("end_dirt", mesh_body.get_active_material(0).get_shader_parameter("dirt"))
 	if from_corpse:
-		particles_material.set_shader_parameter("start_dirt", mesh_body.get_instance_shader_parameter("dirt"))
+		particles_material.set_shader_parameter("start_dirt", mesh_body.get_active_material(0).get_shader_parameter("dirt"))
 		particles_material.set_shader_parameter("start_height", particles_material.get_shader_parameter("end_height"))
 		particles_material.set_shader_parameter("start_neck", particles_material.get_shader_parameter("end_neck"))
 	
